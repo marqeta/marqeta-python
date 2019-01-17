@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: marqeta
+Version: 1.0.0
+Summary: marqeta python-SDK
+Home-page: https://github.com/marqeta-python
+Author: Maqeta Developer
+Author-email: development@marqeta.com
+License: UNKNOWN
+Description: long_description
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2 and 3
+Classifier: License :: 
+Classifier: Application:: 
+Description-Content-Type: text/markdown
