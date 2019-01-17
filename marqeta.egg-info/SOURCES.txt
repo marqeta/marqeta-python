@@ -1,9 +1,0 @@
-README.md
-setup.py
-marqeta/__init__.py
-marqeta/exampleclass.py
-marqeta.egg-info/PKG-INFO
-marqeta.egg-info/SOURCES.txt
-marqeta.egg-info/dependency_links.txt
-marqeta.egg-info/requires.txt
-marqeta.egg-info/top_level.txt
