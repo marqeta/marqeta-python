@@ -1,12 +1,13 @@
 from setuptools import setup
+from marqeta.version import __version__
 
 
 
 setup(
     name='marqeta',
-    version='1.0.0',
+    version= __version__,
     description='marqeta python-SDK',
-    author='Maqeta Developer',
+    author='Marqeta Developer',
     author_email='development@marqeta.com',
     packages=['marqeta'],
     long_description= "long_description",
@@ -18,4 +19,5 @@ setup(
         "Application:: ",
     ],
     install_requires=['requests']
+
 )
