@@ -1,7 +1,8 @@
 from setuptools import setup
 from marqeta.version import __version__
 
-
+with open('requirements.txt', 'r') as requirement:
+    install_requirements = requirement.read()
 
 setup(
     name='marqeta',
@@ -18,6 +19,6 @@ setup(
         "License :: ",
         "Application:: ",
     ],
-    install_requires=['requests']
+    install_requires= install_requirements
 
 )

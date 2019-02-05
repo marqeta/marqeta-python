@@ -1,83 +1,72 @@
-from __future__ import unicode_literals
 from marqeta.errors import MarqetaError
-from marqeta.version import __version__
+from marqeta.users import UsersCollection
+import requests,json
 
-import sys
-import requests
-import json
 
-# Creating Client for HTTP headers
-
-if sys.version_info < (3,):
-    text_type = unicode
-    binary_type = str
-else:
-    text_type = str
-    binary_type = bytes
-
+headers = {'content-type': 'application/json',
+            'User-Agent': '"marqeta-python/{} (Python {})".format(__version__)'}
 
 class Client(object):
 
-    def __init__(self,base_url = None, application_token = None, access_token = None):
+    def __init__(self, base_url=None, application_token=None, access_token=None):
         self.base_url = base_url
         self.application_token = application_token
         self.access_token = access_token
+        objects = self._objects_container()
+        self.users = objects['users']()
 
-    # Get method to access the API information based on the endpoint, query parameters needs to be specified
-
-    def get(self, endpoint, query_params = None):
-        response = requests.get(url = self.base_url + endpoint,
-                                auth = (self.application_token,self.access_token),
-                                headers = {'content-type':'application/json',
-                                           'User-Agent': '"marqeta-python/{} (Python {})".format(__version__)'},
-                                params = query_params)
+    def get(self, endpoint, query_params=None):
+        response = requests.get(url=self.base_url + endpoint, auth=(
+            self.application_token, self.access_token),
+                                headers= headers,
+                                params=query_params)
         if response.status_code >= 400:
             response = response.json()
             raise MarqetaError(response['error_code'], response['error_message'])
-        return response.json(),response.status_code,
-
-    # Put method to update the customer information to the specified end point.
+        return (response.json(), response.status_code)
 
     def put(self, endpoint, data):
-
-        response = requests.put(url = self.base_url + endpoint,
-                                auth = (self.application_token,self.access_token),
-                                headers = {'content-type': 'application/json',
-                                           'User-Agent': '"marqeta-python/{} (Python {})".format(__version__)'},
-                                data = json.dumps(data))
-        if response.status_code >= 400 :
-            response = response.json()
-            raise MarqetaError(response['error_code'], response['error_message'])
-        return response.json(), response.status_code,
-    # Post method to create modules based on the specific information
-
-    def post(self, endpoint, data = None):
-
-        response = requests.post(url = self.base_url + endpoint,
-                                 auth = (self.application_token,self.access_token),
-                                 headers = {'content-type': 'application/json',
-                                            'User-Agent': '"marqeta-python/{} (Python {})".format(__version__)'},
-                                 data = json.dumps(data))
+        response = requests.put(url=self.base_url + endpoint, auth=(
+            self.application_token, self.access_token),
+                                headers=headers,
+                                data=json.dumps(data))
         if response.status_code >= 400:
             response = response.json()
             raise MarqetaError(response['error_code'], response['error_message'])
-        return response.json(),response.status_code,
+        return (response.json(), response.status_code)
 
-    # Delete method to delete the requested information
+    def post(self, endpoint, data=None):
+        response = requests.post(url=self.base_url + endpoint, auth=(
+            self.application_token, self.access_token),
+                                 headers= headers,
+                                 data=json.dumps(data))
+        if response.status_code >= 400:
+            response = response.json()
+            raise MarqetaError(response['error_code'], response['error_message'])
+        return (response.json(), response.status_code)
 
     def delete(self, endpoint):
-        response = requests.delete(url = self.base_url + endpoint,
-                                   auth = (self.application_token,self.access_token),
-                                   headers = {'content-type': 'application/json',
-                                              'User-Agent': '"marqeta-python/{} (Python {})".format(__version__)'})
+        response = requests.delete(url=self.base_url + endpoint, auth=(
+            self.application_token, self.access_token),
+                                   headers= headers)
         if response.status_code >= 400:
             response = response.json()
             raise MarqetaError(response['error_code'], response['error_message'])
+        return (
+            response.json(), response.status_code)
 
-        return response.json(), response.status_code,
+    def _objects_container(self):
+        """
+        Call subclasses via function to allow passing parent namespace to subclasses.
 
+        Returns the dict with objects references.
+        """
+        _parent_class = self
 
+        class UsersWrapper(UsersCollection):
 
+            def __init__(self):
+                self._parent_class = _parent_class
+                super().__init__(_parent_class)
 
-
-
+        return {'users': UsersWrapper}

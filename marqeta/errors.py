@@ -1,4 +1,3 @@
-
 class MarqetaError(Exception):
 
     def __init__(self, code, message):
@@ -6,13 +5,7 @@ class MarqetaError(Exception):
         self.code = code
 
     def __str__(self):
-        return repr(self.message)
+        return 'MarqetaError:' + self.message +'\nError Code:' + self.code
 
-
-
-
-
-
-
-
-
+    def __repr__(self):
+        return '{ Error :'+self.message +',code: '+   self.code +'}'
