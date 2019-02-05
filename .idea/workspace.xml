@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7a9893c8-d168-4102-b2db-6bc76b38fe25" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/marqeta-python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/marqeta-python.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marqeta/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/marqeta/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marqeta/client.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/marqeta/errors.py" beforeDir="false" afterPath="$PROJECT_DIR$/marqeta/errors.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marqeta/version.py" beforeDir="false" afterPath="$PROJECT_DIR$/marqeta/version.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/simulationtest.py" beforeDir="false" />
-    </list>
+    <list default="true" id="7a9893c8-d168-4102-b2db-6bc76b38fe25" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
