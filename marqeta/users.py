@@ -1,4 +1,4 @@
-
+from datetime import datetime
 ''' UserCollection class lists, creates, updates
 and finds the user information '''
 
@@ -10,22 +10,29 @@ class UsersCollection(object):
     def __init__(self,client):
         self.client = client
 
-    def __page(self,count, start_index):
-        response = self.client.get('users?count={}&start_index={}&sort_by=-lastModifiedTime'.format(count,start_index))[0]
+    def __page(self,count, start_index, sort_by):
+        response = self.client.get('users?count={}&start_index={}&sort_by=-{}'.format(count,start_index,sort_by))[0]
         return response
 
     ''' Lists all the users 
         Returns list of user object with default count = 5 users per page '''
-    def list(self):
-
+    def list(self, sort_by = None):
         count = 5
         start_index = 0
         list_of_users =[]
-        while self.__page(count, start_index)['is_more'] and start_index < 20:
-            response = self.__page(count, start_index)
-            start_index = start_index + count
-            list_of_users.append(UserResource(response['data'][0]))
-        return list_of_users
+        user_list = self.client.get('users')[0]
+        is_more = user_list['is_more']
+        if is_more:
+            while is_more and start_index < 20:
+                if sort_by:
+                    response = self.__page(count, start_index, sort_by=sort_by)
+                else:
+                    response = self.__page(count, start_index, sort_by='lastModifiedTime')
+                is_more = response['is_more']
+                start_index = start_index + count
+                list_of_users.append(UserResource(response['data'][0]))
+            return list_of_users
+        return UserResource(user_list['data'])
 
     ''' Create the user with the specified data
         Returns the UserResource object which has created user information'''
@@ -38,6 +45,10 @@ class UsersCollection(object):
         Returns the UserResource object which has user information'''
     def find(self,token):
         response = self.client.get('users/{}'.format(token))[0]
+
+        def ssn(self):
+            return self.client.get('users/{}/ssn'.format(token))[0]
+
         return UserResource(response)
 
     ''' Update the user information for the requested token  with the data
@@ -96,11 +107,11 @@ class UserResource(object):
 
     @property
     def created_time(self):
-        return self.response['created_time']
+        return datetime.strptime(self.response['created_time'],'%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
-        return self.response['last_modified_time']
+        return datetime.strptime(self.response['last_modified_time'],'%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def metadata(self):
@@ -108,7 +119,8 @@ class UserResource(object):
 
     @property
     def birth_date(self):
-        return self.response['birth_date']
+        print(type(self.response['birth_date']))
+        return datetime.strptime(self.response['birth_date'], '%Y-%m-%d').date()
 
     @property
     def account_holder_group_token(self):
@@ -120,7 +132,7 @@ class UserResource(object):
 
     @property
     def id_card_expiration_date(self):
-        return self.response['id_card_expiration_date']
+        return datetime.strptime(self.response['id_card_expiration_date'],'%Y-%m-%d').date()
 
     @property
     def notes(self):
@@ -152,7 +164,7 @@ class UserResource(object):
 
     @property
     def passport_expiration_date(self):
-        return self.response['passport_expiration_date']
+        return datetime.strptime(self.response['passport_expiration_date'],'%Y-%m-%d').date()
 
     @property
     def id_card_number(self):
@@ -197,7 +209,7 @@ class DepositAccount(object):
         self.routing_number = account_details['routing_number']
         self.allow_immediate_credit = account_details['allow_immediate_credit']
         self.token = account_details['token']
-        self.user_token =account_details['user_token']
+        self.user_token = account_details['user_token']
         self.business_token = account_details['business_token']
 
 
@@ -205,9 +217,10 @@ class Authentication(object):
 
     def __init__(self, auth_details):
         self.last_password_update_channel = auth_details['last_password_update_channel']
-        self.last_password_update_time = auth_details['last_password_update_time']
+        self.last_password_update_time = datetime.strptime(auth_details['last_password_update_time'],
+                                                           '%Y-%m-%dT%H:%M:%SZ')
         self.email_verified = auth_details['email_verified']
-        self.email_verified_time = auth_details['email_verified_time']
+        self.email_verified_time = datetime.strptime(auth_details['email_verified_time'],'%Y-%m-%dT%H:%M:%SZ')
 
 
 

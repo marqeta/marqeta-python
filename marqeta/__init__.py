@@ -20,10 +20,11 @@ class Client(object):
             self.application_token, self.access_token),
                                 headers= headers,
                                 params=query_params)
+        print("****************get**************", response)
         if response.status_code >= 400:
             response = response.json()
             raise MarqetaError(response['error_code'], response['error_message'])
-        return (response.json(), response.status_code)
+        return response.json(), response.status_code
 
     def put(self, endpoint, data):
         response = requests.put(url=self.base_url + endpoint, auth=(
@@ -33,7 +34,7 @@ class Client(object):
         if response.status_code >= 400:
             response = response.json()
             raise MarqetaError(response['error_code'], response['error_message'])
-        return (response.json(), response.status_code)
+        return response.json(), response.status_code
 
     def post(self, endpoint, data=None):
         response = requests.post(url=self.base_url + endpoint, auth=(
@@ -43,7 +44,7 @@ class Client(object):
         if response.status_code >= 400:
             response = response.json()
             raise MarqetaError(response['error_code'], response['error_message'])
-        return (response.json(), response.status_code)
+        return response.json(), response.status_code
 
     def delete(self, endpoint):
         response = requests.delete(url=self.base_url + endpoint, auth=(

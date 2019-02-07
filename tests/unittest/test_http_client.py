@@ -1,4 +1,5 @@
 import unittest
+import requests
 from unittest import mock
 from marqeta import Client
 from marqeta.errors import MarqetaError
@@ -9,30 +10,34 @@ class HttpClientTest(unittest.TestCase):
     #Creating client object
 
     def setUp(self):
-        self.client = Client()
+        self.client = Client('','test','test')
 
-    def mocked_requests_get(*args):
-        class MockResponse:
-            def __init__(self, json_data, status_code):
-                self.json_data = json_data
-                self.status_code = status_code
+    def mocked_requests_get(**args):
 
-        if args[0] == 'test_endpoint':
-            mock_response = MockResponse({"test_name": "name"}, 200)
-            print (mock_response.json_data)
-            print(mock_response.status_code)
+        response = requests.get("https://www.marqeta.com")
+        print('*****mocked response******',response)
+        return response
 
-            return MockResponse({"test_name": "name"}, 200)
 
-        return MockResponse(None, 400)
+        # class MockResponse:
+        #     def __init__(self, json_data, status_code):
+        #         self.json = json_data
+        #         self.status_code = status_code
+        #
+        # if args['url'] == 'test_endpoint':
+        #     # mock_response = MockResponse({"test_name": "name"}, 200)
+        #     # print (mock_response.json)
+        #     # print(mock_response.status_code)
+        #     return MockResponse({"test_name": "name"}, 200)
+        # return MockResponse(None, 400)
 
-    @mock.patch('marqeta.Client.get',side_effect = mocked_requests_get)
+    @mock.patch('requests.get',side_effect = mocked_requests_get())
     def test_get_method(self, mock_get):
 
         # import pdb ;pdb.set_trace()
-        response  = self.client.get('test_endpoint','test_query')
-        self.assertEqual(response.json_data, {"test_name": "name"})
-        self.assertEqual(response.status_code, 200)
+        response = self.client.get('test_endpoint')
+        self.assertTrue(response.ok)
+        #self.assertEqual(response.status_code, 200)
 
         #self.assertRaises(MarqetaError,lambda: print(self.client.get('test_endpoint1','test_query').status_code) )
         # != 200)

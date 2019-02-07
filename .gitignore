@@ -1,0 +1,13 @@
+
+# OS generated
+.DS_Store
+
+# Environments
+.python-version
+.env
+.venv
+
+#Others
+__pycache__
+/.idea
+*.pyc
