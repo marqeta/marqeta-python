@@ -10,9 +10,12 @@ class HttpClientTest(unittest.TestCase):
     #Creating client object
 
     def setUp(self):
-        self.client = Client('','test','test')
+        self.client = Client('','','')
 
     def mocked_requests_get(**args):
+
+        if args['url'] == 'test_endpoint':
+            return MockResponse
 
         response = requests.get("https://www.marqeta.com")
         print('*****mocked response******',response)
@@ -35,7 +38,7 @@ class HttpClientTest(unittest.TestCase):
     def test_get_method(self, mock_get):
 
         # import pdb ;pdb.set_trace()
-        response = self.client.get('test_endpoint')
+        response = self.client.get(url = 'test_endpoint')
         self.assertTrue(response.ok)
         #self.assertEqual(response.status_code, 200)
 
