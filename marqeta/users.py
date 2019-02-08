@@ -10,50 +10,53 @@ class UsersCollection(object):
     def __init__(self,client):
         self.client = client
 
-    def __page(self,count, start_index, sort_by):
-        response = self.client.get('users?count={}&start_index={}&sort_by=-{}'.format(count,start_index,sort_by))[0]
-        return response
+    def _page(self,**kwargs):
+        ''' sort_by can be specified including or excluding "-" '''
+
+        if kwargs['sort_by'] is not None:
+            if kwargs['sort_by'][0] != '-':
+                sort_by = '-'+ kwargs['sort_by']
+            else:
+                sort_by = kwargs['sort_by']
+            return self.client.get('users?count={}&start_index={}&sort_by={}'.format(kwargs['count'],
+                                                                                           kwargs['start_index'],sort_by))[0]
+        sort_by = 'lastModifiedTime'
+        return self.client.get('users?count={}&start_index={}&sort_by=-{}'.format(kwargs['count'],
+                                                                                      kwargs['start_index'],sort_by))[0]
 
     ''' Lists all the users 
-        Returns list of user object with default count = 5 users per page '''
-    def list(self, sort_by = None):
+        Returns list of all user object '''
+    def list(self, sort_by=None):
         count = 5
         start_index = 0
         list_of_users =[]
-        user_list = self.client.get('users')[0]
+        user_list = self._page(count= count, start_index = start_index, sort_by = sort_by)
         is_more = user_list['is_more']
         if is_more:
-            while is_more and start_index < 20:
-                if sort_by:
-                    response = self.__page(count, start_index, sort_by=sort_by)
-                else:
-                    response = self.__page(count, start_index, sort_by='lastModifiedTime')
+            while is_more and start_index < 10:  # start_index is limited to 10 for testing
+                response = self._page(count= count, start_index = start_index, sort_by=sort_by)
                 is_more = response['is_more']
                 start_index = start_index + count
-                list_of_users.append(UserResource(response['data'][0]))
+                list_of_users += [UserResource(user_list['data'][count]) for count in range(count)]
             return list_of_users
-        return UserResource(user_list['data'])
+        return [UserResource(user_list['data'][count]) for count in range(count)]
 
     ''' Create the user with the specified data
         Returns the UserResource object which has created user information'''
     def create(self, data):
+
         response = self.client.post('users', data)[0]
-        print("CREATE RESPONSE", response)
         return UserResource(response)
 
     ''' Finds the user information for the requested token 
         Returns the UserResource object which has user information'''
     def find(self,token):
         response = self.client.get('users/{}'.format(token))[0]
-
-        def ssn(self):
-            return self.client.get('users/{}/ssn'.format(token))[0]
-
         return UserResource(response)
 
     ''' Update the user information for the requested token  with the data
             Returns the UserResource object which has updated user information'''
-    def save(self,token , data):
+    def save(self,token, data):
         response = self.client.put('users/{}'.format(token),data)[0]
         return UserResource(response)
 
