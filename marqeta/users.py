@@ -2,6 +2,7 @@ from datetime import datetime
 ''' UserCollection class lists, creates, updates
 and finds the user information '''
 
+
 class UsersCollection(object):
 
     """ place holder for the parent class """
@@ -10,36 +11,33 @@ class UsersCollection(object):
     def __init__(self,client):
         self.client = client
 
-    def _page(self,**kwargs):
-        ''' sort_by can be specified including or excluding "-" '''
+    def __call__(self,token):
+        _parent_class = self
+        return UsersContext(token, self.client,_parent_class)
 
-        if kwargs['sort_by'] is not None:
-            if kwargs['sort_by'][0] != '-':
-                sort_by = '-'+ kwargs['sort_by']
-            else:
-                sort_by = kwargs['sort_by']
-            return self.client.get('users?count={}&start_index={}&sort_by={}'.format(kwargs['count'],
-                                                                                           kwargs['start_index'],sort_by))[0]
-        sort_by = 'lastModifiedTime'
-        return self.client.get('users?count={}&start_index={}&sort_by=-{}'.format(kwargs['count'],
-                                                                                      kwargs['start_index'],sort_by))[0]
+
+
+    def _page(self,**kwargs):
+        ''' sort_by can be specified in ascending or descending order "-" '''
+
+        return self.client.get('{}?count={}&start_index={}&sort_by={}'.format(kwargs['endpoint'],kwargs['count'],
+                                                                                  kwargs['start_index'],
+                                                                                  kwargs['sort_by']))[0]
 
     ''' Lists all the users 
         Returns list of all user object '''
-    def list(self, sort_by=None):
+    def list(self, sort_by = '-lastModifiedTime', endpoint ='users'):                 # sort_by=None):
         count = 5
         start_index = 0
         list_of_users =[]
-        user_list = self._page(count= count, start_index = start_index, sort_by = sort_by)
-        is_more = user_list['is_more']
-        if is_more:
-            while is_more and start_index < 10:  # start_index is limited to 10 for testing
-                response = self._page(count= count, start_index = start_index, sort_by=sort_by)
-                is_more = response['is_more']
-                start_index = start_index + count
-                list_of_users += [UserResource(user_list['data'][count]) for count in range(count)]
-            return list_of_users
-        return [UserResource(user_list['data'][count]) for count in range(count)]
+        while True:
+            response = self._page(endpoint = endpoint ,count= count, start_index = start_index, sort_by=sort_by)
+            if response['is_more'] == False or start_index == 5:  # start_index is specified only for testing
+                list_of_users += [UserResource(response['data'][count]) for count in range(response['count'])]
+                break
+            start_index = start_index + count
+            list_of_users += [UserResource(response['data'][count]) for count in range(response['count'])]
+        return list_of_users
 
     ''' Create the user with the specified data
         Returns the UserResource object which has created user information'''
@@ -59,6 +57,30 @@ class UsersCollection(object):
     def save(self,token, data):
         response = self.client.put('users/{}'.format(token),data)[0]
         return UserResource(response)
+
+
+class UsersContext(UsersCollection):
+
+    def __init__(self, token,client, users_object):
+        super(UsersContext, self).__init__(client)
+        self.token = token
+        self.users_object = users_object
+        self.children = self.Children(self.token, self.users_object)
+
+    ''' for 'client.users({token).ssn()' -- user can specify to get full ssn '''
+    def ssn(self,full_ssn = False):
+
+        return self.client.get('users/{}/ssn?full_ssn={}'.format(self.token, full_ssn))[0]['ssn']
+
+    class Children(object):
+
+        def __init__(self, token, user_object):
+            self.token = token
+            self.users_object = user_object
+
+        def list(self):
+            # super(UsersContext, self).list()
+            return self.users_object.list(sort_by='-lastModifiedTime', endpoint='users/{}/children'.format(self.token))
 
 
 ''' UserResource class lists all the user properties for the /user endpoint'''
@@ -194,6 +216,7 @@ class UserResource(object):
         return DepositAccount(account_info)
 
 
+
 class Address(object):
 
     def __init__(self, response):
@@ -224,7 +247,3 @@ class Authentication(object):
                                                            '%Y-%m-%dT%H:%M:%SZ')
         self.email_verified = auth_details['email_verified']
         self.email_verified_time = datetime.strptime(auth_details['email_verified_time'],'%Y-%m-%dT%H:%M:%SZ')
-
-
-
-

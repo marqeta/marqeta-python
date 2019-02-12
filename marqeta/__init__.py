@@ -16,12 +16,10 @@ class Client(object):
         self.users = objects['users']()
 
     def get(self, endpoint, query_params=None):
-        print("**get called **")
         response = requests.get(url=self.base_url + endpoint, auth=(
             self.application_token, self.access_token),
                                 headers= headers,
                                 params=query_params)
-        print("**get called ** after response")
         if response.status_code >= 400:
             response = response.json()
             raise MarqetaError(response['error_code'], response['error_message'])
