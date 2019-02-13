@@ -1,4 +1,4 @@
-from datetime import datetime
+from marqeta.users_resources import UserResource,NotesResources,TransitionsResources
 ''' UserCollection class lists, creates, updates
 and finds the user information '''
 
@@ -15,8 +15,6 @@ class UsersCollection(object):
         _parent_class = self
         return UsersContext(token, self.client,_parent_class)
 
-
-
     def _page(self,**kwargs):
         ''' sort_by can be specified in ascending or descending order "-" '''
 
@@ -26,37 +24,43 @@ class UsersCollection(object):
 
     ''' Lists all the users 
         Returns list of all user object '''
-    def list(self, sort_by = '-lastModifiedTime', endpoint ='users'):                 # sort_by=None):
+    def list(self, sort_by = '-lastModifiedTime', endpoint ='users', resource = UserResource):                 # sort_by=None):
         count = 5
         start_index = 0
         list_of_users =[]
         while True:
             response = self._page(endpoint = endpoint ,count= count, start_index = start_index, sort_by=sort_by)
             if response['is_more'] == False or start_index == 5:  # start_index is specified only for testing
-                list_of_users += [UserResource(response['data'][count]) for count in range(response['count'])]
+                list_of_users += [(resource(response["data"][count])) for count in range(response['count'])]
                 break
             start_index = start_index + count
-            list_of_users += [UserResource(response['data'][count]) for count in range(response['count'])]
+            list_of_users += [resource(response["data"][count]) for count in range(response['count'])]
         return list_of_users
 
     ''' Create the user with the specified data
         Returns the UserResource object which has created user information'''
-    def create(self, data):
+    def create(self, data, resource = UserResource, endpoint ='users' ):
 
-        response = self.client.post('users', data)[0]
-        return UserResource(response)
+        response = self.client.post(endpoint, data)[0]
+        return resource(response)
 
     ''' Finds the user information for the requested token 
         Returns the UserResource object which has user information'''
-    def find(self,token):
+    def find(self,token, endpoint = None, resource = UserResource):
+        if endpoint == None:
+            endpoint = 'users/{}'.format(token)
+        else: endpoint = endpoint
         response = self.client.get('users/{}'.format(token))[0]
-        return UserResource(response)
+        return resource(response)
 
     ''' Update the user information for the requested token  with the data
             Returns the UserResource object which has updated user information'''
-    def save(self,token, data):
-        response = self.client.put('users/{}'.format(token),data)[0]
-        return UserResource(response)
+    def save(self,token, data, endpoint = None, resource = UserResource):
+        if endpoint == None:
+            endpoint = 'users/{}'.format(token)
+        else: endpoint = endpoint
+        response = self.client.put(endpoint,data)[0]
+        return resource(response)
 
 
 class UsersContext(UsersCollection):
@@ -66,6 +70,8 @@ class UsersContext(UsersCollection):
         self.token = token
         self.users_object = users_object
         self.children = self.Children(self.token, self.users_object)
+        self.notes = self.Notes(self.token,self.users_object)
+        self.transitions = self.Transitions(self.token,self.users_object)
 
     ''' for 'client.users({token).ssn()' -- user can specify to get full ssn '''
     def ssn(self,full_ssn = False):
@@ -79,171 +85,42 @@ class UsersContext(UsersCollection):
             self.users_object = user_object
 
         def list(self):
-            # super(UsersContext, self).list()
             return self.users_object.list(sort_by='-lastModifiedTime', endpoint='users/{}/children'.format(self.token))
 
+    class Notes(object):
 
-''' UserResource class lists all the user properties for the /user endpoint'''
+        def __init__(self, token, user_object):
+            self.token = token
+            self.users_object = user_object
 
-class UserResource(object):
+        def list(self):
+            return self.users_object.list(sort_by='-lastModifiedTime', endpoint='users/{}/notes'.format(self.token),
+                                          resource = NotesResources)
 
-    def __init__(self, user_object):
-        self.response = user_object
+        def create(self, data):
+            return self.users_object.create(data, resource = NotesResources, endpoint = 'users/{}/notes'.format(self.token))
 
-    @property
-    def first_name(self):
-        return self.response['first_name']
+        def save(self,notes_token,data):
+            return self.users_object.save(self.token, data, resource = NotesResources, endpoint= 'users/{}/notes/{}'.
+                                          format(self.token,notes_token))
 
-    @property
-    def last_name(self):
-        return self.response['last_name']
+    class Transitions(object):
 
-    @property
-    def token(self):
-        return self.response['token']
+        def __init__(self, token, user_object):
+            self.token = token
+            self.users_object = user_object
 
-    @property
-    def active(self):
-        return self.response['active']
+        def list(self):
+            return self.users_object.list(sort_by='-id', endpoint='usertransitions/user/{}'.format(self.token),
+                                          resource=TransitionsResources)
 
-    @property
-    def gender(self):
-        return self.response['gender']
+        def create(self,data):
+            return self.users_object.create(data, resource = TransitionsResources, endpoint = 'usertransitions')
 
-    @property
-    def email(self):
-        return self.response['email']
-
-    @property
-    def phone(self):
-        return self.response['phone']
-
-    @property
-    def address(self):
-        return Address(self.response)
-
-    @property
-    def uses_parent_account(self):
-        return self.response['uses_parent_account']
-
-    @property
-    def corporate_card_holder(self):
-        return self.response['corporate_card_holder']
-
-    @property
-    def created_time(self):
-        return datetime.strptime(self.response['created_time'],'%Y-%m-%dT%H:%M:%SZ')
-
-    @property
-    def last_modified_time(self):
-        return datetime.strptime(self.response['last_modified_time'],'%Y-%m-%dT%H:%M:%SZ')
-
-    @property
-    def metadata(self):
-        return self.response['metadata']
-
-    @property
-    def birth_date(self):
-        print(type(self.response['birth_date']))
-        return datetime.strptime(self.response['birth_date'], '%Y-%m-%d').date()
-
-    @property
-    def account_holder_group_token(self):
-        return self.response['account_holder_group_token']
-
-    @property
-    def status(self):
-        return self.response['status']
-
-    @property
-    def id_card_expiration_date(self):
-        return datetime.strptime(self.response['id_card_expiration_date'],'%Y-%m-%d').date()
-
-    @property
-    def notes(self):
-        return self.response['notes']
-
-    @property
-    def ip_address(self):
-        return self.response['password']
-
-    @property
-    def company(self):
-        return self.response['company']
-
-    @property
-    def honorific(self):
-        return self.response['honorific']
-
-    @property
-    def middle_name(self):
-        return self.response['middle_name']
-
-    @property
-    def nationality(self):
-        return self.response['nationality']
-
-    @property
-    def passport_number(self):
-        return self.response['passport_number']
-
-    @property
-    def passport_expiration_date(self):
-        return datetime.strptime(self.response['passport_expiration_date'],'%Y-%m-%d').date()
-
-    @property
-    def id_card_number(self):
-        return self.response['id_card_number']
-
-    @property
-    def parent_token(self):
-        return self.response['parent_token']
-
-    @property
-    def authentication(self):
-
-        return Authentication(self.response['auth_details'])
-
-    @property
-    def ssn(self):
-        id_details = self.response['ssn']
-        return id_details
-
-    @property
-    def deposit_account(self):
-
-        account_info = self.response['deposit_account']
-        return DepositAccount(account_info)
+        def find(self,transition_token):
+            return self.users_object.find(self.token, resource=TransitionsResources, endpoint='usertransitions/{}'.
+                                          format(transition_token))
 
 
 
-class Address(object):
 
-    def __init__(self, response):
-        self.address1 = response['address1']
-        self.address2 = response['address2']
-        self.state = response['state']
-        self.city = response['city']
-        self.country = response['country']
-        self.postal_code = response['postal_code']
-
-
-class DepositAccount(object):
-
-    def __init__(self, account_details):
-        self.account_number = account_details['account_number']
-        self.routing_number = account_details['routing_number']
-        self.allow_immediate_credit = account_details['allow_immediate_credit']
-        self.token = account_details['token']
-        self.user_token = account_details['user_token']
-        self.business_token = account_details['business_token']
-
-
-class Authentication(object):
-
-    def __init__(self, auth_details):
-        self.last_password_update_channel = auth_details['last_password_update_channel']
-        self.last_password_update_time = datetime.strptime(auth_details['last_password_update_time'],
-                                                           '%Y-%m-%dT%H:%M:%SZ')
-        self.email_verified = auth_details['email_verified']
-        self.email_verified_time = datetime.strptime(auth_details['email_verified_time'],'%Y-%m-%dT%H:%M:%SZ')
