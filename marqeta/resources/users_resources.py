@@ -1,6 +1,6 @@
+"""UserResource class lists all the user properties for the /user endpoint"""
 from datetime import datetime
 
-'''' UserResource class lists all the user properties for the /user endpoint'''
 
 class UserResource(object):
 
@@ -49,11 +49,11 @@ class UserResource(object):
 
     @property
     def created_time(self):
-        return datetime.strptime(self.response['created_time'],'%Y-%m-%dT%H:%M:%SZ')
+        return datetime.strptime(self.response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
-        return datetime.strptime(self.response['last_modified_time'],'%Y-%m-%dT%H:%M:%SZ')
+        return datetime.strptime(self.response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def metadata(self):
@@ -61,7 +61,6 @@ class UserResource(object):
 
     @property
     def birth_date(self):
-        print(type(self.response['birth_date']))
         return datetime.strptime(self.response['birth_date'], '%Y-%m-%d').date()
 
     @property
@@ -74,7 +73,7 @@ class UserResource(object):
 
     @property
     def id_card_expiration_date(self):
-        return datetime.strptime(self.response['id_card_expiration_date'],'%Y-%m-%d').date()
+        return datetime.strptime(self.response['id_card_expiration_date'], '%Y-%m-%d').date()
 
     @property
     def notes(self):
@@ -106,7 +105,7 @@ class UserResource(object):
 
     @property
     def passport_expiration_date(self):
-        return datetime.strptime(self.response['passport_expiration_date'],'%Y-%m-%d').date()
+        return datetime.strptime(self.response['passport_expiration_date'], '%Y-%m-%d').date()
 
     @property
     def id_card_number(self):
@@ -133,37 +132,87 @@ class UserResource(object):
         return DepositAccount(account_info)
 
 
-
 class Address(object):
 
     def __init__(self, response):
-        self.address1 = response['address1']
-        self.address2 = response['address2']
-        self.state = response['state']
-        self.city = response['city']
-        self.country = response['country']
-        self.postal_code = response['postal_code']
+        self.response = response
+
+    @property
+    def address1(self):
+        return self.response['address1']
+
+    @property
+    def address2(self):
+        return self.response['address2']
+
+    @property
+    def state(self):
+        return self.response['state']
+
+    @property
+    def city(self):
+        return self.response['city']
+
+    @property
+    def country(self):
+        return self.response['country']
+
+    @property
+    def postal_code(self):
+        return self.response['postal_code']
 
 
 class DepositAccount(object):
 
     def __init__(self, account_details):
-        self.account_number = account_details['account_number']
-        self.routing_number = account_details['routing_number']
-        self.allow_immediate_credit = account_details['allow_immediate_credit']
-        self.token = account_details['token']
-        self.user_token = account_details['user_token']
-        self.business_token = account_details['business_token']
+        self.account_details = account_details
+
+    @property
+    def account_number(self):
+        return self.account_details['account_number']
+
+    @property
+    def routing_number(self):
+        return self.account_details['routing_number']
+
+    @property
+    def allow_immediate_credit(self):
+        return self.account_details['allow_immediate_credit']
+
+    @property
+    def token(self):
+        return self.account_details['token']
+
+    @property
+    def user_token(self):
+        return self.account_details['user_token']
+
+    @property
+    def business_token(self):
+        return self.account_details['business_token']
 
 
 class Authentication(object):
 
     def __init__(self, auth_details):
-        self.last_password_update_channel = auth_details['last_password_update_channel']
-        self.last_password_update_time = datetime.strptime(auth_details['last_password_update_time'],
-                                                           '%Y-%m-%dT%H:%M:%SZ')
-        self.email_verified = auth_details['email_verified']
-        self.email_verified_time = datetime.strptime(auth_details['email_verified_time'],'%Y-%m-%dT%H:%M:%SZ')
+        self.auth_details = auth_details
+
+    @property
+    def last_password_update_channel(self):
+        return self.auth_details['last_password_update_channel']
+
+    @property
+    def last_password_update_time(self):
+        return datetime.strptime(self.auth_details['last_password_update_time'],
+                                 '%Y-%m-%dT%H:%M:%SZ')
+    @property
+    def email_verified(self):
+        return self.auth_details['email_verified']
+
+    @property
+    def email_verified_time(self):
+        return datetime.strptime(self.auth_details['email_verified_time'],
+                                 '%Y-%m-%dT%H:%M:%SZ')
 
 
 class NotesResources(object):
@@ -193,11 +242,11 @@ class NotesResources(object):
 
     @property
     def created_time(self):
-        return self.response['created_time']
+        return datetime.strptime(self.response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
-        return self.response['last_modified_time']
+        return datetime.strptime(self.response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
 class TransitionsResources(object):
 
@@ -226,11 +275,11 @@ class TransitionsResources(object):
 
     @property
     def created_time(self):
-        return self.response['created_time']
+        return datetime.strptime(self.response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
-        return self.response['last_modified_time']
+        return datetime.strptime(self.response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def user_token(self):
