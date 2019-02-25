@@ -8,6 +8,9 @@
 .venv
 
 #Others
+dist
+build
+lib
 __pycache__
 .idea
 *.pyc

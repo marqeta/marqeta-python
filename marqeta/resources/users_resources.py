@@ -248,6 +248,7 @@ class NotesResources(object):
     def last_modified_time(self):
         return datetime.strptime(self.response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
+
 class TransitionsResources(object):
 
     def __init__(self, user_object):
