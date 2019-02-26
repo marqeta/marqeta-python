@@ -1,5 +1,5 @@
 from marqeta.errors import MarqetaError
-from marqeta.users import UsersCollection
+from marqeta.resources.users import UsersCollection
 import requests,json
 
 
@@ -20,7 +20,6 @@ class Client(object):
             self.application_token, self.access_token),
                                 headers= headers,
                                 params=query_params)
-        print("****************get**************", response)
         if response.status_code >= 400:
             response = response.json()
             raise MarqetaError(response['error_code'], response['error_message'])
@@ -36,10 +35,11 @@ class Client(object):
             raise MarqetaError(response['error_code'], response['error_message'])
         return response.json(), response.status_code
 
-    def post(self, endpoint, data=None):
+    def post(self, endpoint, data=None, query_params=None):
         response = requests.post(url=self.base_url + endpoint, auth=(
             self.application_token, self.access_token),
-                                 headers= headers,
+                                 headers=headers,
+                                 params=query_params,
                                  data=json.dumps(data))
         if response.status_code >= 400:
             response = response.json()
