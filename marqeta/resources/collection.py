@@ -13,13 +13,10 @@ class Collection(object):
 
     ''' stream is a generator function iterates through endpoint contents
         Return : endpoint object, limit is the number of pages to fetch  '''
-    def stream(self, endpoint=None, limit=float('inf'),query_params=None):
-        if query_params is not None and 'fields' in query_params:
-            print("fields inside the collectins",query_params['fields'])
-            query_params['fields'] = ",".join(query_params['fields'])
+    def stream(self, endpoint=None,query_params=None):
         while True:
             response = self._page(endpoint=endpoint, query_params= query_params)
-            if response['is_more'] is False or query_params['start_index'] == (limit * query_params['count'])-query_params['count']:
+            if response['is_more'] is False:
                 for count in range(response['count']):
                     yield (self.resource(response["data"][count]))
                 break
@@ -28,11 +25,12 @@ class Collection(object):
             query_params['start_index'] = query_params['start_index'] + query_params['count']
 
     '''  Returns list of all endpoint object '''
-    def list(self, endpoint=None, limit=float('inf'), query_params=None):
+    def list(self, endpoint=None, query_params=None, limit =float('inf')):
         list_of_user_object = []
-        for count in self.stream(endpoint=endpoint,limit=limit, query_params=query_params):
+        for count in self.stream(endpoint=endpoint, query_params=query_params):
             list_of_user_object.append(count)
-
+            if len(list_of_user_object) == limit:
+                break
         return list_of_user_object
 
     ''' Create the resource with the specified data
@@ -45,10 +43,8 @@ class Collection(object):
     ''' Finds the Resource information for the requested token
         Returns the Resource object '''
 
-    def find(self, endpoint=None, fields = None):
-        if fields is not None:
-            fields = ",".join(fields)
-        response = self.client.get(endpoint, query_params = {'fields':fields})[0]
+    def find(self, endpoint=None, query_params=None):
+        response = self.client.get(endpoint, query_params=query_params)[0]
         return self.resource(response)
 
     ''' Update the Resource information for the requested token  with the data
