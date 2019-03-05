@@ -1,7 +1,9 @@
+from __future__ import absolute_import, division, print_function
+
 from marqeta.errors import MarqetaError
 from marqeta.resources.users import UsersCollection
 import requests,json
-
+import sys
 
 headers = {'content-type': 'application/json',
             'User-Agent': '"marqeta-python/{} (Python {})".format(__version__)'}
@@ -20,6 +22,7 @@ class Client(object):
             self.application_token, self.access_token),
                                 headers= headers,
                                 params=query_params)
+        print(response.url)
         if response.status_code >= 400:
             response = response.json()
             raise MarqetaError(response['error_code'], response['error_message'])
@@ -71,3 +74,6 @@ class Client(object):
                 super().__init__(_parent_class)
 
         return {'users': UsersWrapper}
+
+if __name__== '__main__':
+    print(sys.path)
