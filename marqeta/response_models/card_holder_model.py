@@ -49,9 +49,9 @@ class CardHolderModel(object):
             return self.response['account_holder_group_token']
 
     @property
-    def identifications(self):
-        if 'identifications' in self.response:
-            return self.response['identifications']
+    def ssn(self):
+        if 'ssn' in self.response:
+            return self.response['ssn']
 
     @property
     def honorific(self):
