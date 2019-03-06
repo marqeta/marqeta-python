@@ -181,9 +181,9 @@ class UserCardHolderResponse(object):
             return self.response['status']
 
     @property
-    def identifications(self):
-        if 'identifications' in self.response:
-            return self.response['identifications']
+    def ssn(self):
+        if 'ssn' in self.response:
+            return self.response['ssn']
 
     @property
     def deposit_account(self):
