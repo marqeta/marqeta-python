@@ -2,8 +2,12 @@ from __future__ import absolute_import, division, print_function
 
 from marqeta.errors import MarqetaError
 from marqeta.resources.users import UsersCollection
+from marqeta.resources.cardproducts import CardProductCollection
+from marqeta.resources.cards import CardsCollection
+from marqeta.resources.gpa_order import GpaCollection
+from marqeta.resources.funding_sources import FundingSourcesCollection
 import requests,json
-import sys
+
 
 headers = {'content-type': 'application/json',
             'User-Agent': '"marqeta-python/{} (Python {})".format(__version__)'}
@@ -16,13 +20,17 @@ class Client(object):
         self.access_token = access_token
         objects = self._objects_container()
         self.users = objects['users']()
+        self.card_products = objects['card_products']()
+        self.cards = objects['cards']()
+        self.funding_sources = objects['funding_sources']()
+        self.gpa_orders = objects['gpa_orders']()
+
 
     def get(self, endpoint, query_params=None):
         response = requests.get(url=self.base_url + endpoint, auth=(
             self.application_token, self.access_token),
                                 headers= headers,
                                 params=query_params)
-        print(response.url)
         if response.status_code >= 400:
             response = response.json()
             raise MarqetaError(response['error_code'], response['error_message'])
@@ -73,7 +81,34 @@ class Client(object):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        return {'users': UsersWrapper}
+        class CardProductWrapper(CardProductCollection):
 
-if __name__== '__main__':
-    print(sys.path)
+            def __init__(self):
+                self._parent_class = _parent_class
+                super().__init__(_parent_class)
+
+        class CardsWrapper(CardsCollection):
+
+            def __init__(self):
+                self._parent_class = _parent_class
+                super().__init__(_parent_class)
+
+        class GpaWrapper(GpaCollection):
+
+            def __init__(self):
+                self._parent_class = _parent_class
+                super().__init__(_parent_class)
+
+        class FundingWrapper(FundingSourcesCollection):
+
+            def __init__(self):
+                self._parent_class = _parent_class
+                super().__init__(_parent_class)
+
+        return {'users': UsersWrapper,
+                'card_products': CardProductWrapper,
+                'cards': CardsWrapper,
+                'gpa_orders': GpaWrapper,
+                'funding_sources': FundingWrapper
+                }
+

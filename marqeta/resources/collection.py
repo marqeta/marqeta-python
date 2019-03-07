@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """ COLLECTION OF GENERIC CRU PARAMETERS """
 
 

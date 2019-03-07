@@ -19,7 +19,7 @@ class UsersCollection(object):
 
     def __call__(self, token):
         return UserContext(token, self.client)
-    ''' Iterates through users 
+    ''' Iterates through users
         returns user object one at a time'''
     def stream(self, endpoint='users', params = None):
         if params is not None:
@@ -32,7 +32,7 @@ class UsersCollection(object):
             self.query_params.update(params)
         return self.collections_cardmodel.list(endpoint=endpoint, query_params=self.query_params, limit=limit)
 
-    ''' Create the user with the specified data
+    ''' Creates a user with the specified data
             Returns the UserResource object which has created user information'''
     def create(self, data = {}, endpoint='users'):
         return self.collections_usermodel.create(endpoint=endpoint, data=data)
@@ -49,7 +49,7 @@ class UsersCollection(object):
     def save(self, token, data, endpoint='users'):
         return self.collections_cardmodel.save(data, endpoint=endpoint+'/{}'.format(token),)
 
-    ''' Looks for the user information based on the specified data 
+    ''' Looks for the user information based on the specified data
         Returns UserResource object of list of the matched users for the data '''
     def look_up(self, data, endpoint='users/lookup', params = None):
         if params is not None:
@@ -66,6 +66,7 @@ class UserContext(UsersCollection):
         self.children = self.Children(self.token,Collection(client, CardHolderModel))
         self.notes = self.Notes(self.token, Collection(client, CardHolderNotesResponse))
         self.transitions = self.Transitions(self.token, Collection(client, UserTransitionResponse))
+        self.query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0, }
 
     ''' for 'client.users({token).ssn()' -- user can specify to get full ssn '''
 

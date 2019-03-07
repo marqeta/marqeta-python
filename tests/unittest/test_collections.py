@@ -52,20 +52,20 @@ class CollectionTest(unittest.TestCase):
     def test_create(self, mock_data):
         data = {'first_name': 'test_name'}
         created_user = self.collections.create(data)
-        self.assertEqual(created_user.response, data)
+        self.assertEqual(created_user.gparesponse, data)
         self.assertTrue(created_user.first_name == 'test_name')
 
     @mock.patch('marqeta.Client.get', return_value=[{'first_name': 'test_name'}, 200])
     def test_find(self, mock_data):
         user = self.collections.find('token')
-        self.assertEqual(user.response, {'first_name': 'test_name'})
+        self.assertEqual(user.gparesponse, {'first_name': 'test_name'})
         self.assertTrue(user.first_name == 'test_name')
 
     @mock.patch('marqeta.Client.put', return_value=[{'first_name': 'test_name_changed'}, 200])
     def test_save(self, mock_data):
         data = {'first_name': 'test_name_changed'}
         updated_user = self.collections.save('token',data)
-        self.assertEqual(updated_user.response, data)
+        self.assertEqual(updated_user.gparesponse, data)
         self.assertTrue(updated_user.first_name == 'test_name_changed')
 
 
