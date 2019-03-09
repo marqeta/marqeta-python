@@ -4,144 +4,144 @@ from marqeta.response_models.address_verification_source import AddressVerificat
 
 class GatewayLogModel(object):
 
-    def __init__(self, response):
-        self.response = response
+    def __init__(self, json_response):
+        self.json_response = json_response
 
     @property
     def order_number(self):
-        if 'order_number' in self.response:
-            return self.response['order_number']
+        if 'order_number' in self.json_response:
+            return self.json_response['order_number']
 
     @property
     def transaction_id(self):
-        if 'transaction_id' in self.response:
-            return self.response['transaction_id']
+        if 'transaction_id' in self.json_response:
+            return self.json_response['transaction_id']
 
     @property
     def message(self):
-        if 'message' in self.response:
-            return self.response['message']
+        if 'message' in self.json_response:
+            return self.json_response['message']
 
     @property
     def duration(self):
-        if 'duration' in self.response:
-            return self.response['duration']
+        if 'duration' in self.json_response:
+            return self.json_response['duration']
 
     @property
     def timed_out(self):
-        if 'timed_out' in self.response:
-            return self.response['timed_out']
+        if 'timed_out' in self.json_response:
+            return self.json_response['timed_out']
 
     @property
     def response(self):
-        if 'response' in self.response:
-            return GatewayResponse(self.response['response'])
+        if 'response' in self.json_response:
+            return GatewayResponse(self.json_response['response'])
 
 
 class GatewayResponse(object):
 
-    def __init__(self, response):
-        self.response = response
+    def __init__(self, json_response):
+        self.json_response = json_response
 
     @property
     def code(self):
-        if 'code' in self.response:
-            return self.response['code']
+        if 'code' in self.json_response:
+            return self.json_response['code']
 
     @property
     def data(self):
-        if 'data' in self.response:
-            return JitProgramResponse(self.response['data'])
+        if 'data' in self.json_response:
+            return JitProgramResponse(self.json_response['data'])
 
 
 class JitProgramResponse(object):
 
-    def __init__(self, response):
-        self.response = response
+    def __init__(self, json_response):
+        self.json_response = json_response
 
     @property
     def jit_funding(self):
-        if 'jit_funding' in self.response:
-            return JitFundingApi(self.response['jit_funding'])
+        if 'jit_funding' in self.json_response:
+            return JitFundingApi(self.json_response['jit_funding'])
 
 
 class JitFundingApi(object):
 
-    def __init__(self, response):
-        self.response = response
+    def __init__(self, json_response):
+        self.json_response = json_response
 
     @property
     def token(self):
-        if 'token' in self.response:
-            return self.response['token']
+        if 'token' in self.json_response:
+            return self.json_response['token']
 
     @property
     def method(self):
-        if 'method' in self.response:
-            return self.response['method']
+        if 'method' in self.json_response:
+            return self.json_response['method']
 
     @property
     def user_token(self):
-        if 'user_token' in self.response:
-            return self.response['user_token']
+        if 'user_token' in self.json_response:
+            return self.json_response['user_token']
 
     @property
     def acting_user_token(self):
-        if 'acting_user_token' in self.response:
-            return self.response['acting_user_token']
+        if 'acting_user_token' in self.json_response:
+            return self.json_response['acting_user_token']
 
     @property
     def business_token(self):
-        if 'business_token' in self.response:
-            return self.response['business_token']
+        if 'business_token' in self.json_response:
+            return self.json_response['business_token']
 
     @property
     def amount(self):
-        if 'amount' in self.response:
-            return self.response['amount']
+        if 'amount' in self.json_response:
+            return self.json_response['amount']
 
     @property
     def memo(self):
-        if 'memo' in self.response:
-            return self.response['memo']
+        if 'memo' in self.json_response:
+            return self.json_response['memo']
 
     @property
     def tags(self):
-        if 'tags' in self.response:
-            return self.response['tags']
+        if 'tags' in self.json_response:
+            return self.json_response['tags']
 
     @property
     def original_jit_funding_token(self):
-        if 'original_jit_funding_token' in self.response:
-            return self.response['original_jit_funding_token']
+        if 'original_jit_funding_token' in self.json_response:
+            return self.json_response['original_jit_funding_token']
 
     @property
     def incremental_authorization_jit_funding_tokens(self):
-        if 'incremental_authorization_jit_funding_tokens' in self.response:
-            return self.response['incremental_authorization_jit_funding_tokens']
+        if 'incremental_authorization_jit_funding_tokens' in self.json_response:
+            return self.json_response['incremental_authorization_jit_funding_tokens']
 
     @property
     def address_verification(self):
-        if 'address_verification' in self.response:
-            return JitAddressVerification(self.response['address_verification'])
+        if 'address_verification' in self.json_response:
+            return JitAddressVerification(self.json_response['address_verification'])
 
 
 class JitAddressVerification(object):
 
-    def __init__(self, response):
-        self.response = response
+    def __init__(self, json_response):
+        self.json_response = json_response
 
     @property
     def request(self):
-        if 'request' in self.response:
-            return AvsInformation(self.response['request'])
+        if 'request' in self.json_response:
+            return AvsInformation(self.json_response['request'])
 
     @property
     def issuer(self):
-        if 'issuer' in self.response:
-            return AddressVerificationSource(self.response['issuer'])
+        if 'issuer' in self.json_response:
+            return AddressVerificationSource(self.json_response['issuer'])
 
     @property
     def gateway(self):
-        if 'gateway' in self.response:
-            return AddressVerificationSource(self.response['gateway'])
+        if 'gateway' in self.json_response:
+            return AddressVerificationSource(self.json_response['gateway'])

@@ -2,29 +2,21 @@ from datetime import datetime
 
 class AvsInformation(object):
 
-    def __init__(self, response):
-        self.response = response
+    def __init__(self, json_response):
+        self.json_response = json_response
 
     @property
     def street_address(self):
-        if 'street_address' in self.response:
-         
-             return self.response['street_address']
-            
-        
+        if 'street_address' in self.json_response:
+            return self.json_response['street_address']
+
     @property
     def zip(self):
-        if 'zip' in self.response:
-         
-             return self.response['zip']
-            
-        
+        if 'zip' in self.json_response:
+            return self.json_response['zip']
+
     @property
     def postal_code(self):
-        if 'postal_code' in self.response:
-         
-             return self.response['postal_code']
-            
-        
-
+        if 'postal_code' in self.json_response:
+            return self.json_response['postal_code']
 

@@ -3,30 +3,31 @@ from marqeta.response_models.fee import Fee
 
 class FeeDetail(object):
 
-    def __init__(self, response):
-        self.response = response
+    def __init__(self, json_response):
+        self.json_response = json_response
 
     @property
     def token(self):
-        if 'token' in self.response:
-            return self.response['token']
+        if 'token' in self.json_response:
+            return self.json_response['token']
 
     @property
     def memo(self):
-        if 'memo' in self.response:
-            return self.response['memo']
+        if 'memo' in self.json_response:
+            return self.json_response['memo']
 
     @property
     def tags(self):
-        if 'tags' in self.response:
-            return self.response['tags']
+        if 'tags' in self.json_response:
+            return self.json_response['tags']
 
     @property
     def transaction_token(self):
-        if 'transaction_token' in self.response:
-            return self.response['transaction_token']
+        if 'transaction_token' in self.json_response:
+            return self.json_response['transaction_token']
 
     @property
     def fee(self):
-        if 'fee' in self.response:
-            return Fee(self.response['fee'])
+        if 'fee' in self.json_response:
+            return Fee(self.json_response['fee'])
+

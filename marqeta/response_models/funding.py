@@ -1,34 +1,30 @@
+from datetime import datetime
 from marqeta.response_models.funding_source_model import FundingSourceModel
 from marqeta.response_models.cardholder_address_response import CardholderAddressResponse
+from marqeta.response_models.gateway_log_model import GatewayLogModel
 
 class Funding(object):
 
-    def __init__(self, response):
-        self.response = response
+    def __init__(self, json_response):
+        self.json_response = json_response
 
     @property
     def amount(self):
-        if 'amount' in self.response:
-          return self.response['amount']
-        
-        
+        if 'amount' in self.json_response:
+            return self.json_response['amount']
+
     @property
     def source(self):
-        if 'source' in self.response:
-        
-            return FundingSourceModel(self.response['source'])
-        
+        if 'source' in self.json_response:
+            return FundingSourceModel(self.json_response['source'])
+
     @property
     def source_address(self):
-        if 'source_address' in self.response:
-        
-            return CardholderAddressResponse(self.response['source_address'])
-        
+        if 'source_address' in self.json_response:
+            return CardholderAddressResponse(self.json_response['source_address'])
+
     @property
     def gateway_log(self):
-        if 'gateway_log' in self.response:
-        
-            return gateway_log(self.response['gateway_log'])
-        
-
+        if 'gateway_log' in self.json_response:
+            return GatewayLogModel(self.json_response['gateway_log'])
 

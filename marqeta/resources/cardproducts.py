@@ -40,3 +40,5 @@ class CardProductCollection(object):
     def save(self, token, data, endpoint='cardproducts'):
         return self.collections.save(data, endpoint=endpoint+'/{}'.format(token),)
 
+    def __repr__(self):
+        return '<Marqeta.resources.cardproducts.CardProductCollection>'

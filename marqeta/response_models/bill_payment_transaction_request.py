@@ -1,0 +1,27 @@
+from datetime import datetime
+
+class BillPaymentTransactionRequest(object):
+
+    def __init__(self, json_response):
+        self.json_response = json_response
+
+    @property
+    def amount(self):
+        if 'amount' in self.json_response:
+            return self.json_response['amount']
+
+    @property
+    def currency(self):
+        if 'currency' in self.json_response:
+            return self.json_response['currency']
+
+    @property
+    def network_reference_id(self):
+        if 'network_reference_id' in self.json_response:
+            return self.json_response['network_reference_id']
+
+    @property
+    def user_token(self):
+        if 'user_token' in self.json_response:
+            return self.json_response['user_token']
+

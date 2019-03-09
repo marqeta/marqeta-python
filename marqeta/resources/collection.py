@@ -39,6 +39,7 @@ class Collection(object):
 
     def create(self, data, endpoint=None, query_params = None):
         response = self.client.post(endpoint, data, query_params)[0]
+        print("***************************",response)
         return self.resource(response)
 
     ''' Finds the Resource information for the requested token
@@ -53,4 +54,7 @@ class Collection(object):
     def save(self, data, endpoint=None):
         response = self.client.put(endpoint, data)[0]
         return self.resource(response)
+
+    def __repr__(self):
+        return '<Marqeta.resources.collection.Collection>'
 
