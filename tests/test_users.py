@@ -89,7 +89,7 @@ field_options = {
 }
 
 list_users = client.users.list(params=options, limit = 3)
-print(len(list_users))
+print("USERS LIST",list_users[0].token)
 print("***list of users***", list_users)
 #print("***User First Name***", list_users[0].first_name)
 print("***list of users by specifying the field***",client.users.list(params = options, limit = 3))
