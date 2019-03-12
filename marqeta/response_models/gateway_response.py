@@ -1,4 +1,3 @@
-from datetime import datetime
 from marqeta.response_models.jit_program_response import JitProgramResponse
 
 class GatewayResponse(object):

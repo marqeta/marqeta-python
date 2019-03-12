@@ -1,5 +1,3 @@
-from datetime import datetime
-
 class DigitalWalletTokenWalletProvider(object):
 
     def __init__(self, json_response):

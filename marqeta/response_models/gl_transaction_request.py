@@ -1,4 +1,3 @@
-from datetime import datetime
 from marqeta.response_models.gl_entry import GlEntry
 
 class GlTransactionRequest(object):

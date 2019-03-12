@@ -1,6 +1,7 @@
 from datetime import datetime
 from marqeta.response_models.gatewaylog import Gatewaylog
 
+
 class Gatewaylog(object):
 
     def __init__(self, json_response):

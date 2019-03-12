@@ -1,5 +1,3 @@
-from datetime import datetime
-
 class FileProcessingRequest(object):
 
     def __init__(self, json_response):

@@ -89,7 +89,7 @@ field_options = {
 }
 
 list_users = client.users.list(params=options, limit = 3)
-print("USERS LIST",list_users[0].token)
+print(len(list_users))
 print("***list of users***", list_users)
 #print("***User First Name***", list_users[0].first_name)
 print("***list of users by specifying the field***",client.users.list(params = options, limit = 3))
@@ -161,4 +161,3 @@ print(client.users("bluebird_tokenRed").transitions.create(transition_data))
 
 trans = client.users("bluebird_tokenRed").transitions.find('bluebird_tokenRed')
 print(trans.status)
-

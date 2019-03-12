@@ -182,9 +182,9 @@ class UserCardHolderResponse(object):
             return self.json_response['status']
 
     @property
-    def identifications(self):
+    def ssn(self):
         if 'identifications' in self.json_response:
-            return [IdentificationResponseModel(val) for val in self.json_response['identifications']]
+            return self.json_response['ssn']
 
     @property
     def deposit_account(self):
