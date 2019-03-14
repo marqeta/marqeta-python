@@ -33,17 +33,12 @@ class Unloads(object):
 
     def __init__(self, collection):
         self.collections = collection
-        self.query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0, }
 
     def stream(self, params = None):
-        if params is not None:
-            self.query_params.update(params)
-        return self.collections.stream(endpoint=self._endpoint, query_params=self.query_params)
+        return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
     def list(self, params=None, limit=float('inf')):
-        if params is not None:
-            self.query_params.update(params)
-        return self.collections.list(endpoint=self._endpoint, query_params=self.query_params, limit=limit)
+        return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     def create(self, data = {}):
         return self.collections.create(endpoint=self._endpoint, data=data)

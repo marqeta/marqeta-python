@@ -65,7 +65,6 @@ class BusinessContext(BusinessesCollection):
         self.children = self.Children(self.token,Collection(client, CardHolderModel))
         self.notes = self.Notes(self.token,client, Collection(client, CardholderNoteResponseModel))
         self.transitions = self.Transitions(self.token, Collection(client, BusinessTransitionResponse))
-        self.query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0, }
 
     ''' for 'client.users({token).ssn()' -- user can specify to get full ssn '''
 
@@ -84,10 +83,7 @@ class BusinessContext(BusinessesCollection):
             self.collection = collection
 
         def list(self, params= None, limit = float('inf')):
-            query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0}
-            if params is not None:
-                query_params.update(params)
-            return self.collection.list(query_params=query_params,
+            return self.collection.list(query_params=params,
                                         endpoint='businesses/{}/children'.format(self.token), limit = limit)
 
         def __repr__(self):

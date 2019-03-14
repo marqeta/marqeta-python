@@ -48,9 +48,10 @@ class UsersCollection(object):
     ''' Looks for the user information based on the specified data
         Returns UserResource object of list of the matched users for the data '''
     def look_up(self, data, params = None):
+        query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0, }
         if params is not None:
-            self.query_params.update(params)
-        response = self.client.post(self._endpoint+'/lookup', data, query_params=self.query_params)[0]
+            query_params.update(params)
+        response = self.client.post(self._endpoint+'/lookup', data, query_params=query_params)[0]
         return [CardHolderModel(response['data'][val]) for val in range(response['count'])]
 
     def __repr__(self):
@@ -65,7 +66,6 @@ class UserContext(UsersCollection):
         self.children = self.Children(self.token,Collection(client, CardHolderModel))
         self.notes = self.Notes(self.token, Collection(client, CardholderNoteResponseModel))
         self.transitions = self.Transitions(self.token, Collection(client, UserTransitionResponse))
-        self.query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0, }
 
     ''' for 'client.users({token).ssn()' -- user can specify to get full ssn '''
 
@@ -83,11 +83,8 @@ class UserContext(UsersCollection):
             self.collection = collection
 
         def list(self, params = None,limit=float('inf')):
-            query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0}
-            if params is not None:
-                query_params.update(params)
             return self.collection.list(endpoint='users/{}/children'.format(self.token),
-                                        query_params=query_params,limit=limit)
+                                        query_params=params,limit=limit)
 
     class Notes(object):
 
@@ -98,10 +95,7 @@ class UserContext(UsersCollection):
             self.collection = collection
 
         def list(self, params= None,limit=float('inf')):
-            query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0}
-            if params is not None:
-                query_params.update(params)
-            return self.collection.list(endpoint=self._endpoint.format(self.token), query_params=query_params,
+            return self.collection.list(endpoint=self._endpoint.format(self.token), query_params=params,
                                         limit =limit)
 
         def create(self, data):

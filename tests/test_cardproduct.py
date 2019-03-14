@@ -147,7 +147,7 @@ client = Client(BASE_URL, USER_NAME,PASSWORD)
 
 ## cardProduct
 
-print("CardProduct List",client.card_products.list(limit = 4)[0].start_date)
+print("CardProduct List",client.card_products.list(limit = 3))
 
 print("CardProduct Create",client.card_products.create(card_product_data))
 

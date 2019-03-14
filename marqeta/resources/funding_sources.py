@@ -23,29 +23,20 @@ class FundingSourcesCollection(object):
         self.payment_card = PaymentCard(Collection(self.client, PaymentCardResponseModel))
         self.program_gateway = ProgramGateway(Collection(self.client, ProgramFundingSourceResponse))
         self.program = Program(Collection(self.client, ProgramFundingSourceResponse))
-        self.query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0, }
 
     def stream_for_user(self, user_token, params=None):
-        if params is not None:
-            self.query_params.update(params)
-        return self.collections.stream(endpoint=self._endpoint+'/users/{}'.format(user_token), query_params=self.query_params)
+        return self.collections.stream(endpoint=self._endpoint+'/users/{}'.format(user_token), query_params=params)
 
     def stream_for_business(self, business_token, params=None):
-        if params is not None:
-            self.query_params.update(params)
-        return self.collections.stream(endpoint=self._endpoint+'/business/{}'.format(business_token), query_params=self.query_params)
+        return self.collections.stream(endpoint=self._endpoint+'/business/{}'.format(business_token), query_params=params)
 
     def list_for_user(self, user_token, params=None, limit=float('inf')):
-        if params is not None:
-            self.query_params.update(params)
         return self.collections.list(endpoint=self._endpoint+'/users/{}'.format(user_token),
-                                     query_params=self.query_params, limit=limit)
+                                     query_params=params, limit=limit)
 
     def list_for_business(self, business_token, params=None, limit=float('inf')):
-        if params is not None:
-            self.query_params.update(params)
         return self.collections_business.list(endpoint=self._endpoint+'/business/{}'.format(business_token),
-                                              query_params=self.query_params, limit=limit)
+                                              query_params=params, limit=limit)
 
     def __repr__(self):
         return '<Marqeta.resources.funding_sources.FundingSourcesCollection>'
@@ -71,30 +62,21 @@ class Addresses(object):
 
     def __init__(self, collection):
         self.collections = collection
-        self.query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0, }
 
     def stream_for_user(self,user_token, params=None):
-        if params is not None:
-            self.query_params.update(params)
-        return self.collections.stream(endpoint=self._endpoint + '/user/{}'.format(user_token), query_params=self.query_params)
+        return self.collections.stream(endpoint=self._endpoint + '/user/{}'.format(user_token), query_params=params)
 
     def stream_for_business(self,business_token, params=None):
-        if params is not None:
-            self.query_params.update(params)
-        return self.collections.stream(endpoint=self._endpoint +'/business/{}'.format(business_token), query_params=self.query_params)
+        return self.collections.stream(endpoint=self._endpoint +'/business/{}'.format(business_token), query_params=params)
 
     def list_for_user(self, user_token, params=None, limit=float('inf')):
-        if params is not None:
-            self.query_params.update(params)
         return self.collections.list(endpoint=self._endpoint + '/user/{}'.format(user_token),
-                                     query_params=self.query_params, limit=limit)
+                                     query_params=params, limit=limit)
 
     def list_for_business(self, business_token, params=None,
                           limit=float('inf')):
-        if params is not None:
-            self.query_params.update(params)
         return self.collections.list(endpoint=self._endpoint +'/business/{}'.format(business_token),
-                                     query_params=self.query_params, limit=limit)
+                                     query_params=params, limit=limit)
 
     def create(self, data={}):
         return self.collections.create(endpoint=self._endpoint, data=data)
