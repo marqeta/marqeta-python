@@ -1,12 +1,28 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.network_fee_model import NetworkFeeModel
 from marqeta.response_models.webhook import Webhook
 from marqeta.response_models.transaction_options import TransactionOptions
+import json
 
 class AuthorizationAdviceModel(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'amount' : self.amount,
+           'network_fees' : self.network_fees,
+           'webhook' : self.webhook,
+           'original_transaction_token' : self.original_transaction_token,
+           'transaction_options' : self.transaction_options,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def amount(self):
@@ -33,3 +49,5 @@ class AuthorizationAdviceModel(object):
         if 'transaction_options' in self.json_response:
             return TransactionOptions(self.json_response['transaction_options'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.authorization_advice_model.AuthorizationAdviceModel>'

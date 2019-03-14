@@ -1,10 +1,30 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.fee_model import FeeModel
+import json
 
 class ProgramTransfer(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'fees' : self.fees,
+           'token' : self.token,
+           'user_token' : self.user_token,
+           'business_token' : self.business_token,
+           'amount' : self.amount,
+           'type_token' : self.type_token,
+           'tags' : self.tags,
+           'memo' : self.memo,
+           'currency_code' : self.currency_code,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def fees(self):
@@ -51,3 +71,5 @@ class ProgramTransfer(object):
         if 'currency_code' in self.json_response:
             return self.json_response['currency_code']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.program_transfer.ProgramTransfer>'

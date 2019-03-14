@@ -1,9 +1,25 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class PreKycControls(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'cash_access_enabled' : self.cash_access_enabled,
+           'international_enabled' : self.international_enabled,
+           'balance_max' : self.balance_max,
+           'enable_non_program_loads' : self.enable_non_program_loads,
+           'is_reloadable_pre_kyc' : self.is_reloadable_pre_kyc,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def cash_access_enabled(self):
@@ -30,3 +46,5 @@ class PreKycControls(object):
         if 'is_reloadable_pre_kyc' in self.json_response:
             return self.json_response['is_reloadable_pre_kyc']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.pre_kyc_controls.PreKycControls>'

@@ -1,10 +1,25 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.expiration_offsét import ExpirationOffsét
+import json
 
 class MerchantCardRequest(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'card_product_token' : self.card_product_token,
+           'expedite' : self.expedite,
+           'metadata' : self.metadata,
+           'expiration_offset' : self.expiration_offset,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def card_product_token(self):
@@ -26,3 +41,5 @@ class MerchantCardRequest(object):
         if 'expiration_offset' in self.json_response:
             return ExpirationOffsét(self.json_response['expiration_offset'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.merchant_card_request.MerchantCardRequest>'

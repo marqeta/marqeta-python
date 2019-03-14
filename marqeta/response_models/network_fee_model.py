@@ -1,9 +1,23 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class NetworkFeeModel(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'type' : self.type,
+           'amount' : self.amount,
+           'credit_debit' : self.credit_debit,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def type(self):
@@ -20,3 +34,5 @@ class NetworkFeeModel(object):
         if 'credit_debit' in self.json_response:
             return self.json_response['credit_debit']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.network_fee_model.NetworkFeeModel>'

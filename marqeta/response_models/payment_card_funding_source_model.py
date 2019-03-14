@@ -1,10 +1,26 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.funding_source_model import FundingSourceModel
+import json
 
 class PaymentCardFundingSourceModel(FundingSourceModel):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'user_token' : self.user_token,
+           'business_token' : self.business_token,
+           'account_suffix' : self.account_suffix,
+           'account_type' : self.account_type,
+           'exp_date' : self.exp_date,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def user_token(self):
@@ -31,3 +47,5 @@ class PaymentCardFundingSourceModel(FundingSourceModel):
         if 'exp_date' in self.json_response:
             return self.json_response['exp_date']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.payment_card_funding_source_model.PaymentCardFundingSourceModel>'

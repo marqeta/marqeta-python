@@ -1,9 +1,24 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class WebhookConfigModel(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'url' : self.url,
+           'secret' : self.secret,
+           'basic_auth_username' : self.basic_auth_username,
+           'basic_auth_password' : self.basic_auth_password,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def url(self):
@@ -25,3 +40,5 @@ class WebhookConfigModel(object):
         if 'basic_auth_password' in self.json_response:
             return self.json_response['basic_auth_password']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.webhook_config_model.WebhookConfigModel>'

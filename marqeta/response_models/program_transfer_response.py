@@ -1,11 +1,34 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.fee_detail import FeeDetail
 from marqeta.response_models.jit_funding_api import JitFundingApi
+import json
 
 class ProgramTransferResponse(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'fees' : self.fees,
+           'token' : self.token,
+           'type_token' : self.type_token,
+           'user_token' : self.user_token,
+           'business_token' : self.business_token,
+           'transaction_token' : self.transaction_token,
+           'currency_code' : self.currency_code,
+           'amount' : self.amount,
+           'memo' : self.memo,
+           'tags' : self.tags,
+           'created_time' : self.created_time,
+           'jit_funding' : self.jit_funding,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def fees(self):
@@ -60,10 +83,12 @@ class ProgramTransferResponse(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def jit_funding(self):
         if 'jit_funding' in self.json_response:
             return JitFundingApi(self.json_response['jit_funding'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.program_transfer_response.ProgramTransferResponse>'

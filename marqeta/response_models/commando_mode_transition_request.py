@@ -1,10 +1,24 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.commando_mode_nested_transition import CommandoModeNestedTransition
+import json
 
 class CommandoModeTransitionRequest(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'commando_mode_token' : self.commando_mode_token,
+           'transition' : self.transition,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -21,3 +35,5 @@ class CommandoModeTransitionRequest(object):
         if 'transition' in self.json_response:
             return CommandoModeNestedTransition(self.json_response['transition'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.commando_mode_transition_request.CommandoModeTransitionRequest>'

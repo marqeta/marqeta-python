@@ -20,22 +20,17 @@ class BusinessesCollection(object):
         self.collections_business_model = Collection(self.client, BusinessCardHolderModel)
         self.collections_business_response_model = Collection(self.client, BusinessCardHolderResponse)
         self.collections_business_update_model = Collection(self.client, BusinessCardHolderUpdateModel)
-        self.query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0, }
 
     def __call__(self, token):
         return BusinessContext(token, self.client)
     ''' Iterates through businesses
         returns business object one at a time'''
     def stream(self, params=None):
-        if params is not None:
-            self.query_params.update(params)
-        return self.collections_business_model.stream(endpoint=self._endpoint, query_params=self.query_params)
+        return self.collections_business_model.stream(endpoint=self._endpoint, query_params=params)
 
     ''' Lists all the businesses Returns list of all business object '''
     def list(self, params=None, limit = float('inf')):
-        if params is not None:
-            self.query_params.update(params)
-        return self.collections_business_model.list(endpoint=self._endpoint, query_params=self.query_params, limit=limit)
+        return self.collections_business_model.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Creates a business user with the specified data
             Returns the BusinessCardHolderModel object which has created business user information'''
@@ -56,9 +51,7 @@ class BusinessesCollection(object):
     ''' Looks for the user information based on the specified data
         Returns UserResource object of list of the matched users for the data '''
     def look_up(self, data, params = None):
-        if params is not None:
-            self.query_params.update(params)
-        response = self.client.post(self._endpoint+'/lookup', data, query_params=self.query_params)[0]
+        response = self.client.post(self._endpoint+'/lookup', data, query_params=params)[0]
         return [BusinessCardHolderModel(response['data'][val]) for val in range(response['count'])]
 
     def __repr__(self):
@@ -109,7 +102,7 @@ class BusinessContext(BusinessesCollection):
             self.client = client
 
         def list(self,params= None, limit = float('inf')):
-            query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0}
+            query_params = {}
             if params is not None:
                 query_params.update(params)
             return self.collection.list(endpoint=self._endpoint.format(self.token), query_params=query_params, limit = limit)

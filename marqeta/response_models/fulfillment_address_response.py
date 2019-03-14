@@ -1,9 +1,31 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class FulfillmentAddressResponse(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'first_name' : self.first_name,
+           'middle_name' : self.middle_name,
+           'last_name' : self.last_name,
+           'address1' : self.address1,
+           'address2' : self.address2,
+           'city' : self.city,
+           'state' : self.state,
+           'zip' : self.zip,
+           'postal_code' : self.postal_code,
+           'country' : self.country,
+           'phone' : self.phone,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def first_name(self):
@@ -60,3 +82,5 @@ class FulfillmentAddressResponse(object):
         if 'phone' in self.json_response:
             return self.json_response['phone']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.fulfillment_address_response.FulfillmentAddressResponse>'

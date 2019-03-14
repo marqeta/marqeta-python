@@ -1,9 +1,26 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class KycRequest(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'notes' : self.notes,
+           'token' : self.token,
+           'user_token' : self.user_token,
+           'business_token' : self.business_token,
+           'manual_override' : self.manual_override,
+           'reference_id' : self.reference_id,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def notes(self):
@@ -35,3 +52,5 @@ class KycRequest(object):
         if 'reference_id' in self.json_response:
             return self.json_response['reference_id']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.kyc_request.KycRequest>'

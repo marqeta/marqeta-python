@@ -1,19 +1,45 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class PushToCardResponse(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
 
+    def __str__(self):
+        dict = {
+           'created_time' : self.created_time,
+           'last_modified_time' : self.last_modified_time,
+           'address_1' : self.address_1,
+           'address_2' : self.address_2,
+           'city' : self.city,
+           'state' : self.state,
+           'zip' : self.zip,
+           'country' : self.country,
+           'last_four' : self.last_four,
+           'token' : self.token,
+           'fast_fund_transfer_eligible' : self.fast_fund_transfer_eligible,
+           'gambling_fund_transfer_eligible' : self.gambling_fund_transfer_eligible,
+           'name_on_card' : self.name_on_card,
+           'last_name' : self.last_name,
+           'exp_date' : self.exp_date,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
+
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def address_1(self):
@@ -80,3 +106,5 @@ class PushToCardResponse(object):
         if 'exp_date' in self.json_response:
             return self.json_response['exp_date']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.push_to_card_response.PushToCardResponse>'

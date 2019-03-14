@@ -1,10 +1,33 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.terminal_model import TerminalModel
+import json
 
 class TransactionCardAcceptorViewModelV1(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'mid' : self.mid,
+           'mcc' : self.mcc,
+           'network_mid' : self.network_mid,
+           'mcc_groups' : self.mcc_groups,
+           'name' : self.name,
+           'address' : self.address,
+           'city' : self.city,
+           'state' : self.state,
+           'zip' : self.zip,
+           'postal_code' : self.postal_code,
+           'country' : self.country,
+           'poi' : self.poi,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def mid(self):
@@ -66,3 +89,5 @@ class TransactionCardAcceptorViewModelV1(object):
         if 'poi' in self.json_response:
             return TerminalModel(self.json_response['poi'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.transaction_card_acceptor_view_model_v1.TransactionCardAcceptorViewModelV1>'

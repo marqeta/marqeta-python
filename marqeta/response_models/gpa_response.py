@@ -1,12 +1,41 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.fee_detail import FeeDetail
 from marqeta.response_models.response import Response
 from marqeta.response_models.funding import Funding
+import json
 
 class GpaResponse(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'amount' : self.amount,
+           'tags' : self.tags,
+           'memo' : self.memo,
+           'fees' : self.fees,
+           'created_time' : self.created_time,
+           'last_modified_time' : self.last_modified_time,
+           'transaction_token' : self.transaction_token,
+           'state' : self.state,
+           'response' : self.response,
+           'funding' : self.funding,
+           'funding_source_token' : self.funding_source_token,
+           'funding_source_address_token' : self.funding_source_address_token,
+           'user_token' : self.user_token,
+           'business_token' : self.business_token,
+           'currency_code' : self.currency_code,
+           'gateway_token' : self.gateway_token,
+           'gateway_message' : self.gateway_message,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -36,12 +65,12 @@ class GpaResponse(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def transaction_token(self):
@@ -98,3 +127,5 @@ class GpaResponse(object):
         if 'gateway_message' in self.json_response:
             return self.json_response['gateway_message']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.gpa_response.GpaResponse>'

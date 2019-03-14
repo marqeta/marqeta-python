@@ -1,9 +1,24 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class DigitalWalletTokenRequestAddress(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'cardholder_name' : self.cardholder_name,
+           'address' : self.address,
+           'postal_code' : self.postal_code,
+           'country' : self.country,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def cardholder_name(self):
@@ -25,3 +40,5 @@ class DigitalWalletTokenRequestAddress(object):
         if 'country' in self.json_response:
             return self.json_response['country']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.digital_wallet_token_request_address.DigitalWalletTokenRequestAddress>'

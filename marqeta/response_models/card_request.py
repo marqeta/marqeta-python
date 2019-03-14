@@ -1,12 +1,34 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.expiration_offsét import ExpirationOffsét
 from marqeta.response_models.fulfillment import Fulfillment
 from marqeta.response_models.activation_actions import ActivationActions
+import json
 
 class CardRequest(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'card_product_token' : self.card_product_token,
+           'expedite' : self.expedite,
+           'metadata' : self.metadata,
+           'expiration_offset' : self.expiration_offset,
+           'token' : self.token,
+           'user_token' : self.user_token,
+           'fulfillment' : self.fulfillment,
+           'reissue_pan_from_card_token' : self.reissue_pan_from_card_token,
+           'translate_pin_from_card_token' : self.translate_pin_from_card_token,
+           'activation_actions' : self.activation_actions,
+           'bulk_issuance_token' : self.bulk_issuance_token,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def card_product_token(self):
@@ -63,3 +85,5 @@ class CardRequest(object):
         if 'bulk_issuance_token' in self.json_response:
             return self.json_response['bulk_issuance_token']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.card_request.CardRequest>'

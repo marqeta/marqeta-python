@@ -1,9 +1,35 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class CardHolderAddressModel(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'user_token' : self.user_token,
+           'business_token' : self.business_token,
+           'token' : self.token,
+           'first_name' : self.first_name,
+           'last_name' : self.last_name,
+           'address_1' : self.address_1,
+           'address_2' : self.address_2,
+           'city' : self.city,
+           'state' : self.state,
+           'zip' : self.zip,
+           'country' : self.country,
+           'phone' : self.phone,
+           'is_default_address' : self.is_default_address,
+           'active' : self.active,
+           'postal_code' : self.postal_code,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def user_token(self):
@@ -80,3 +106,5 @@ class CardHolderAddressModel(object):
         if 'postal_code' in self.json_response:
             return self.json_response['postal_code']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.card_holder_address_model.CardHolderAddressModel>'

@@ -42,8 +42,10 @@ class CardsCollection(object):
 
     ''' Creates a card with the specified data
             Returns the card object which has created card information'''
-    def create(self, data = {}):
-        return self.collections_card_response.create(endpoint=self._endpoint, data=data)
+    def create(self, data = {}, params=None):
+        if params is not None:
+            self.query_params.update(params)
+        return self.collections_card_response.create(endpoint=self._endpoint, query_params=self.query_params, data=data)
 
     ''' Finds the card information for the requested card token
             Returns the card object which has card information '''

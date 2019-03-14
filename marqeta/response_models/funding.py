@@ -1,12 +1,27 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.funding_source_model import FundingSourceModel
 from marqeta.response_models.cardholder_address_response import CardholderAddressResponse
 from marqeta.response_models.gateway_log_model import GatewayLogModel
+import json
 
 class Funding(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'amount' : self.amount,
+           'source' : self.source,
+           'source_address' : self.source_address,
+           'gateway_log' : self.gateway_log,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def amount(self):
@@ -28,3 +43,5 @@ class Funding(object):
         if 'gateway_log' in self.json_response:
             return GatewayLogModel(self.json_response['gateway_log'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.funding.Funding>'

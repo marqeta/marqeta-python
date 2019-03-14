@@ -1,9 +1,25 @@
+from datetime import datetime, date
 from marqeta.response_models.gl_entry import GlEntry
+import json
 
 class GlTransactionRequest(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'entries' : self.entries,
+           'detail' : self.detail,
+           'cardholder_visible' : self.cardholder_visible,
+           'reference_transaction_token' : self.reference_transaction_token,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def entries(self):
@@ -25,3 +41,5 @@ class GlTransactionRequest(object):
         if 'reference_transaction_token' in self.json_response:
             return self.json_response['reference_transaction_token']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.gl_transaction_request.GlTransactionRequest>'

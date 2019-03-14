@@ -17,22 +17,17 @@ class UsersCollection(object):
         self.client = client
         self.collections_cardmodel = Collection(self.client, CardHolderModel)
         self.collections_usermodel = Collection(self.client, UserCardHolderResponse)
-        self.query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0, }
 
     def __call__(self, token):
         return UserContext(token, self.client)
     ''' Iterates through users
         returns user object one at a time'''
     def stream(self, params=None):
-        if params is not None:
-            self.query_params.update(params)
-        return self.collections_cardmodel.stream(endpoint=self._endpoint, query_params=self.query_params)
+        return self.collections_cardmodel.stream(endpoint=self._endpoint, query_params=params)
 
     ''' Lists all the users Returns list of all user object '''
     def list(self, params=None, limit = float('inf')):
-        if params is not None:
-            self.query_params.update(params)
-        return self.collections_cardmodel.list(endpoint=self._endpoint, query_params=self.query_params, limit=limit)
+        return self.collections_cardmodel.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Creates a user with the specified data
             Returns the UserResource object which has created user information'''

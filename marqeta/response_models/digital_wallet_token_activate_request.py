@@ -1,12 +1,26 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.digital_wallet_token import DigitalWalletToken
 from marqeta.response_models.digital_wallet_token_device import DigitalWalletTokenDevice
 from marqeta.response_models.digital_wallet_token_wallet_provider import DigitalWalletTokenWalletProvider
+import json
 
 class DigitalWalletTokenActivateRequest(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'digital_wallet_token' : self.digital_wallet_token,
+           'digital_wallet_token_device' : self.digital_wallet_token_device,
+           'digital_wallet_token_wallet_provider' : self.digital_wallet_token_wallet_provider,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def digital_wallet_token(self):
@@ -23,3 +37,5 @@ class DigitalWalletTokenActivateRequest(object):
         if 'digital_wallet_token_wallet_provider' in self.json_response:
             return DigitalWalletTokenWalletProvider(self.json_response['digital_wallet_token_wallet_provider'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.digital_wallet_token_activate_request.DigitalWalletTokenActivateRequest>'

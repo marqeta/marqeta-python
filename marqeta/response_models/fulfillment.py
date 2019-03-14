@@ -1,11 +1,24 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.shipping import Shipping
 from marqeta.response_models.card_personalization import CardPersonalization
+import json
 
 class Fulfillment(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'shipping' : self.shipping,
+           'card_personalization' : self.card_personalization,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def shipping(self):
@@ -17,3 +30,5 @@ class Fulfillment(object):
         if 'card_personalization' in self.json_response:
             return CardPersonalization(self.json_response['card_personalization'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.fulfillment.Fulfillment>'

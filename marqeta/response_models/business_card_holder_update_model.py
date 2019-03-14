@@ -1,14 +1,49 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.identification_request_model import IdentificationRequestModel
 from marqeta.response_models.address_request_model import AddressRequestModel
 from marqeta.response_models.primary_contact_info_model import PrimaryContactInfoModel
 from marqeta.response_models.business_incorporation_request_model import BusinessIncorporationRequestModel
 from marqeta.response_models.business_proprietor_request_model import BusinessProprietorRequestModel
+import json
 
 class BusinessCardHolderUpdateModel(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'active' : self.active,
+           'notes' : self.notes,
+           'ip_address' : self.ip_address,
+           'password' : self.password,
+           'phone' : self.phone,
+           'metadata' : self.metadata,
+           'account_holder_group_token' : self.account_holder_group_token,
+           'identifications' : self.identifications,
+           'business_name_legal' : self.business_name_legal,
+           'business_name_dba' : self.business_name_dba,
+           'office_location' : self.office_location,
+           'in_current_location_since' : self.in_current_location_since,
+           'website' : self.website,
+           'date_established' : self.date_established,
+           'general_business_description' : self.general_business_description,
+           'history' : self.history,
+           'business_type' : self.business_type,
+           'international_office_locations' : self.international_office_locations,
+           'taxpayer_id' : self.taxpayer_id,
+           'duns_number' : self.duns_number,
+           'primary_contact' : self.primary_contact,
+           'incorporation' : self.incorporation,
+           'proprietor_or_officer' : self.proprietor_or_officer,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -73,7 +108,7 @@ class BusinessCardHolderUpdateModel(object):
     @property
     def in_current_location_since(self):
         if 'in_current_location_since' in self.json_response:
-            return datetime.strptime(self.json_response['in_current_location_since'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['in_current_location_since'], '%Y-%m-%d').date()
 
     @property
     def website(self):
@@ -83,7 +118,7 @@ class BusinessCardHolderUpdateModel(object):
     @property
     def date_established(self):
         if 'date_established' in self.json_response:
-            return datetime.strptime(self.json_response['date_established'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['date_established'], '%Y-%m-%d').date()
 
     @property
     def general_business_description(self):
@@ -130,3 +165,5 @@ class BusinessCardHolderUpdateModel(object):
         if 'proprietor_or_officer' in self.json_response:
             return BusinessProprietorRequestModel(self.json_response['proprietor_or_officer'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.business_card_holder_update_model.BusinessCardHolderUpdateModel>'

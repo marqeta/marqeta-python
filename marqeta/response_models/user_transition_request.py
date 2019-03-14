@@ -1,9 +1,27 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class UserTransitionRequest(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'idempotentHash' : self.idempotentHash,
+           'token' : self.token,
+           'status' : self.status,
+           'reason_code' : self.reason_code,
+           'reason' : self.reason,
+           'channel' : self.channel,
+           'user_token' : self.user_token,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def idempotentHash(self):
@@ -40,3 +58,5 @@ class UserTransitionRequest(object):
         if 'user_token' in self.json_response:
             return self.json_response['user_token']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.user_transition_request.UserTransitionRequest>'

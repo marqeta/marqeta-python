@@ -1,15 +1,74 @@
-"""User Card Holder Model with User Properties!!!"""
-
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.authentication import Authentication
 from marqeta.response_models.identification_response_model import IdentificationResponseModel
 from marqeta.response_models.deposit_account import DepositAccount
-
+import json
 
 class UserCardHolderResponse(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'passportExpirationDate' : self.passportExpirationDate,
+           'idCardExpirationDate' : self.idCardExpirationDate,
+           'authentication' : self.authentication,
+           'token' : self.token,
+           'active' : self.active,
+           'honorific' : self.honorific,
+           'gender' : self.gender,
+           'first_name' : self.first_name,
+           'middle_name' : self.middle_name,
+           'last_name' : self.last_name,
+           'email' : self.email,
+           'address1' : self.address1,
+           'address2' : self.address2,
+           'city' : self.city,
+           'state' : self.state,
+           'zip' : self.zip,
+           'postal_code' : self.postal_code,
+           'country' : self.country,
+           'notes' : self.notes,
+           'phone' : self.phone,
+           'parent_token' : self.parent_token,
+           'uses_parent_account' : self.uses_parent_account,
+           'ssn' : self.ssn,
+           'corporate_card_holder' : self.corporate_card_holder,
+           'passport_number' : self.passport_number,
+           'id_card_number' : self.id_card_number,
+           'nationality' : self.nationality,
+           'company' : self.company,
+           'ip_address' : self.ip_address,
+           'password' : self.password,
+           'created_time' : self.created_time,
+           'last_modified_time' : self.last_modified_time,
+           'business_token' : self.business_token,
+           'metadata' : self.metadata,
+           'account_holder_group_token' : self.account_holder_group_token,
+           'status' : self.status,
+           'identifications' : self.identifications,
+           'deposit_account' : self.deposit_account,
+           'birth_date' : self.birth_date,
+           'passport_expiration_date' : self.passport_expiration_date,
+           'id_card_expiration_date' : self.id_card_expiration_date,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
+
+    @property
+    def passportExpirationDate(self):
+        if 'passportExpirationDate' in self.json_response:
+                return datetime.strptime(self.json_response['passportExpirationDate'], '%Y-%m-%d').date()
+
+    @property
+    def idCardExpirationDate(self):
+        if 'idCardExpirationDate' in self.json_response:
+                return datetime.strptime(self.json_response['idCardExpirationDate'], '%Y-%m-%d').date()
 
     @property
     def authentication(self):
@@ -154,12 +213,12 @@ class UserCardHolderResponse(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def business_token(self):
@@ -182,9 +241,9 @@ class UserCardHolderResponse(object):
             return self.json_response['status']
 
     @property
-    def ssn(self):
+    def identifications(self):
         if 'identifications' in self.json_response:
-            return self.json_response['ssn']
+            return [IdentificationResponseModel(val) for val in self.json_response['identifications']]
 
     @property
     def deposit_account(self):
@@ -194,15 +253,17 @@ class UserCardHolderResponse(object):
     @property
     def birth_date(self):
         if 'birth_date' in self.json_response:
-            return datetime.strptime(self.json_response['birth_date'], '%Y-%m-%d').date()
+            return self.json_response['birth_date']
 
     @property
     def passport_expiration_date(self):
         if 'passport_expiration_date' in self.json_response:
-            return datetime.strptime(self.json_response['passport_expiration_date'], '%Y-%m-%d').date()
+            return self.json_response['passport_expiration_date']
 
     @property
     def id_card_expiration_date(self):
         if 'id_card_expiration_date' in self.json_response:
-            return datetime.strptime(self.json_response['id_card_expiration_date'], '%Y-%m-%d').date()
+            return self.json_response['id_card_expiration_date']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.user_card_holder_response.UserCardHolderResponse>'

@@ -1,11 +1,32 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.digital_wallet_token_hash import DigitalWalletTokenHash
 from marqeta.response_models.card_swap_hash import CardSwapHash
+import json
 
 class DigitalWalletTokenTransitionResponse(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'digital_wallet_token' : self.digital_wallet_token,
+           'card_swap' : self.card_swap,
+           'type' : self.type,
+           'channel' : self.channel,
+           'state' : self.state,
+           'fulfillment_status' : self.fulfillment_status,
+           'reason' : self.reason,
+           'reason_code' : self.reason_code,
+           'created_time' : self.created_time,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -55,5 +76,7 @@ class DigitalWalletTokenTransitionResponse(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
+    def __repr__(self):
+         return '<Marqeta.response_models.digital_wallet_token_transition_response.DigitalWalletTokenTransitionResponse>'

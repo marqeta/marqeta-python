@@ -1,9 +1,28 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class FundingRequestModel(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'user_token' : self.user_token,
+           'order_number' : self.order_number,
+           'amount' : self.amount,
+           'funding_source' : self.funding_source,
+           'funding_address' : self.funding_address,
+           'fundgpadetail' : self.fundgpadetail,
+           'order_token' : self.order_token,
+           'currency_code' : self.currency_code,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def user_token(self):
@@ -45,3 +64,5 @@ class FundingRequestModel(object):
         if 'currency_code' in self.json_response:
             return self.json_response['currency_code']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.funding_request_model.FundingRequestModel>'

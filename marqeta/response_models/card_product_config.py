@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.poi import Poi
 from marqeta.response_models.transaction_controls import TransactionControls
 from marqeta.response_models.selective_auth import SelectiveAuth
@@ -8,11 +8,31 @@ from marqeta.response_models.clearing_and_settlement import ClearingAndSettlemen
 from marqeta.response_models.jit_funding import JitFunding
 from marqeta.response_models.digital_wallet_tokenization import DigitalWalletTokenization
 from marqeta.response_models.card_product_fulfillment import CardProductFulfillment
+import json
 
 class CardProductConfig(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'poi' : self.poi,
+           'transaction_controls' : self.transaction_controls,
+           'selective_auth' : self.selective_auth,
+           'special' : self.special,
+           'card_life_cycle' : self.card_life_cycle,
+           'clearing_and_settlement' : self.clearing_and_settlement,
+           'jit_funding' : self.jit_funding,
+           'digital_wallet_tokenization' : self.digital_wallet_tokenization,
+           'fulfillment' : self.fulfillment,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def poi(self):
@@ -59,3 +79,5 @@ class CardProductConfig(object):
         if 'fulfillment' in self.json_response:
             return CardProductFulfillment(self.json_response['fulfillment'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.card_product_config.CardProductConfig>'

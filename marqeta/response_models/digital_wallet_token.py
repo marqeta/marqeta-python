@@ -1,14 +1,38 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.token_service_provider import TokenServiceProvider
 from marqeta.response_models.device import Device
 from marqeta.response_models.wallet_provider_profile import WalletProviderProfile
 from marqeta.response_models.address_verification import AddressVerification
 from marqeta.response_models.user_card_holder_response import UserCardHolderResponse
+import json
 
 class DigitalWalletToken(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'card_token' : self.card_token,
+           'state' : self.state,
+           'state_reason' : self.state_reason,
+           'fulfillment_status' : self.fulfillment_status,
+           'issuer_eligibility_decision' : self.issuer_eligibility_decision,
+           'created_time' : self.created_time,
+           'last_modified_time' : self.last_modified_time,
+           'token_service_provider' : self.token_service_provider,
+           'device' : self.device,
+           'wallet_provider_profile' : self.wallet_provider_profile,
+           'address_verification' : self.address_verification,
+           'user' : self.user,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -43,12 +67,12 @@ class DigitalWalletToken(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def token_service_provider(self):
@@ -75,3 +99,5 @@ class DigitalWalletToken(object):
         if 'user' in self.json_response:
             return UserCardHolderResponse(self.json_response['user'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.digital_wallet_token.DigitalWalletToken>'

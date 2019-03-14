@@ -1,11 +1,51 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.gatewaylog import Gatewaylog
-
+import json
 
 class Gatewaylog(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'id' : self.id,
+           'traceNumber' : self.traceNumber,
+           'paymentTypeCode' : self.paymentTypeCode,
+           'achTransactionType' : self.achTransactionType,
+           'memo' : self.memo,
+           'gatewayVersion' : self.gatewayVersion,
+           'gatewayResponse' : self.gatewayResponse,
+           'timedOut' : self.timedOut,
+           'deal_Id' : self.deal_Id,
+           'order_Id' : self.order_Id,
+           'request_method' : self.request_method,
+           'response_code' : self.response_code,
+           'response_subcode' : self.response_subcode,
+           'response_reasoncode' : self.response_reasoncode,
+           'response_message' : self.response_message,
+           'status' : self.status,
+           'fraud_avs' : self.fraud_avs,
+           'fraud_auth' : self.fraud_auth,
+           'fraud_cvv' : self.fraud_cvv,
+           'gateway_transactionId' : self.gateway_transactionId,
+           'original_gateway' : self.original_gateway,
+           'amount' : self.amount,
+           'duplicate' : self.duplicate,
+           'post_date' : self.post_date,
+           'response_time' : self.response_time,
+           'api_duration' : self.api_duration,
+           'gateway_duration' : self.gateway_duration,
+           'ach_status' : self.ach_status,
+           'created' : self.created,
+           'modified' : self.modified,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def id(self):
@@ -125,12 +165,12 @@ class Gatewaylog(object):
     @property
     def post_date(self):
         if 'post_date' in self.json_response:
-            return datetime.strptime(self.json_response['post_date'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['post_date'], '%Y-%m-%d').date()
 
     @property
     def response_time(self):
         if 'response_time' in self.json_response:
-            return datetime.strptime(self.json_response['response_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['response_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def api_duration(self):
@@ -150,10 +190,12 @@ class Gatewaylog(object):
     @property
     def created(self):
         if 'created' in self.json_response:
-            return datetime.strptime(self.json_response['created'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['created'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def modified(self):
         if 'modified' in self.json_response:
-            return datetime.strptime(self.json_response['modified'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['modified'], '%Y-%m-%d').date()
 
+    def __repr__(self):
+         return '<Marqeta.response_models.gatewaylog.Gatewaylog>'

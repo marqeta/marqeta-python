@@ -1,10 +1,29 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.application import Application
+import json
 
 class AccessTokenResponse(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'expires' : self.expires,
+           'application' : self.application,
+           'tokenTypeMarqetaMaster' : self.tokenTypeMarqetaMaster,
+           'user_token' : self.user_token,
+           'master_roles' : self.master_roles,
+           'token_type' : self.token_type,
+           'one_time' : self.one_time,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -14,7 +33,7 @@ class AccessTokenResponse(object):
     @property
     def expires(self):
         if 'expires' in self.json_response:
-            return datetime.strptime(self.json_response['expires'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['expires'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def application(self):
@@ -46,3 +65,5 @@ class AccessTokenResponse(object):
         if 'one_time' in self.json_response:
             return self.json_response['one_time']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.access_token_response.AccessTokenResponse>'

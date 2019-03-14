@@ -1,10 +1,27 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.android_push_token_request_address import AndroidPushTokenRequestAddress
+import json
 
 class PushTokenizeRequestData(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'display_name' : self.display_name,
+           'last_digits' : self.last_digits,
+           'network' : self.network,
+           'token_service_provider' : self.token_service_provider,
+           'opaque_payment_card' : self.opaque_payment_card,
+           'user_address' : self.user_address,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def display_name(self):
@@ -36,3 +53,5 @@ class PushTokenizeRequestData(object):
         if 'user_address' in self.json_response:
             return AndroidPushTokenRequestAddress(self.json_response['user_address'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.push_tokenize_request_data.PushTokenizeRequestData>'

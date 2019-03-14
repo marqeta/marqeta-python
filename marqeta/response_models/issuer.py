@@ -1,9 +1,28 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class Issuer(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'success' : self.success,
+           'fraud_score' : self.fraud_score,
+           'fraud_rating' : self.fraud_rating,
+           'rule_violations' : self.rule_violations,
+           'fraud_score_reasons' : self.fraud_score_reasons,
+           'recommended_action' : self.recommended_action,
+           'model' : self.model,
+           'message' : self.message,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def success(self):
@@ -45,3 +64,5 @@ class Issuer(object):
         if 'message' in self.json_response:
             return self.json_response['message']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.issuer.Issuer>'

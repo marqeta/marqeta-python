@@ -1,9 +1,24 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class OfferUpdateModel(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'active' : self.active,
+           'name' : self.name,
+           'start_date' : self.start_date,
+           'end_date' : self.end_date,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def active(self):
@@ -25,3 +40,5 @@ class OfferUpdateModel(object):
         if 'end_date' in self.json_response:
             return self.json_response['end_date']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.offer_update_model.OfferUpdateModel>'

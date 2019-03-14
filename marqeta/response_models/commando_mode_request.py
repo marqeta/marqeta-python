@@ -1,11 +1,26 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.real_time_standin_criteria import RealTimeStandinCriteria
 from marqeta.response_models.commando_mode_enables import CommandoModeEnables
+import json
 
 class CommandoModeRequest(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'program_gateway_funding_source_token' : self.program_gateway_funding_source_token,
+           'real_time_standin_criteria' : self.real_time_standin_criteria,
+           'commando_mode_enables' : self.commando_mode_enables,
+           'token' : self.token,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def program_gateway_funding_source_token(self):
@@ -27,3 +42,5 @@ class CommandoModeRequest(object):
         if 'token' in self.json_response:
             return self.json_response['token']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.commando_mode_request.CommandoModeRequest>'

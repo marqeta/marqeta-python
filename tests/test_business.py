@@ -2,8 +2,8 @@ from marqeta import Client
 from marqeta.errors import MarqetaError
 
 BASE_URL = "https://shared-sandbox-api.marqeta.com/v3/"
-USER_NAME = "user53461547583930"
-PASSWORD = "1bd69e17-b826-4799-8f3a-77261ac2abab"
+USER_NAME = "user53971547770644"
+PASSWORD = "911cfe20-9987-4ec7-ac24-c2ce554dacc9"
 
 data_create= {
   "token": "my_business_25",

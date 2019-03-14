@@ -1,10 +1,30 @@
-from datetime import datetime
-
+from datetime import datetime, date
+from marqeta.response_models.real_time_fee_assessment import RealTimeFeeAssessment
+import json
 
 class Fee(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'active' : self.active,
+           'name' : self.name,
+           'amount' : self.amount,
+           'tags' : self.tags,
+           'created_time' : self.created_time,
+           'last_modified_time' : self.last_modified_time,
+           'currency_code' : self.currency_code,
+           'real_time_assessment' : self.real_time_assessment,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -34,12 +54,12 @@ class Fee(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def currency_code(self):
@@ -51,23 +71,5 @@ class Fee(object):
         if 'real_time_assessment' in self.json_response:
             return RealTimeFeeAssessment(self.json_response['real_time_assessment'])
 
-
-class RealTimeFeeAssessment(object):
-
-    def __init__(self, json_response):
-        self.json_response = json_response
-
-    @property
-    def transaction_type(self):
-        if 'transaction_type' in self.json_response:
-            return self.json_response['transaction_type']
-
-    @property
-    def international_enabled(self):
-        if 'international_enabled' in self.json_response:
-            return self.json_response['international_enabled']
-
-    @property
-    def domestic_enabled(self):
-        if 'domestic_enabled' in self.json_response:
-            return self.json_response['domestic_enabled']
+    def __repr__(self):
+         return '<Marqeta.response_models.fee.Fee>'

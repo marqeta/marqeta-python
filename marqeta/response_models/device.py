@@ -1,9 +1,28 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class Device(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'type' : self.type,
+           'language_code' : self.language_code,
+           'device_id' : self.device_id,
+           'phone_number' : self.phone_number,
+           'name' : self.name,
+           'location' : self.location,
+           'ip_address' : self.ip_address,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -45,3 +64,5 @@ class Device(object):
         if 'ip_address' in self.json_response:
             return self.json_response['ip_address']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.device.Device>'

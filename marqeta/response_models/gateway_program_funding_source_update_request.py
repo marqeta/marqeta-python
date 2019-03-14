@@ -1,9 +1,26 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class GatewayProgramFundingSourceUpdateRequest(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'name' : self.name,
+           'active' : self.active,
+           'url' : self.url,
+           'basic_auth_username' : self.basic_auth_username,
+           'basic_auth_password' : self.basic_auth_password,
+           'timeout_millis' : self.timeout_millis,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def name(self):
@@ -35,3 +52,5 @@ class GatewayProgramFundingSourceUpdateRequest(object):
         if 'timeout_millis' in self.json_response:
             return self.json_response['timeout_millis']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.gateway_program_funding_source_update_request.GatewayProgramFundingSourceUpdateRequest>'

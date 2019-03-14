@@ -1,9 +1,25 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class Pagination(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'count' : self.count,
+           'start_index' : self.start_index,
+           'end_index' : self.end_index,
+           'is_more' : self.is_more,
+           'data' : self.data,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def count(self):
@@ -30,3 +46,5 @@ class Pagination(object):
         if 'data' in self.json_response:
             return self.json_response['data']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.pagination.Pagination>'
