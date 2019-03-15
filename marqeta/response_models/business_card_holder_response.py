@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.authentication import Authentication
 from marqeta.response_models.address_response_model import AddressResponseModel
 from marqeta.response_models.primary_contact_info_model import PrimaryContactInfoModel
@@ -6,11 +6,51 @@ from marqeta.response_models.business_incorporation_response_model import Busine
 from marqeta.response_models.business_proprietor_response_model import BusinessProprietorResponseModel
 from marqeta.response_models.identification_response_model import IdentificationResponseModel
 from marqeta.response_models.deposit_account import DepositAccount
+import json
 
 class BusinessCardHolderResponse(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'active' : self.active,
+           'notes' : self.notes,
+           'ip_address' : self.ip_address,
+           'password' : self.password,
+           'phone' : self.phone,
+           'metadata' : self.metadata,
+           'account_holder_group_token' : self.account_holder_group_token,
+           'authentication' : self.authentication,
+           'created_time' : self.created_time,
+           'last_modified_time' : self.last_modified_time,
+           'status' : self.status,
+           'business_name_legal' : self.business_name_legal,
+           'business_name_dba' : self.business_name_dba,
+           'office_location' : self.office_location,
+           'in_current_location_since' : self.in_current_location_since,
+           'website' : self.website,
+           'date_established' : self.date_established,
+           'general_business_description' : self.general_business_description,
+           'history' : self.history,
+           'business_type' : self.business_type,
+           'international_office_locations' : self.international_office_locations,
+           'taxpayer_id' : self.taxpayer_id,
+           'duns_number' : self.duns_number,
+           'primary_contact' : self.primary_contact,
+           'incorporation' : self.incorporation,
+           'proprietor_or_officer' : self.proprietor_or_officer,
+           'identifications' : self.identifications,
+           'deposit_account' : self.deposit_account,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -60,12 +100,12 @@ class BusinessCardHolderResponse(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def status(self):
@@ -90,7 +130,7 @@ class BusinessCardHolderResponse(object):
     @property
     def in_current_location_since(self):
         if 'in_current_location_since' in self.json_response:
-            return datetime.strptime(self.json_response['in_current_location_since'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['in_current_location_since'], '%Y-%m-%d').date()
 
     @property
     def website(self):
@@ -100,7 +140,7 @@ class BusinessCardHolderResponse(object):
     @property
     def date_established(self):
         if 'date_established' in self.json_response:
-            return datetime.strptime(self.json_response['date_established'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['date_established'], '%Y-%m-%d').date()
 
     @property
     def general_business_description(self):
@@ -157,3 +197,5 @@ class BusinessCardHolderResponse(object):
         if 'deposit_account' in self.json_response:
             return DepositAccount(self.json_response['deposit_account'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.business_card_holder_response.BusinessCardHolderResponse>'

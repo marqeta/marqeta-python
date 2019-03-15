@@ -1,9 +1,28 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class ChargebackRequest(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'transaction_token' : self.transaction_token,
+           'amount' : self.amount,
+           'reason_description' : self.reason_description,
+           'reason_code' : self.reason_code,
+           'memo' : self.memo,
+           'credit_user' : self.credit_user,
+           'channel' : self.channel,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -45,3 +64,5 @@ class ChargebackRequest(object):
         if 'channel' in self.json_response:
             return self.json_response['channel']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.chargeback_request.ChargebackRequest>'

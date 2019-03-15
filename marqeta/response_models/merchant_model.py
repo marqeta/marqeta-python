@@ -1,9 +1,36 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class MerchantModel(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'name' : self.name,
+           'active' : self.active,
+           'contact' : self.contact,
+           'contact_email' : self.contact_email,
+           'longitude' : self.longitude,
+           'latitude' : self.latitude,
+           'address1' : self.address1,
+           'address2' : self.address2,
+           'city' : self.city,
+           'state' : self.state,
+           'province' : self.province,
+           'zip' : self.zip,
+           'phone' : self.phone,
+           'country' : self.country,
+           'token' : self.token,
+           'partial_auth_flag' : self.partial_auth_flag,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def name(self):
@@ -85,3 +112,5 @@ class MerchantModel(object):
         if 'partial_auth_flag' in self.json_response:
             return self.json_response['partial_auth_flag']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.merchant_model.MerchantModel>'

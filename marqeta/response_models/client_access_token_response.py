@@ -1,10 +1,26 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.application import Application
+import json
 
 class ClientAccessTokenResponse(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'application' : self.application,
+           'created' : self.created,
+           'expires' : self.expires,
+           'token' : self.token,
+           'card_token' : self.card_token,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def application(self):
@@ -14,12 +30,12 @@ class ClientAccessTokenResponse(object):
     @property
     def created(self):
         if 'created' in self.json_response:
-            return datetime.strptime(self.json_response['created'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['created'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def expires(self):
         if 'expires' in self.json_response:
-            return datetime.strptime(self.json_response['expires'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['expires'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def token(self):
@@ -31,3 +47,5 @@ class ClientAccessTokenResponse(object):
         if 'card_token' in self.json_response:
             return self.json_response['card_token']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.client_access_token_response.ClientAccessTokenResponse>'

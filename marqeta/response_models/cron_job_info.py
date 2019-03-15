@@ -1,9 +1,30 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class CronJobInfo(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'schedule' : self.schedule,
+           'group' : self.group,
+           'id' : self.id,
+           'class' : self.class,
+           'is_running' : self.is_running,
+           'last_run_duration_millis' : self.last_run_duration_millis,
+           'next_run' : self.next_run,
+           'last_run' : self.last_run,
+           'timezone' : self.timezone,
+           'start_time' : self.start_time,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def schedule(self):
@@ -38,12 +59,12 @@ class CronJobInfo(object):
     @property
     def next_run(self):
         if 'next_run' in self.json_response:
-            return datetime.strptime(self.json_response['next_run'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['next_run'], '%Y-%m-%d').date()
 
     @property
     def last_run(self):
         if 'last_run' in self.json_response:
-            return datetime.strptime(self.json_response['last_run'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['last_run'], '%Y-%m-%d').date()
 
     @property
     def timezone(self):
@@ -53,5 +74,7 @@ class CronJobInfo(object):
     @property
     def start_time(self):
         if 'start_time' in self.json_response:
-            return datetime.strptime(self.json_response['start_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['start_time'], '%Y-%m-%dT%H:%M:%SZ')
 
+    def __repr__(self):
+         return '<Marqeta.response_models.cron_job_info.CronJobInfo>'

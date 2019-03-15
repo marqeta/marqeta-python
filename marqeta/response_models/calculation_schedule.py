@@ -1,9 +1,25 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class CalculationSchedule(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'value_type' : self.value_type,
+           'name' : self.name,
+           'steps' : self.steps,
+           'step_values' : self.step_values,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -30,3 +46,5 @@ class CalculationSchedule(object):
         if 'step_values' in self.json_response:
             return self.json_response['step_values']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.calculation_schedule.CalculationSchedule>'

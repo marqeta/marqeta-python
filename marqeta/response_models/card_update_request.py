@@ -1,10 +1,26 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.fulfillment import Fulfillment
+import json
 
 class CardUpdateRequest(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'user_token' : self.user_token,
+           'expedite' : self.expedite,
+           'fulfillment' : self.fulfillment,
+           'metadata' : self.metadata,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -31,3 +47,5 @@ class CardUpdateRequest(object):
         if 'metadata' in self.json_response:
             return self.json_response['metadata']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.card_update_request.CardUpdateRequest>'

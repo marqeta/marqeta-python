@@ -1,11 +1,28 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.network_fee_model import NetworkFeeModel
 from marqeta.response_models.webhook import Webhook
+import json
 
 class ReversalModel(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'network_fees' : self.network_fees,
+           'webhook' : self.webhook,
+           'original_transaction_token' : self.original_transaction_token,
+           'amount' : self.amount,
+           'find_original_window_days' : self.find_original_window_days,
+           'is_advice' : self.is_advice,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def network_fees(self):
@@ -37,3 +54,5 @@ class ReversalModel(object):
         if 'is_advice' in self.json_response:
             return self.json_response['is_advice']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.reversal_model.ReversalModel>'

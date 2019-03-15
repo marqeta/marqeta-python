@@ -1,9 +1,24 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class HealthCheckResult(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'component' : self.component,
+           'healthy' : self.healthy,
+           'fatal' : self.fatal,
+           'status' : self.status,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def component(self):
@@ -25,3 +40,5 @@ class HealthCheckResult(object):
         if 'status' in self.json_response:
             return self.json_response['status']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.health_check_result.HealthCheckResult>'

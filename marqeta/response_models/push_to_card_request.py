@@ -1,9 +1,32 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class PushToCardRequest(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'address_1' : self.address_1,
+           'address_2' : self.address_2,
+           'city' : self.city,
+           'state' : self.state,
+           'zip' : self.zip,
+           'country' : self.country,
+           'token' : self.token,
+           'user_token' : self.user_token,
+           'name_on_card' : self.name_on_card,
+           'pan' : self.pan,
+           'cvv' : self.cvv,
+           'exp_date' : self.exp_date,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def address_1(self):
@@ -65,3 +88,5 @@ class PushToCardRequest(object):
         if 'exp_date' in self.json_response:
             return self.json_response['exp_date']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.push_to_card_request.PushToCardRequest>'

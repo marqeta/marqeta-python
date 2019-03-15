@@ -1,11 +1,30 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.transit import Transit
 from marqeta.response_models.airline import Airline
+import json
 
 class TransactionMetadata(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'transaction_category' : self.transaction_category,
+           'payment_channel' : self.payment_channel,
+           'cross_border_transaction' : self.cross_border_transaction,
+           'authorization_life_cyle' : self.authorization_life_cyle,
+           'is_lodging_auto_rental' : self.is_lodging_auto_rental,
+           'lodging_auto_rental_start_date' : self.lodging_auto_rental_start_date,
+           'transit' : self.transit,
+           'airline' : self.airline,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def transaction_category(self):
@@ -35,7 +54,7 @@ class TransactionMetadata(object):
     @property
     def lodging_auto_rental_start_date(self):
         if 'lodging_auto_rental_start_date' in self.json_response:
-            return datetime.strptime(self.json_response['lodging_auto_rental_start_date'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['lodging_auto_rental_start_date'], '%Y-%m-%d').date()
 
     @property
     def transit(self):
@@ -47,3 +66,5 @@ class TransactionMetadata(object):
         if 'airline' in self.json_response:
             return Airline(self.json_response['airline'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.transaction_metadata.TransactionMetadata>'

@@ -1,9 +1,27 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class Application(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'program' : self.program,
+           'environment' : self.environment,
+           'program_short_code' : self.program_short_code,
+           'client_api_base_url' : self.client_api_base_url,
+           'assets_url' : self.assets_url,
+           'access_code' : self.access_code,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -40,3 +58,5 @@ class Application(object):
         if 'access_code' in self.json_response:
             return self.json_response['access_code']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.application.Application>'

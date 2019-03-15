@@ -1,10 +1,34 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.avs_controls import AvsControls
+import json
 
 class TransactionControls(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'accepted_countries_token' : self.accepted_countries_token,
+           'always_require_pin' : self.always_require_pin,
+           'always_require_icc' : self.always_require_icc,
+           'allow_gpa_auth' : self.allow_gpa_auth,
+           'require_card_not_present_card_security_code' : self.require_card_not_present_card_security_code,
+           'allow_mcc_group_authorization_controls' : self.allow_mcc_group_authorization_controls,
+           'allow_first_pin_set_via_financial_transaction' : self.allow_first_pin_set_via_financial_transaction,
+           'ignore_card_suspended_state' : self.ignore_card_suspended_state,
+           'allow_network_load' : self.allow_network_load,
+           'allow_network_load_card_activation' : self.allow_network_load_card_activation,
+           'allow_quasi_cash' : self.allow_quasi_cash,
+           'enable_partial_auth_approval' : self.enable_partial_auth_approval,
+           'address_verification' : self.address_verification,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def accepted_countries_token(self):
@@ -71,3 +95,5 @@ class TransactionControls(object):
         if 'address_verification' in self.json_response:
             return AvsControls(self.json_response['address_verification'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.transaction_controls.TransactionControls>'

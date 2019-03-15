@@ -1,9 +1,31 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class TokenServiceProvider(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token_reference_id' : self.token_reference_id,
+           'pan_reference_id' : self.pan_reference_id,
+           'correlation_id' : self.correlation_id,
+           'token_requestor_id' : self.token_requestor_id,
+           'token_requestor_name' : self.token_requestor_name,
+           'token_type' : self.token_type,
+           'token_pan' : self.token_pan,
+           'token_expiration' : self.token_expiration,
+           'token_score' : self.token_score,
+           'token_assurance_level' : self.token_assurance_level,
+           'token_eligibility_decision' : self.token_eligibility_decision,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token_reference_id(self):
@@ -60,3 +82,5 @@ class TokenServiceProvider(object):
         if 'token_eligibility_decision' in self.json_response:
             return self.json_response['token_eligibility_decision']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.token_service_provider.TokenServiceProvider>'

@@ -1,9 +1,30 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class OfferModel(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'active' : self.active,
+           'name' : self.name,
+           'start_date' : self.start_date,
+           'end_date' : self.end_date,
+           'purchase_amount' : self.purchase_amount,
+           'reward_amount' : self.reward_amount,
+           'reward_trigger_amount' : self.reward_trigger_amount,
+           'campaign_token' : self.campaign_token,
+           'currency_code' : self.currency_code,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -23,12 +44,12 @@ class OfferModel(object):
     @property
     def start_date(self):
         if 'start_date' in self.json_response:
-            return datetime.strptime(self.json_response['start_date'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['start_date'], '%Y-%m-%d').date()
 
     @property
     def end_date(self):
         if 'end_date' in self.json_response:
-            return datetime.strptime(self.json_response['end_date'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['end_date'], '%Y-%m-%d').date()
 
     @property
     def purchase_amount(self):
@@ -55,3 +76,5 @@ class OfferModel(object):
         if 'currency_code' in self.json_response:
             return self.json_response['currency_code']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.offer_model.OfferModel>'

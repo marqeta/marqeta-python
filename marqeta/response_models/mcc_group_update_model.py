@@ -1,10 +1,25 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.config import Config
+import json
 
 class MccGroupUpdateModel(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'name' : self.name,
+           'mccs' : self.mccs,
+           'active' : self.active,
+           'config' : self.config,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def name(self):
@@ -26,3 +41,5 @@ class MccGroupUpdateModel(object):
         if 'config' in self.json_response:
             return Config(self.json_response['config'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.mcc_group_update_model.MccGroupUpdateModel>'

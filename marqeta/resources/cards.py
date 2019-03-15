@@ -15,35 +15,31 @@ class CardsCollection(object):
         self.client = client
         self.collections_card_response = Collection(self.client, CardResponse)
         self.collections_pan_response = Collection(self.client, PanResponse)
-        self.query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0, }
 
     def __call__(self, token):
         return CardsContext(token, self.client)
     ''' Iterates through cards based on last_four number
         returns card object one at a time'''
-    def stream(self, last_four, params = None):
-        if params is not None:
-            self.query_params.update(params)
-        self.query_params['last_four'] = last_four
-        return self.collections_card_response.stream(endpoint=self._endpoint, query_params=self.query_params)
+    def stream(self, last_four, params = {}):
+        params['last_four'] = last_four
+        return self.collections_card_response.stream(endpoint=self._endpoint, query_params=params)
 
     ''' Lists all the cards Returns list of all card object based on last_four number of card'''
-    def list(self,last_four, params=None, limit = float('inf')):
-        if params is not None:
-            self.query_params.update(params)
-        self.query_params['last_four'] = last_four
-        return self.collections_card_response.list(endpoint=self._endpoint, query_params=self.query_params, limit=limit)
+    def list(self,last_four, params={}, limit = float('inf')):
+        params['last_four'] = last_four
+        return self.collections_card_response.list(endpoint=self._endpoint, query_params=params, limit=limit)
+
+    def stream_for_user(self, user_token, params = None):
+        return self.collections_card_response.stream(endpoint=self._endpoint+"/user/{}".format(user_token), query_params=params)
 
     ''' Lists all the cards Returns list of all card object based on user token '''
     def list_for_user(self,user_token, params=None, limit = float('inf')):
-        if params is not None:
-            self.query_params.update(params)
-        return self.collections_card_response.list(endpoint=self._endpoint+"/user/{}".format(user_token), query_params=self.query_params, limit=limit)
+        return self.collections_card_response.list(endpoint=self._endpoint+"/user/{}".format(user_token), query_params=params, limit=limit)
 
     ''' Creates a card with the specified data
             Returns the card object which has created card information'''
-    def create(self, data = {}):
-        return self.collections_card_response.create(endpoint=self._endpoint, data=data)
+    def create(self, data = {}, params=None):
+        return self.collections_card_response.create(endpoint=self._endpoint, query_params=params, data=data)
 
     ''' Finds the card information for the requested card token
             Returns the card object which has card information '''
@@ -106,10 +102,10 @@ class CardsContext(CardsCollection):
             self.token = token
             self.collection = collection
 
-        def list(self, **kwargs):
+        def list(self, params=None):
             query_params = {'sort_by': '-id', 'count': 5, 'start_index': 0}
-            for key in kwargs:
-                query_params[key] = kwargs[key]
+            if params is not None:
+                query_params.update(params)
             return self.collection.list(query_params=query_params,
                                         endpoint=self._endpoint+'/card/{}'.format(self.token))
 

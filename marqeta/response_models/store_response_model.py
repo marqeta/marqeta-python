@@ -1,9 +1,44 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class StoreResponseModel(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'name' : self.name,
+           'active' : self.active,
+           'contact' : self.contact,
+           'contact_email' : self.contact_email,
+           'longitude' : self.longitude,
+           'latitude' : self.latitude,
+           'address1' : self.address1,
+           'address2' : self.address2,
+           'city' : self.city,
+           'state' : self.state,
+           'province' : self.province,
+           'zip' : self.zip,
+           'postal_code' : self.postal_code,
+           'phone' : self.phone,
+           'country' : self.country,
+           'token' : self.token,
+           'partial_auth_flag' : self.partial_auth_flag,
+           'mid' : self.mid,
+           'network_mid' : self.network_mid,
+           'merchant_token' : self.merchant_token,
+           'partial_approval_capable' : self.partial_approval_capable,
+           'keyed_auth_cvv_enforced' : self.keyed_auth_cvv_enforced,
+           'created_time' : self.created_time,
+           'last_modified_time' : self.last_modified_time,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def name(self):
@@ -118,10 +153,12 @@ class StoreResponseModel(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
+    def __repr__(self):
+         return '<Marqeta.response_models.store_response_model.StoreResponseModel>'

@@ -1,9 +1,23 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class AdvancedAuthOtherPoi(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'card_presence' : self.card_presence,
+           'cardholder_presence' : self.cardholder_presence,
+           'partial_approval_capable' : self.partial_approval_capable,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def card_presence(self):
@@ -20,3 +34,5 @@ class AdvancedAuthOtherPoi(object):
         if 'partial_approval_capable' in self.json_response:
             return self.json_response['partial_approval_capable']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.advanced_auth_other_poi.AdvancedAuthOtherPoi>'

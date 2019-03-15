@@ -1,5 +1,4 @@
 from marqeta import Client
-from marqeta.errors import MarqetaError
 
 BASE_URL = "https://shared-sandbox-api.marqeta.com/v3/"
 USER_NAME = "user53461547583930"
@@ -146,34 +145,33 @@ transition_data = {
 
 client = Client(BASE_URL, USER_NAME,PASSWORD)
 
-## cards
-print("Cardssssssssssssssssss")
+## cardProduct
 
-print(client.card_products.list(limit = 4))
+print("CardProduct List",client.card_products.list(limit = 3))
 
-print(client.card_products.create(card_product_data))
+print("CardProduct Create",client.card_products.create(card_product_data))
 
-print(client.card_products.find("my_cardproduct_10"))
+print("CardProduct Find",client.card_products.find("my_cardproduct_10"))
 
-print(client.card_products.save("my_cardproduct_10", card_product_update_data).name)
+print("CardProduct update",client.card_products.save("my_cardproduct_10", card_product_update_data).name)
 
-print(client.cards.list(4444))
-print(client.cards.list_for_user('my_user_01'))
+print("Cards List",client.cards.list(4444))
+print("Cards List for user",client.cards.list_for_user('my_user_01'))
 
-print(client.cards.create(cards_data))
+print("Card Create",client.cards.create(cards_data))
 
-print(client.cards.find("mytestcard01"))
+print("Card Find",client.cards.find("mytestcard01"))
 
-print(client.cards.find_show_pan("mytestcard01"))
+print("Find by Pan",client.cards.find_show_pan("mytestcard01"))
 #print(client.cards.find_by_barcode("12345678943"))
 # #print(client.cards.tokens_for_pan({
 #     "pan": "5454545454545454"
 # }))
-print(client.cards.save("mytestcard10",data=card_update_data))
+print("Card cUpdate",client.cards.save("mytestcard10",data=card_update_data))
 
-print(client.cards('mytestcard01').transitions.create(transition_data))
-print(client.cards('mytestcard10').transitions.find("activate_10"))
-print(client.cards('mytestcard01').transitions.list())
+print("Card Transition create",client.cards('mytestcard01').transitions.create(transition_data))
+print("Card Transition Find",client.cards('mytestcard10').transitions.find("activate_10"))
+print("Card Transition List",client.cards('mytestcard01').transitions.list())
 
 # client.cards.find_for_merchant(token)
 # client.cards.find_for_merchant_show_pan(token)

@@ -15,15 +15,18 @@ class Collection(object):
     ''' stream is a generator function iterates through endpoint contents
         Return : endpoint object, limit is the number of pages to fetch  '''
     def stream(self, endpoint=None,query_params=None):
+        params = {'count': 5, 'start_index': 0}
+        if query_params is not None:
+            params.update(query_params)
         while True:
-            response = self._page(endpoint=endpoint, query_params= query_params)
+            response = self._page(endpoint=endpoint, query_params= params)
             if response['is_more'] is False:
                 for count in range(response['count']):
                     yield (self.resource(response["data"][count]))
                 break
             for count in range(response['count']):
                 yield (self.resource(response["data"][count]))
-            query_params['start_index'] = query_params['start_index'] + query_params['count']
+            params['start_index'] = params['start_index'] + params['count']
 
     '''  Returns list of all endpoint object '''
     def list(self, endpoint=None, query_params=None, limit =float('inf')):
@@ -39,7 +42,6 @@ class Collection(object):
 
     def create(self, data, endpoint=None, query_params = None):
         response = self.client.post(endpoint, data, query_params)[0]
-        print("***************************",response)
         return self.resource(response)
 
     ''' Finds the Resource information for the requested token

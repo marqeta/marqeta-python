@@ -1,14 +1,48 @@
-"""UserResource class lists all the user properties for the /user endpoint"""
-from datetime import datetime
-from marqeta.response_models.card_fulfillment_response import CardFulfillmentResponse
-from marqeta.response_models.card_metadata import CardMetadata
+from datetime import datetime, date
+from marqeta.response_models.validations_response import ValidationsResponse
+from marqeta.response_models.fulfillment import Fulfillment
 from marqeta.response_models.cardholder_metadata import CardholderMetadata
-
+from marqeta.response_models.card_metadata import CardMetadata
+import json
 
 class CardTransitionResponse(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'card_token' : self.card_token,
+           'user_token' : self.user_token,
+           'state' : self.state,
+           'reason' : self.reason,
+           'reason_code' : self.reason_code,
+           'channel' : self.channel,
+           'fulfillment_status' : self.fulfillment_status,
+           'validations' : self.validations,
+           'type' : self.type,
+           'created_time' : self.created_time,
+           'card_product_token' : self.card_product_token,
+           'last_four' : self.last_four,
+           'pan' : self.pan,
+           'expiration' : self.expiration,
+           'expiration_time' : self.expiration_time,
+           'barcode' : self.barcode,
+           'pin_is_set' : self.pin_is_set,
+           'fulfillment' : self.fulfillment,
+           'bulk_issuance_token' : self.bulk_issuance_token,
+           'reissue_pan_from_card_token' : self.reissue_pan_from_card_token,
+           'user' : self.user,
+           'card' : self.card,
+           'expedite' : self.expedite,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -53,7 +87,7 @@ class CardTransitionResponse(object):
     @property
     def validations(self):
         if 'validations' in self.json_response:
-            return ValidationResponse(self.json_response['validations'])
+            return ValidationsResponse(self.json_response['validations'])
 
     @property
     def type(self):
@@ -63,7 +97,7 @@ class CardTransitionResponse(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def card_product_token(self):
@@ -103,7 +137,7 @@ class CardTransitionResponse(object):
     @property
     def fulfillment(self):
         if 'fulfillment' in self.json_response:
-            return CardFulfillmentResponse(self.json_response['fulfillment'])
+            return Fulfillment(self.json_response['fulfillment'])
 
     @property
     def bulk_issuance_token(self):
@@ -130,34 +164,5 @@ class CardTransitionResponse(object):
         if 'expedite' in self.json_response:
             return self.json_response['expedite']
 
-
-class ValidationResponse(object):
-
-    def __init__(self, response):
-        self.response = response
-
-    @property
-    def user(self):
-        if 'user' in self.response:
-            return UserValidationResponse(self.response['user'])
-
-
-class UserValidationResponse(object):
-
-    def __init__(self, response):
-        self.response = response
-
-    @property
-    def birth_date(self):
-        if 'birth_date' in self.response:
-            return self.response['birth_date']
-
-    @property
-    def phone(self):
-        if 'phone' in self.response:
-            return self.response['phone']
-
-    @property
-    def ssn(self):
-        if 'ssn' in self.response:
-            return self.response['ssn']
+    def __repr__(self):
+         return '<Marqeta.response_models.card_transition_response.CardTransitionResponse>'

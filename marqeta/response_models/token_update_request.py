@@ -1,9 +1,23 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class TokenUpdateRequest(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'exp_date' : self.exp_date,
+           'active' : self.active,
+           'is_default_account' : self.is_default_account,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def exp_date(self):
@@ -20,3 +34,5 @@ class TokenUpdateRequest(object):
         if 'is_default_account' in self.json_response:
             return self.json_response['is_default_account']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.token_update_request.TokenUpdateRequest>'

@@ -1,9 +1,27 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class DirectDepositTransitionRequest(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'channel' : self.channel,
+           'reason' : self.reason,
+           'idempotentHash' : self.idempotentHash,
+           'direct_deposit_token' : self.direct_deposit_token,
+           'state' : self.state,
+           'reason_code' : self.reason_code,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -40,3 +58,5 @@ class DirectDepositTransitionRequest(object):
         if 'reason_code' in self.json_response:
             return self.json_response['reason_code']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.direct_deposit_transition_request.DirectDepositTransitionRequest>'

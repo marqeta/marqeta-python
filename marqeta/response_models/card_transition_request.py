@@ -1,10 +1,28 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.validations_request import ValidationsRequest
+import json
 
 class CardTransitionRequest(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'card_token' : self.card_token,
+           'reason' : self.reason,
+           'reason_code' : self.reason_code,
+           'validations' : self.validations,
+           'channel' : self.channel,
+           'state' : self.state,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -41,3 +59,5 @@ class CardTransitionRequest(object):
         if 'state' in self.json_response:
             return self.json_response['state']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.card_transition_request.CardTransitionRequest>'

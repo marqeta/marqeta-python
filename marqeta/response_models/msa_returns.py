@@ -1,12 +1,43 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.msa_balances import MsaBalances
 from marqeta.response_models.funding import Funding
 from marqeta.response_models.msa_aggregated_balances import MsaAggregatedBalances
+import json
 
 class MsaReturns(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'user_token' : self.user_token,
+           'business_token' : self.business_token,
+           'order_balances' : self.order_balances,
+           'amount' : self.amount,
+           'last_transaction_date' : self.last_transaction_date,
+           'start_date' : self.start_date,
+           'end_date' : self.end_date,
+           'currency_code' : self.currency_code,
+           'active' : self.active,
+           'reward_amount' : self.reward_amount,
+           'reward_trigger_amount' : self.reward_trigger_amount,
+           'unloaded_amount' : self.unloaded_amount,
+           'campaign_token' : self.campaign_token,
+           'funding' : self.funding,
+           'created_time' : self.created_time,
+           'last_modified_time' : self.last_modified_time,
+           'aggregated_balances' : self.aggregated_balances,
+           'original_order_token' : self.original_order_token,
+           'transaction_token' : self.transaction_token,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -36,17 +67,17 @@ class MsaReturns(object):
     @property
     def last_transaction_date(self):
         if 'last_transaction_date' in self.json_response:
-            return datetime.strptime(self.json_response['last_transaction_date'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['last_transaction_date'], '%Y-%m-%d').date()
 
     @property
     def start_date(self):
         if 'start_date' in self.json_response:
-            return datetime.strptime(self.json_response['start_date'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['start_date'], '%Y-%m-%d').date()
 
     @property
     def end_date(self):
         if 'end_date' in self.json_response:
-            return datetime.strptime(self.json_response['end_date'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['end_date'], '%Y-%m-%d').date()
 
     @property
     def currency_code(self):
@@ -86,12 +117,12 @@ class MsaReturns(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def aggregated_balances(self):
@@ -108,3 +139,5 @@ class MsaReturns(object):
         if 'transaction_token' in self.json_response:
             return self.json_response['transaction_token']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.msa_returns.MsaReturns>'

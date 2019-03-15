@@ -1,11 +1,34 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.shipping import Shipping
 from marqeta.response_models.card_personalization import CardPersonalization
+import json
 
 class CardProductFulfillment(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'shipping' : self.shipping,
+           'card_personalization' : self.card_personalization,
+           'payment_instrument' : self.payment_instrument,
+           'package_id' : self.package_id,
+           'all_zero_card_security_code' : self.all_zero_card_security_code,
+           'bin_prefix' : self.bin_prefix,
+           'bulk_ship' : self.bulk_ship,
+           'pan_length' : self.pan_length,
+           'fulfillment_provider' : self.fulfillment_provider,
+           'allow_card_creation' : self.allow_card_creation,
+           'uppercase_name_lines' : self.uppercase_name_lines,
+           'enable_offline_pin' : self.enable_offline_pin,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def shipping(self):
@@ -67,3 +90,5 @@ class CardProductFulfillment(object):
         if 'enable_offline_pin' in self.json_response:
             return self.json_response['enable_offline_pin']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.card_product_fulfillment.CardProductFulfillment>'

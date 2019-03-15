@@ -1,10 +1,28 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.funding_source_model import FundingSourceModel
+import json
 
 class BankAccountFundingSourceModel(FundingSourceModel):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'user_token' : self.user_token,
+           'business_token' : self.business_token,
+           'account_suffix' : self.account_suffix,
+           'account_type' : self.account_type,
+           'name_on_account' : self.name_on_account,
+           'routing_number' : self.routing_number,
+           'verification_status' : self.verification_status,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def user_token(self):
@@ -41,3 +59,5 @@ class BankAccountFundingSourceModel(FundingSourceModel):
         if 'verification_status' in self.json_response:
             return self.json_response['verification_status']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.bank_account_funding_source_model.BankAccountFundingSourceModel>'

@@ -1,9 +1,23 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class AcceptedCountriesUpdateModel(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'name' : self.name,
+           'is_whitelist' : self.is_whitelist,
+           'country_codes' : self.country_codes,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def name(self):
@@ -20,3 +34,5 @@ class AcceptedCountriesUpdateModel(object):
         if 'country_codes' in self.json_response:
             return self.json_response['country_codes']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.accepted_countries_update_model.AcceptedCountriesUpdateModel>'

@@ -1,13 +1,28 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.images_card import ImagesCard
 from marqeta.response_models.images_carrier import ImagesCarrier
 from marqeta.response_models.images_signature import ImagesSignature
 from marqeta.response_models.images_carrier_return_window import ImagesCarrierReturnWindow
+import json
 
 class Images(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'card' : self.card,
+           'carrier' : self.carrier,
+           'signature' : self.signature,
+           'carrier_return_window' : self.carrier_return_window,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def card(self):
@@ -29,3 +44,5 @@ class Images(object):
         if 'carrier_return_window' in self.json_response:
             return ImagesCarrierReturnWindow(self.json_response['carrier_return_window'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.images.Images>'

@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.currency_conversion import CurrencyConversion
 from marqeta.response_models.response import Response
 from marqeta.response_models.merchant_response_model import MerchantResponseModel
@@ -31,11 +31,79 @@ from marqeta.response_models.card_security_code_verification import CardSecurity
 from marqeta.response_models.transaction_metadata import TransactionMetadata
 from marqeta.response_models.user_card_holder_response import UserCardHolderResponse
 from marqeta.response_models.cardholder_authentication_data import CardholderAuthenticationData
+import json
 
 class TransactionModel(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'type' : self.type,
+           'state' : self.state,
+           'token' : self.token,
+           'user_token' : self.user_token,
+           'business_token' : self.business_token,
+           'acting_user_token' : self.acting_user_token,
+           'card_token' : self.card_token,
+           'duration' : self.duration,
+           'created_time' : self.created_time,
+           'user_transaction_time' : self.user_transaction_time,
+           'settlement_date' : self.settlement_date,
+           'request_amount' : self.request_amount,
+           'amount' : self.amount,
+           'currency_conversion' : self.currency_conversion,
+           'issuerInterchangeAmount' : self.issuerInterchangeAmount,
+           'currency_code' : self.currency_code,
+           'approval_code' : self.approval_code,
+           'response' : self.response,
+           'preceding_related_transaction_token' : self.preceding_related_transaction_token,
+           'incremental_authorization_transaction_tokens' : self.incremental_authorization_transaction_tokens,
+           'merchant' : self.merchant,
+           'store' : self.store,
+           'card_acceptor' : self.card_acceptor,
+           'gpa' : self.gpa,
+           'gpa_order_unload' : self.gpa_order_unload,
+           'gpa_order' : self.gpa_order,
+           'program_transfer' : self.program_transfer,
+           'fee_transfer' : self.fee_transfer,
+           'peer_transfer' : self.peer_transfer,
+           'msa_orders' : self.msa_orders,
+           'msa_order_unload' : self.msa_order_unload,
+           'offer_orders' : self.offer_orders,
+           'auto_reload' : self.auto_reload,
+           'direct_deposit' : self.direct_deposit,
+           'polarity' : self.polarity,
+           'real_time_fee_group' : self.real_time_fee_group,
+           'fee' : self.fee,
+           'chargeback' : self.chargeback,
+           'network' : self.network,
+           'subnetwork' : self.subnetwork,
+           'acquirer_fee_amount' : self.acquirer_fee_amount,
+           'fees' : self.fees,
+           'digital_wallet_token' : self.digital_wallet_token,
+           'user' : self.user,
+           'business' : self.business,
+           'card' : self.card,
+           'acquirer' : self.acquirer,
+           'fraud' : self.fraud,
+           'pos' : self.pos,
+           'address_verification' : self.address_verification,
+           'card_security_code_verification' : self.card_security_code_verification,
+           'transaction_metadata' : self.transaction_metadata,
+           'card_holder_model' : self.card_holder_model,
+           'standin_approved_by' : self.standin_approved_by,
+           'network_reference_id' : self.network_reference_id,
+           'acquirer_reference_id' : self.acquirer_reference_id,
+           'cardholder_authentication_data' : self.cardholder_authentication_data,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def type(self):
@@ -80,17 +148,17 @@ class TransactionModel(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def user_transaction_time(self):
         if 'user_transaction_time' in self.json_response:
-            return datetime.strptime(self.json_response['user_transaction_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['user_transaction_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def settlement_date(self):
         if 'settlement_date' in self.json_response:
-            return datetime.strptime(self.json_response['settlement_date'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['settlement_date'], '%Y-%m-%d').date()
 
     @property
     def request_amount(self):
@@ -322,3 +390,5 @@ class TransactionModel(object):
         if 'cardholder_authentication_data' in self.json_response:
             return CardholderAuthenticationData(self.json_response['cardholder_authentication_data'])
 
+    def __repr__(self):
+         return '<Marqeta.response_models.transaction_model.TransactionModel>'

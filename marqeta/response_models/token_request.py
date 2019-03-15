@@ -1,9 +1,29 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class TokenRequest(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'user_token' : self.user_token,
+           'business_token' : self.business_token,
+           'account_number' : self.account_number,
+           'cvv_number' : self.cvv_number,
+           'exp_date' : self.exp_date,
+           'zip' : self.zip,
+           'postal_code' : self.postal_code,
+           'is_default_account' : self.is_default_account,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -50,3 +70,5 @@ class TokenRequest(object):
         if 'is_default_account' in self.json_response:
             return self.json_response['is_default_account']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.token_request.TokenRequest>'

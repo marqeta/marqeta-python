@@ -1,9 +1,24 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class ProgramTransferTypeRequest(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'program_funding_source_token' : self.program_funding_source_token,
+           'tags' : self.tags,
+           'memo' : self.memo,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -25,3 +40,5 @@ class ProgramTransferTypeRequest(object):
         if 'memo' in self.json_response:
             return self.json_response['memo']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.program_transfer_type_request.ProgramTransferTypeRequest>'

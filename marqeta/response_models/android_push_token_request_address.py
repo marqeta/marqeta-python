@@ -1,9 +1,29 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class AndroidPushTokenRequestAddress(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'name' : self.name,
+           'address1' : self.address1,
+           'address2' : self.address2,
+           'city' : self.city,
+           'state' : self.state,
+           'zip' : self.zip,
+           'postal_code' : self.postal_code,
+           'country' : self.country,
+           'phone' : self.phone,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def name(self):
@@ -50,3 +70,5 @@ class AndroidPushTokenRequestAddress(object):
         if 'phone' in self.json_response:
             return self.json_response['phone']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.android_push_token_request_address.AndroidPushTokenRequestAddress>'

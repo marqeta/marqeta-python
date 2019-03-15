@@ -1,15 +1,62 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.network_fee_model import NetworkFeeModel
 from marqeta.response_models.webhook import Webhook
 from marqeta.response_models.money_model import MoneyModel
 from marqeta.response_models.money_model import MoneyModel
 from marqeta.response_models.card_acceptor_model import CardAcceptorModel
 from marqeta.response_models.original_data_elements import OriginalDataElements
+import json
 
 class ClearingRecordRequestModel(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'network_fees' : self.network_fees,
+           'webhook' : self.webhook,
+           'mid' : self.mid,
+           'amount' : self.amount,
+           'replacement_amount' : self.replacement_amount,
+           'cardholder_billing_amount' : self.cardholder_billing_amount,
+           'cardholder_billing_conversion_rate' : self.cardholder_billing_conversion_rate,
+           'cardholder_billing_currency' : self.cardholder_billing_currency,
+           'card_token' : self.card_token,
+           'acquirer_reference_id' : self.acquirer_reference_id,
+           'rrn' : self.rrn,
+           'stan' : self.stan,
+           'processing_code' : self.processing_code,
+           'acquirer_fee' : self.acquirer_fee,
+           'issuer_fee' : self.issuer_fee,
+           'function_code' : self.function_code,
+           'reason_code' : self.reason_code,
+           'approval_code' : self.approval_code,
+           'transaction_date' : self.transaction_date,
+           'local_transaction_date' : self.local_transaction_date,
+           'settlement_date' : self.settlement_date,
+           'network_reference_id' : self.network_reference_id,
+           'find_original_window_days' : self.find_original_window_days,
+           'batch_number' : self.batch_number,
+           'batch_file_name' : self.batch_file_name,
+           'sequence_number' : self.sequence_number,
+           'network' : self.network,
+           'sub_network' : self.sub_network,
+           'card_acceptor' : self.card_acceptor,
+           'currency_code' : self.currency_code,
+           'original_data_elements' : self.original_data_elements,
+           'preceding_related_transaction_token' : self.preceding_related_transaction_token,
+           'send_expiration_date' : self.send_expiration_date,
+           'simulate_batch_for_clearing_record_hash' : self.simulate_batch_for_clearing_record_hash,
+           'cross_border_indicator' : self.cross_border_indicator,
+           'mti' : self.mti,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def network_fees(self):
@@ -104,17 +151,17 @@ class ClearingRecordRequestModel(object):
     @property
     def transaction_date(self):
         if 'transaction_date' in self.json_response:
-            return datetime.strptime(self.json_response['transaction_date'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['transaction_date'], '%Y-%m-%d').date()
 
     @property
     def local_transaction_date(self):
         if 'local_transaction_date' in self.json_response:
-            return datetime.strptime(self.json_response['local_transaction_date'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['local_transaction_date'], '%Y-%m-%d').date()
 
     @property
     def settlement_date(self):
         if 'settlement_date' in self.json_response:
-            return datetime.strptime(self.json_response['settlement_date'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['settlement_date'], '%Y-%m-%d').date()
 
     @property
     def network_reference_id(self):
@@ -191,3 +238,5 @@ class ClearingRecordRequestModel(object):
         if 'mti' in self.json_response:
             return self.json_response['mti']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.clearing_record_request_model.ClearingRecordRequestModel>'

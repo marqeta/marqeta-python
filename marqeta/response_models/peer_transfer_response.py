@@ -1,9 +1,30 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class PeerTransferResponse(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'amount' : self.amount,
+           'tags' : self.tags,
+           'memo' : self.memo,
+           'currency_code' : self.currency_code,
+           'sender_user_token' : self.sender_user_token,
+           'recipient_user_token' : self.recipient_user_token,
+           'sender_business_token' : self.sender_business_token,
+           'recipient_business_token' : self.recipient_business_token,
+           'created_time' : self.created_time,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -53,5 +74,7 @@ class PeerTransferResponse(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
+    def __repr__(self):
+         return '<Marqeta.response_models.peer_transfer_response.PeerTransferResponse>'

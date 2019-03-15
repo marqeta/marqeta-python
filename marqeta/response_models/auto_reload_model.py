@@ -1,11 +1,29 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.auto_reload_association import AutoReloadAssociation
 from marqeta.response_models.order_scope import OrderScope
+import json
 
 class AutoReloadModel(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'token' : self.token,
+           'active' : self.active,
+           'funding_source_token' : self.funding_source_token,
+           'funding_source_address_token' : self.funding_source_address_token,
+           'association' : self.association,
+           'order_scope' : self.order_scope,
+           'currency_code' : self.currency_code,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def token(self):
@@ -42,3 +60,5 @@ class AutoReloadModel(object):
         if 'currency_code' in self.json_response:
             return self.json_response['currency_code']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.auto_reload_model.AutoReloadModel>'

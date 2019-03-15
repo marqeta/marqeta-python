@@ -17,22 +17,17 @@ class UsersCollection(object):
         self.client = client
         self.collections_cardmodel = Collection(self.client, CardHolderModel)
         self.collections_usermodel = Collection(self.client, UserCardHolderResponse)
-        self.query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0, }
 
     def __call__(self, token):
         return UserContext(token, self.client)
     ''' Iterates through users
         returns user object one at a time'''
     def stream(self, params=None):
-        if params is not None:
-            self.query_params.update(params)
-        return self.collections_cardmodel.stream(endpoint=self._endpoint, query_params=self.query_params)
+        return self.collections_cardmodel.stream(endpoint=self._endpoint, query_params=params)
 
     ''' Lists all the users Returns list of all user object '''
     def list(self, params=None, limit = float('inf')):
-        if params is not None:
-            self.query_params.update(params)
-        return self.collections_cardmodel.list(endpoint=self._endpoint, query_params=self.query_params, limit=limit)
+        return self.collections_cardmodel.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Creates a user with the specified data
             Returns the UserResource object which has created user information'''
@@ -41,8 +36,7 @@ class UsersCollection(object):
     ''' fields takes the list of fields delimited by ',' as a string'''
 
     ''' Finds the user information for the requested token
-            Returns the UserResource object which has user information
-            fields is specified by as list of fields'''
+            Returns the UserResource object which has user information'''
     def find(self, token, params=None):
         return self.collections_usermodel.find(endpoint= self._endpoint+'/{}'.format(token), query_params=params)
 
@@ -54,13 +48,12 @@ class UsersCollection(object):
     ''' Looks for the user information based on the specified data
         Returns UserResource object of list of the matched users for the data '''
     def look_up(self, data, params = None):
-        if params is not None:
-            self.query_params.update(params)
-        response = self.client.post(self._endpoint+'/lookup', data, query_params=self.query_params)[0]
+        response = self.client.post(self._endpoint+'/lookup', data, query_params=params)[0]
         return [CardHolderModel(response['data'][val]) for val in range(response['count'])]
 
     def __repr__(self):
         return '<Marqeta.resources.users.UsersCollection>'
+
 
 class UserContext(UsersCollection):
 
@@ -70,7 +63,6 @@ class UserContext(UsersCollection):
         self.children = self.Children(self.token,Collection(client, CardHolderModel))
         self.notes = self.Notes(self.token, Collection(client, CardholderNoteResponseModel))
         self.transitions = self.Transitions(self.token, Collection(client, UserTransitionResponse))
-        self.query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0, }
 
     ''' for 'client.users({token).ssn()' -- user can specify to get full ssn '''
 
@@ -81,67 +73,60 @@ class UserContext(UsersCollection):
     def __repr__(self):
         return '<Marqeta.resources.users.UserContext>'
 
-
     class Children(object):
 
         def __init__(self, token, collection):
             self.token = token
             self.collection = collection
 
-        def list(self, **kwargs):
-            query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0}
-            for key in kwargs:
-                query_params[key] = kwargs[key]
-            return self.collection.list(query_params=query_params,
-                                        endpoint='users/{}/children'.format(self.token))
-
-        def __repr__(self):
-            return '<Marqeta.resources.users.Children>'
+        def list(self, params = None,limit=float('inf')):
+            return self.collection.list(endpoint='users/{}/children'.format(self.token),
+                                        query_params=params,limit=limit)
 
     class Notes(object):
+
+        _endpoint = 'users/{}/notes'
 
         def __init__(self, token, collection):
             self.token = token
             self.collection = collection
 
-        def list(self, **kwargs):
-            query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0}
-            for key in kwargs:
-                query_params[key] = kwargs[key]
-            return self.collection.list(query_params=query_params,
-                                        endpoint='users/{}/notes'.format(self.token))
+        def list(self, params= None,limit=float('inf')):
+            return self.collection.list(endpoint=self._endpoint.format(self.token), query_params=params,
+                                        limit =limit)
 
         def create(self, data):
-            return self.collection.create(data, endpoint='users/{}/notes'.format(self.token))
+            return self.collection.create(data, endpoint=self._endpoint.format(self.token))
 
         def save(self, notes_token, data):
             return self.collection.save(data,
-                                        endpoint='users/{}/notes/{}'.format(self.token,
-                                                                            notes_token))
+                                        endpoint=self._endpoint.format(self.token)+'/{}'.format(notes_token))
 
         def __repr__(self):
             return '<Marqeta.resources.users.Notes>'
 
     class Transitions(object):
 
+        _endpoint = 'usertransitions'
+
         def __init__(self, token, collection):
             self.token = token
             self.collection = collection
 
-        def list(self, **kwargs):
+        def list(self, params= None,limit=float('inf')):
             query_params = {'sort_by': '-id', 'count': 5, 'start_index': 0}
-            for key in kwargs:
-                query_params[key] = kwargs[key]
-            return self.collection.list(query_params=query_params,
-                                        endpoint='usertransitions/user/{}'.format(self.token))
+            if params is not None:
+                query_params.update(params)
+            return self.collection.list(endpoint=self._endpoint+'/user/{}'.format(self.token),query_params=query_params,
+                                        limit = limit)
 
         def create(self, data):
             return self.collection.create(data,
-                                          endpoint='usertransitions')
+                                          endpoint=self._endpoint)
 
         def find(self, transition_token):
             return self.collection.find(
-                                        endpoint='usertransitions/{}'.format(transition_token))
+                                        endpoint=self._endpoint+'/{}'.format(transition_token))
 
         def __repr__(self):
             return '<Marqeta.resources.users.Transitions>'

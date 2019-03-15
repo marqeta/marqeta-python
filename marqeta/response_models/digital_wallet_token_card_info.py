@@ -1,9 +1,24 @@
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 class DigitalWalletTokenCardInfo(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'pan' : self.pan,
+           'exp_month' : self.exp_month,
+           'exp_year' : self.exp_year,
+           'cvv' : self.cvv,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def pan(self):
@@ -25,3 +40,5 @@ class DigitalWalletTokenCardInfo(object):
         if 'cvv' in self.json_response:
             return self.json_response['cvv']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.digital_wallet_token_card_info.DigitalWalletTokenCardInfo>'

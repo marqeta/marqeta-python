@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 from marqeta.response_models.network_fee_model import NetworkFeeModel
 from marqeta.response_models.advanced_auth_card_acceptor_model import AdvancedAuthCardAcceptorModel
 from marqeta.response_models.transaction_options import TransactionOptions
@@ -10,11 +10,70 @@ from marqeta.response_models.digital_wallet_token_device import DigitalWalletTok
 from marqeta.response_models.digital_wallet_token_wallet_provider import DigitalWalletTokenWalletProvider
 from marqeta.response_models.card_options import CardOptions
 from marqeta.response_models.advanced_auth_poi import AdvancedAuthPoi
+import json
 
 class AdvAuthRequestModel(object):
 
     def __init__(self, json_response):
         self.json_response = json_response
+
+    def __str__(self):
+        dict = {
+           'mti' : self.mti,
+           'network' : self.network,
+           'sub_network' : self.sub_network,
+           'is_router_simulator' : self.is_router_simulator,
+           'network_reference_id' : self.network_reference_id,
+           'local_transaction_date' : self.local_transaction_date,
+           'transaction_date' : self.transaction_date,
+           'settlement_date' : self.settlement_date,
+           'stan' : self.stan,
+           'rrn' : self.rrn,
+           'processing_code' : self.processing_code,
+           'function_code' : self.function_code,
+           'reason_code' : self.reason_code,
+           'acquirer_reference_id' : self.acquirer_reference_id,
+           'forwarding_institution_id' : self.forwarding_institution_id,
+           'local_transaction_amount' : self.local_transaction_amount,
+           'local_currency_code' : self.local_currency_code,
+           'settlement_amount' : self.settlement_amount,
+           'cardholder_billing_amount' : self.cardholder_billing_amount,
+           'cardholder_billing_conversion_rate' : self.cardholder_billing_conversion_rate,
+           'cardholder_billing_currency' : self.cardholder_billing_currency,
+           'settlement_currency_code' : self.settlement_currency_code,
+           'approval_code' : self.approval_code,
+           'network_response' : self.network_response,
+           'stan_padding_length' : self.stan_padding_length,
+           'card_token' : self.card_token,
+           'amount' : self.amount,
+           'cash_back_amount' : self.cash_back_amount,
+           'mid' : self.mid,
+           'pin' : self.pin,
+           'pos_pan_entry_mode' : self.pos_pan_entry_mode,
+           'acquirer_fee_amount' : self.acquirer_fee_amount,
+           'stip_reason_code' : self.stip_reason_code,
+           'is_recurring' : self.is_recurring,
+           'network_fees' : self.network_fees,
+           'card_acceptor' : self.card_acceptor,
+           'transaction_options' : self.transaction_options,
+           'original_data_elements' : self.original_data_elements,
+           'replacement_amount' : self.replacement_amount,
+           'webhook' : self.webhook,
+           'digital_wallet_token' : self.digital_wallet_token,
+           'digital_wallet_token_device_info' : self.digital_wallet_token_device_info,
+           'digital_wallet_token_wallet_provider_info' : self.digital_wallet_token_wallet_provider_info,
+           'raw_iso_fields' : self.raw_iso_fields,
+           'cavv_result_code' : self.cavv_result_code,
+           'card_options' : self.card_options,
+           'poi' : self.poi,
+           'is_stip_approval' : self.is_stip_approval,
+         }
+        return json.dumps(dict, default=self.json_serial)
+
+    @staticmethod
+    def json_serial(o):
+        if isinstance(o, datetime) or isinstance(o, date):
+            return o.__str__()
 
     @property
     def mti(self):
@@ -44,17 +103,17 @@ class AdvAuthRequestModel(object):
     @property
     def local_transaction_date(self):
         if 'local_transaction_date' in self.json_response:
-            return datetime.strptime(self.json_response['local_transaction_date'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['local_transaction_date'], '%Y-%m-%d').date()
 
     @property
     def transaction_date(self):
         if 'transaction_date' in self.json_response:
-            return datetime.strptime(self.json_response['transaction_date'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['transaction_date'], '%Y-%m-%d').date()
 
     @property
     def settlement_date(self):
         if 'settlement_date' in self.json_response:
-            return datetime.strptime(self.json_response['settlement_date'], '%Y-%m-%dT%H:%M:%SZ')
+                return datetime.strptime(self.json_response['settlement_date'], '%Y-%m-%d').date()
 
     @property
     def stan(self):
@@ -256,3 +315,5 @@ class AdvAuthRequestModel(object):
         if 'is_stip_approval' in self.json_response:
             return self.json_response['is_stip_approval']
 
+    def __repr__(self):
+         return '<Marqeta.response_models.adv_auth_request_model.AdvAuthRequestModel>'
