@@ -15,7 +15,7 @@ class Collection(object):
     ''' stream is a generator function iterates through endpoint contents
         Return : endpoint object, limit is the number of pages to fetch  '''
     def stream(self, endpoint=None,query_params=None):
-        params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0}
+        params = {'count': 5, 'start_index': 0}
         if query_params is not None:
             params.update(query_params)
         while True:

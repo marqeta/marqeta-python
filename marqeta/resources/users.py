@@ -48,10 +48,7 @@ class UsersCollection(object):
     ''' Looks for the user information based on the specified data
         Returns UserResource object of list of the matched users for the data '''
     def look_up(self, data, params = None):
-        query_params = {'sort_by': '-lastModifiedTime', 'count': 5, 'start_index': 0, }
-        if params is not None:
-            query_params.update(params)
-        response = self.client.post(self._endpoint+'/lookup', data, query_params=query_params)[0]
+        response = self.client.post(self._endpoint+'/lookup', data, query_params=params)[0]
         return [CardHolderModel(response['data'][val]) for val in range(response['count'])]
 
     def __repr__(self):
