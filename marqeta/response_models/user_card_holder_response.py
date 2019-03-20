@@ -10,50 +10,7 @@ class UserCardHolderResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'passportExpirationDate' : self.passportExpirationDate,
-           'idCardExpirationDate' : self.idCardExpirationDate,
-           'authentication' : self.authentication,
-           'token' : self.token,
-           'active' : self.active,
-           'honorific' : self.honorific,
-           'gender' : self.gender,
-           'first_name' : self.first_name,
-           'middle_name' : self.middle_name,
-           'last_name' : self.last_name,
-           'email' : self.email,
-           'address1' : self.address1,
-           'address2' : self.address2,
-           'city' : self.city,
-           'state' : self.state,
-           'zip' : self.zip,
-           'postal_code' : self.postal_code,
-           'country' : self.country,
-           'notes' : self.notes,
-           'phone' : self.phone,
-           'parent_token' : self.parent_token,
-           'uses_parent_account' : self.uses_parent_account,
-           'ssn' : self.ssn,
-           'corporate_card_holder' : self.corporate_card_holder,
-           'passport_number' : self.passport_number,
-           'id_card_number' : self.id_card_number,
-           'nationality' : self.nationality,
-           'company' : self.company,
-           'ip_address' : self.ip_address,
-           'password' : self.password,
-           'created_time' : self.created_time,
-           'last_modified_time' : self.last_modified_time,
-           'business_token' : self.business_token,
-           'metadata' : self.metadata,
-           'account_holder_group_token' : self.account_holder_group_token,
-           'status' : self.status,
-           'identifications' : self.identifications,
-           'deposit_account' : self.deposit_account,
-           'birth_date' : self.birth_date,
-           'passport_expiration_date' : self.passport_expiration_date,
-           'id_card_expiration_date' : self.id_card_expiration_date,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

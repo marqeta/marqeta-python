@@ -8,15 +8,7 @@ class PushTokenizeRequestData(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'display_name' : self.display_name,
-           'last_digits' : self.last_digits,
-           'network' : self.network,
-           'token_service_provider' : self.token_service_provider,
-           'opaque_payment_card' : self.opaque_payment_card,
-           'user_address' : self.user_address,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

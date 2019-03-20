@@ -7,16 +7,7 @@ class LoadVelocityModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'description' : self.description,
-           'type' : self.type,
-           'layers' : self.layers,
-           'amount' : self.amount,
-           'days' : self.days,
-           'active' : self.active,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

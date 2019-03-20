@@ -34,15 +34,15 @@ from marqeta.resources.transactions import TransactionsCollection
 from marqeta.resources.velocitycontrols import VelocitycontrolsCollection
 from marqeta.resources.webhooks import WebhooksCollection
 from marqeta.resources.pushtocards import PushtocardsCollection
-from marqeta.resources.ping import PingCollection
 from marqeta.resources.pins import PinsCollection
+from marqeta.response_models.ping_response import PingResponse
+from marqeta.response_models.echo_ping_response import EchoPingResponse
 
-
-import requests,json
-
+import requests, json
 
 headers = {'content-type': 'application/json',
-            'User-Agent': '"marqeta-python/{} (Python {})".format(__version__)'}
+           'User-Agent': '"marqeta-python/{} (Python {})".format(__version__)'}
+
 
 class Client(object):
 
@@ -83,14 +83,12 @@ class Client(object):
         self.bulk_issuances = objects['bulk_issuances']()
         self.real_time_fee_groups = objects['real_time_fee_groups']()
         self.push_to_cards = objects['push_to_cards']()
-        # self.ping = objects['ping']()
-        # self.pins = objects['pins']()
-
+        self.pins = objects['pins']()
 
     def get(self, endpoint, query_params=None):
         response = requests.get(url=self.base_url + endpoint, auth=(
             self.application_token, self.access_token),
-                                headers= headers,
+                                headers=headers,
                                 params=query_params)
         if response.status_code >= 400:
             response = response.json()
@@ -114,7 +112,6 @@ class Client(object):
         return response.json(), response.status_code
 
     def post(self, endpoint, data=None, query_params=None):
-        print(endpoint)
         response = requests.post(url=self.base_url + endpoint, auth=(
             self.application_token, self.access_token),
                                  headers=headers,
@@ -131,7 +128,7 @@ class Client(object):
     def delete(self, endpoint):
         response = requests.delete(url=self.base_url + endpoint, auth=(
             self.application_token, self.access_token),
-                                   headers= headers)
+                                   headers=headers)
         if response.status_code >= 400:
             response = response.json()
             if 'error_code' not in response:
@@ -140,6 +137,13 @@ class Client(object):
                 raise MarqetaError(error_code=response['error_code'], error_message=response['error_message'])
         return (
             response.json(), response.status_code)
+
+    def ping(self, **kwargs):
+        if kwargs:
+            data = {'token': kwargs['token'], 'payload': kwargs['payload']}
+            return EchoPingResponse(Client.post(self, endpoint='ping', data=data)[0])
+
+        return PingResponse(Client.get(self, endpoint='ping')[0])
 
     def _objects_container(self):
         """
@@ -341,11 +345,6 @@ class Client(object):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class PingWrapper(PingCollection):
-
-            def __init__(self):
-                self._parent_class = _parent_class
-                super().__init__(_parent_class)
 
         class PinsWrapper(PinsCollection):
 
@@ -365,10 +364,10 @@ class Client(object):
                 'auto_reloads': AutoreloadWrapper,
                 'kyc': KycWrapper,
                 'balances': BalancesTokenWrapper,
-                'msa_orders':MsaordersWrapper,
+                'msa_orders': MsaordersWrapper,
                 'offer_orders': OfferOrderWrapper,
-                'digital_wallet_tokens':DigitalWrapper,
-                'velocity_controls':VelocityWrapper ,
+                'digital_wallet_tokens': DigitalWrapper,
+                'velocity_controls': VelocityWrapper,
                 'mcc_groups': MccWrapper,
                 'transactions': TransactionWrapper,
                 'chargebacks': ChargebackWrapper,
@@ -385,8 +384,6 @@ class Client(object):
                 'commando_modes': CommandomodesWrapper,
                 'bulk_issuances': BulkissuancesWrapper,
                 'push_to_cards': PushtocardsWrapper,
-                'ping': PingWrapper,
                 'pins': PinsWrapper
 
                 }
-

@@ -7,15 +7,7 @@ class TransactionOptions(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'additional_data' : self.additional_data,
-           'database_transaction_timeout' : self.database_transaction_timeout,
-           'pre_auth_time_limit' : self.pre_auth_time_limit,
-           'send_expiration_date' : self.send_expiration_date,
-           'send_track_data' : self.send_track_data,
-           'card_expiration_date_yymm' : self.card_expiration_date_yymm,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

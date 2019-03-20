@@ -9,21 +9,7 @@ class ProgramTransferResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'fees' : self.fees,
-           'token' : self.token,
-           'type_token' : self.type_token,
-           'user_token' : self.user_token,
-           'business_token' : self.business_token,
-           'transaction_token' : self.transaction_token,
-           'currency_code' : self.currency_code,
-           'amount' : self.amount,
-           'memo' : self.memo,
-           'tags' : self.tags,
-           'created_time' : self.created_time,
-           'jit_funding' : self.jit_funding,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

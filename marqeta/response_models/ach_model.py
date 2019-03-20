@@ -7,19 +7,7 @@ class AchModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'user_token' : self.user_token,
-           'business_token' : self.business_token,
-           'account_number' : self.account_number,
-           'routing_number' : self.routing_number,
-           'name_on_account' : self.name_on_account,
-           'account_type' : self.account_type,
-           'verification_override' : self.verification_override,
-           'verification_notes' : self.verification_notes,
-           'is_default_account' : self.is_default_account,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

@@ -7,12 +7,7 @@ class AdvancedAuthOtherPoi(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'card_presence' : self.card_presence,
-           'cardholder_presence' : self.cardholder_presence,
-           'partial_approval_capable' : self.partial_approval_capable,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

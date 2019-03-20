@@ -103,10 +103,7 @@ class CardsContext(CardsCollection):
             self.collection = collection
 
         def list(self, params=None):
-            query_params = {'sort_by': '-id', 'count': 5, 'start_index': 0}
-            if params is not None:
-                query_params.update(params)
-            return self.collection.list(query_params=query_params,
+            return self.collection.list(query_params=params,
                                         endpoint=self._endpoint+'/card/{}'.format(self.token))
 
         def create(self, data):

@@ -10,27 +10,7 @@ class GpaResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'amount' : self.amount,
-           'tags' : self.tags,
-           'memo' : self.memo,
-           'fees' : self.fees,
-           'created_time' : self.created_time,
-           'last_modified_time' : self.last_modified_time,
-           'transaction_token' : self.transaction_token,
-           'state' : self.state,
-           'response' : self.response,
-           'funding' : self.funding,
-           'funding_source_token' : self.funding_source_token,
-           'funding_source_address_token' : self.funding_source_address_token,
-           'user_token' : self.user_token,
-           'business_token' : self.business_token,
-           'currency_code' : self.currency_code,
-           'gateway_token' : self.gateway_token,
-           'gateway_message' : self.gateway_message,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

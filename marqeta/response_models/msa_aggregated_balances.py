@@ -7,16 +7,7 @@ class MsaAggregatedBalances(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'currency_code' : self.currency_code,
-           'ledger_balance' : self.ledger_balance,
-           'available_balance' : self.available_balance,
-           'credit_balance' : self.credit_balance,
-           'pending_credits' : self.pending_credits,
-           'impacted_amount' : self.impacted_amount,
-           'balances' : self.balances,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

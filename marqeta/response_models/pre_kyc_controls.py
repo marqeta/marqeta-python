@@ -7,14 +7,7 @@ class PreKycControls(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'cash_access_enabled' : self.cash_access_enabled,
-           'international_enabled' : self.international_enabled,
-           'balance_max' : self.balance_max,
-           'enable_non_program_loads' : self.enable_non_program_loads,
-           'is_reloadable_pre_kyc' : self.is_reloadable_pre_kyc,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

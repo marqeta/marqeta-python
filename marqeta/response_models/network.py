@@ -7,12 +7,7 @@ class Network(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'original_amount' : self.original_amount,
-           'conversion_rate' : self.conversion_rate,
-           'original_currency_code' : self.original_currency_code,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

@@ -7,17 +7,7 @@ class PushToCardDisbursementResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'created_time' : self.created_time,
-           'last_modified_time' : self.last_modified_time,
-           'token' : self.token,
-           'currency_code' : self.currency_code,
-           'amount' : self.amount,
-           'payment_instrument_token' : self.payment_instrument_token,
-           'tags' : self.tags,
-           'memo' : self.memo,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

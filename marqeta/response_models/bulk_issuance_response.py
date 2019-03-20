@@ -10,25 +10,7 @@ class BulkIssuanceResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'fulfillment' : self.fulfillment,
-           'expedite' : self.expedite,
-           'card_product_token' : self.card_product_token,
-           'card_allocation' : self.card_allocation,
-           'user_association' : self.user_association,
-           'name_line_1_numeric_postfix' : self.name_line_1_numeric_postfix,
-           'expiration_offset' : self.expiration_offset,
-           'cards_processed' : self.cards_processed,
-           'created_time' : self.created_time,
-           'name_line1_start_index' : self.name_line1_start_index,
-           'name_line1_end_index' : self.name_line1_end_index,
-           'card_fulfillment_time' : self.card_fulfillment_time,
-           'provider_ship_date' : self.provider_ship_date,
-           'provider_shipping_method' : self.provider_shipping_method,
-           'provider_tracking_number' : self.provider_tracking_number,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

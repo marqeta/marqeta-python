@@ -9,19 +9,7 @@ class KycResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'created_time' : self.created_time,
-           'last_modified_time' : self.last_modified_time,
-           'token' : self.token,
-           'user_token' : self.user_token,
-           'business_token' : self.business_token,
-           'result' : self.result,
-           'manual_override' : self.manual_override,
-           'notes' : self.notes,
-           'questions' : self.questions,
-           'reference_id' : self.reference_id,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

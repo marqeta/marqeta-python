@@ -7,21 +7,7 @@ class DirectDepositRequest(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'amount' : self.amount,
-           'type' : self.type,
-           'account_number' : self.account_number,
-           'settlement_date' : self.settlement_date,
-           'standard_entry_class_code' : self.standard_entry_class_code,
-           'company_name' : self.company_name,
-           'company_discretionary_data' : self.company_discretionary_data,
-           'company_identification' : self.company_identification,
-           'company_entry_description' : self.company_entry_description,
-           'individual_identification_number' : self.individual_identification_number,
-           'individual_name' : self.individual_name,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

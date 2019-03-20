@@ -7,15 +7,7 @@ class OfferOrderRequest(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'user_token' : self.user_token,
-           'business_token' : self.business_token,
-           'offer_token' : self.offer_token,
-           'funding_source_token' : self.funding_source_token,
-           'funding_source_address_token' : self.funding_source_address_token,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

@@ -7,12 +7,7 @@ class AvsControlOptions(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'validate' : self.validate,
-           'decline_on_address_number_mismatch' : self.decline_on_address_number_mismatch,
-           'decline_on_postal_code_mismatch' : self.decline_on_postal_code_mismatch,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

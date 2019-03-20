@@ -7,19 +7,7 @@ class PeerTransferResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'amount' : self.amount,
-           'tags' : self.tags,
-           'memo' : self.memo,
-           'currency_code' : self.currency_code,
-           'sender_user_token' : self.sender_user_token,
-           'recipient_user_token' : self.recipient_user_token,
-           'sender_business_token' : self.sender_business_token,
-           'recipient_business_token' : self.recipient_business_token,
-           'created_time' : self.created_time,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

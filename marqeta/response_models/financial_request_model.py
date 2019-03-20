@@ -10,18 +10,7 @@ class FinancialRequestModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'amount' : self.amount,
-           'card_token' : self.card_token,
-           'pin' : self.pin,
-           'mid' : self.mid,
-           'cash_back_amount' : self.cash_back_amount,
-           'is_pre_auth' : self.is_pre_auth,
-           'card_acceptor' : self.card_acceptor,
-           'transaction_options' : self.transaction_options,
-           'webhook' : self.webhook,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

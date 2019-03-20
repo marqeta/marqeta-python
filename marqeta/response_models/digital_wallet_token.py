@@ -12,22 +12,7 @@ class DigitalWalletToken(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'card_token' : self.card_token,
-           'state' : self.state,
-           'state_reason' : self.state_reason,
-           'fulfillment_status' : self.fulfillment_status,
-           'issuer_eligibility_decision' : self.issuer_eligibility_decision,
-           'created_time' : self.created_time,
-           'last_modified_time' : self.last_modified_time,
-           'token_service_provider' : self.token_service_provider,
-           'device' : self.device,
-           'wallet_provider_profile' : self.wallet_provider_profile,
-           'address_verification' : self.address_verification,
-           'user' : self.user,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

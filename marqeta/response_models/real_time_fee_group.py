@@ -7,15 +7,7 @@ class RealTimeFeeGroup(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'created_time' : self.created_time,
-           'last_modified_time' : self.last_modified_time,
-           'active' : self.active,
-           'name' : self.name,
-           'fee_tokens' : self.fee_tokens,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

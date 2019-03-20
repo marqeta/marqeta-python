@@ -8,39 +8,7 @@ class Gatewaylog(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'id' : self.id,
-           'traceNumber' : self.traceNumber,
-           'paymentTypeCode' : self.paymentTypeCode,
-           'achTransactionType' : self.achTransactionType,
-           'memo' : self.memo,
-           'gatewayVersion' : self.gatewayVersion,
-           'gatewayResponse' : self.gatewayResponse,
-           'timedOut' : self.timedOut,
-           'deal_Id' : self.deal_Id,
-           'order_Id' : self.order_Id,
-           'request_method' : self.request_method,
-           'response_code' : self.response_code,
-           'response_subcode' : self.response_subcode,
-           'response_reasoncode' : self.response_reasoncode,
-           'response_message' : self.response_message,
-           'status' : self.status,
-           'fraud_avs' : self.fraud_avs,
-           'fraud_auth' : self.fraud_auth,
-           'fraud_cvv' : self.fraud_cvv,
-           'gateway_transactionId' : self.gateway_transactionId,
-           'original_gateway' : self.original_gateway,
-           'amount' : self.amount,
-           'duplicate' : self.duplicate,
-           'post_date' : self.post_date,
-           'response_time' : self.response_time,
-           'api_duration' : self.api_duration,
-           'gateway_duration' : self.gateway_duration,
-           'ach_status' : self.ach_status,
-           'created' : self.created,
-           'modified' : self.modified,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

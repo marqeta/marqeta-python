@@ -7,24 +7,7 @@ class Pos(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'pan_entry_mode' : self.pan_entry_mode,
-           'pin_entry_mode' : self.pin_entry_mode,
-           'terminal_id' : self.terminal_id,
-           'terminal_attendance' : self.terminal_attendance,
-           'terminal_location' : self.terminal_location,
-           'card_holder_presence' : self.card_holder_presence,
-           'cardholder_authentication_method' : self.cardholder_authentication_method,
-           'card_presence' : self.card_presence,
-           'terminal_type' : self.terminal_type,
-           'card_data_input_capability' : self.card_data_input_capability,
-           'country_code' : self.country_code,
-           'zip' : self.zip,
-           'partial_approval_capable' : self.partial_approval_capable,
-           'purchase_amount_only' : self.purchase_amount_only,
-           'is_recurring' : self.is_recurring,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

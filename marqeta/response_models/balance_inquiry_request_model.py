@@ -10,16 +10,7 @@ class BalanceInquiryRequestModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'network_fees' : self.network_fees,
-           'webhook' : self.webhook,
-           'account_type' : self.account_type,
-           'card_token' : self.card_token,
-           'pin' : self.pin,
-           'mid' : self.mid,
-           'card_acceptor' : self.card_acceptor,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

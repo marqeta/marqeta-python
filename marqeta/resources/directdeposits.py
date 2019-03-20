@@ -67,10 +67,7 @@ class DirectdepositsContext(DirectdepositsCollection):
             self.collection = collection
 
         def stream(self, params= None,limit=float('inf')):
-            query_params = {'sort_by': '-id', 'count': 5, 'start_index': 0}
-            if params is not None:
-                query_params.update(params)
-            return self.collection.stream(endpoint=self._endpoint,query_params=query_params,
+            return self.collection.stream(endpoint=self._endpoint,query_params=params,
                                         limit = limit)
 
         def list(self, params= None,limit=float('inf')):

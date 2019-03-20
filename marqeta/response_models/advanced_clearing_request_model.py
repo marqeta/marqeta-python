@@ -13,44 +13,7 @@ class AdvancedClearingRequestModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'network_fees' : self.network_fees,
-           'webhook' : self.webhook,
-           'mid' : self.mid,
-           'amount' : self.amount,
-           'replacement_amount' : self.replacement_amount,
-           'cardholder_billing_amount' : self.cardholder_billing_amount,
-           'cardholder_billing_conversion_rate' : self.cardholder_billing_conversion_rate,
-           'cardholder_billing_currency' : self.cardholder_billing_currency,
-           'card_token' : self.card_token,
-           'acquirer_reference_id' : self.acquirer_reference_id,
-           'rrn' : self.rrn,
-           'stan' : self.stan,
-           'processing_code' : self.processing_code,
-           'acquirer_fee' : self.acquirer_fee,
-           'issuer_fee' : self.issuer_fee,
-           'function_code' : self.function_code,
-           'reason_code' : self.reason_code,
-           'approval_code' : self.approval_code,
-           'transaction_date' : self.transaction_date,
-           'local_transaction_date' : self.local_transaction_date,
-           'settlement_date' : self.settlement_date,
-           'network_reference_id' : self.network_reference_id,
-           'find_original_window_days' : self.find_original_window_days,
-           'batch_number' : self.batch_number,
-           'batch_file_name' : self.batch_file_name,
-           'sequence_number' : self.sequence_number,
-           'network' : self.network,
-           'sub_network' : self.sub_network,
-           'card_acceptor' : self.card_acceptor,
-           'currency_code' : self.currency_code,
-           'original_data_elements' : self.original_data_elements,
-           'preceding_related_transaction_token' : self.preceding_related_transaction_token,
-           'send_expiration_date' : self.send_expiration_date,
-           'simulate_batch_for_clearing_record_hash' : self.simulate_batch_for_clearing_record_hash,
-           'cross_border_indicator' : self.cross_border_indicator,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

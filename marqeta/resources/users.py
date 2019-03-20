@@ -114,10 +114,7 @@ class UserContext(UsersCollection):
             self.collection = collection
 
         def list(self, params= None,limit=float('inf')):
-            query_params = {'sort_by': '-id', 'count': 5, 'start_index': 0}
-            if params is not None:
-                query_params.update(params)
-            return self.collection.list(endpoint=self._endpoint+'/user/{}'.format(self.token),query_params=query_params,
+            return self.collection.list(endpoint=self._endpoint+'/user/{}'.format(self.token),query_params=params,
                                         limit = limit)
 
         def create(self, data):

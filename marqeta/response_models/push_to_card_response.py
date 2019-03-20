@@ -7,24 +7,7 @@ class PushToCardResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'created_time' : self.created_time,
-           'last_modified_time' : self.last_modified_time,
-           'address_1' : self.address_1,
-           'address_2' : self.address_2,
-           'city' : self.city,
-           'state' : self.state,
-           'zip' : self.zip,
-           'country' : self.country,
-           'last_four' : self.last_four,
-           'token' : self.token,
-           'fast_fund_transfer_eligible' : self.fast_fund_transfer_eligible,
-           'gambling_fund_transfer_eligible' : self.gambling_fund_transfer_eligible,
-           'name_on_card' : self.name_on_card,
-           'last_name' : self.last_name,
-           'exp_date' : self.exp_date,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

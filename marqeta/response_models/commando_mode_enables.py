@@ -7,13 +7,7 @@ class CommandoModeEnables(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'program_funding_source' : self.program_funding_source,
-           'velocity_controls' : self.velocity_controls,
-           'auth_controls' : self.auth_controls,
-           'ignore_card_suspended_state' : self.ignore_card_suspended_state,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

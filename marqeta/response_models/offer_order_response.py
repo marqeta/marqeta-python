@@ -11,19 +11,7 @@ class OfferOrderResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'created_time' : self.created_time,
-           'last_modified_time' : self.last_modified_time,
-           'user_token' : self.user_token,
-           'business_token' : self.business_token,
-           'token' : self.token,
-           'order_balances' : self.order_balances,
-           'order_aggregated_balances' : self.order_aggregated_balances,
-           'funding' : self.funding,
-           'offer' : self.offer,
-           'last_transaction_date' : self.last_transaction_date,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

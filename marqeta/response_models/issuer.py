@@ -7,17 +7,7 @@ class Issuer(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'success' : self.success,
-           'fraud_score' : self.fraud_score,
-           'fraud_rating' : self.fraud_rating,
-           'rule_violations' : self.rule_violations,
-           'fraud_score_reasons' : self.fraud_score_reasons,
-           'recommended_action' : self.recommended_action,
-           'model' : self.model,
-           'message' : self.message,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

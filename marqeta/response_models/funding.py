@@ -10,13 +10,7 @@ class Funding(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'amount' : self.amount,
-           'source' : self.source,
-           'source_address' : self.source_address,
-           'gateway_log' : self.gateway_log,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

@@ -7,14 +7,7 @@ class Pagination(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'count' : self.count,
-           'start_index' : self.start_index,
-           'end_index' : self.end_index,
-           'is_more' : self.is_more,
-           'data' : self.data,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

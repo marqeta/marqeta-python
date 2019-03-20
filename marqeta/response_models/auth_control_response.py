@@ -9,16 +9,7 @@ class AuthControlResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'name' : self.name,
-           'association' : self.association,
-           'merchant_scope' : self.merchant_scope,
-           'start_time' : self.start_time,
-           'end_time' : self.end_time,
-           'active' : self.active,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

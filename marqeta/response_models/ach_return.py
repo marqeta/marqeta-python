@@ -7,16 +7,7 @@ class AchReturn(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'amount' : self.amount,
-           'date' : self.date,
-           'dateInitiated' : self.dateInitiated,
-           'orderId' : self.orderId,
-           'reasonCode' : self.reasonCode,
-           'directDeposit' : self.directDeposit,
-           'achType' : self.achType,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

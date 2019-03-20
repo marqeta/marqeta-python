@@ -9,13 +9,7 @@ class CommandoModeRequest(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'program_gateway_funding_source_token' : self.program_gateway_funding_source_token,
-           'real_time_standin_criteria' : self.real_time_standin_criteria,
-           'commando_mode_enables' : self.commando_mode_enables,
-           'token' : self.token,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

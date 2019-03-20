@@ -15,7 +15,7 @@ class AccountholdergroupsCollection(object):
     ''' Lists all the accountholdergroups  Returns list of all accountholdergroups object '''
 
     def list(self, params=None, limit=float('inf')):
-        query_params = {'sort_by': '-lastModifiedTime', 'count': 10, 'start_index': 0}
+        query_params = {'count': 10}
         if params is not None:
             query_params.update(params)
         return self.collections.list(endpoint=self._endpoint, query_params=query_params, limit=limit)

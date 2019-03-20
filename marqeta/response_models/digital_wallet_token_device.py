@@ -7,16 +7,7 @@ class DigitalWalletTokenDevice(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'device_type' : self.device_type,
-           'device_lang_code' : self.device_lang_code,
-           'device_id' : self.device_id,
-           'device_number' : self.device_number,
-           'device_name' : self.device_name,
-           'device_location' : self.device_location,
-           'device_ip_address' : self.device_ip_address,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

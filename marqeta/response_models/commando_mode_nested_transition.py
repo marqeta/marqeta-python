@@ -7,13 +7,7 @@ class CommandoModeNestedTransition(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'commando_enabled' : self.commando_enabled,
-           'reason' : self.reason,
-           'channel' : self.channel,
-           'username' : self.username,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

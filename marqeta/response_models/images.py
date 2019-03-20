@@ -11,13 +11,7 @@ class Images(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'card' : self.card,
-           'carrier' : self.carrier,
-           'signature' : self.signature,
-           'carrier_return_window' : self.carrier_return_window,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

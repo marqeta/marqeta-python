@@ -9,17 +9,7 @@ class TransactionMetadata(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'transaction_category' : self.transaction_category,
-           'payment_channel' : self.payment_channel,
-           'cross_border_transaction' : self.cross_border_transaction,
-           'authorization_life_cyle' : self.authorization_life_cyle,
-           'is_lodging_auto_rental' : self.is_lodging_auto_rental,
-           'lodging_auto_rental_start_date' : self.lodging_auto_rental_start_date,
-           'transit' : self.transit,
-           'airline' : self.airline,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

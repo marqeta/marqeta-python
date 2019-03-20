@@ -9,15 +9,7 @@ class ReversalModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'network_fees' : self.network_fees,
-           'webhook' : self.webhook,
-           'original_transaction_token' : self.original_transaction_token,
-           'amount' : self.amount,
-           'find_original_window_days' : self.find_original_window_days,
-           'is_advice' : self.is_advice,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

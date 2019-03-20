@@ -49,7 +49,6 @@ class WebhooksContext(WebhooksCollection):
     def __init__(self, token, client):
         super(WebhooksContext, self).__init__(client)
         self.token = token
-        # self.resend = self.Resend(self.token, client)
         self.collections = Collection(client, WebhookPingModel)
 
     def ping(self, params=None):

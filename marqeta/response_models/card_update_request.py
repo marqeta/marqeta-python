@@ -8,14 +8,7 @@ class CardUpdateRequest(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'user_token' : self.user_token,
-           'expedite' : self.expedite,
-           'fulfillment' : self.fulfillment,
-           'metadata' : self.metadata,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

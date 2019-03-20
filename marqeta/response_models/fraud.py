@@ -8,16 +8,7 @@ class Fraud(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'merchant_risk_score' : self.merchant_risk_score,
-           'merchant_risk_score_reason_code' : self.merchant_risk_score_reason_code,
-           'transaction_risk_score' : self.transaction_risk_score,
-           'transaction_risk_score_reason_code' : self.transaction_risk_score_reason_code,
-           'account_risk_score' : self.account_risk_score,
-           'account_risk_score_reason_code' : self.account_risk_score_reason_code,
-           'issuerFraudModel' : self.issuerFraudModel,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

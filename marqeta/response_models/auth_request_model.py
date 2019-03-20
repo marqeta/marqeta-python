@@ -12,20 +12,7 @@ class AuthRequestModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'network_fees' : self.network_fees,
-           'webhook' : self.webhook,
-           'card_token' : self.card_token,
-           'amount' : self.amount,
-           'cash_back_amount' : self.cash_back_amount,
-           'mid' : self.mid,
-           'is_pre_auth' : self.is_pre_auth,
-           'pin' : self.pin,
-           'card_options' : self.card_options,
-           'card_acceptor' : self.card_acceptor,
-           'transaction_options' : self.transaction_options,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

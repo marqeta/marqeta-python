@@ -10,20 +10,7 @@ class CardRequest(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'card_product_token' : self.card_product_token,
-           'expedite' : self.expedite,
-           'metadata' : self.metadata,
-           'expiration_offset' : self.expiration_offset,
-           'token' : self.token,
-           'user_token' : self.user_token,
-           'fulfillment' : self.fulfillment,
-           'reissue_pan_from_card_token' : self.reissue_pan_from_card_token,
-           'translate_pin_from_card_token' : self.translate_pin_from_card_token,
-           'activation_actions' : self.activation_actions,
-           'bulk_issuance_token' : self.bulk_issuance_token,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

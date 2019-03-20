@@ -8,13 +8,7 @@ class DigitalWalletAndroidPayProvisionResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'created_time' : self.created_time,
-           'last_modified_time' : self.last_modified_time,
-           'card_token' : self.card_token,
-           'push_tokenize_request_data' : self.push_tokenize_request_data,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

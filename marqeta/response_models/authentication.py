@@ -7,13 +7,7 @@ class Authentication(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'last_password_update_channel' : self.last_password_update_channel,
-           'last_password_update_time' : self.last_password_update_time,
-           'email_verified' : self.email_verified,
-           'email_verified_time' : self.email_verified_time,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

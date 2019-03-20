@@ -7,12 +7,7 @@ class MsaOrderUpdateRequest(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'active' : self.active,
-           'start_date' : self.start_date,
-           'end_date' : self.end_date,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

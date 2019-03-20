@@ -7,16 +7,7 @@ class CardholderNoteResponseModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'description' : self.description,
-           'created_by' : self.created_by,
-           'created_by_user_role' : self.created_by_user_role,
-           'private' : self.private,
-           'created_time' : self.created_time,
-           'last_modified_time' : self.last_modified_time,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

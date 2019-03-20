@@ -98,10 +98,7 @@ class BusinessContext(BusinessesCollection):
             self.client = client
 
         def list(self,params= None, limit = float('inf')):
-            query_params = {}
-            if params is not None:
-                query_params.update(params)
-            return self.collection.list(endpoint=self._endpoint.format(self.token), query_params=query_params, limit = limit)
+            return self.collection.list(endpoint=self._endpoint.format(self.token), query_params=params, limit = limit)
 
         def create(self, data):
             return self.collection.create(data, endpoint=self._endpoint.format(self.token))
@@ -122,10 +119,7 @@ class BusinessContext(BusinessesCollection):
             self.collection = collection
 
         def list(self, params= None, limit = float('inf')):
-            query_params = {'sort_by': '-id', 'count': 5, 'start_index': 0}
-            if params is not None:
-                query_params.update(params)
-            return self.collection.list(query_params=query_params,
+            return self.collection.list(query_params=params,
                                         endpoint=self._endpoint+'/business/{}'.format(self.token),limit = limit)
 
         def create(self, data):
