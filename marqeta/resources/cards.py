@@ -25,7 +25,7 @@ class CardsCollection(object):
         return self.collections_card_response.stream(endpoint=self._endpoint, query_params=params)
 
     ''' Lists all the cards Returns list of all card object based on last_four number of card'''
-    def list(self,last_four, params={}, limit = float('inf')):
+    def list(self,last_four, params={}, limit = None):
         params['last_four'] = last_four
         return self.collections_card_response.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
@@ -33,7 +33,7 @@ class CardsCollection(object):
         return self.collections_card_response.stream(endpoint=self._endpoint+"/user/{}".format(user_token), query_params=params)
 
     ''' Lists all the cards Returns list of all card object based on user token '''
-    def list_for_user(self,user_token, params=None, limit = float('inf')):
+    def list_for_user(self,user_token, params=None, limit = None):
         return self.collections_card_response.list(endpoint=self._endpoint+"/user/{}".format(user_token), query_params=params, limit=limit)
 
     ''' Creates a card with the specified data
@@ -103,10 +103,7 @@ class CardsContext(CardsCollection):
             self.collection = collection
 
         def list(self, params=None):
-            query_params = {'sort_by': '-id', 'count': 5, 'start_index': 0}
-            if params is not None:
-                query_params.update(params)
-            return self.collection.list(query_params=query_params,
+            return self.collection.list(query_params=params,
                                         endpoint=self._endpoint+'/card/{}'.format(self.token))
 
         def create(self, data):

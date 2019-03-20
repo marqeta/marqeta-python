@@ -7,16 +7,7 @@ class Application(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'program' : self.program,
-           'environment' : self.environment,
-           'program_short_code' : self.program_short_code,
-           'client_api_base_url' : self.client_api_base_url,
-           'assets_url' : self.assets_url,
-           'access_code' : self.access_code,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

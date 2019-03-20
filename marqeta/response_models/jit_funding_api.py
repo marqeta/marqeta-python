@@ -8,20 +8,7 @@ class JitFundingApi(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'method' : self.method,
-           'user_token' : self.user_token,
-           'acting_user_token' : self.acting_user_token,
-           'business_token' : self.business_token,
-           'amount' : self.amount,
-           'memo' : self.memo,
-           'tags' : self.tags,
-           'original_jit_funding_token' : self.original_jit_funding_token,
-           'incremental_authorization_jit_funding_tokens' : self.incremental_authorization_jit_funding_tokens,
-           'address_verification' : self.address_verification,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

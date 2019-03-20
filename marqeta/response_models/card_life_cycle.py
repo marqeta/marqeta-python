@@ -8,13 +8,7 @@ class CardLifeCycle(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'activate_upon_issue' : self.activate_upon_issue,
-           'expiration_offset' : self.expiration_offset,
-           'card_service_code' : self.card_service_code,
-           'update_expiration_upon_activation' : self.update_expiration_upon_activation,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

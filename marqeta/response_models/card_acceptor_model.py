@@ -7,18 +7,7 @@ class CardAcceptorModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'mcc' : self.mcc,
-           'partial_approval_capable' : self.partial_approval_capable,
-           'name' : self.name,
-           'address' : self.address,
-           'city' : self.city,
-           'state' : self.state,
-           'zip' : self.zip,
-           'country' : self.country,
-           'ecommerce_security_level_indicator' : self.ecommerce_security_level_indicator,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

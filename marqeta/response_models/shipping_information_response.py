@@ -9,13 +9,7 @@ class ShippingInformationResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'method' : self.method,
-           'return_address' : self.return_address,
-           'recipient_address' : self.recipient_address,
-           'care_of_line' : self.care_of_line,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

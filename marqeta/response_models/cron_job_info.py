@@ -7,19 +7,7 @@ class CronJobInfo(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'schedule' : self.schedule,
-           'group' : self.group,
-           'id' : self.id,
-           'class' : self.class,
-           'is_running' : self.is_running,
-           'last_run_duration_millis' : self.last_run_duration_millis,
-           'next_run' : self.next_run,
-           'last_run' : self.last_run,
-           'timezone' : self.timezone,
-           'start_time' : self.start_time,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

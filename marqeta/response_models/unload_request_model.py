@@ -7,15 +7,7 @@ class UnloadRequestModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'original_order_token' : self.original_order_token,
-           'amount' : self.amount,
-           'tags' : self.tags,
-           'memo' : self.memo,
-           'funding_source_address_token' : self.funding_source_address_token,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

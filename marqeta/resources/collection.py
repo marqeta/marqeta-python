@@ -29,7 +29,7 @@ class Collection(object):
             params['start_index'] = params['start_index'] + params['count']
 
     '''  Returns list of all endpoint object '''
-    def list(self, endpoint=None, query_params=None, limit =float('inf')):
+    def list(self, endpoint=None, query_params=None, limit =None):
         list_of_user_object = []
         for count in self.stream(endpoint=endpoint, query_params=query_params):
             list_of_user_object.append(count)

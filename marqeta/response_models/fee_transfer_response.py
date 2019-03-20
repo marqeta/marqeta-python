@@ -8,15 +8,7 @@ class FeeTransferResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'tags' : self.tags,
-           'fees' : self.fees,
-           'token' : self.token,
-           'user_token' : self.user_token,
-           'business_token' : self.business_token,
-           'created_time' : self.created_time,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

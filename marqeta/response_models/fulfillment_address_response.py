@@ -7,20 +7,7 @@ class FulfillmentAddressResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'first_name' : self.first_name,
-           'middle_name' : self.middle_name,
-           'last_name' : self.last_name,
-           'address1' : self.address1,
-           'address2' : self.address2,
-           'city' : self.city,
-           'state' : self.state,
-           'zip' : self.zip,
-           'postal_code' : self.postal_code,
-           'country' : self.country,
-           'phone' : self.phone,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

@@ -7,16 +7,7 @@ class TerminalModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'tid' : self.tid,
-           'partial_approval_capable' : self.partial_approval_capable,
-           'cardholder_presence' : self.cardholder_presence,
-           'card_presence' : self.card_presence,
-           'channel' : self.channel,
-           'processing_type' : self.processing_type,
-           'pin_present' : self.pin_present,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

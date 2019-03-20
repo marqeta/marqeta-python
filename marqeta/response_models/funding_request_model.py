@@ -7,17 +7,7 @@ class FundingRequestModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'user_token' : self.user_token,
-           'order_number' : self.order_number,
-           'amount' : self.amount,
-           'funding_source' : self.funding_source,
-           'funding_address' : self.funding_address,
-           'fundgpadetail' : self.fundgpadetail,
-           'order_token' : self.order_token,
-           'currency_code' : self.currency_code,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

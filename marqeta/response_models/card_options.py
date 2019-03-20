@@ -8,13 +8,7 @@ class CardOptions(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'cvv' : self.cvv,
-           'card_present' : self.card_present,
-           'expiration' : self.expiration,
-           'billing_address' : self.billing_address,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

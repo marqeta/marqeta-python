@@ -8,14 +8,7 @@ class PaymentCardFundingSourceModel(FundingSourceModel):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'user_token' : self.user_token,
-           'business_token' : self.business_token,
-           'account_suffix' : self.account_suffix,
-           'account_type' : self.account_type,
-           'exp_date' : self.exp_date,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

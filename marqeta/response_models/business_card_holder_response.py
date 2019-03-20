@@ -14,38 +14,7 @@ class BusinessCardHolderResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'active' : self.active,
-           'notes' : self.notes,
-           'ip_address' : self.ip_address,
-           'password' : self.password,
-           'phone' : self.phone,
-           'metadata' : self.metadata,
-           'account_holder_group_token' : self.account_holder_group_token,
-           'authentication' : self.authentication,
-           'created_time' : self.created_time,
-           'last_modified_time' : self.last_modified_time,
-           'status' : self.status,
-           'business_name_legal' : self.business_name_legal,
-           'business_name_dba' : self.business_name_dba,
-           'office_location' : self.office_location,
-           'in_current_location_since' : self.in_current_location_since,
-           'website' : self.website,
-           'date_established' : self.date_established,
-           'general_business_description' : self.general_business_description,
-           'history' : self.history,
-           'business_type' : self.business_type,
-           'international_office_locations' : self.international_office_locations,
-           'taxpayer_id' : self.taxpayer_id,
-           'duns_number' : self.duns_number,
-           'primary_contact' : self.primary_contact,
-           'incorporation' : self.incorporation,
-           'proprietor_or_officer' : self.proprietor_or_officer,
-           'identifications' : self.identifications,
-           'deposit_account' : self.deposit_account,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

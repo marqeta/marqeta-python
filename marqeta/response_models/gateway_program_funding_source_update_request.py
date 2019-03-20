@@ -7,15 +7,7 @@ class GatewayProgramFundingSourceUpdateRequest(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'name' : self.name,
-           'active' : self.active,
-           'url' : self.url,
-           'basic_auth_username' : self.basic_auth_username,
-           'basic_auth_password' : self.basic_auth_password,
-           'timeout_millis' : self.timeout_millis,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

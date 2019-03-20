@@ -30,11 +30,11 @@ class FundingSourcesCollection(object):
     def stream_for_business(self, business_token, params=None):
         return self.collections.stream(endpoint=self._endpoint+'/business/{}'.format(business_token), query_params=params)
 
-    def list_for_user(self, user_token, params=None, limit=float('inf')):
+    def list_for_user(self, user_token, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint+'/users/{}'.format(user_token),
                                      query_params=params, limit=limit)
 
-    def list_for_business(self, business_token, params=None, limit=float('inf')):
+    def list_for_business(self, business_token, params=None, limit=None):
         return self.collections_business.list(endpoint=self._endpoint+'/business/{}'.format(business_token),
                                               query_params=params, limit=limit)
 
@@ -69,12 +69,12 @@ class Addresses(object):
     def stream_for_business(self,business_token, params=None):
         return self.collections.stream(endpoint=self._endpoint +'/business/{}'.format(business_token), query_params=params)
 
-    def list_for_user(self, user_token, params=None, limit=float('inf')):
+    def list_for_user(self, user_token, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint + '/user/{}'.format(user_token),
                                      query_params=params, limit=limit)
 
     def list_for_business(self, business_token, params=None,
-                          limit=float('inf')):
+                          limit=None):
         return self.collections.list(endpoint=self._endpoint +'/business/{}'.format(business_token),
                                      query_params=params, limit=limit)
 

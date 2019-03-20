@@ -8,15 +8,7 @@ class ClearingFileRequest(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'transaction_tokens' : self.transaction_tokens,
-           'wait_timeout' : self.wait_timeout,
-           'batch_id' : self.batch_id,
-           'clearing_folder' : self.clearing_folder,
-           'encrypt_file' : self.encrypt_file,
-           'create_completion_file' : self.create_completion_file,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

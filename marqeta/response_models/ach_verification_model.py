@@ -7,12 +7,7 @@ class AchVerificationModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'verify_amount1' : self.verify_amount1,
-           'verify_amount2' : self.verify_amount2,
-           'active' : self.active,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

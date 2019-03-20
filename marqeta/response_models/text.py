@@ -9,11 +9,7 @@ class Text(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'name_line_1' : self.name_line_1,
-           'name_line_2' : self.name_line_2,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

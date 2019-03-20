@@ -7,13 +7,7 @@ class ReplacementAmount(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'transaction_amount' : self.transaction_amount,
-           'settlement_amount' : self.settlement_amount,
-           'transaction_fee' : self.transaction_fee,
-           'settlement_fee' : self.settlement_fee,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

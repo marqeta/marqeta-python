@@ -9,20 +9,7 @@ class BusinessProprietorResponseModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'first_name' : self.first_name,
-           'middle_name' : self.middle_name,
-           'last_name' : self.last_name,
-           'alternative_names' : self.alternative_names,
-           'title' : self.title,
-           'home' : self.home,
-           'ssn' : self.ssn,
-           'dob' : self.dob,
-           'phone' : self.phone,
-           'email' : self.email,
-           'identifications' : self.identifications,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

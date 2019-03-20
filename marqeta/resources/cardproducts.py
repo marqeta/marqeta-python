@@ -18,13 +18,13 @@ class CardProductCollection(object):
     def stream(self, params = None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
-    ''' Lists all the card products  Returns list of all card product object '''
-    def list(self, params=None, limit = float('inf')):
+    ''' Lists all the 1000 card products  '''
+    def list(self, params=None, limit = 1000):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a card product with the specified data
             Returns the card product object which has created card product information'''
-    def create(self, data = {}, params= None):
+    def create(self, data = {}):
         return self.collections.create(endpoint=self._endpoint, data=data)
 
     ''' Finds the card product information for the requested token

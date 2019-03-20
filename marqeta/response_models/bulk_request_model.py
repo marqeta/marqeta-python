@@ -7,14 +7,7 @@ class BulkRequestModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'user_tokens' : self.user_tokens,
-           'business_tokens' : self.business_tokens,
-           'card_tokens' : self.card_tokens,
-           'kyc_tokens' : self.kyc_tokens,
-           'dda_tokens' : self.dda_tokens,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

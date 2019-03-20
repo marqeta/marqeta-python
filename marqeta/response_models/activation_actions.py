@@ -7,11 +7,7 @@ class ActivationActions(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'terminate_reissued_source_card' : self.terminate_reissued_source_card,
-           'swap_digital_wallet_tokens_from_card_token' : self.swap_digital_wallet_tokens_from_card_token,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

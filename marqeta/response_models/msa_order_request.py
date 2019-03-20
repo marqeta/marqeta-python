@@ -7,21 +7,7 @@ class MsaOrderRequest(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'campaign_token' : self.campaign_token,
-           'user_token' : self.user_token,
-           'business_token' : self.business_token,
-           'currency_code' : self.currency_code,
-           'purchase_amount' : self.purchase_amount,
-           'reward_amount' : self.reward_amount,
-           'reward_trigger_amount' : self.reward_trigger_amount,
-           'start_date' : self.start_date,
-           'end_date' : self.end_date,
-           'funding_source_token' : self.funding_source_token,
-           'funding_source_address_token' : self.funding_source_address_token,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

@@ -9,21 +9,7 @@ class CardProductFulfillment(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'shipping' : self.shipping,
-           'card_personalization' : self.card_personalization,
-           'payment_instrument' : self.payment_instrument,
-           'package_id' : self.package_id,
-           'all_zero_card_security_code' : self.all_zero_card_security_code,
-           'bin_prefix' : self.bin_prefix,
-           'bulk_ship' : self.bulk_ship,
-           'pan_length' : self.pan_length,
-           'fulfillment_provider' : self.fulfillment_provider,
-           'allow_card_creation' : self.allow_card_creation,
-           'uppercase_name_lines' : self.uppercase_name_lines,
-           'enable_offline_pin' : self.enable_offline_pin,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

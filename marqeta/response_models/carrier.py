@@ -7,13 +7,7 @@ class Carrier(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'template_id' : self.template_id,
-           'logo_file' : self.logo_file,
-           'logo_thumbnail_file' : self.logo_thumbnail_file,
-           'message_file' : self.message_file,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

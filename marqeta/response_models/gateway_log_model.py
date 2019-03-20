@@ -8,15 +8,7 @@ class GatewayLogModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'order_number' : self.order_number,
-           'transaction_id' : self.transaction_id,
-           'message' : self.message,
-           'duration' : self.duration,
-           'timed_out' : self.timed_out,
-           'response' : self.response,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

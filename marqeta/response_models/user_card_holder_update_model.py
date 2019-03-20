@@ -8,41 +8,7 @@ class UserCardHolderUpdateModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'active' : self.active,
-           'notes' : self.notes,
-           'ip_address' : self.ip_address,
-           'password' : self.password,
-           'phone' : self.phone,
-           'metadata' : self.metadata,
-           'account_holder_group_token' : self.account_holder_group_token,
-           'identifications' : self.identifications,
-           'honorific' : self.honorific,
-           'gender' : self.gender,
-           'first_name' : self.first_name,
-           'middle_name' : self.middle_name,
-           'last_name' : self.last_name,
-           'email' : self.email,
-           'address1' : self.address1,
-           'address2' : self.address2,
-           'city' : self.city,
-           'state' : self.state,
-           'country' : self.country,
-           'birth_date' : self.birth_date,
-           'corporate_card_holder' : self.corporate_card_holder,
-           'ssn' : self.ssn,
-           'passport_number' : self.passport_number,
-           'passport_expiration_date' : self.passport_expiration_date,
-           'id_card_number' : self.id_card_number,
-           'id_card_expiration_date' : self.id_card_expiration_date,
-           'nationality' : self.nationality,
-           'company' : self.company,
-           'parent_token' : self.parent_token,
-           'uses_parent_account' : self.uses_parent_account,
-           'postal_code' : self.postal_code,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

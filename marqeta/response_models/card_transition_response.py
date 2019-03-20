@@ -11,33 +11,7 @@ class CardTransitionResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'card_token' : self.card_token,
-           'user_token' : self.user_token,
-           'state' : self.state,
-           'reason' : self.reason,
-           'reason_code' : self.reason_code,
-           'channel' : self.channel,
-           'fulfillment_status' : self.fulfillment_status,
-           'validations' : self.validations,
-           'type' : self.type,
-           'created_time' : self.created_time,
-           'card_product_token' : self.card_product_token,
-           'last_four' : self.last_four,
-           'pan' : self.pan,
-           'expiration' : self.expiration,
-           'expiration_time' : self.expiration_time,
-           'barcode' : self.barcode,
-           'pin_is_set' : self.pin_is_set,
-           'fulfillment' : self.fulfillment,
-           'bulk_issuance_token' : self.bulk_issuance_token,
-           'reissue_pan_from_card_token' : self.reissue_pan_from_card_token,
-           'user' : self.user,
-           'card' : self.card,
-           'expedite' : self.expedite,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

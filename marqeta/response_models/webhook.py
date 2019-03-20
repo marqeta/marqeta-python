@@ -7,13 +7,7 @@ class Webhook(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'endpoint' : self.endpoint,
-           'username' : self.username,
-           'password' : self.password,
-           'secret' : self.secret,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

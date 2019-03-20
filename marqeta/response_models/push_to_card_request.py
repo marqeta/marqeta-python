@@ -7,21 +7,7 @@ class PushToCardRequest(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'address_1' : self.address_1,
-           'address_2' : self.address_2,
-           'city' : self.city,
-           'state' : self.state,
-           'zip' : self.zip,
-           'country' : self.country,
-           'token' : self.token,
-           'user_token' : self.user_token,
-           'name_on_card' : self.name_on_card,
-           'pan' : self.pan,
-           'cvv' : self.cvv,
-           'exp_date' : self.exp_date,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

@@ -16,18 +16,7 @@ class CardProductConfig(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'poi' : self.poi,
-           'transaction_controls' : self.transaction_controls,
-           'selective_auth' : self.selective_auth,
-           'special' : self.special,
-           'card_life_cycle' : self.card_life_cycle,
-           'clearing_and_settlement' : self.clearing_and_settlement,
-           'jit_funding' : self.jit_funding,
-           'digital_wallet_tokenization' : self.digital_wallet_tokenization,
-           'fulfillment' : self.fulfillment,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

@@ -7,11 +7,7 @@ class UserAssociation(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'single_inventory_user' : self.single_inventory_user,
-           'single_inventory_user_token' : self.single_inventory_user_token,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

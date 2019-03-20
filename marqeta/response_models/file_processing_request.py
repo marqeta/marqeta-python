@@ -7,13 +7,7 @@ class FileProcessingRequest(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'file_process_type' : self.file_process_type,
-           'source_file' : self.source_file,
-           'archive_file' : self.archive_file,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

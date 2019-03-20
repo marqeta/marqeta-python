@@ -7,19 +7,7 @@ class OfferModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'active' : self.active,
-           'name' : self.name,
-           'start_date' : self.start_date,
-           'end_date' : self.end_date,
-           'purchase_amount' : self.purchase_amount,
-           'reward_amount' : self.reward_amount,
-           'reward_trigger_amount' : self.reward_trigger_amount,
-           'campaign_token' : self.campaign_token,
-           'currency_code' : self.currency_code,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

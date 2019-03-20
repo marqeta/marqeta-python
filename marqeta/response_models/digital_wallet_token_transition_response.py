@@ -9,19 +9,7 @@ class DigitalWalletTokenTransitionResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'digital_wallet_token' : self.digital_wallet_token,
-           'card_swap' : self.card_swap,
-           'type' : self.type,
-           'channel' : self.channel,
-           'state' : self.state,
-           'fulfillment_status' : self.fulfillment_status,
-           'reason' : self.reason,
-           'reason_code' : self.reason_code,
-           'created_time' : self.created_time,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

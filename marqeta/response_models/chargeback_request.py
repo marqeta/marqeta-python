@@ -7,17 +7,7 @@ class ChargebackRequest(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'transaction_token' : self.transaction_token,
-           'amount' : self.amount,
-           'reason_description' : self.reason_description,
-           'reason_code' : self.reason_code,
-           'memo' : self.memo,
-           'credit_user' : self.credit_user,
-           'channel' : self.channel,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

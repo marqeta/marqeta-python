@@ -9,11 +9,7 @@ class Fulfillment(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'shipping' : self.shipping,
-           'card_personalization' : self.card_personalization,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

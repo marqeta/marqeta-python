@@ -7,12 +7,7 @@ class TranLogAttributeRequest(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'transaction_token' : self.transaction_token,
-           'attribute_name' : self.attribute_name,
-           'attribute_value' : self.attribute_value,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

@@ -8,16 +8,7 @@ class PingResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'success' : self.success,
-           'version' : self.version,
-           'revision' : self.revision,
-           'timestamp' : self.timestamp,
-           'env' : self.env,
-           'id' : self.id,
-           'system_components' : self.system_components,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

@@ -7,15 +7,7 @@ class CampaignModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'active' : self.active,
-           'name' : self.name,
-           'start_date' : self.start_date,
-           'end_date' : self.end_date,
-           'token' : self.token,
-           'store_tokens' : self.store_tokens,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

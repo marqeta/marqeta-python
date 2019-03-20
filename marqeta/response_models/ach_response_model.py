@@ -7,24 +7,7 @@ class AchResponseModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'created_time' : self.created_time,
-           'last_modified_time' : self.last_modified_time,
-           'token' : self.token,
-           'account_suffix' : self.account_suffix,
-           'verification_status' : self.verification_status,
-           'account_type' : self.account_type,
-           'name_on_account' : self.name_on_account,
-           'active' : self.active,
-           'date_sent_for_verification' : self.date_sent_for_verification,
-           'user_token' : self.user_token,
-           'business_token' : self.business_token,
-           'is_default_account' : self.is_default_account,
-           'date_verified' : self.date_verified,
-           'verification_override' : self.verification_override,
-           'verification_notes' : self.verification_notes,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):
@@ -74,7 +57,7 @@ class AchResponseModel(object):
     @property
     def date_sent_for_verification(self):
         if 'date_sent_for_verification' in self.json_response:
-                return datetime.strptime(self.json_response['date_sent_for_verification'], '%Y-%m-%dT%H:%M:%SZ').date()
+                return datetime.strptime(self.json_response['date_sent_for_verification'], '%Y-%m-%d').date()
 
     @property
     def user_token(self):
@@ -94,7 +77,7 @@ class AchResponseModel(object):
     @property
     def date_verified(self):
         if 'date_verified' in self.json_response:
-                return datetime.strptime(self.json_response['date_verified'], '%Y-%m-%dT%H:%M:%SZ').date()
+                return datetime.strptime(self.json_response['date_verified'], '%Y-%m-%d').date()
 
     @property
     def verification_override(self):

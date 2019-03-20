@@ -8,16 +8,7 @@ class CardTransitionRequest(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'card_token' : self.card_token,
-           'reason' : self.reason,
-           'reason_code' : self.reason_code,
-           'validations' : self.validations,
-           'channel' : self.channel,
-           'state' : self.state,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

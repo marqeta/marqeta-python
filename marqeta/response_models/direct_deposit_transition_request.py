@@ -7,16 +7,7 @@ class DirectDepositTransitionRequest(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'channel' : self.channel,
-           'reason' : self.reason,
-           'idempotentHash' : self.idempotentHash,
-           'direct_deposit_token' : self.direct_deposit_token,
-           'state' : self.state,
-           'reason_code' : self.reason_code,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

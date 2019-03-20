@@ -7,18 +7,7 @@ class TokenRequest(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'user_token' : self.user_token,
-           'business_token' : self.business_token,
-           'account_number' : self.account_number,
-           'cvv_number' : self.cvv_number,
-           'exp_date' : self.exp_date,
-           'zip' : self.zip,
-           'postal_code' : self.postal_code,
-           'is_default_account' : self.is_default_account,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

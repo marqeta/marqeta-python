@@ -7,30 +7,7 @@ class StoreUpdateModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'name' : self.name,
-           'active' : self.active,
-           'contact' : self.contact,
-           'contact_email' : self.contact_email,
-           'longitude' : self.longitude,
-           'latitude' : self.latitude,
-           'address1' : self.address1,
-           'address2' : self.address2,
-           'city' : self.city,
-           'state' : self.state,
-           'province' : self.province,
-           'zip' : self.zip,
-           'phone' : self.phone,
-           'country' : self.country,
-           'token' : self.token,
-           'partial_auth_flag' : self.partial_auth_flag,
-           'mid' : self.mid,
-           'network_mid' : self.network_mid,
-           'merchant_token' : self.merchant_token,
-           'partial_approval_capable' : self.partial_approval_capable,
-           'keyed_auth_cvv_enforced' : self.keyed_auth_cvv_enforced,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

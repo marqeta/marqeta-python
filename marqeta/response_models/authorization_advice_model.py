@@ -10,14 +10,7 @@ class AuthorizationAdviceModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'amount' : self.amount,
-           'network_fees' : self.network_fees,
-           'webhook' : self.webhook,
-           'original_transaction_token' : self.original_transaction_token,
-           'transaction_options' : self.transaction_options,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

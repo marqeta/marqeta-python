@@ -7,15 +7,7 @@ class DigitalWalletApplePayProvisionResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'created_time' : self.created_time,
-           'last_modified_time' : self.last_modified_time,
-           'card_token' : self.card_token,
-           'encrypted_pass_data' : self.encrypted_pass_data,
-           'activation_data' : self.activation_data,
-           'ephemeral_public_key' : self.ephemeral_public_key,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

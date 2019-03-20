@@ -8,12 +8,7 @@ class ExpirationOffset(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'unit' : self.unit,
-           'value' : self.value,
-           'min_offset' : self.min_offset,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

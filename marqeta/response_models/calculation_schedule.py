@@ -7,14 +7,7 @@ class CalculationSchedule(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'value_type' : self.value_type,
-           'name' : self.name,
-           'steps' : self.steps,
-           'step_values' : self.step_values,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

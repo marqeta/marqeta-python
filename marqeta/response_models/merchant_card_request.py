@@ -8,13 +8,7 @@ class MerchantCardRequest(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'card_product_token' : self.card_product_token,
-           'expedite' : self.expedite,
-           'metadata' : self.metadata,
-           'expiration_offset' : self.expiration_offset,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

@@ -7,12 +7,7 @@ class SelectiveAuth(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'sa_mode' : self.sa_mode,
-           'enable_regex_search_chain' : self.enable_regex_search_chain,
-           'dmd_location_sensitivity' : self.dmd_location_sensitivity,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

@@ -8,16 +8,7 @@ class BalanceCacheModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'account' : self.account,
-           'balance' : self.balance,
-           'layers' : self.layers,
-           'user_token' : self.user_token,
-           'created_time' : self.created_time,
-           'last_modified_time' : self.last_modified_time,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

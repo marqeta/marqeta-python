@@ -8,15 +8,7 @@ class BusinessIncorporationRequestModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'is_public' : self.is_public,
-           'stock_symbol' : self.stock_symbol,
-           'state_of_incorporation' : self.state_of_incorporation,
-           'name_registered_under' : self.name_registered_under,
-           'address_registered_under' : self.address_registered_under,
-           'incorporation_type' : self.incorporation_type,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

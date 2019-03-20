@@ -7,15 +7,7 @@ class ClearingRetryModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'original_failed_transaction_token' : self.original_failed_transaction_token,
-           'new_network_reference' : self.new_network_reference,
-           'new_approval_code' : self.new_approval_code,
-           'new_stan' : self.new_stan,
-           'find_original_window_days' : self.find_original_window_days,
-           'new_processing_code' : self.new_processing_code,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

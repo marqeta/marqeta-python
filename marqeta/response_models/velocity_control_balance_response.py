@@ -10,24 +10,7 @@ class VelocityControlBalanceResponse(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'token' : self.token,
-           'name' : self.name,
-           'association' : self.association,
-           'merchant_scope' : self.merchant_scope,
-           'usage_limit' : self.usage_limit,
-           'approvals_only' : self.approvals_only,
-           'include_purchases' : self.include_purchases,
-           'include_withdrawals' : self.include_withdrawals,
-           'include_transfers' : self.include_transfers,
-           'include_cashback' : self.include_cashback,
-           'currency_code' : self.currency_code,
-           'amount_limit' : self.amount_limit,
-           'velocity_window' : self.velocity_window,
-           'active' : self.active,
-           'available' : self.available,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

@@ -18,57 +18,7 @@ class AdvAuthRequestModel(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'mti' : self.mti,
-           'network' : self.network,
-           'sub_network' : self.sub_network,
-           'is_router_simulator' : self.is_router_simulator,
-           'network_reference_id' : self.network_reference_id,
-           'local_transaction_date' : self.local_transaction_date,
-           'transaction_date' : self.transaction_date,
-           'settlement_date' : self.settlement_date,
-           'stan' : self.stan,
-           'rrn' : self.rrn,
-           'processing_code' : self.processing_code,
-           'function_code' : self.function_code,
-           'reason_code' : self.reason_code,
-           'acquirer_reference_id' : self.acquirer_reference_id,
-           'forwarding_institution_id' : self.forwarding_institution_id,
-           'local_transaction_amount' : self.local_transaction_amount,
-           'local_currency_code' : self.local_currency_code,
-           'settlement_amount' : self.settlement_amount,
-           'cardholder_billing_amount' : self.cardholder_billing_amount,
-           'cardholder_billing_conversion_rate' : self.cardholder_billing_conversion_rate,
-           'cardholder_billing_currency' : self.cardholder_billing_currency,
-           'settlement_currency_code' : self.settlement_currency_code,
-           'approval_code' : self.approval_code,
-           'network_response' : self.network_response,
-           'stan_padding_length' : self.stan_padding_length,
-           'card_token' : self.card_token,
-           'amount' : self.amount,
-           'cash_back_amount' : self.cash_back_amount,
-           'mid' : self.mid,
-           'pin' : self.pin,
-           'pos_pan_entry_mode' : self.pos_pan_entry_mode,
-           'acquirer_fee_amount' : self.acquirer_fee_amount,
-           'stip_reason_code' : self.stip_reason_code,
-           'is_recurring' : self.is_recurring,
-           'network_fees' : self.network_fees,
-           'card_acceptor' : self.card_acceptor,
-           'transaction_options' : self.transaction_options,
-           'original_data_elements' : self.original_data_elements,
-           'replacement_amount' : self.replacement_amount,
-           'webhook' : self.webhook,
-           'digital_wallet_token' : self.digital_wallet_token,
-           'digital_wallet_token_device_info' : self.digital_wallet_token_device_info,
-           'digital_wallet_token_wallet_provider_info' : self.digital_wallet_token_wallet_provider_info,
-           'raw_iso_fields' : self.raw_iso_fields,
-           'cavv_result_code' : self.cavv_result_code,
-           'card_options' : self.card_options,
-           'poi' : self.poi,
-           'is_stip_approval' : self.is_stip_approval,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):

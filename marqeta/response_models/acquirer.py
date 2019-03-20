@@ -7,14 +7,7 @@ class Acquirer(object):
         self.json_response = json_response
 
     def __str__(self):
-        dict = {
-           'institution_country' : self.institution_country,
-           'network_international_id' : self.network_international_id,
-           'institution_id_code' : self.institution_id_code,
-           'retrieval_reference_number' : self.retrieval_reference_number,
-           'system_trace_audit_number' : self.system_trace_audit_number,
-         }
-        return json.dumps(dict, default=self.json_serial)
+        return json.dumps(self.json_response, default=self.json_serial)
 
     @staticmethod
     def json_serial(o):
