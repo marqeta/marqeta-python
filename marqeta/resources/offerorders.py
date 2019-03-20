@@ -2,7 +2,7 @@ from marqeta.resources.collection import Collection
 from marqeta.response_models.offer_order_response import OfferOrderResponse
 
 
-class OfferordersCollection(object):
+class OfferOrdersCollection(object):
     _endpoint = 'offerorders'
 
     def __init__(self, client):

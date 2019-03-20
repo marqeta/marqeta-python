@@ -2,7 +2,7 @@ from marqeta.resources.collection import Collection
 from marqeta.response_models.account_holder_group_response import AccountHolderGroupResponse
 
 
-class AccountholdergroupsCollection(object):
+class AccountHolderGroupsCollection(object):
     _endpoint = 'accountholdergroups'
 
     def __init__(self, client):
@@ -10,11 +10,14 @@ class AccountholdergroupsCollection(object):
         self.collections = Collection(self.client, AccountHolderGroupResponse)
 
     def stream(self, params=None):
-        return self.collections.stream(endpoint=self._endpoint, query_params=params)
+        query_params = {'count': 10}
+        if params is not None:
+            query_params.update(params)
+        return self.collections.stream(endpoint=self._endpoint, query_params=query_params)
 
     ''' Lists all the accountholdergroups  Returns list of all accountholdergroups object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         query_params = {'count': 10}
         if params is not None:
             query_params.update(params)

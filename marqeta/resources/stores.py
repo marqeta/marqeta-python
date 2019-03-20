@@ -14,7 +14,7 @@ class StoresCollection(object):
 
     ''' Lists all the stores  Returns list of all stores object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a stores with the specified data

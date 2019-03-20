@@ -3,7 +3,7 @@ from marqeta.response_models.push_to_card_disbursement_response import PushToCar
 from marqeta.response_models.push_to_card_response import PushToCardResponse
 
 
-class PushtocardsCollection(object):
+class PushToCardsCollection(object):
 
     def __init__(self, client):
         self.client = client
@@ -25,7 +25,7 @@ class PushtocardsDisburseCollection(object):
 
     ''' Lists all the pushtocards/disburse  Returns list of all pushtocards/disburse object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections_disburse.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a pushtocards/disburse with the specified data
@@ -65,7 +65,7 @@ class PushtocardsPaymentcardCollection(object):
 
     ''' Lists all the pushtocards/paymentcard  Returns list of all pushtocards/paymentcard object '''
 
-    def list_for_user(self, token, params=None, limit=float('inf')):
+    def list_for_user(self, token, params=None, limit=None):
         query_params = {'user_token': token}
         if params is not None:
             query_params.update(params)

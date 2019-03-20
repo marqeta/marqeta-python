@@ -2,7 +2,7 @@ from marqeta.resources.collection import Collection
 from marqeta.response_models.velocity_control_response import VelocityControlResponse
 
 
-class VelocitycontrolsCollection(object):
+class VelocityControlsCollection(object):
     _endpoint = 'velocitycontrols'
 
     def __init__(self, client):
@@ -14,7 +14,7 @@ class VelocitycontrolsCollection(object):
 
     ''' Lists all the velocitycontrols  Returns list of all velocitycontrols object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     def stream_available_for_user(self, token, params=None):
@@ -23,7 +23,7 @@ class VelocitycontrolsCollection(object):
 
     ''' Lists all the velocitycontrols  Returns list of all velocitycontrols object '''
 
-    def list_available_for_user(self, token, params=None, limit=float('inf')):
+    def list_available_for_user(self, token, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint + '/user/{}/available'.format(token), query_params=params,
                                      limit=limit)
 

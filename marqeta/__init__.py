@@ -1,39 +1,38 @@
 from __future__ import absolute_import, division, print_function
-
 from marqeta.errors import MarqetaError
 from marqeta.resources.users import UsersCollection
 from marqeta.resources.cardproducts import CardProductCollection
 from marqeta.resources.cards import CardsCollection
-from marqeta.resources.gpa_order import GpaCollection
-from marqeta.resources.funding_sources import FundingSourcesCollection
+from marqeta.resources.gpaorder import GpaOrderCollection
+from marqeta.resources.fundingsources import FundingSourcesCollection
 from marqeta.resources.businesses import BusinessesCollection
-from marqeta.resources.accepted_countries import AcceptedcountriesCollection
-from marqeta.resources.account_holder_groups import AccountholdergroupsCollection
-from marqeta.resources.digitalwallettokens import DigitalwallettokensCollection
-from marqeta.resources.authcontrols import AuthcontrolsCollection
-from marqeta.resources.autoreloads import AutoreloadsCollection
+from marqeta.resources.acceptedcountries import AcceptedCountriesCollection
+from marqeta.resources.accountholdergroups import AccountHolderGroupsCollection
+from marqeta.resources.digitalwallettokens import DigitalWalletTokensCollection
+from marqeta.resources.authcontrols import AuthControlsCollection
+from marqeta.resources.autoreloads import AutoReloadsCollection
 from marqeta.resources.kyc import KycCollection
 from marqeta.resources.balances import BalancesTokenCollection
-from marqeta.resources.msaorders import MsaordersCollection
-from marqeta.resources.offerorders import OfferordersCollection
-from marqeta.resources.bulkissuances import BulkissuancesCollection
+from marqeta.resources.msaorders import MsaOrdersCollection
+from marqeta.resources.offerorders import OfferOrdersCollection
+from marqeta.resources.bulkissuances import BulkIssuancesCollection
 from marqeta.resources.campaigns import CampaignsCollection
 from marqeta.resources.chargebacks import ChargebacksCollection
-from marqeta.resources.commandomodes import CommandomodesCollection
-from marqeta.resources.directdeposits import DirectdepositsCollection
+from marqeta.resources.commandomodes import CommandoModesCollection
+from marqeta.resources.directdeposits import DirectDepositsCollection
 from marqeta.resources.fees import FeesCollection
-from marqeta.resources.feetransfers import FeetransfersCollection
-from marqeta.resources.mccgroups import MccgroupsCollection
+from marqeta.resources.feetransfers import FeeTransfersCollection
+from marqeta.resources.mccgroups import MccGroupsCollection
 from marqeta.resources.merchants import MerchantsCollection
-from marqeta.resources.offerorders import OfferordersCollection
+from marqeta.resources.offerorders import OfferOrdersCollection
 from marqeta.resources.offers import OffersCollection
-from marqeta.resources.programtransfers import ProgramtransfersCollection
-from marqeta.resources.realtimefeegroups import RealtimefeegroupsCollection
+from marqeta.resources.programtransfers import ProgramTransfersCollection
+from marqeta.resources.realtimefeegroups import RealTimeFeeGroupsCollection
 from marqeta.resources.stores import StoresCollection
 from marqeta.resources.transactions import TransactionsCollection
-from marqeta.resources.velocitycontrols import VelocitycontrolsCollection
+from marqeta.resources.velocitycontrols import VelocityControlsCollection
 from marqeta.resources.webhooks import WebhooksCollection
-from marqeta.resources.pushtocards import PushtocardsCollection
+from marqeta.resources.pushtocards import PushToCardsCollection
 from marqeta.resources.pins import PinsCollection
 from marqeta.response_models.ping_response import PingResponse
 from marqeta.response_models.echo_ping_response import EchoPingResponse
@@ -140,10 +139,9 @@ class Client(object):
 
     def ping(self, **kwargs):
         if kwargs:
-            data = {'token': kwargs['token'], 'payload': kwargs['payload']}
-            return EchoPingResponse(Client.post(self, endpoint='ping', data=data)[0])
-
-        return PingResponse(Client.get(self, endpoint='ping')[0])
+            data = {key: kwargs[key] for key in kwargs}
+            return EchoPingResponse(self.post('ping',data)[0])
+        return PingResponse(self.get('ping')[0])
 
     def _objects_container(self):
         """
@@ -171,7 +169,7 @@ class Client(object):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class GpaWrapper(GpaCollection):
+        class GpaOrderWrapper(GpaOrderCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
@@ -189,25 +187,25 @@ class Client(object):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class AcceptedcountriesWrapper(AcceptedcountriesCollection):
+        class AcceptedCountriesWrapper(AcceptedCountriesCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class AccountHolderWrapper(AccountholdergroupsCollection):
+        class AccountHolderWrapper(AccountHolderGroupsCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class AuthcontrolsWrapper(AuthcontrolsCollection):
+        class AuthControlsWrapper(AuthControlsCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class AutoreloadWrapper(AutoreloadsCollection):
+        class AutoreloadWrapper(AutoReloadsCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
@@ -225,31 +223,31 @@ class Client(object):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class MsaordersWrapper(MsaordersCollection):
+        class MsaOrdersWrapper(MsaOrdersCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class OfferOrderWrapper(OfferordersCollection):
+        class OfferOrderWrapper(OfferOrdersCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class DigitalWrapper(DigitalwallettokensCollection):
+        class DigitalWrapper(DigitalWalletTokensCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class VelocityWrapper(VelocitycontrolsCollection):
+        class VelocityWrapper(VelocityControlsCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class MccWrapper(MccgroupsCollection):
+        class MccWrapper(MccGroupsCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
@@ -267,13 +265,13 @@ class Client(object):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class FeeTransferWrapper(FeetransfersCollection):
+        class FeeTransferWrapper(FeeTransfersCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class ProgramTransferWrapper(ProgramtransfersCollection):
+        class ProgramTransferWrapper(ProgramTransfersCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
@@ -285,7 +283,7 @@ class Client(object):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class DirectDepositWrapper(DirectdepositsCollection):
+        class DirectDepositWrapper(DirectDepositsCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
@@ -315,13 +313,13 @@ class Client(object):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class CommandomodesWrapper(CommandomodesCollection):
+        class CommandoModesWrapper(CommandoModesCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class RealtimeFeeGroupWrapper(RealtimefeegroupsCollection):
+        class RealtimeFeeGroupWrapper(RealTimeFeeGroupsCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
@@ -333,13 +331,13 @@ class Client(object):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class BulkissuancesWrapper(BulkissuancesCollection):
+        class BulkIssuancesWrapper(BulkIssuancesCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
 
-        class PushtocardsWrapper(PushtocardsCollection):
+        class PushToCardsWrapper(PushToCardsCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
@@ -355,16 +353,16 @@ class Client(object):
         return {'users': UsersWrapper,
                 'card_products': CardProductWrapper,
                 'cards': CardsWrapper,
-                'gpa_orders': GpaWrapper,
+                'gpa_orders': GpaOrderWrapper,
                 'funding_sources': FundingWrapper,
                 'businesses': BusinessWrapper,
-                'accepted_countries': AcceptedcountriesWrapper,
+                'accepted_countries': AcceptedCountriesWrapper,
                 'account_holder_groups': AccountHolderWrapper,
-                'auth_controls': AuthcontrolsWrapper,
+                'auth_controls': AuthControlsWrapper,
                 'auto_reloads': AutoreloadWrapper,
                 'kyc': KycWrapper,
                 'balances': BalancesTokenWrapper,
-                'msa_orders': MsaordersWrapper,
+                'msa_orders': MsaOrdersWrapper,
                 'offer_orders': OfferOrderWrapper,
                 'digital_wallet_tokens': DigitalWrapper,
                 'velocity_controls': VelocityWrapper,
@@ -381,9 +379,9 @@ class Client(object):
                 'campaigns': CampaignsWrapper,
                 'offers': OffersWrapper,
                 'real_time_fee_groups': RealtimeFeeGroupWrapper,
-                'commando_modes': CommandomodesWrapper,
-                'bulk_issuances': BulkissuancesWrapper,
-                'push_to_cards': PushtocardsWrapper,
+                'commando_modes': CommandoModesWrapper,
+                'bulk_issuances': BulkIssuancesWrapper,
+                'push_to_cards': PushToCardsWrapper,
                 'pins': PinsWrapper
 
                 }

@@ -3,7 +3,7 @@ from marqeta.response_models.msa_order_response import MsaOrderResponse
 from marqeta.response_models.msa_returns import MsaReturns
 
 
-class MsaordersCollection(object):
+class MsaOrdersCollection(object):
     _endpoint = 'msaorders'
 
     def __init__(self, client):
@@ -41,7 +41,7 @@ class MsaordersUnloadsCollection(object):
 
     ''' Lists all the msaorders/unloads  Returns list of all msaorders/unloads object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a msaorders/unloads with the specified data

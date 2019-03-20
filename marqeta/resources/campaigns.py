@@ -18,7 +18,7 @@ class CampaignsCollection(object):
 
     ''' Lists all the campaigns  Returns list of all campaigns object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a campaigns with the specified data
@@ -57,7 +57,7 @@ class CampaignsContext(CampaignsCollection):
             self.token = token
             self.collection = collection
 
-        def list(self, params=None, limit=float('inf')):
+        def list(self, params=None, limit=None):
             return self.collection.list(endpoint=self._endpoint.format(self.token), query_params=params,
                                         limit=limit)
 

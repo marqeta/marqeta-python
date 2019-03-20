@@ -6,7 +6,7 @@ from marqeta.response_models.gpa_response import GpaResponse
 from marqeta.response_models.gpa_returns import GpaReturns
 
 
-class GpaCollection(object):
+class GpaOrderCollection(object):
 
     _endpoint = 'gpaorders'
 
@@ -37,7 +37,7 @@ class Unloads(object):
     def stream(self, params = None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     def create(self, data = {}):

@@ -29,7 +29,7 @@ class BusinessesCollection(object):
         return self.collections_business_model.stream(endpoint=self._endpoint, query_params=params)
 
     ''' Lists all the businesses Returns list of all business object '''
-    def list(self, params=None, limit = float('inf')):
+    def list(self, params=None, limit = None):
         return self.collections_business_model.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Creates a business user with the specified data
@@ -51,8 +51,20 @@ class BusinessesCollection(object):
     ''' Looks for the user information based on the specified data
         Returns UserResource object of list of the matched users for the data '''
     def look_up(self, data, params = None):
-        response = self.client.post(self._endpoint+'/lookup', data, query_params=params)[0]
-        return [BusinessCardHolderModel(response['data'][val]) for val in range(response['count'])]
+        query_params = {'count': 100, 'start_index': 0}
+        if params is not None:
+            query_params.update(params)
+        look_up_data = []
+        while True:
+            response = self.client.post(self._endpoint + '/lookup', data, query_params=query_params)[0]
+            if response['is_more'] is False:
+                for val in range(response['count']):
+                    look_up_data.append(CardHolderModel(response['data'][val]))
+                break
+            for val in range(response['count']):
+                look_up_data.append(CardHolderModel(response['data'][val]))
+            query_params['start_index'] = query_params['start_index'] + query_params['count']
+        return look_up_data
 
     def __repr__(self):
         return '<Marqeta.resources.businesses.BusinessesCollection>'
@@ -82,7 +94,7 @@ class BusinessContext(BusinessesCollection):
             self.token = token
             self.collection = collection
 
-        def list(self, params= None, limit = float('inf')):
+        def list(self, params= None, limit = None):
             return self.collection.list(query_params=params,
                                         endpoint='businesses/{}/children'.format(self.token), limit = limit)
 
@@ -97,7 +109,7 @@ class BusinessContext(BusinessesCollection):
             self.collection = collection
             self.client = client
 
-        def list(self,params= None, limit = float('inf')):
+        def list(self,params= None, limit = None):
             return self.collection.list(endpoint=self._endpoint.format(self.token), query_params=params, limit = limit)
 
         def create(self, data):
@@ -118,7 +130,7 @@ class BusinessContext(BusinessesCollection):
             self.token = token
             self.collection = collection
 
-        def list(self, params= None, limit = float('inf')):
+        def list(self, params= None, limit = None):
             return self.collection.list(query_params=params,
                                         endpoint=self._endpoint+'/business/{}'.format(self.token),limit = limit)
 

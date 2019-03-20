@@ -2,7 +2,7 @@ from marqeta.resources.collection import Collection
 from marqeta.response_models.auto_reload_response_model import AutoReloadResponseModel
 
 
-class AutoreloadsCollection(object):
+class AutoReloadsCollection(object):
     _endpoint = 'autoreloads'
 
     def __init__(self, client):
@@ -10,12 +10,18 @@ class AutoreloadsCollection(object):
         self.collections = Collection(self.client, AutoReloadResponseModel)
 
     def stream(self, params=None):
-        return self.collections.stream(endpoint=self._endpoint, query_params=params)
+        query_params = {'count': 10}
+        if params is not None:
+            query_params.update(params)
+        return self.collections.stream(endpoint=self._endpoint, query_params=query_params)
 
     ''' Lists all the autoreloads  Returns list of all autoreloads object '''
 
-    def list(self, params=None, limit=float('inf')):
-        return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
+    def list(self, params=None, limit=None):
+        query_params = {'count': 10}
+        if params is not None:
+            query_params.update(params)
+        return self.collections.list(endpoint=self._endpoint, query_params=query_params, limit=limit)
 
     ''' Create a autoreloads with the specified data
             Returns the card product object which has created autoreloads information'''

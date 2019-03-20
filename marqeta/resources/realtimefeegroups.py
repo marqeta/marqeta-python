@@ -2,7 +2,7 @@ from marqeta.resources.collection import Collection
 from marqeta.response_models.real_time_fee_group import RealTimeFeeGroup
 
 
-class RealtimefeegroupsCollection(object):
+class RealTimeFeeGroupsCollection(object):
     _endpoint = 'realtimefeegroups'
 
     def __init__(self, client):
@@ -14,7 +14,7 @@ class RealtimefeegroupsCollection(object):
 
     ''' Lists all the realtimefeegroups  Returns list of all realtimefeegroups object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a realtimefeegroups with the specified data

@@ -17,7 +17,7 @@ class TransactionsCollection(object):
 
     ''' Lists all the transactions  Returns list of all transactions object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a transactions with the specified data
@@ -28,7 +28,7 @@ class TransactionsCollection(object):
 
     ''' Lists all the transactions  Returns list of all transactions object '''
 
-    def list_for_funding_source(self, token, params=None, limit=float('inf')):
+    def list_for_funding_source(self, token, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint + '/fundingsource/{}'.format(token), query_params=params,
                                      limit=limit)
 
@@ -58,5 +58,5 @@ class TranscationContext(TransactionsCollection):
 
         ''' Lists all the transactions  Returns list of all transactions object '''
 
-        def list(self, params=None, limit=float('inf')):
+        def list(self, params=None, limit=None):
             return self.collections.list(endpoint=self._endpoint.format(self.token), query_params=params, limit=limit)

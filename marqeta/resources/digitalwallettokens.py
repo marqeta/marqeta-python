@@ -4,7 +4,7 @@ from marqeta.response_models.digital_wallet_token_transition_response import Dig
 from marqeta.response_models.digital_wallet_token import DigitalWalletToken
 
 
-class DigitalwallettokensCollection(object):
+class DigitalWalletTokensCollection(object):
     _endpoint = 'digitalwallettokens'
 
     def __init__(self, client):
@@ -22,7 +22,7 @@ class DigitalwallettokensCollection(object):
 
     ''' Lists all the cards Returns list of all card object based on last_four number of card'''
 
-    def list(self, params={}, limit=float('inf')):
+    def list(self, params={}, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     def stream_for_card(self, user_token, params=None):
@@ -30,7 +30,7 @@ class DigitalwallettokensCollection(object):
 
     ''' Lists all the cards Returns list of all card object based on user token '''
 
-    def list_for_card(self, user_token, params=None, limit=float('inf')):
+    def list_for_card(self, user_token, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint + "/card/{}".format(user_token), query_params=params,
                                      limit=limit)
 
@@ -48,7 +48,7 @@ class DigitalwallettokensCollection(object):
         return '<Marqeta.resources.digitalwallettokens.DigitalwallettokensCollection>'
 
 
-class DigitalContext(DigitalwallettokensCollection):
+class DigitalContext(DigitalWalletTokensCollection):
 
     def __init__(self, token, client):
         super(DigitalContext, self).__init__(client)

@@ -2,7 +2,7 @@ from marqeta.resources.collection import Collection
 from marqeta.response_models.accepted_countries_model import AcceptedCountriesModel
 
 
-class AcceptedcountriesCollection(object):
+class AcceptedCountriesCollection(object):
     _endpoint = 'acceptedcountries'
 
     def __init__(self, client):
@@ -14,7 +14,7 @@ class AcceptedcountriesCollection(object):
 
     ''' Lists all the acceptedcountries  Returns list of all acceptedcountries object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a acceptedcountries with the specified data

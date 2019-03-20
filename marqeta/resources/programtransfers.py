@@ -3,7 +3,7 @@ from marqeta.response_models.program_transfer_response import ProgramTransferRes
 from marqeta.response_models.program_transfer_type_reponse import ProgramTransferTypeReponse
 
 
-class ProgramtransfersCollection(object):
+class ProgramTransfersCollection(object):
     _endpoint = 'programtransfers'
 
     def __init__(self, client):
@@ -16,7 +16,7 @@ class ProgramtransfersCollection(object):
 
     ''' Lists all the programtransfers  Returns list of all programtransfers object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a programtransfers with the specified data
@@ -46,7 +46,7 @@ class Types(object):
 
     ''' Lists all the programtransfers/types  Returns list of all programtransfers/types object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a programtransfers/types with the specified data

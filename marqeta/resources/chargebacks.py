@@ -18,7 +18,7 @@ class ChargebacksCollection(object):
 
     ''' Lists all the chargebacks  Returns list of all chargebacks object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a chargebacks with the specified data

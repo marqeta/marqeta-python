@@ -14,7 +14,7 @@ class OffersCollection(object):
 
     ''' Lists all the offers  Returns list of all offers object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a offers with the specified data

@@ -2,7 +2,7 @@ from marqeta.resources.collection import Collection
 from marqeta.response_models.fee_transfer_response import FeeTransferResponse
 
 
-class FeetransfersCollection(object):
+class FeeTransfersCollection(object):
 
     _endpoint = 'feetransfers'
 

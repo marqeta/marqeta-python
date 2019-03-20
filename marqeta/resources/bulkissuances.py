@@ -2,7 +2,7 @@ from marqeta.resources.collection import Collection
 from marqeta.response_models.bulk_issuance_response import BulkIssuanceResponse
 
 
-class BulkissuancesCollection(object):
+class BulkIssuancesCollection(object):
     _endpoint = 'bulkissuances'
 
     def __init__(self, client):
@@ -14,7 +14,7 @@ class BulkissuancesCollection(object):
 
     ''' Lists all the bulkissuances  Returns list of all bulkissuances object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a bulkissuances with the specified data

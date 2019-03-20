@@ -2,7 +2,7 @@ from marqeta.resources.collection import Collection
 from marqeta.response_models.mcc_group_model import MccGroupModel
 
 
-class MccgroupsCollection(object):
+class MccGroupsCollection(object):
     _endpoint = 'mccgroups'
 
     def __init__(self, client):
@@ -14,7 +14,7 @@ class MccgroupsCollection(object):
 
     ''' Lists all the mccgroups  Returns list of all mccgroups object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a mccgroups with the specified data

@@ -3,7 +3,7 @@ from marqeta.response_models.auth_control_response import AuthControlResponse
 from marqeta.response_models.auth_control_exempt_mids_response import AuthControlExemptMidsResponse
 
 
-class AuthcontrolsCollection(object):
+class AuthControlsCollection(object):
     _endpoint = 'authcontrols'
 
     def __init__(self, client):
@@ -16,7 +16,7 @@ class AuthcontrolsCollection(object):
 
     ''' Lists all the authcontrols  Returns list of all authcontrols object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a authcontrols with the specified data
@@ -53,7 +53,7 @@ class AuthcontrolsExemptmidsCollection(object):
 
     ''' Lists all the authcontrols/exemptmids  Returns list of all authcontrols/exemptmids object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a authcontrols/exemptmids with the specified data

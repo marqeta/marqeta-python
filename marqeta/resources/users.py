@@ -25,8 +25,9 @@ class UsersCollection(object):
     def stream(self, params=None):
         return self.collections_cardmodel.stream(endpoint=self._endpoint, query_params=params)
 
-    ''' Lists all the users Returns list of all user object '''
-    def list(self, params=None, limit = float('inf')):
+    ''' Lists 1000 users objects by default until unless specified  '''
+
+    def list(self, params=None, limit = 1000):
         return self.collections_cardmodel.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Creates a user with the specified data
@@ -48,8 +49,20 @@ class UsersCollection(object):
     ''' Looks for the user information based on the specified data
         Returns UserResource object of list of the matched users for the data '''
     def look_up(self, data, params = None):
-        response = self.client.post(self._endpoint+'/lookup', data, query_params=params)[0]
-        return [CardHolderModel(response['data'][val]) for val in range(response['count'])]
+        query_params = {'count': 100, 'start_index': 0}
+        if params is not None:
+            query_params.update(params)
+        look_up_data = []
+        while True:
+            response = self.client.post(self._endpoint + '/lookup', data, query_params=query_params)[0]
+            if response['is_more'] is False:
+                for val in range(response['count']):
+                    look_up_data.append(CardHolderModel(response['data'][val]) )
+                break
+            for val in range(response['count']):
+                look_up_data.append(CardHolderModel(response['data'][val]))
+            query_params['start_index'] = query_params['start_index'] + query_params['count']
+        return look_up_data
 
     def __repr__(self):
         return '<Marqeta.resources.users.UsersCollection>'
@@ -79,7 +92,7 @@ class UserContext(UsersCollection):
             self.token = token
             self.collection = collection
 
-        def list(self, params = None,limit=float('inf')):
+        def list(self, params = None,limit=None):
             return self.collection.list(endpoint='users/{}/children'.format(self.token),
                                         query_params=params,limit=limit)
 
@@ -91,7 +104,7 @@ class UserContext(UsersCollection):
             self.token = token
             self.collection = collection
 
-        def list(self, params= None,limit=float('inf')):
+        def list(self, params= None,limit=None):
             return self.collection.list(endpoint=self._endpoint.format(self.token), query_params=params,
                                         limit =limit)
 
@@ -113,7 +126,7 @@ class UserContext(UsersCollection):
             self.token = token
             self.collection = collection
 
-        def list(self, params= None,limit=float('inf')):
+        def list(self, params= None,limit=None):
             return self.collection.list(endpoint=self._endpoint+'/user/{}'.format(self.token),query_params=params,
                                         limit = limit)
 

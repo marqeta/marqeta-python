@@ -14,7 +14,7 @@ class BalancesTokenCollection(object):
 
     ''' Lists all the balances/{token}  Returns list of all balances/{token} object '''
 
-    def list_msas_for_user_or_business(self, token, params=None, limit=float('inf')):
+    def list_msas_for_user_or_business(self, token, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint+'/{}/msas'.format(token), query_params=params, limit=limit)
 
     ''' Finds the balances/{token} information for the requested token

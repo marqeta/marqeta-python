@@ -4,7 +4,7 @@ from marqeta.response_models.deposit_deposit_response import DepositDepositRespo
 from marqeta.response_models.deposit_account import DepositAccount
 from marqeta.response_models.direct_deposit_transition_response import DirectDepositTransitionResponse
 
-class DirectdepositsCollection(object):
+class DirectDepositsCollection(object):
 
     _endpoint = 'directdeposits'
 
@@ -14,13 +14,13 @@ class DirectdepositsCollection(object):
         self.accounts = Accounts(Collection(self.client, DepositAccount))
 
     def __call__(self, token):
-        return DirectdepositsContext(token, self.client)
+        return DirectDepositsContext(token, self.client)
 
     def stream(self, params = None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
     ''' Lists all the directdeposits  Returns list of all directdeposits object '''
-    def list(self, params=None, limit = float('inf')):
+    def list(self, params=None, limit = None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Finds the directdeposits information for the requested token
@@ -50,10 +50,10 @@ class Accounts(object):
         return '<Marqeta.resources.directdeposits.Accounts>'
 
 
-class DirectdepositsContext(DirectdepositsCollection):
+class DirectDepositsContext(DirectDepositsCollection):
 
     def __init__(self, token, client):
-        super(DirectdepositsContext, self).__init__(client)
+        super(DirectDepositsContext, self).__init__(client)
         self.token = token
         self.transitions = self.Transitions(self.token, Collection(client, DirectDepositTransitionResponse))
 
@@ -66,11 +66,11 @@ class DirectdepositsContext(DirectdepositsCollection):
             self.token = token
             self.collection = collection
 
-        def stream(self, params= None,limit=float('inf')):
+        def stream(self, params= None,limit=None):
             return self.collection.stream(endpoint=self._endpoint,query_params=params,
                                         limit = limit)
 
-        def list(self, params= None,limit=float('inf')):
+        def list(self, params= None,limit=None):
             query_params = {'sort_by': '-id', 'count': 5, 'start_index': 0}
             if params is not None:
                 query_params.update(params)

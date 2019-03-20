@@ -14,7 +14,7 @@ class FeesCollection(object):
 
     ''' Lists all the fees  Returns list of all fees object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a fees with the specified data

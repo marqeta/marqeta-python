@@ -18,7 +18,7 @@ class WebhooksCollection(object):
 
     ''' Lists all the webhooks  Returns list of all webhooks object '''
 
-    def list(self, params=None, limit=float('inf')):
+    def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a webhooks with the specified data
