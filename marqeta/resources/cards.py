@@ -68,8 +68,8 @@ class CardsCollection(object):
 
     ''' Finds the card information for the requested card token
                 Returns the card object which has card information '''
-    def create_for_merchant(self,token, params=None):
-        return self.collections_card_response.create(endpoint= self._endpoint+'/merchant/{}'.format(token), query_params=params)
+    def create_for_merchant(self,token, data):
+        return self.collections_card_response.create(endpoint= self._endpoint+'/merchant/{}'.format(token),data=data)
 
     ''' Finds the card information for the requested card token
                 Returns the card object which has card information '''

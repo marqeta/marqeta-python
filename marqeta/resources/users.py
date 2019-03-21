@@ -22,6 +22,7 @@ class UsersCollection(object):
         return UserContext(token, self.client)
     ''' Iterates through users
         returns user object one at a time'''
+
     def stream(self, params=None):
         return self.collections_cardmodel.stream(endpoint=self._endpoint, query_params=params)
 
