@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.avs_controls import AvsControls
 import json
 
+
 class TransactionControls(object):
 
     def __init__(self, json_response):
@@ -34,6 +35,11 @@ class TransactionControls(object):
     def allow_gpa_auth(self):
         if 'allow_gpa_auth' in self.json_response:
             return self.json_response['allow_gpa_auth']
+
+    @property
+    def allow_chip_fallback(self):
+        if 'allow_chip_fallback' in self.json_response:
+            return self.json_response['allow_chip_fallback']
 
     @property
     def require_card_not_present_card_security_code(self):
@@ -81,4 +87,4 @@ class TransactionControls(object):
             return AvsControls(self.json_response['address_verification'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.transaction_controls.TransactionControls>'
+        return '<Marqeta.response_models.transaction_controls.TransactionControls>'

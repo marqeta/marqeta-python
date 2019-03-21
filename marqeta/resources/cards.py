@@ -54,7 +54,7 @@ class CardsCollection(object):
     ''' Finds the card information for the requested barcode
                 Returns the card object which has card information '''
     def find_by_barcode(self,barcode, params=None):
-        return self.collections_card_response.find(endpoint= self._endpoint+'/find_by_barcode/{}'.format(barcode), query_params=params)
+        return self.collections_card_response.find(endpoint= self._endpoint+'/barcode/{}'.format(barcode), query_params=params)
 
     ''' Finds the card information for the requested card token
                 Returns the card object which has card information '''
@@ -73,13 +73,14 @@ class CardsCollection(object):
 
     ''' Finds the card information for the requested card token
                 Returns the card object which has card information '''
-    def tokens_for_pan(self,pan):
+    def tokens_for_pan(self,pan_token):
+        pan = {'pan': pan_token}
         return self.collections_pan_response.create(endpoint= self._endpoint+'/getbypan', data=pan)
 
     ''' Update the card information for the requested token  with the data
                 Returns the card object which has updated card information'''
     def save(self, token, data):
-        return self.collections_card_response.save(data, endpoint=self._endpoint+'/{}'.format(token),)
+        return self.collections_card_response.save(data, endpoint=self._endpoint+'/{}'.format(token))
 
     def __repr__(self):
         return '<Marqeta.resources.cards.CardsCollection>'

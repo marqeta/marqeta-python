@@ -81,7 +81,7 @@ class UserContext(UsersCollection):
 
     def ssn(self, full_ssn=False):
         response = self.client.get('users/{}/ssn'.format(self.token), query_params = {'full_name': full_ssn})[0]
-        return SsnResponseModel(response['ssn'])
+        return SsnResponseModel(response)
 
     def __repr__(self):
         return '<Marqeta.resources.users.UserContext>'
