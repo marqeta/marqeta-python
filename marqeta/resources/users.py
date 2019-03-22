@@ -89,7 +89,7 @@ class UserContext(UsersCollection):
     ''' for 'client.users({token).ssn()' -- user can specify to get full ssn '''
 
     def ssn(self, full_ssn=False):
-        response = self.client.get('users/{}/ssn'.format(self.token), query_params={'full_name': full_ssn})[0]
+        response = self.client.get('users/{}/ssn'.format(self.token), query_params={'full_ssn': full_ssn})[0]
         return SsnResponseModel(response)
 
     def __repr__(self):

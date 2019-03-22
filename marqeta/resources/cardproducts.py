@@ -21,7 +21,7 @@ class CardProductCollection(object):
     def stream(self, params = None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
-    ''' Lists all the 1000 card products  '''
+    ''' Lists all the 25 card products  '''
     def list(self, params=None, limit = 25):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
