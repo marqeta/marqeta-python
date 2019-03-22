@@ -13,6 +13,9 @@ class MerchantsCollection(object):
     def __call__(self, token):
         return MerchantContext(token, self.client)
 
+    def page(self, params=None):
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
+
     def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
@@ -56,6 +59,12 @@ class MerchantContext(MerchantsCollection):
         def __init__(self, token, collection):
             self.token = token
             self.collection = collection
+
+        def page(self, params=None):
+            return self.collection.page(endpoint=self._endpoint.format(self.token), query_params=params)
+
+        def stream(self, params=None):
+            return self.collection.stream(endpoint=self._endpoint.format(self.token), query_params=params)
 
         def list(self, params=None, limit=None):
             return self.collection.list(endpoint=self._endpoint.format(self.token), query_params=params,

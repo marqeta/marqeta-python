@@ -9,6 +9,9 @@ class MccGroupsCollection(object):
         self.client = client
         self.collections = Collection(self.client, MccGroupModel)
 
+    def page(self, params=None):
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
+
     def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
@@ -36,4 +39,4 @@ class MccGroupsCollection(object):
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
 
     def __repr__(self):
-        return '<Marqeta.resources.mccgroups.Mccgroups>'
+        return '<Marqeta.resources.mccgroups.MccGroupsCollection>'

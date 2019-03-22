@@ -27,7 +27,7 @@ class MsaOrdersCollection(object):
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
 
     def __repr__(self):
-        return '<Marqeta.resources.msaorders.Msaorders>'
+        return '<Marqeta.resources.msaorders.MsaOrdersCollection>'
 
 
 class MsaordersUnloadsCollection(object):
@@ -35,6 +35,9 @@ class MsaordersUnloadsCollection(object):
 
     def __init__(self, collection):
         self.collections = collection
+
+    def page(self, params=None):
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
 
     def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
@@ -57,4 +60,4 @@ class MsaordersUnloadsCollection(object):
         return self.collections.find(endpoint=self._endpoint + '/{}'.format(token), query_params=params)
 
     def __repr__(self):
-        return '<Marqeta.resources.msaorders_unloads.MsaordersUnloads>'
+        return '<Marqeta.resources.msaorders_unloads.MsaordersUnloadsCollection>'

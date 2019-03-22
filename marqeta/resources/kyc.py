@@ -9,6 +9,13 @@ class KycCollection(object):
         self.client = client
         self.collections = Collection(self.client, KycResponse)
 
+    def page_for_user(self, user_token, params=None):
+        return self.collections.page(endpoint=self._endpoint + '/user/{}'.format(user_token), query_params=params)
+
+    def page_for_business(self, business_token, params=None):
+        return self.collections.page(endpoint=self._endpoint + '/business/{}'.format(business_token),
+                                     query_params=params)
+
     def stream_for_user(self, user_token, params=None):
         return self.collections.stream(endpoint=self._endpoint + '/user/{}'.format(user_token), query_params=params)
 
@@ -35,4 +42,4 @@ class KycCollection(object):
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
 
     def __repr__(self):
-        return '<Marqeta.resources.kyc.Kyc>'
+        return '<Marqeta.resources.kyc.KycCollection>'

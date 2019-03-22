@@ -13,6 +13,9 @@ class ChargebacksCollection(object):
     def __call__(self, token):
         return ChargeBackContext(token, self.client)
 
+    def page(self, params=None):
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
+
     def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
@@ -37,7 +40,7 @@ class ChargebacksCollection(object):
                 Returns the chargebacks object which has updated user information'''
 
     def __repr__(self):
-        return '<Marqeta.resources.chargebacks.Chargebacks>'
+        return '<Marqeta.resources.chargebacks.ChargebacksCollection>'
 
 
 class ChargeBackContext(ChargebacksCollection):
@@ -62,9 +65,17 @@ class ChargeBackContext(ChargebacksCollection):
             self.token = token
             self.collection = collection
 
-        def list(self, params=None):
-            return self.collection.list(query_params=params,
+        def page(self, params=None):
+            return self.collection.page(query_params=params,
                                         endpoint=self._endpoint + '/{}/transitions'.format(self.token))
+
+        def stream(self, params=None):
+            return self.collection.stream(query_params=params,
+                                          endpoint=self._endpoint + '/{}/transitions'.format(self.token))
+
+        def list(self, params=None, limit=None):
+            return self.collection.list(query_params=params,
+                                        endpoint=self._endpoint + '/{}/transitions'.format(self.token), limit=limit)
 
         def create(self, data):
             return self.collection.create(data, endpoint=self._endpoint + '/transitions')

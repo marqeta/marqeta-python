@@ -9,6 +9,9 @@ class RealTimeFeeGroupsCollection(object):
         self.client = client
         self.collections = Collection(self.client, RealTimeFeeGroup)
 
+    def page(self, params=None):
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
+
     def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
@@ -36,4 +39,4 @@ class RealTimeFeeGroupsCollection(object):
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
 
     def __repr__(self):
-        return '<Marqeta.resources.realtimefeegroups.Realtimefeegroups>'
+        return '<Marqeta.resources.realtimefeegroups.RealTimeFeeGroupsCollection>'

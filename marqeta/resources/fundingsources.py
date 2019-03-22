@@ -11,7 +11,6 @@ from marqeta.response_models.ach_verification_model import AchVerificationModel
 
 
 class FundingSourcesCollection(object):
-
     _endpoint = 'fundingsources'
 
     def __init__(self, client):
@@ -24,18 +23,26 @@ class FundingSourcesCollection(object):
         self.program_gateway = ProgramGateway(Collection(self.client, ProgramFundingSourceResponse))
         self.program = Program(Collection(self.client, ProgramFundingSourceResponse))
 
+    def page_for_user(self, user_token, params=None):
+        return self.collections.page(endpoint=self._endpoint + '/users/{}'.format(user_token), query_params=params)
+
+    def page_for_business(self, business_token, params=None):
+        return self.collections.page(endpoint=self._endpoint + '/business/{}'.format(business_token),
+                                     query_params=params)
+
     def stream_for_user(self, user_token, params=None):
-        return self.collections.stream(endpoint=self._endpoint+'/users/{}'.format(user_token), query_params=params)
+        return self.collections.stream(endpoint=self._endpoint + '/users/{}'.format(user_token), query_params=params)
 
     def stream_for_business(self, business_token, params=None):
-        return self.collections.stream(endpoint=self._endpoint+'/business/{}'.format(business_token), query_params=params)
+        return self.collections.stream(endpoint=self._endpoint + '/business/{}'.format(business_token),
+                                       query_params=params)
 
     def list_for_user(self, user_token, params=None, limit=None):
-        return self.collections.list(endpoint=self._endpoint+'/users/{}'.format(user_token),
+        return self.collections.list(endpoint=self._endpoint + '/users/{}'.format(user_token),
                                      query_params=params, limit=limit)
 
     def list_for_business(self, business_token, params=None, limit=None):
-        return self.collections_business.list(endpoint=self._endpoint+'/business/{}'.format(business_token),
+        return self.collections_business.list(endpoint=self._endpoint + '/business/{}'.format(business_token),
                                               query_params=params, limit=limit)
 
     def __repr__(self):
@@ -57,17 +64,24 @@ class AchContext(object):
 
 
 class Addresses(object):
-
     _endpoint = 'fundingsources/addresses'
 
     def __init__(self, collection):
         self.collections = collection
 
-    def stream_for_user(self,user_token, params=None):
+    def page_for_user(self, user_token, params=None):
+        return self.collections.page(endpoint=self._endpoint + '/user/{}'.format(user_token), query_params=params)
+
+    def page_for_business(self, business_token, params=None):
+        return self.collections.page(endpoint=self._endpoint + '/business/{}'.format(business_token),
+                                     query_params=params)
+
+    def stream_for_user(self, user_token, params=None):
         return self.collections.stream(endpoint=self._endpoint + '/user/{}'.format(user_token), query_params=params)
 
-    def stream_for_business(self,business_token, params=None):
-        return self.collections.stream(endpoint=self._endpoint +'/business/{}'.format(business_token), query_params=params)
+    def stream_for_business(self, business_token, params=None):
+        return self.collections.stream(endpoint=self._endpoint + '/business/{}'.format(business_token),
+                                       query_params=params)
 
     def list_for_user(self, user_token, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint + '/user/{}'.format(user_token),
@@ -75,7 +89,7 @@ class Addresses(object):
 
     def list_for_business(self, business_token, params=None,
                           limit=None):
-        return self.collections.list(endpoint=self._endpoint +'/business/{}'.format(business_token),
+        return self.collections.list(endpoint=self._endpoint + '/business/{}'.format(business_token),
                                      query_params=params, limit=limit)
 
     def create(self, data={}):
@@ -92,7 +106,6 @@ class Addresses(object):
 
 
 class Ach(object):
-
     _endpoint = 'fundingsources/ach'
 
     def __init__(self, client, collection):
@@ -116,7 +129,6 @@ class Ach(object):
 
 
 class PaymentCard(object):
-
     _endpoint = 'fundingsources/paymentcard'
 
     def __init__(self, collection):
@@ -134,8 +146,8 @@ class PaymentCard(object):
     def __repr__(self):
         return '<Marqeta.resources.funding_sources.PaymentCard>'
 
-class ProgramGateway(object):
 
+class ProgramGateway(object):
     _endpoint = 'fundingsources/programgateway'
 
     def __init__(self, collection):
@@ -155,7 +167,6 @@ class ProgramGateway(object):
 
 
 class Program(object):
-
     _endpoint = 'fundingsources/program'
 
     def __init__(self, collection):

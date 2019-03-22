@@ -9,6 +9,9 @@ class StoresCollection(object):
         self.client = client
         self.collections = Collection(self.client, StoreResponseModel)
 
+    def page(self, params=None):
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
+
     def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
@@ -39,4 +42,4 @@ class StoresCollection(object):
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
 
     def __repr__(self):
-        return '<Marqeta.resources.stores.Stores>'
+        return '<Marqeta.resources.stores.StoresCollection>'

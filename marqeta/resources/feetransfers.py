@@ -3,7 +3,6 @@ from marqeta.response_models.fee_transfer_response import FeeTransferResponse
 
 
 class FeeTransfersCollection(object):
-
     _endpoint = 'feetransfers'
 
     def __init__(self, client):
@@ -20,4 +19,4 @@ class FeeTransfersCollection(object):
         return self.collections.find(endpoint=self._endpoint + '/{}'.format(token), query_params=params)
 
     def __repr__(self):
-        return '<Marqeta.resources.feetransfers.Feetransfers>'
+        return '<Marqeta.resources.feetransfers.FeeTransfersCollection>'
