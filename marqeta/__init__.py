@@ -1,4 +1,7 @@
-from __future__ import absolute_import, division, print_function
+import sys
+import json
+import requests
+from marqeta.version import __version__
 from marqeta.errors import MarqetaError
 from marqeta.resources.users import UsersCollection
 from marqeta.resources.cardproducts import CardProductCollection
@@ -37,10 +40,8 @@ from marqeta.resources.pins import PinsCollection
 from marqeta.response_models.ping_response import PingResponse
 from marqeta.response_models.echo_ping_response import EchoPingResponse
 
-import requests, json
-
 headers = {'content-type': 'application/json',
-           'User-Agent': '"marqeta-python/{} (Python {})".format(__version__)'}
+           'User-Agent': 'marqeta-python/{} (Python {})'.format(__version__, sys.version.split(' ')[0])}
 
 
 class Client(object):
@@ -140,7 +141,7 @@ class Client(object):
     def ping(self, **kwargs):
         if kwargs:
             data = {key: kwargs[key] for key in kwargs}
-            return EchoPingResponse(self.post('ping',data)[0])
+            return EchoPingResponse(self.post('ping', data)[0])
         return PingResponse(self.get('ping')[0])
 
     def _objects_container(self):
@@ -342,7 +343,6 @@ class Client(object):
             def __init__(self):
                 self._parent_class = _parent_class
                 super().__init__(_parent_class)
-
 
         class PinsWrapper(PinsCollection):
 
