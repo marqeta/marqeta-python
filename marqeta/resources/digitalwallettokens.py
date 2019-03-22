@@ -14,6 +14,9 @@ class DigitalWalletTokensCollection(object):
     def __call__(self, token):
         return DigitalContext(token, self.client)
 
+    def page(self, params={}):
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
+
     ''' Iterates through cards based on last_four number
         returns card object one at a time'''
 
@@ -24,6 +27,9 @@ class DigitalWalletTokensCollection(object):
 
     def list(self, params={}, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
+
+    def page_for_card(self, user_token, params=None):
+        return self.collections.page(endpoint=self._endpoint + "/card/{}".format(user_token), query_params=params)
 
     def stream_for_card(self, user_token, params=None):
         return self.collections.stream(endpoint=self._endpoint + "/card/{}".format(user_token), query_params=params)
@@ -64,9 +70,18 @@ class DigitalContext(DigitalWalletTokensCollection):
             self.token = token
             self.collection = collection
 
-        def list(self, params=None):
-            return self.collection.list(query_params=params,
+        def page(self, params=None):
+            return self.collection.page(query_params=params,
                                         endpoint=self._endpoint + '/digitalwallettoken/{}'.format(self.token))
+
+        def stream(self, params=None):
+            return self.collection.stream(query_params=params,
+                                          endpoint=self._endpoint + '/digitalwallettoken/{}'.format(self.token))
+
+        def list(self, params=None, limit=None):
+            return self.collection.list(query_params=params,
+                                        endpoint=self._endpoint + '/digitalwallettoken/{}'.format(self.token),
+                                        limit=limit)
 
         def create(self, data):
             return self.collection.create(data, endpoint=self._endpoint)

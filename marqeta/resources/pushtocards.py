@@ -20,6 +20,9 @@ class PushtocardsDisburseCollection(object):
         self.client = client
         self.collections_disburse = Collection(self.client, PushToCardDisbursementResponse)
 
+    def page(self, params=None):
+        return self.collections_disburse.page(endpoint=self._endpoint, query_params=params)
+
     def stream(self, params=None):
         return self.collections_disburse.stream(endpoint=self._endpoint, query_params=params)
 
@@ -57,7 +60,13 @@ class PushtocardsPaymentcardCollection(object):
         self.client = client
         self.collections = Collection(self.client, PushToCardResponse)
 
-    def stream_for_user(self,token,  params=None):
+    def page_for_user(self, token, params=None):
+        query_params = {'user_token': token}
+        if params is not None:
+            query_params.update(params)
+        return self.collections.page(endpoint=self._endpoint, query_params=query_params)
+
+    def stream_for_user(self, token, params=None):
         query_params = {'user_token': token}
         if params is not None:
             query_params.update(params)

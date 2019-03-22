@@ -13,13 +13,16 @@ class CardProductCollection(object):
         self.client = client
         self.collections = Collection(self.client, CardProductResponse)
 
+    def page(self, params = None):
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
+
     ''' Iterates through card products  
         returns card product object one at a time'''
     def stream(self, params = None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
     ''' Lists all the 1000 card products  '''
-    def list(self, params=None, limit = 1000):
+    def list(self, params=None, limit = 25):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
     ''' Create a card product with the specified data

@@ -9,6 +9,9 @@ class BulkIssuancesCollection(object):
         self.client = client
         self.collections = Collection(self.client, BulkIssuanceResponse)
 
+    def page(self, params=None):
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
+
     def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
@@ -33,4 +36,4 @@ class BulkIssuancesCollection(object):
                 Returns the bulkissuances object which has updated user information'''
 
     def __repr__(self):
-        return '<Marqeta.resources.bulkissuances.Bulkissuances>'
+        return '<Marqeta.resources.bulkissuances.BulkIssuancesCollection>'

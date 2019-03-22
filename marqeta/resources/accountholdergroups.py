@@ -9,6 +9,12 @@ class AccountHolderGroupsCollection(object):
         self.client = client
         self.collections = Collection(self.client, AccountHolderGroupResponse)
 
+    def page(self, params=None):
+        query_params = {'count': 10}
+        if params is not None:
+            query_params.update(params)
+        return self.collections.page(endpoint=self._endpoint, query_params=query_params)
+
     def stream(self, params=None):
         query_params = {'count': 10}
         if params is not None:
@@ -42,4 +48,4 @@ class AccountHolderGroupsCollection(object):
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
 
     def __repr__(self):
-        return '<Marqeta.resources.accountholdergroups.Accountholdergroups>'
+        return '<Marqeta.resources.accountholdergroups.AccountHolderGroupsCollection>'

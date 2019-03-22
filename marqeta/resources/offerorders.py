@@ -22,4 +22,4 @@ class OfferOrdersCollection(object):
         return self.collections.find(endpoint=self._endpoint + '/{}'.format(token), query_params=params)
 
     def __repr__(self):
-        return '<Marqeta.resources.offerorders.Offerorders>'
+        return '<Marqeta.resources.offerorders.OfferOrdersCollection>'

@@ -12,6 +12,9 @@ class TransactionsCollection(object):
     def __call__(self, token):
         return TranscationContext(token, self.client, self.collections)
 
+    def page(self, params=None):
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
+
     def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
@@ -36,7 +39,7 @@ class TransactionsCollection(object):
         return self.collections.find(endpoint=self._endpoint + '/{}'.format(token), query_params=params)
 
     def __repr__(self):
-        return '<Marqeta.resources.transactions.Transactions>'
+        return '<Marqeta.resources.transactions.TransactionsCollection>'
 
 
 class TranscationContext(TransactionsCollection):
@@ -53,6 +56,9 @@ class TranscationContext(TransactionsCollection):
             self.token = token
             self.collections = collections
 
+        def page(self, params=None):
+            return self.collections.page(endpoint=self._endpoint.format(self.token), query_params=params)
+
         def stream(self, params=None):
             return self.collections.stream(endpoint=self._endpoint.format(self.token), query_params=params)
 
@@ -60,3 +66,6 @@ class TranscationContext(TransactionsCollection):
 
         def list(self, params=None, limit=None):
             return self.collections.list(endpoint=self._endpoint.format(self.token), query_params=params, limit=limit)
+
+        def __repr__(self):
+            return '<Marqeta.resources.transactions.TranscationContext.Related>'

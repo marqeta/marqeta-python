@@ -7,7 +7,6 @@ from marqeta.response_models.gpa_returns import GpaReturns
 
 
 class GpaOrderCollection(object):
-
     _endpoint = 'gpaorders'
 
     def __init__(self, client):
@@ -17,34 +16,37 @@ class GpaOrderCollection(object):
 
     ''' Create a gpa product with the specified data
             Returns the gpa product object which has created gpa  information'''
-    def create(self, data = {}):
+
+    def create(self, data={}):
         return self.collections.create(endpoint=self._endpoint, data=data)
 
     def find(self, token, params=None):
-        return self.collections.find(endpoint= self._endpoint+'/{}'.format(token), query_params=params)
+        return self.collections.find(endpoint=self._endpoint + '/{}'.format(token), query_params=params)
 
     def __repr__(self):
         return '<Marqeta.resources.gpa_order.GpaCollection>'
 
 
 class Unloads(object):
-
     _endpoint = 'gpaorders/unloads'
 
     def __init__(self, collection):
         self.collections = collection
 
-    def stream(self, params = None):
+    def page(self, params=None):
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
+
+    def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
     def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
-    def create(self, data = {}):
+    def create(self, data={}):
         return self.collections.create(endpoint=self._endpoint, data=data)
 
     def find(self, token, params=None):
-        return self.collections.find(endpoint= self._endpoint+'/{}'.format(token), query_params=params)
+        return self.collections.find(endpoint=self._endpoint + '/{}'.format(token), query_params=params)
 
     def __repr__(self):
         return '<Marqeta.resources.gpa_order.Unloads>'

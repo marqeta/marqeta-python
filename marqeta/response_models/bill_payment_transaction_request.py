@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class BillPaymentTransactionRequest(object):
 
     def __init__(self, json_response):
@@ -35,4 +36,4 @@ class BillPaymentTransactionRequest(object):
             return self.json_response['user_token']
 
     def __repr__(self):
-         return '<Marqeta.response_models.bill_payment_transaction_request.BillPaymentTransactionRequest>'
+        return '<Marqeta.response_models.bill_payment_transaction_request.BillPaymentTransactionRequest>'

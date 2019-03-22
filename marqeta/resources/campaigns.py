@@ -13,6 +13,9 @@ class CampaignsCollection(object):
     def __call__(self, token):
         return CampaignsContext(token, self.client)
 
+    def page(self, params=None):
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
+
     def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
@@ -62,4 +65,4 @@ class CampaignsContext(CampaignsCollection):
                                         limit=limit)
 
     def __repr__(self):
-        return '<Marqeta.resources.campaigns.CampaignsContext>'
+        return '<Marqeta.resources.campaigns.CampaignsContext.Stores>'

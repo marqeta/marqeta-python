@@ -12,6 +12,15 @@ class Collection(object):
         ''' sort_by can be specified in ascending or descending order "-" '''
         return self.client.get(kwargs['endpoint'], query_params=kwargs['query_params'])[0]
 
+    def page(self, endpoint, query_params=None):
+        params = {'count': 5, 'start_index': 0}
+        if query_params is not None:
+            params.update(query_params)
+        response = self.client.get(endpoint, query_params=params)[0]
+        for val in range(len(response['data'])):
+            response['data'][val] = self.resource(response['data'][val])
+        return response
+
     ''' stream is a generator function iterates through endpoint contents
         Return : endpoint object, limit is the number of pages to fetch  '''
     def stream(self, endpoint=None,query_params=None):

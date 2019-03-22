@@ -13,6 +13,9 @@ class WebhooksCollection(object):
     def __call__(self, token):
         return WebhooksContext(token, self.client)
 
+    def page(self, params=None):
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
+
     def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
@@ -40,7 +43,7 @@ class WebhooksCollection(object):
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
 
     def __repr__(self):
-        return '<Marqeta.resources.webhooks.Webhooks>'
+        return '<Marqeta.resources.webhooks.WebhooksCollection>'
 
 
 class WebhooksContext(WebhooksCollection):
@@ -52,9 +55,13 @@ class WebhooksContext(WebhooksCollection):
         self.collections = Collection(client, WebhookPingModel)
 
     def ping(self, params=None):
-        return self.collections.create(endpoint=self._endpoint.format(self.token)+'/ping', data = {}, query_params=params)
+        return self.collections.create(endpoint=self._endpoint.format(self.token) + '/ping', data={},
+                                       query_params=params)
 
     def resend(self, event_type, event_token, params=None):
         return self.client.post(
             endpoint=self._endpoint.format(self.token) + '/{}/{}'.format(event_type, event_token),
             query_params=params)[0]
+
+    def __repr__(self):
+        return '<Marqeta.resources.webhooks.WebhooksContext>'

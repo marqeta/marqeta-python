@@ -11,6 +11,9 @@ class ProgramTransfersCollection(object):
         self.collections = Collection(self.client, ProgramTransferResponse)
         self.types = Types(Collection(client, ProgramTransferTypeReponse))
 
+    def page(self, params=None):
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
+
     def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
@@ -32,7 +35,7 @@ class ProgramTransfersCollection(object):
         return self.collections.find(endpoint=self._endpoint + '/{}'.format(token), query_params=params)
 
     def __repr__(self):
-        return '<Marqeta.resources.programtransfers.Programtransfers>'
+        return '<Marqeta.resources.programtransfers.ProgramTransfersCollection>'
 
 
 class Types(object):
@@ -40,6 +43,9 @@ class Types(object):
 
     def __init__(self, collection):
         self.collections = collection
+
+    def page(self, params=None):
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
 
     def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)

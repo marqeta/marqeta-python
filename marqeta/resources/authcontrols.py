@@ -11,6 +11,9 @@ class AuthControlsCollection(object):
         self.collections = Collection(self.client, AuthControlResponse)
         self.exempt_mids = AuthcontrolsExemptmidsCollection(self.client)
 
+    def page(self, params=None):
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
+
     def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
@@ -38,7 +41,7 @@ class AuthControlsCollection(object):
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
 
     def __repr__(self):
-        return '<Marqeta.resources.authcontrols.Authcontrols>'
+        return '<Marqeta.resources.authcontrols.AuthControlsCollection>'
 
 
 class AuthcontrolsExemptmidsCollection(object):
@@ -47,6 +50,9 @@ class AuthcontrolsExemptmidsCollection(object):
     def __init__(self, client):
         self.client = client
         self.collections = Collection(self.client, AuthControlExemptMidsResponse)
+
+    def page(self, params=None):
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
 
     def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
@@ -75,4 +81,4 @@ class AuthcontrolsExemptmidsCollection(object):
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
 
     def __repr__(self):
-        return '<Marqeta.resources.authcontrols_exemptmids.AuthcontrolsExemptmids>'
+        return '<Marqeta.resources.authcontrols_exemptmids.AuthcontrolsExemptmidsCollection>'
