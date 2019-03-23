@@ -2,10 +2,12 @@
 """FUNDING SOURCES WITH CRU PARAMETERS"""
 
 from marqeta.resources.collection import Collection
+
 from marqeta.response_models.cardholder_address_response import CardholderAddressResponse
 from marqeta.response_models.funding_account_response_model import FundingAccountResponseModel
 from marqeta.response_models.payment_card_response_model import PaymentCardResponseModel
 from marqeta.response_models.program_funding_source_response import ProgramFundingSourceResponse
+from marqeta.response_models.gateway_program_funding_source_response import GatewayProgramFundingSourceResponse
 from marqeta.response_models.ach_response_model import AchResponseModel
 from marqeta.response_models.ach_verification_model import AchVerificationModel
 
@@ -15,12 +17,11 @@ class FundingSourcesCollection(object):
 
     def __init__(self, client):
         self.client = client
-        self.collections = Collection(self.client, CardholderAddressResponse)
-        self.collections_business = Collection(self.client, FundingAccountResponseModel)
+        self.collections = Collection(self.client, FundingAccountResponseModel)
         self.ach = Ach(self.client, Collection(self.client, AchResponseModel))
         self.addresses = Addresses(Collection(self.client, CardholderAddressResponse))
         self.payment_card = PaymentCard(Collection(self.client, PaymentCardResponseModel))
-        self.program_gateway = ProgramGateway(Collection(self.client, ProgramFundingSourceResponse))
+        self.program_gateway = ProgramGateway(Collection(self.client, GatewayProgramFundingSourceResponse))
         self.program = Program(Collection(self.client, ProgramFundingSourceResponse))
 
     def page_for_user(self, user_token, params=None):
@@ -42,7 +43,7 @@ class FundingSourcesCollection(object):
                                      query_params=params, limit=limit)
 
     def list_for_business(self, business_token, params=None, limit=None):
-        return self.collections_business.list(endpoint=self._endpoint + '/business/{}'.format(business_token),
+        return self.collections.list(endpoint=self._endpoint + '/business/{}'.format(business_token),
                                               query_params=params, limit=limit)
 
     def __repr__(self):
