@@ -8,9 +8,9 @@ class MarqetaError(Exception):
 
     def __str__(self):
         try:
-            return 'MarqetaError:' + self.message + '\nError Code:' + self.code
+            return self.message + '\nError Code:' + self.code
         except:
-            return 'MarqetaError:' + self.message
+            return self.message
 
     def __repr__(self):
         return '<Marqeta.errors.MarqetaError>'

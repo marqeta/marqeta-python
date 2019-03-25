@@ -24,6 +24,9 @@ class FundingSourcesCollection(object):
         self.program_gateway = ProgramGateway(Collection(self.client, GatewayProgramFundingSourceResponse))
         self.program = Program(Collection(self.client, ProgramFundingSourceResponse))
 
+    def __call__(self, token):
+        return FundingSourceMakeDefualt(token, self.client)
+
     def page_for_user(self, user_token, params=None):
         return self.collections.page(endpoint=self._endpoint + '/users/{}'.format(user_token), query_params=params)
 
@@ -44,10 +47,21 @@ class FundingSourcesCollection(object):
 
     def list_for_business(self, business_token, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint + '/business/{}'.format(business_token),
-                                              query_params=params, limit=limit)
+                                     query_params=params, limit=limit)
 
     def __repr__(self):
         return '<Marqeta.resources.funding_sources.FundingSourcesCollection>'
+
+
+class FundingSourceMakeDefualt(FundingSourcesCollection):
+
+    def __init__(self, token, client):
+        super(FundingSourceMakeDefualt, self).__init__(client)
+        self.token = token
+        self.collections = Collection(self.client, PaymentCardResponseModel)
+
+    def make_default(self):
+        return self.collections.save(data={}, endpoint='fundingsources/{}/default'.format(self.token))
 
 
 class AchContext(object):
