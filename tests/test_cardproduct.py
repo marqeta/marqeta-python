@@ -284,11 +284,11 @@ print("program_gateway card create",client.funding_sources.program_gateway.creat
 print("program_gateway card find",client.funding_sources.program_gateway.find("my_pgfs_token10"))
 print("program_gateway card save",client.funding_sources.program_gateway.save("my_pgfs_token10",program_gateway_update))
 
-#print("list_for_user card list",client.funding_sources.list_for_user("bluebird_token"))
+print("list_for_user card list",client.funding_sources.list_for_user("bluebird_token"))
 print("list_for_business card list",client.funding_sources.list_for_business("my_business_02"))
 
 #print("addresses card create",client.funding_sources.addresses.create(address_data))
-# print("addresses card list",client.funding_sources.addresses.list_for_user("bluebird_token"))
+#print("addresses card list",client.funding_sources.addresses.list_for_user("bluebird_token"))
 # print("addresses card list",client.funding_sources.addresses.list_for_business("my_business_02"))
 print("addresses card find",client.funding_sources.addresses.find("my_funding_source_address_biz_04_02"))
 
