@@ -58,7 +58,7 @@ class AchResponseModel(object):
     @property
     def date_sent_for_verification(self):
         if 'date_sent_for_verification' in self.json_response:
-            return datetime.strptime(self.json_response['date_sent_for_verification'], '%Y-%m-%d')
+            return datetime.strptime(self.json_response['date_sent_for_verification'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def user_token(self):
@@ -78,7 +78,7 @@ class AchResponseModel(object):
     @property
     def date_verified(self):
         if 'date_verified' in self.json_response:
-            return datetime.strptime(self.json_response['date_verified'], '%Y-%m-%d')
+            return datetime.strptime(self.json_response['date_verified'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def verification_override(self):
