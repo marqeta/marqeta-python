@@ -64,5 +64,5 @@ class CampaignsContext(CampaignsCollection):
             return self.collection.list(endpoint=self._endpoint.format(self.token), query_params=params,
                                         limit=limit)
 
-    def __repr__(self):
-        return '<Marqeta.resources.campaigns.CampaignsContext.Stores>'
+        def __repr__(self):
+            return '<Marqeta.resources.campaigns.CampaignsContext.Stores>'
