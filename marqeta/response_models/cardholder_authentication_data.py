@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class CardholderAuthenticationData(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class CardholderAuthenticationData(object):
 
     @property
     def electronic_commerce_indicator(self):
-        if 'electronic_commerce_indicator' in self.json_response:
-            return self.json_response['electronic_commerce_indicator']
+        return self.json_response.get('electronic_commerce_indicator', None)
 
     @property
     def verification_result(self):
-        if 'verification_result' in self.json_response:
-            return self.json_response['verification_result']
+        return self.json_response.get('verification_result', None)
 
     @property
     def verification_value_created_by(self):
-        if 'verification_value_created_by' in self.json_response:
-            return self.json_response['verification_value_created_by']
+        return self.json_response.get('verification_value_created_by', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.cardholder_authentication_data.CardholderAuthenticationData>'
+        return '<Marqeta.response_models.cardholder_authentication_data.CardholderAuthenticationData>'

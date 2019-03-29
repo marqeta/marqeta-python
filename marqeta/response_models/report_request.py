@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ReportRequest(object):
 
     def __init__(self, json_response):
@@ -16,28 +17,30 @@ class ReportRequest(object):
 
     @property
     def partner(self):
-        if 'partner' in self.json_response:
-            return self.json_response['partner']
+
+        return self.json_response.get('partner', None)
 
     @property
     def report(self):
-        if 'report' in self.json_response:
-            return self.json_response['report']
+
+        return self.json_response.get('report', None)
 
     @property
     def startDate(self):
+
         if 'startDate' in self.json_response:
-                return datetime.strptime(self.json_response['startDate'], '%Y-%m-%d').date()
+            return datetime.strptime(self.json_response['startDate'], '%Y-%m-%d').date()
 
     @property
     def endDate(self):
+
         if 'endDate' in self.json_response:
-                return datetime.strptime(self.json_response['endDate'], '%Y-%m-%d').date()
+            return datetime.strptime(self.json_response['endDate'], '%Y-%m-%d').date()
 
     @property
     def sendFiles(self):
-        if 'sendFiles' in self.json_response:
-            return self.json_response['sendFiles']
+
+        return self.json_response.get('sendFiles', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.report_request.ReportRequest>'
+        return '<Marqeta.response_models.report_request.ReportRequest>'

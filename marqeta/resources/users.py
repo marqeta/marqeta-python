@@ -58,8 +58,11 @@ class UsersCollection(object):
         Returns UserResource object of list of the matched users for the data '''
 
     def look_up(self, data, params=None):
-        query_params = {'count': 100, 'start_index': 0}
-        if params is not None:
+        if not data:
+            response = self.client.post(self._endpoint + '/lookup', data, query_params=params)[0]
+            return [CardHolderModel(response['data'][val]) for val in range(response['count'])]
+        else:
+            query_params = {'count': 5, 'start_index': 0}
             query_params.update(params)
         look_up_data = []
         while True:
@@ -111,6 +114,8 @@ class UserContext(UsersCollection):
         def list(self, params=None, limit=None):
             return self.collection.list(endpoint='users/{}/children'.format(self.token),
                                         query_params=params, limit=limit)
+        def __repr__(self):
+            return '<Marqeta.resources.users.UserContext.Children>'
 
     class Notes(object):
         _endpoint = 'users/{}/notes'
@@ -137,7 +142,7 @@ class UserContext(UsersCollection):
                                         endpoint=self._endpoint.format(self.token) + '/{}'.format(notes_token))
 
         def __repr__(self):
-            return '<Marqeta.resources.users.Notes>'
+            return '<Marqeta.resources.users.UserContext.Notes>'
 
     class Transitions(object):
         _endpoint = 'usertransitions'
@@ -165,4 +170,4 @@ class UserContext(UsersCollection):
                 endpoint=self._endpoint + '/{}'.format(transition_token))
 
         def __repr__(self):
-            return '<Marqeta.resources.users.Transitions>'
+            return '<Marqeta.resources.users.UserContext.Transitions>'

@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class CardholderNoteUpdateRequestModel(object):
 
     def __init__(self, json_response):
@@ -16,8 +17,7 @@ class CardholderNoteUpdateRequestModel(object):
 
     @property
     def description(self):
-        if 'description' in self.json_response:
-            return self.json_response['description']
+        return self.json_response.get('description', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.cardholder_note_update_request_model.CardholderNoteUpdateRequestModel>'
+        return '<Marqeta.response_models.cardholder_note_update_request_model.CardholderNoteUpdateRequestModel>'

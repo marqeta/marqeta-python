@@ -3,6 +3,7 @@ from marqeta.response_models.shipping_information_response import ShippingInform
 from marqeta.response_models.card_personalization import CardPersonalization
 import json
 
+
 class CardFulfillmentResponse(object):
 
     def __init__(self, json_response):
@@ -18,13 +19,15 @@ class CardFulfillmentResponse(object):
 
     @property
     def shipping(self):
+
         if 'shipping' in self.json_response:
             return ShippingInformationResponse(self.json_response['shipping'])
 
     @property
     def card_personalization(self):
+
         if 'card_personalization' in self.json_response:
             return CardPersonalization(self.json_response['card_personalization'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.card_fulfillment_response.CardFulfillmentResponse>'
+        return '<Marqeta.response_models.card_fulfillment_response.CardFulfillmentResponse>'

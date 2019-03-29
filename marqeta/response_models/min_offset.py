@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class MinOffset(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class MinOffset(object):
 
     @property
     def unit(self):
-        if 'unit' in self.json_response:
-            return self.json_response['unit']
+        return self.json_response.get('unit', None)
 
     @property
     def value(self):
-        if 'value' in self.json_response:
-            return self.json_response['value']
+        return self.json_response.get('value', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.min_offset.MinOffset>'
+        return '<Marqeta.response_models.min_offset.MinOffset>'

@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class CardholderNoteRequestModel(object):
 
     def __init__(self, json_response):
@@ -16,28 +17,23 @@ class CardholderNoteRequestModel(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     @property
     def description(self):
-        if 'description' in self.json_response:
-            return self.json_response['description']
+        return self.json_response.get('description', None)
 
     @property
     def created_by(self):
-        if 'created_by' in self.json_response:
-            return self.json_response['created_by']
+        return self.json_response.get('created_by', None)
 
     @property
     def created_by_user_role(self):
-        if 'created_by_user_role' in self.json_response:
-            return self.json_response['created_by_user_role']
+        return self.json_response.get('created_by_user_role', None)
 
     @property
     def private(self):
-        if 'private' in self.json_response:
-            return self.json_response['private']
+        return self.json_response.get('private', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.cardholder_note_request_model.CardholderNoteRequestModel>'
+        return '<Marqeta.response_models.cardholder_note_request_model.CardholderNoteRequestModel>'

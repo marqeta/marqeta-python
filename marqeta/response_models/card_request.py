@@ -4,6 +4,7 @@ from marqeta.response_models.fulfillment import Fulfillment
 from marqeta.response_models.activation_actions import ActivationActions
 import json
 
+
 class CardRequest(object):
 
     def __init__(self, json_response):
@@ -19,58 +20,61 @@ class CardRequest(object):
 
     @property
     def card_product_token(self):
-        if 'card_product_token' in self.json_response:
-            return self.json_response['card_product_token']
+
+        return self.json_response.get('card_product_token', None)
 
     @property
     def expedite(self):
-        if 'expedite' in self.json_response:
-            return self.json_response['expedite']
+
+        return self.json_response.get('expedite', None)
 
     @property
     def metadata(self):
-        if 'metadata' in self.json_response:
-            return self.json_response['metadata']
+
+        return self.json_response.get('metadata', None)
 
     @property
     def expiration_offset(self):
+
         if 'expiration_offset' in self.json_response:
             return ExpirationOffsét(self.json_response['expiration_offset'])
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+
+        return self.json_response.get('user_token', None)
 
     @property
     def fulfillment(self):
+
         if 'fulfillment' in self.json_response:
             return Fulfillment(self.json_response['fulfillment'])
 
     @property
     def reissue_pan_from_card_token(self):
-        if 'reissue_pan_from_card_token' in self.json_response:
-            return self.json_response['reissue_pan_from_card_token']
+
+        return self.json_response.get('reissue_pan_from_card_token', None)
 
     @property
     def translate_pin_from_card_token(self):
-        if 'translate_pin_from_card_token' in self.json_response:
-            return self.json_response['translate_pin_from_card_token']
+
+        return self.json_response.get('translate_pin_from_card_token', None)
 
     @property
     def activation_actions(self):
+
         if 'activation_actions' in self.json_response:
             return ActivationActions(self.json_response['activation_actions'])
 
     @property
     def bulk_issuance_token(self):
-        if 'bulk_issuance_token' in self.json_response:
-            return self.json_response['bulk_issuance_token']
+
+        return self.json_response.get('bulk_issuance_token', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.card_request.CardRequest>'
+        return '<Marqeta.response_models.card_request.CardRequest>'

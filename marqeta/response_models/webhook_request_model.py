@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.webhook_config_model import WebhookConfigModel
 import json
 
+
 class WebhookRequestModel(object):
 
     def __init__(self, json_response):
@@ -17,28 +18,29 @@ class WebhookRequestModel(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+
+        return self.json_response.get('name', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+
+        return self.json_response.get('active', None)
 
     @property
     def config(self):
+
         if 'config' in self.json_response:
             return WebhookConfigModel(self.json_response['config'])
 
     @property
     def events(self):
-        if 'events' in self.json_response:
-            return self.json_response['events']
+
+        return self.json_response.get('events', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.webhook_request_model.WebhookRequestModel>'
+        return '<Marqeta.response_models.webhook_request_model.WebhookRequestModel>'

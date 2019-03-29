@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class DigitalWalletTokenRequestAddress(object):
 
     def __init__(self, json_response):
@@ -16,23 +17,19 @@ class DigitalWalletTokenRequestAddress(object):
 
     @property
     def cardholder_name(self):
-        if 'cardholder_name' in self.json_response:
-            return self.json_response['cardholder_name']
+        return self.json_response.get('cardholder_name', None)
 
     @property
     def address(self):
-        if 'address' in self.json_response:
-            return self.json_response['address']
+        return self.json_response.get('address', None)
 
     @property
     def postal_code(self):
-        if 'postal_code' in self.json_response:
-            return self.json_response['postal_code']
+        return self.json_response.get('postal_code', None)
 
     @property
     def country(self):
-        if 'country' in self.json_response:
-            return self.json_response['country']
+        return self.json_response.get('country', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.digital_wallet_token_request_address.DigitalWalletTokenRequestAddress>'
+        return '<Marqeta.response_models.digital_wallet_token_request_address.DigitalWalletTokenRequestAddress>'

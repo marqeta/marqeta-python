@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class TranLogAttributeRequest(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class TranLogAttributeRequest(object):
 
     @property
     def transaction_token(self):
-        if 'transaction_token' in self.json_response:
-            return self.json_response['transaction_token']
+        return self.json_response.get('transaction_token', None)
 
     @property
     def attribute_name(self):
-        if 'attribute_name' in self.json_response:
-            return self.json_response['attribute_name']
+        return self.json_response.get('attribute_name', None)
 
     @property
     def attribute_value(self):
-        if 'attribute_value' in self.json_response:
-            return self.json_response['attribute_value']
+        return self.json_response.get('attribute_value', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.tran_log_attribute_request.TranLogAttributeRequest>'
+        return '<Marqeta.response_models.tran_log_attribute_request.TranLogAttributeRequest>'

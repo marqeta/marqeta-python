@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class GatewayClearingRequest(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class GatewayClearingRequest(object):
 
     @property
     def original_transaction_token(self):
-        if 'original_transaction_token' in self.json_response:
-            return self.json_response['original_transaction_token']
+        return self.json_response.get('original_transaction_token', None)
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+        return self.json_response.get('amount', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.gateway_clearing_request.GatewayClearingRequest>'
+        return '<Marqeta.response_models.gateway_clearing_request.GatewayClearingRequest>'

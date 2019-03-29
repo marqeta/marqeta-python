@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class AuthUserRequest(object):
 
     def __init__(self, json_response):
@@ -16,28 +17,23 @@ class AuthUserRequest(object):
 
     @property
     def password(self):
-        if 'password' in self.json_response:
-            return self.json_response['password']
+        return self.json_response.get('password', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+        return self.json_response.get('active', None)
 
     @property
     def roles(self):
-        if 'roles' in self.json_response:
-            return self.json_response['roles']
+        return self.json_response.get('roles', None)
 
     @property
     def username(self):
-        if 'username' in self.json_response:
-            return self.json_response['username']
+        return self.json_response.get('username', None)
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.auth_user_request.AuthUserRequest>'
+        return '<Marqeta.response_models.auth_user_request.AuthUserRequest>'

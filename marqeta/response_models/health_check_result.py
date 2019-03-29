@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class HealthCheckResult(object):
 
     def __init__(self, json_response):
@@ -16,23 +17,19 @@ class HealthCheckResult(object):
 
     @property
     def component(self):
-        if 'component' in self.json_response:
-            return self.json_response['component']
+        return self.json_response.get('component', None)
 
     @property
     def healthy(self):
-        if 'healthy' in self.json_response:
-            return self.json_response['healthy']
+        return self.json_response.get('healthy', None)
 
     @property
     def fatal(self):
-        if 'fatal' in self.json_response:
-            return self.json_response['fatal']
+        return self.json_response.get('fatal', None)
 
     @property
     def status(self):
-        if 'status' in self.json_response:
-            return self.json_response['status']
+        return self.json_response.get('status', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.health_check_result.HealthCheckResult>'
+        return '<Marqeta.response_models.health_check_result.HealthCheckResult>'

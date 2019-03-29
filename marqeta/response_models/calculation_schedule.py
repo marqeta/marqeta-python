@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class CalculationSchedule(object):
 
     def __init__(self, json_response):
@@ -16,28 +17,23 @@ class CalculationSchedule(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     @property
     def value_type(self):
-        if 'value_type' in self.json_response:
-            return self.json_response['value_type']
+        return self.json_response.get('value_type', None)
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+        return self.json_response.get('name', None)
 
     @property
     def steps(self):
-        if 'steps' in self.json_response:
-            return self.json_response['steps']
+        return self.json_response.get('steps', None)
 
     @property
     def step_values(self):
-        if 'step_values' in self.json_response:
-            return self.json_response['step_values']
+        return self.json_response.get('step_values', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.calculation_schedule.CalculationSchedule>'
+        return '<Marqeta.response_models.calculation_schedule.CalculationSchedule>'

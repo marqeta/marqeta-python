@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class GatewayProgramFundingSourceRequest(object):
 
     def __init__(self, json_response):
@@ -16,38 +17,31 @@ class GatewayProgramFundingSourceRequest(object):
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+        return self.json_response.get('name', None)
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+        return self.json_response.get('active', None)
 
     @property
     def url(self):
-        if 'url' in self.json_response:
-            return self.json_response['url']
+        return self.json_response.get('url', None)
 
     @property
     def basic_auth_username(self):
-        if 'basic_auth_username' in self.json_response:
-            return self.json_response['basic_auth_username']
+        return self.json_response.get('basic_auth_username', None)
 
     @property
     def basic_auth_password(self):
-        if 'basic_auth_password' in self.json_response:
-            return self.json_response['basic_auth_password']
+        return self.json_response.get('basic_auth_password', None)
 
     @property
     def timeout_millis(self):
-        if 'timeout_millis' in self.json_response:
-            return self.json_response['timeout_millis']
+        return self.json_response.get('timeout_millis', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.gateway_program_funding_source_request.GatewayProgramFundingSourceRequest>'
+        return '<Marqeta.response_models.gateway_program_funding_source_request.GatewayProgramFundingSourceRequest>'

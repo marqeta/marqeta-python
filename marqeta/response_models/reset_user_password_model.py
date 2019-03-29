@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ResetUserPasswordModel(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class ResetUserPasswordModel(object):
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+        return self.json_response.get('user_token', None)
 
     @property
     def new_password(self):
-        if 'new_password' in self.json_response:
-            return self.json_response['new_password']
+        return self.json_response.get('new_password', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.reset_user_password_model.ResetUserPasswordModel>'
+        return '<Marqeta.response_models.reset_user_password_model.ResetUserPasswordModel>'

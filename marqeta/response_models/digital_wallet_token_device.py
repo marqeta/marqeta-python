@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class DigitalWalletTokenDevice(object):
 
     def __init__(self, json_response):
@@ -16,38 +17,31 @@ class DigitalWalletTokenDevice(object):
 
     @property
     def device_type(self):
-        if 'device_type' in self.json_response:
-            return self.json_response['device_type']
+        return self.json_response.get('device_type', None)
 
     @property
     def device_lang_code(self):
-        if 'device_lang_code' in self.json_response:
-            return self.json_response['device_lang_code']
+        return self.json_response.get('device_lang_code', None)
 
     @property
     def device_id(self):
-        if 'device_id' in self.json_response:
-            return self.json_response['device_id']
+        return self.json_response.get('device_id', None)
 
     @property
     def device_number(self):
-        if 'device_number' in self.json_response:
-            return self.json_response['device_number']
+        return self.json_response.get('device_number', None)
 
     @property
     def device_name(self):
-        if 'device_name' in self.json_response:
-            return self.json_response['device_name']
+        return self.json_response.get('device_name', None)
 
     @property
     def device_location(self):
-        if 'device_location' in self.json_response:
-            return self.json_response['device_location']
+        return self.json_response.get('device_location', None)
 
     @property
     def device_ip_address(self):
-        if 'device_ip_address' in self.json_response:
-            return self.json_response['device_ip_address']
+        return self.json_response.get('device_ip_address', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.digital_wallet_token_device.DigitalWalletTokenDevice>'
+        return '<Marqeta.response_models.digital_wallet_token_device.DigitalWalletTokenDevice>'

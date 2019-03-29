@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class AutoReloadAssociation(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class AutoReloadAssociation(object):
 
     @property
     def card_product_token(self):
-        if 'card_product_token' in self.json_response:
-            return self.json_response['card_product_token']
+        return self.json_response.get('card_product_token', None)
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+        return self.json_response.get('user_token', None)
 
     @property
     def business_token(self):
-        if 'business_token' in self.json_response:
-            return self.json_response['business_token']
+        return self.json_response.get('business_token', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.auto_reload_association.AutoReloadAssociation>'
+        return '<Marqeta.response_models.auto_reload_association.AutoReloadAssociation>'

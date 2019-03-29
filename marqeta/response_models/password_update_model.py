@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class PasswordUpdateModel(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class PasswordUpdateModel(object):
 
     @property
     def new_password(self):
-        if 'new_password' in self.json_response:
-            return self.json_response['new_password']
+        return self.json_response.get('new_password', None)
 
     @property
     def current_password(self):
-        if 'current_password' in self.json_response:
-            return self.json_response['current_password']
+        return self.json_response.get('current_password', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.password_update_model.PasswordUpdateModel>'
+        return '<Marqeta.response_models.password_update_model.PasswordUpdateModel>'

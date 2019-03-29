@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class BulkRequestModel(object):
 
     def __init__(self, json_response):
@@ -16,28 +17,23 @@ class BulkRequestModel(object):
 
     @property
     def user_tokens(self):
-        if 'user_tokens' in self.json_response:
-            return self.json_response['user_tokens']
+        return self.json_response.get('user_tokens', None)
 
     @property
     def business_tokens(self):
-        if 'business_tokens' in self.json_response:
-            return self.json_response['business_tokens']
+        return self.json_response.get('business_tokens', None)
 
     @property
     def card_tokens(self):
-        if 'card_tokens' in self.json_response:
-            return self.json_response['card_tokens']
+        return self.json_response.get('card_tokens', None)
 
     @property
     def kyc_tokens(self):
-        if 'kyc_tokens' in self.json_response:
-            return self.json_response['kyc_tokens']
+        return self.json_response.get('kyc_tokens', None)
 
     @property
     def dda_tokens(self):
-        if 'dda_tokens' in self.json_response:
-            return self.json_response['dda_tokens']
+        return self.json_response.get('dda_tokens', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.bulk_request_model.BulkRequestModel>'
+        return '<Marqeta.response_models.bulk_request_model.BulkRequestModel>'

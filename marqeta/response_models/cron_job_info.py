@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class CronJobInfo(object):
 
     def __init__(self, json_response):
@@ -16,53 +17,56 @@ class CronJobInfo(object):
 
     @property
     def schedule(self):
-        if 'schedule' in self.json_response:
-            return self.json_response['schedule']
+
+        return self.json_response.get('schedule', None)
 
     @property
     def group(self):
-        if 'group' in self.json_response:
-            return self.json_response['group']
+
+        return self.json_response.get('group', None)
 
     @property
     def id(self):
-        if 'id' in self.json_response:
-            return self.json_response['id']
+
+        return self.json_response.get('id', None)
 
     @property
     def class(self):
-        if 'class' in self.json_response:
-            return self.json_response['class']
+
+        return self.json_response.get('class', None)
 
     @property
     def is_running(self):
-        if 'is_running' in self.json_response:
-            return self.json_response['is_running']
+
+        return self.json_response.get('is_running', None)
 
     @property
     def last_run_duration_millis(self):
-        if 'last_run_duration_millis' in self.json_response:
-            return self.json_response['last_run_duration_millis']
+
+        return self.json_response.get('last_run_duration_millis', None)
 
     @property
     def next_run(self):
+
         if 'next_run' in self.json_response:
-                return datetime.strptime(self.json_response['next_run'], '%Y-%m-%d').date()
+            return datetime.strptime(self.json_response['next_run'], '%Y-%m-%d').date()
 
     @property
     def last_run(self):
+
         if 'last_run' in self.json_response:
-                return datetime.strptime(self.json_response['last_run'], '%Y-%m-%d').date()
+            return datetime.strptime(self.json_response['last_run'], '%Y-%m-%d').date()
 
     @property
     def timezone(self):
-        if 'timezone' in self.json_response:
-            return self.json_response['timezone']
+
+        return self.json_response.get('timezone', None)
 
     @property
     def start_time(self):
+
         if 'start_time' in self.json_response:
-                return datetime.strptime(self.json_response['start_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['start_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-         return '<Marqeta.response_models.cron_job_info.CronJobInfo>'
+        return '<Marqeta.response_models.cron_job_info.CronJobInfo>'

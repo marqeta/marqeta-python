@@ -3,6 +3,7 @@ from marqeta.response_models.network_fee_model import NetworkFeeModel
 from marqeta.response_models.webhook import Webhook
 import json
 
+
 class ReversalModel(object):
 
     def __init__(self, json_response):
@@ -18,33 +19,35 @@ class ReversalModel(object):
 
     @property
     def network_fees(self):
+
         if 'network_fees' in self.json_response:
             return [NetworkFeeModel(val) for val in self.json_response['network_fees']]
 
     @property
     def webhook(self):
+
         if 'webhook' in self.json_response:
             return Webhook(self.json_response['webhook'])
 
     @property
     def original_transaction_token(self):
-        if 'original_transaction_token' in self.json_response:
-            return self.json_response['original_transaction_token']
+
+        return self.json_response.get('original_transaction_token', None)
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+
+        return self.json_response.get('amount', None)
 
     @property
     def find_original_window_days(self):
-        if 'find_original_window_days' in self.json_response:
-            return self.json_response['find_original_window_days']
+
+        return self.json_response.get('find_original_window_days', None)
 
     @property
     def is_advice(self):
-        if 'is_advice' in self.json_response:
-            return self.json_response['is_advice']
+
+        return self.json_response.get('is_advice', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.reversal_model.ReversalModel>'
+        return '<Marqeta.response_models.reversal_model.ReversalModel>'

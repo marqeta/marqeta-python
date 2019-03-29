@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class TokenRequest(object):
 
     def __init__(self, json_response):
@@ -16,48 +17,39 @@ class TokenRequest(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+        return self.json_response.get('user_token', None)
 
     @property
     def business_token(self):
-        if 'business_token' in self.json_response:
-            return self.json_response['business_token']
+        return self.json_response.get('business_token', None)
 
     @property
     def account_number(self):
-        if 'account_number' in self.json_response:
-            return self.json_response['account_number']
+        return self.json_response.get('account_number', None)
 
     @property
     def cvv_number(self):
-        if 'cvv_number' in self.json_response:
-            return self.json_response['cvv_number']
+        return self.json_response.get('cvv_number', None)
 
     @property
     def exp_date(self):
-        if 'exp_date' in self.json_response:
-            return self.json_response['exp_date']
+        return self.json_response.get('exp_date', None)
 
     @property
     def zip(self):
-        if 'zip' in self.json_response:
-            return self.json_response['zip']
+        return self.json_response.get('zip', None)
 
     @property
     def postal_code(self):
-        if 'postal_code' in self.json_response:
-            return self.json_response['postal_code']
+        return self.json_response.get('postal_code', None)
 
     @property
     def is_default_account(self):
-        if 'is_default_account' in self.json_response:
-            return self.json_response['is_default_account']
+        return self.json_response.get('is_default_account', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.token_request.TokenRequest>'
+        return '<Marqeta.response_models.token_request.TokenRequest>'

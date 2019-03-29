@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class EchoPingRequest(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class EchoPingRequest(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     @property
     def payload(self):
-        if 'payload' in self.json_response:
-            return self.json_response['payload']
+        return self.json_response.get('payload', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.echo_ping_request.EchoPingRequest>'
+        return '<Marqeta.response_models.echo_ping_request.EchoPingRequest>'

@@ -4,6 +4,7 @@ from marqeta.response_models.response import Response
 from marqeta.response_models.funding import Funding
 import json
 
+
 class GpaResponse(object):
 
     def __init__(self, json_response):
@@ -19,93 +20,98 @@ class GpaResponse(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+
+        return self.json_response.get('amount', None)
 
     @property
     def tags(self):
-        if 'tags' in self.json_response:
-            return self.json_response['tags']
+
+        return self.json_response.get('tags', None)
 
     @property
     def memo(self):
-        if 'memo' in self.json_response:
-            return self.json_response['memo']
+
+        return self.json_response.get('memo', None)
 
     @property
     def fees(self):
+
         if 'fees' in self.json_response:
             return [FeeDetail(val) for val in self.json_response['fees']]
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
+
         if 'last_modified_time' in self.json_response:
-                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def transaction_token(self):
-        if 'transaction_token' in self.json_response:
-            return self.json_response['transaction_token']
+
+        return self.json_response.get('transaction_token', None)
 
     @property
     def state(self):
-        if 'state' in self.json_response:
-            return self.json_response['state']
+
+        return self.json_response.get('state', None)
 
     @property
     def response(self):
+
         if 'response' in self.json_response:
             return Response(self.json_response['response'])
 
     @property
     def funding(self):
+
         if 'funding' in self.json_response:
             return Funding(self.json_response['funding'])
 
     @property
     def funding_source_token(self):
-        if 'funding_source_token' in self.json_response:
-            return self.json_response['funding_source_token']
+
+        return self.json_response.get('funding_source_token', None)
 
     @property
     def funding_source_address_token(self):
-        if 'funding_source_address_token' in self.json_response:
-            return self.json_response['funding_source_address_token']
+
+        return self.json_response.get('funding_source_address_token', None)
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+
+        return self.json_response.get('user_token', None)
 
     @property
     def business_token(self):
-        if 'business_token' in self.json_response:
-            return self.json_response['business_token']
+
+        return self.json_response.get('business_token', None)
 
     @property
     def currency_code(self):
-        if 'currency_code' in self.json_response:
-            return self.json_response['currency_code']
+
+        return self.json_response.get('currency_code', None)
 
     @property
     def gateway_token(self):
-        if 'gateway_token' in self.json_response:
-            return self.json_response['gateway_token']
+
+        return self.json_response.get('gateway_token', None)
 
     @property
     def gateway_message(self):
-        if 'gateway_message' in self.json_response:
-            return self.json_response['gateway_message']
+
+        return self.json_response.get('gateway_message', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.gpa_response.GpaResponse>'
+        return '<Marqeta.response_models.gpa_response.GpaResponse>'

@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.billing_address import BillingAddress
 import json
 
+
 class CardOptions(object):
 
     def __init__(self, json_response):
@@ -17,23 +18,24 @@ class CardOptions(object):
 
     @property
     def cvv(self):
-        if 'cvv' in self.json_response:
-            return self.json_response['cvv']
+
+        return self.json_response.get('cvv', None)
 
     @property
     def card_present(self):
-        if 'card_present' in self.json_response:
-            return self.json_response['card_present']
+
+        return self.json_response.get('card_present', None)
 
     @property
     def expiration(self):
-        if 'expiration' in self.json_response:
-            return self.json_response['expiration']
+
+        return self.json_response.get('expiration', None)
 
     @property
     def billing_address(self):
+
         if 'billing_address' in self.json_response:
             return BillingAddress(self.json_response['billing_address'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.card_options.CardOptions>'
+        return '<Marqeta.response_models.card_options.CardOptions>'

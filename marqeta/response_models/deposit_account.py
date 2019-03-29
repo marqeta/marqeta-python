@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class DepositAccount(object):
 
     def __init__(self, json_response):
@@ -16,33 +17,27 @@ class DepositAccount(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+        return self.json_response.get('user_token', None)
 
     @property
     def business_token(self):
-        if 'business_token' in self.json_response:
-            return self.json_response['business_token']
+        return self.json_response.get('business_token', None)
 
     @property
     def account_number(self):
-        if 'account_number' in self.json_response:
-            return self.json_response['account_number']
+        return self.json_response.get('account_number', None)
 
     @property
     def routing_number(self):
-        if 'routing_number' in self.json_response:
-            return self.json_response['routing_number']
+        return self.json_response.get('routing_number', None)
 
     @property
     def allow_immediate_credit(self):
-        if 'allow_immediate_credit' in self.json_response:
-            return self.json_response['allow_immediate_credit']
+        return self.json_response.get('allow_immediate_credit', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.deposit_account.DepositAccount>'
+        return '<Marqeta.response_models.deposit_account.DepositAccount>'

@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class DdaRequest(object):
 
     def __init__(self, json_response):
@@ -16,8 +17,7 @@ class DdaRequest(object):
 
     @property
     def dda(self):
-        if 'dda' in self.json_response:
-            return self.json_response['dda']
+        return self.json_response.get('dda', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.dda_request.DdaRequest>'
+        return '<Marqeta.response_models.dda_request.DdaRequest>'

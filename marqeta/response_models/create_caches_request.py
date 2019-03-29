@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class CreateCachesRequest(object):
 
     def __init__(self, json_response):
@@ -16,8 +17,7 @@ class CreateCachesRequest(object):
 
     @property
     def transactions(self):
-        if 'transactions' in self.json_response:
-            return self.json_response['transactions']
+        return self.json_response.get('transactions', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.create_caches_request.CreateCachesRequest>'
+        return '<Marqeta.response_models.create_caches_request.CreateCachesRequest>'

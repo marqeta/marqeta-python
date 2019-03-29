@@ -1,4 +1,7 @@
 class MarqetaError(Exception):
+    '''
+    Handles Marqeta Errors!
+    '''
 
     def __init__(self, **kwargs):
         if 'error_message' in kwargs:

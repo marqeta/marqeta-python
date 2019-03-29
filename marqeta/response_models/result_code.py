@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ResultCode(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class ResultCode(object):
 
     @property
     def code(self):
-        if 'code' in self.json_response:
-            return self.json_response['code']
+        return self.json_response.get('code', None)
 
     @property
     def message(self):
-        if 'message' in self.json_response:
-            return self.json_response['message']
+        return self.json_response.get('message', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.result_code.ResultCode>'
+        return '<Marqeta.response_models.result_code.ResultCode>'

@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class DigitalWalletTokenHash(object):
 
     def __init__(self, json_response):
@@ -16,8 +17,7 @@ class DigitalWalletTokenHash(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.digital_wallet_token_hash.DigitalWalletTokenHash>'
+        return '<Marqeta.response_models.digital_wallet_token_hash.DigitalWalletTokenHash>'

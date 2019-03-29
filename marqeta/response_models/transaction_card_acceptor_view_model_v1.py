@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.terminal_model import TerminalModel
 import json
 
+
 class TransactionCardAcceptorViewModelV1(object):
 
     def __init__(self, json_response):
@@ -17,63 +18,64 @@ class TransactionCardAcceptorViewModelV1(object):
 
     @property
     def mid(self):
-        if 'mid' in self.json_response:
-            return self.json_response['mid']
+
+        return self.json_response.get('mid', None)
 
     @property
     def mcc(self):
-        if 'mcc' in self.json_response:
-            return self.json_response['mcc']
+
+        return self.json_response.get('mcc', None)
 
     @property
     def network_mid(self):
-        if 'network_mid' in self.json_response:
-            return self.json_response['network_mid']
+
+        return self.json_response.get('network_mid', None)
 
     @property
     def mcc_groups(self):
-        if 'mcc_groups' in self.json_response:
-            return self.json_response['mcc_groups']
+
+        return self.json_response.get('mcc_groups', None)
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+
+        return self.json_response.get('name', None)
 
     @property
     def address(self):
-        if 'address' in self.json_response:
-            return self.json_response['address']
+
+        return self.json_response.get('address', None)
 
     @property
     def city(self):
-        if 'city' in self.json_response:
-            return self.json_response['city']
+
+        return self.json_response.get('city', None)
 
     @property
     def state(self):
-        if 'state' in self.json_response:
-            return self.json_response['state']
+
+        return self.json_response.get('state', None)
 
     @property
     def zip(self):
-        if 'zip' in self.json_response:
-            return self.json_response['zip']
+
+        return self.json_response.get('zip', None)
 
     @property
     def postal_code(self):
-        if 'postal_code' in self.json_response:
-            return self.json_response['postal_code']
+
+        return self.json_response.get('postal_code', None)
 
     @property
     def country(self):
-        if 'country' in self.json_response:
-            return self.json_response['country']
+
+        return self.json_response.get('country', None)
 
     @property
     def poi(self):
+
         if 'poi' in self.json_response:
             return TerminalModel(self.json_response['poi'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.transaction_card_acceptor_view_model_v1.TransactionCardAcceptorViewModelV1>'
+        return '<Marqeta.response_models.transaction_card_acceptor_view_model_v1.TransactionCardAcceptorViewModelV1>'

@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class Device(object):
 
     def __init__(self, json_response):
@@ -16,43 +17,35 @@ class Device(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     @property
     def type(self):
-        if 'type' in self.json_response:
-            return self.json_response['type']
+        return self.json_response.get('type', None)
 
     @property
     def language_code(self):
-        if 'language_code' in self.json_response:
-            return self.json_response['language_code']
+        return self.json_response.get('language_code', None)
 
     @property
     def device_id(self):
-        if 'device_id' in self.json_response:
-            return self.json_response['device_id']
+        return self.json_response.get('device_id', None)
 
     @property
     def phone_number(self):
-        if 'phone_number' in self.json_response:
-            return self.json_response['phone_number']
+        return self.json_response.get('phone_number', None)
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+        return self.json_response.get('name', None)
 
     @property
     def location(self):
-        if 'location' in self.json_response:
-            return self.json_response['location']
+        return self.json_response.get('location', None)
 
     @property
     def ip_address(self):
-        if 'ip_address' in self.json_response:
-            return self.json_response['ip_address']
+        return self.json_response.get('ip_address', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.device.Device>'
+        return '<Marqeta.response_models.device.Device>'

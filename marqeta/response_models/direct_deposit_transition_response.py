@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class DirectDepositTransitionResponse(object):
 
     def __init__(self, json_response):
@@ -16,48 +17,49 @@ class DirectDepositTransitionResponse(object):
 
     @property
     def channel(self):
-        if 'channel' in self.json_response:
-            return self.json_response['channel']
+
+        return self.json_response.get('channel', None)
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def reason(self):
-        if 'reason' in self.json_response:
-            return self.json_response['reason']
+
+        return self.json_response.get('reason', None)
 
     @property
     def type(self):
-        if 'type' in self.json_response:
-            return self.json_response['type']
+
+        return self.json_response.get('type', None)
 
     @property
     def direct_deposit_token(self):
-        if 'direct_deposit_token' in self.json_response:
-            return self.json_response['direct_deposit_token']
+
+        return self.json_response.get('direct_deposit_token', None)
 
     @property
     def transaction_token(self):
-        if 'transaction_token' in self.json_response:
-            return self.json_response['transaction_token']
+
+        return self.json_response.get('transaction_token', None)
 
     @property
     def state(self):
-        if 'state' in self.json_response:
-            return self.json_response['state']
+
+        return self.json_response.get('state', None)
 
     @property
     def reason_code(self):
-        if 'reason_code' in self.json_response:
-            return self.json_response['reason_code']
+
+        return self.json_response.get('reason_code', None)
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-         return '<Marqeta.response_models.direct_deposit_transition_response.DirectDepositTransitionResponse>'
+        return '<Marqeta.response_models.direct_deposit_transition_response.DirectDepositTransitionResponse>'

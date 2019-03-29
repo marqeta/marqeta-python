@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class CacheError(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class CacheError(object):
 
     @property
     def id(self):
-        if 'id' in self.json_response:
-            return self.json_response['id']
+        return self.json_response.get('id', None)
 
     @property
     def message(self):
-        if 'message' in self.json_response:
-            return self.json_response['message']
+        return self.json_response.get('message', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.cache_error.CacheError>'
+        return '<Marqeta.response_models.cache_error.CacheError>'

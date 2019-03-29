@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class TerminalModel(object):
 
     def __init__(self, json_response):
@@ -16,38 +17,31 @@ class TerminalModel(object):
 
     @property
     def tid(self):
-        if 'tid' in self.json_response:
-            return self.json_response['tid']
+        return self.json_response.get('tid', None)
 
     @property
     def partial_approval_capable(self):
-        if 'partial_approval_capable' in self.json_response:
-            return self.json_response['partial_approval_capable']
+        return self.json_response.get('partial_approval_capable', None)
 
     @property
     def cardholder_presence(self):
-        if 'cardholder_presence' in self.json_response:
-            return self.json_response['cardholder_presence']
+        return self.json_response.get('cardholder_presence', None)
 
     @property
     def card_presence(self):
-        if 'card_presence' in self.json_response:
-            return self.json_response['card_presence']
+        return self.json_response.get('card_presence', None)
 
     @property
     def channel(self):
-        if 'channel' in self.json_response:
-            return self.json_response['channel']
+        return self.json_response.get('channel', None)
 
     @property
     def processing_type(self):
-        if 'processing_type' in self.json_response:
-            return self.json_response['processing_type']
+        return self.json_response.get('processing_type', None)
 
     @property
     def pin_present(self):
-        if 'pin_present' in self.json_response:
-            return self.json_response['pin_present']
+        return self.json_response.get('pin_present', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.terminal_model.TerminalModel>'
+        return '<Marqeta.response_models.terminal_model.TerminalModel>'

@@ -6,39 +6,72 @@ from marqeta.response_models.card_product_response import CardProductResponse
 
 
 class CardProductCollection(object):
-
+    '''
+    Marqeta API 'cardproducts' endpoint list, create, find and update operations
+    '''
     _endpoint = 'cardproducts'
 
     def __init__(self, client):
+        '''
+        Creates a client collection object
+        :param client: client object
+        '''
         self.client = client
         self.collections = Collection(self.client, CardProductResponse)
 
-    def page(self, params = None):
+    def page(self, params=None):
+        '''
+        Provides the requested page for cardproducts
+        :param params: query parameters
+        :return: requested page with CardProductResponse object for the requested
+        page 'data'field
+        '''
         return self.collections.page(endpoint=self._endpoint, query_params=params)
 
-    ''' Iterates through card products  
-        returns card product object one at a time'''
-    def stream(self, params = None):
+    def stream(self, params=None):
+        '''
+        Stream through the list of requested endpoint data field
+        :param params: query parameters
+        :return: CardProductResponse object
+        '''
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
-    ''' Lists all the 25 card products  '''
-    def list(self, params=None, limit = 25):
+    def list(self, params=None, limit=25):
+        '''
+        List 25 the cardproducts
+        :param params: query parameters
+        :param limit: parameter to limit the list count
+        :return: List of CardProductResponse object
+        '''
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
-    ''' Create a card product with the specified data
-            Returns the card product object which has created card product information'''
-    def create(self, data = {}):
+    def create(self, data={}):
+        '''
+        Creates an cardproducts object
+        :param data: data required for creation
+        :param params: query parameters
+        :return: CardProductResponse object of the created cardproducts
+        '''
         return self.collections.create(endpoint=self._endpoint, data=data)
 
-    ''' Finds the card product information for the requested token
-            Returns the cardproduct object which has card product information '''
     def find(self, token, params=None):
-        return self.collections.find(endpoint= self._endpoint+'/{}'.format(token), query_params=params)
+        '''
+        Finds the existing cardproducts
+        :param token: cardproducts token to find
+        :param params: query parameters
+        :return: CardProductResponse object
+        '''
+        return self.collections.find(endpoint=self._endpoint + '/{}'.format(token),
+                                     query_params=params)
 
-    ''' Update the card producy information for the requested token  with the data
-                Returns the card product object which has updated user information'''
     def save(self, token, data):
-        return self.collections.save(data, endpoint=self._endpoint+'/{}'.format(token),)
+        '''
+        Updates the existing cardproducts with data
+        :param token: cardproducts token to update
+        :param data: data to be updated
+        :return:  CardProductResponse object of the updated  cardproducts
+        '''
+        return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token), )
 
     def __repr__(self):
         return '<Marqeta.resources.cardproducts.CardProductCollection>'

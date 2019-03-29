@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class CardInventoryResponse(object):
 
     def __init__(self, json_response):
@@ -16,23 +17,24 @@ class CardInventoryResponse(object):
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def package_id(self):
-        if 'package_id' in self.json_response:
-            return self.json_response['package_id']
+
+        return self.json_response.get('package_id', None)
 
     @property
     def starting_inventory(self):
-        if 'starting_inventory' in self.json_response:
-            return self.json_response['starting_inventory']
+
+        return self.json_response.get('starting_inventory', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.card_inventory_response.CardInventoryResponse>'
+        return '<Marqeta.response_models.card_inventory_response.CardInventoryResponse>'

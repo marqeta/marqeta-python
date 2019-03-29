@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ResetUserPasswordEmailModel(object):
 
     def __init__(self, json_response):
@@ -16,8 +17,7 @@ class ResetUserPasswordEmailModel(object):
 
     @property
     def email(self):
-        if 'email' in self.json_response:
-            return self.json_response['email']
+        return self.json_response.get('email', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.reset_user_password_email_model.ResetUserPasswordEmailModel>'
+        return '<Marqeta.response_models.reset_user_password_email_model.ResetUserPasswordEmailModel>'

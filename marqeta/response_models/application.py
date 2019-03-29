@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class Application(object):
 
     def __init__(self, json_response):
@@ -16,38 +17,31 @@ class Application(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     @property
     def program(self):
-        if 'program' in self.json_response:
-            return self.json_response['program']
+        return self.json_response.get('program', None)
 
     @property
     def environment(self):
-        if 'environment' in self.json_response:
-            return self.json_response['environment']
+        return self.json_response.get('environment', None)
 
     @property
     def program_short_code(self):
-        if 'program_short_code' in self.json_response:
-            return self.json_response['program_short_code']
+        return self.json_response.get('program_short_code', None)
 
     @property
     def client_api_base_url(self):
-        if 'client_api_base_url' in self.json_response:
-            return self.json_response['client_api_base_url']
+        return self.json_response.get('client_api_base_url', None)
 
     @property
     def assets_url(self):
-        if 'assets_url' in self.json_response:
-            return self.json_response['assets_url']
+        return self.json_response.get('assets_url', None)
 
     @property
     def access_code(self):
-        if 'access_code' in self.json_response:
-            return self.json_response['access_code']
+        return self.json_response.get('access_code', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.application.Application>'
+        return '<Marqeta.response_models.application.Application>'

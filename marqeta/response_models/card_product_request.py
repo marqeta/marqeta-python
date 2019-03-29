@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.card_product_config import CardProductConfig
 import json
 
+
 class CardProductRequest(object):
 
     def __init__(self, json_response):
@@ -17,33 +18,36 @@ class CardProductRequest(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+
+        return self.json_response.get('name', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+
+        return self.json_response.get('active', None)
 
     @property
     def start_date(self):
+
         if 'start_date' in self.json_response:
-                return datetime.strptime(self.json_response['start_date'], '%Y-%m-%d').date()
+            return datetime.strptime(self.json_response['start_date'], '%Y-%m-%d').date()
 
     @property
     def end_date(self):
+
         if 'end_date' in self.json_response:
-                return datetime.strptime(self.json_response['end_date'], '%Y-%m-%d').date()
+            return datetime.strptime(self.json_response['end_date'], '%Y-%m-%d').date()
 
     @property
     def config(self):
+
         if 'config' in self.json_response:
             return CardProductConfig(self.json_response['config'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.card_product_request.CardProductRequest>'
+        return '<Marqeta.response_models.card_product_request.CardProductRequest>'

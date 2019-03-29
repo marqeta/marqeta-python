@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class AdvancedAuthOtherPoi(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class AdvancedAuthOtherPoi(object):
 
     @property
     def card_presence(self):
-        if 'card_presence' in self.json_response:
-            return self.json_response['card_presence']
+        return self.json_response.get('card_presence', None)
 
     @property
     def cardholder_presence(self):
-        if 'cardholder_presence' in self.json_response:
-            return self.json_response['cardholder_presence']
+        return self.json_response.get('cardholder_presence', None)
 
     @property
     def partial_approval_capable(self):
-        if 'partial_approval_capable' in self.json_response:
-            return self.json_response['partial_approval_capable']
+        return self.json_response.get('partial_approval_capable', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.advanced_auth_other_poi.AdvancedAuthOtherPoi>'
+        return '<Marqeta.response_models.advanced_auth_other_poi.AdvancedAuthOtherPoi>'

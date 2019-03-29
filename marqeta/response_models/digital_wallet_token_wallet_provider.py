@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class DigitalWalletTokenWalletProvider(object):
 
     def __init__(self, json_response):
@@ -16,48 +17,39 @@ class DigitalWalletTokenWalletProvider(object):
 
     @property
     def wallet_provider_cardholder_wallet_account_id(self):
-        if 'wallet_provider_cardholder_wallet_account_id' in self.json_response:
-            return self.json_response['wallet_provider_cardholder_wallet_account_id']
+        return self.json_response.get('wallet_provider_cardholder_wallet_account_id', None)
 
     @property
     def wallet_provider_risk_assessment(self):
-        if 'wallet_provider_risk_assessment' in self.json_response:
-            return self.json_response['wallet_provider_risk_assessment']
+        return self.json_response.get('wallet_provider_risk_assessment', None)
 
     @property
     def wallet_provider_risk_assessment_version(self):
-        if 'wallet_provider_risk_assessment_version' in self.json_response:
-            return self.json_response['wallet_provider_risk_assessment_version']
+        return self.json_response.get('wallet_provider_risk_assessment_version', None)
 
     @property
     def wallet_provider_device_score(self):
-        if 'wallet_provider_device_score' in self.json_response:
-            return self.json_response['wallet_provider_device_score']
+        return self.json_response.get('wallet_provider_device_score', None)
 
     @property
     def wallet_provider_account_score(self):
-        if 'wallet_provider_account_score' in self.json_response:
-            return self.json_response['wallet_provider_account_score']
+        return self.json_response.get('wallet_provider_account_score', None)
 
     @property
     def wallet_provider_pan_source(self):
-        if 'wallet_provider_pan_source' in self.json_response:
-            return self.json_response['wallet_provider_pan_source']
+        return self.json_response.get('wallet_provider_pan_source', None)
 
     @property
     def wallet_provider_reason_code(self):
-        if 'wallet_provider_reason_code' in self.json_response:
-            return self.json_response['wallet_provider_reason_code']
+        return self.json_response.get('wallet_provider_reason_code', None)
 
     @property
     def recommendation_reasons(self):
-        if 'recommendation_reasons' in self.json_response:
-            return self.json_response['recommendation_reasons']
+        return self.json_response.get('recommendation_reasons', None)
 
     @property
     def cardholder_wallet_account_email(self):
-        if 'cardholder_wallet_account_email' in self.json_response:
-            return self.json_response['cardholder_wallet_account_email']
+        return self.json_response.get('cardholder_wallet_account_email', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.digital_wallet_token_wallet_provider.DigitalWalletTokenWalletProvider>'
+        return '<Marqeta.response_models.digital_wallet_token_wallet_provider.DigitalWalletTokenWalletProvider>'

@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class Link(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class Link(object):
 
     @property
     def rel(self):
-        if 'rel' in self.json_response:
-            return self.json_response['rel']
+        return self.json_response.get('rel', None)
 
     @property
     def method(self):
-        if 'method' in self.json_response:
-            return self.json_response['method']
+        return self.json_response.get('method', None)
 
     @property
     def href(self):
-        if 'href' in self.json_response:
-            return self.json_response['href']
+        return self.json_response.get('href', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.link.Link>'
+        return '<Marqeta.response_models.link.Link>'

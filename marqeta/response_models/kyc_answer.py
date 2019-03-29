@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class KycAnswer(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class KycAnswer(object):
 
     @property
     def answer(self):
-        if 'answer' in self.json_response:
-            return self.json_response['answer']
+        return self.json_response.get('answer', None)
 
     @property
     def key(self):
-        if 'key' in self.json_response:
-            return self.json_response['key']
+        return self.json_response.get('key', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.kyc_answer.KycAnswer>'
+        return '<Marqeta.response_models.kyc_answer.KycAnswer>'

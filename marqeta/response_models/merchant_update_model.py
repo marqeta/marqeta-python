@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class MerchantUpdateModel(object):
 
     def __init__(self, json_response):
@@ -16,78 +17,63 @@ class MerchantUpdateModel(object):
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+        return self.json_response.get('name', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+        return self.json_response.get('active', None)
 
     @property
     def contact(self):
-        if 'contact' in self.json_response:
-            return self.json_response['contact']
+        return self.json_response.get('contact', None)
 
     @property
     def contact_email(self):
-        if 'contact_email' in self.json_response:
-            return self.json_response['contact_email']
+        return self.json_response.get('contact_email', None)
 
     @property
     def longitude(self):
-        if 'longitude' in self.json_response:
-            return self.json_response['longitude']
+        return self.json_response.get('longitude', None)
 
     @property
     def latitude(self):
-        if 'latitude' in self.json_response:
-            return self.json_response['latitude']
+        return self.json_response.get('latitude', None)
 
     @property
     def address1(self):
-        if 'address1' in self.json_response:
-            return self.json_response['address1']
+        return self.json_response.get('address1', None)
 
     @property
     def address2(self):
-        if 'address2' in self.json_response:
-            return self.json_response['address2']
+        return self.json_response.get('address2', None)
 
     @property
     def city(self):
-        if 'city' in self.json_response:
-            return self.json_response['city']
+        return self.json_response.get('city', None)
 
     @property
     def state(self):
-        if 'state' in self.json_response:
-            return self.json_response['state']
+        return self.json_response.get('state', None)
 
     @property
     def province(self):
-        if 'province' in self.json_response:
-            return self.json_response['province']
+        return self.json_response.get('province', None)
 
     @property
     def zip(self):
-        if 'zip' in self.json_response:
-            return self.json_response['zip']
+        return self.json_response.get('zip', None)
 
     @property
     def phone(self):
-        if 'phone' in self.json_response:
-            return self.json_response['phone']
+        return self.json_response.get('phone', None)
 
     @property
     def country(self):
-        if 'country' in self.json_response:
-            return self.json_response['country']
+        return self.json_response.get('country', None)
 
     @property
     def partial_auth_flag(self):
-        if 'partial_auth_flag' in self.json_response:
-            return self.json_response['partial_auth_flag']
+        return self.json_response.get('partial_auth_flag', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.merchant_update_model.MerchantUpdateModel>'
+        return '<Marqeta.response_models.merchant_update_model.MerchantUpdateModel>'

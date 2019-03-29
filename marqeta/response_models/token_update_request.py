@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class TokenUpdateRequest(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class TokenUpdateRequest(object):
 
     @property
     def exp_date(self):
-        if 'exp_date' in self.json_response:
-            return self.json_response['exp_date']
+        return self.json_response.get('exp_date', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+        return self.json_response.get('active', None)
 
     @property
     def is_default_account(self):
-        if 'is_default_account' in self.json_response:
-            return self.json_response['is_default_account']
+        return self.json_response.get('is_default_account', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.token_update_request.TokenUpdateRequest>'
+        return '<Marqeta.response_models.token_update_request.TokenUpdateRequest>'

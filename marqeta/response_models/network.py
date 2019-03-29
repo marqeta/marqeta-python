@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class Network(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class Network(object):
 
     @property
     def original_amount(self):
-        if 'original_amount' in self.json_response:
-            return self.json_response['original_amount']
+        return self.json_response.get('original_amount', None)
 
     @property
     def conversion_rate(self):
-        if 'conversion_rate' in self.json_response:
-            return self.json_response['conversion_rate']
+        return self.json_response.get('conversion_rate', None)
 
     @property
     def original_currency_code(self):
-        if 'original_currency_code' in self.json_response:
-            return self.json_response['original_currency_code']
+        return self.json_response.get('original_currency_code', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.network.Network>'
+        return '<Marqeta.response_models.network.Network>'

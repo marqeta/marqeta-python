@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class FileProcessingResponse(object):
 
     def __init__(self, json_response):
@@ -16,38 +17,40 @@ class FileProcessingResponse(object):
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
+
         if 'last_modified_time' in self.json_response:
-                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def file_process_type(self):
-        if 'file_process_type' in self.json_response:
-            return self.json_response['file_process_type']
+
+        return self.json_response.get('file_process_type', None)
 
     @property
     def source_file(self):
-        if 'source_file' in self.json_response:
-            return self.json_response['source_file']
+
+        return self.json_response.get('source_file', None)
 
     @property
     def archive_file(self):
-        if 'archive_file' in self.json_response:
-            return self.json_response['archive_file']
+
+        return self.json_response.get('archive_file', None)
 
     @property
     def file_process_status(self):
-        if 'file_process_status' in self.json_response:
-            return self.json_response['file_process_status']
+
+        return self.json_response.get('file_process_status', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.file_processing_response.FileProcessingResponse>'
+        return '<Marqeta.response_models.file_processing_response.FileProcessingResponse>'

@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ActivationActions(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class ActivationActions(object):
 
     @property
     def terminate_reissued_source_card(self):
-        if 'terminate_reissued_source_card' in self.json_response:
-            return self.json_response['terminate_reissued_source_card']
+        return self.json_response.get('terminate_reissued_source_card', None)
 
     @property
     def swap_digital_wallet_tokens_from_card_token(self):
-        if 'swap_digital_wallet_tokens_from_card_token' in self.json_response:
-            return self.json_response['swap_digital_wallet_tokens_from_card_token']
+        return self.json_response.get('swap_digital_wallet_tokens_from_card_token', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.activation_actions.ActivationActions>'
+        return '<Marqeta.response_models.activation_actions.ActivationActions>'

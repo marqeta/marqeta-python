@@ -3,6 +3,7 @@ from marqeta.response_models.card_acceptor_model import CardAcceptorModel
 from marqeta.response_models.webhook import Webhook
 import json
 
+
 class WithdrawalRequestModel(object):
 
     def __init__(self, json_response):
@@ -18,38 +19,40 @@ class WithdrawalRequestModel(object):
 
     @property
     def account_type(self):
-        if 'account_type' in self.json_response:
-            return self.json_response['account_type']
+
+        return self.json_response.get('account_type', None)
 
     @property
     def card_token(self):
-        if 'card_token' in self.json_response:
-            return self.json_response['card_token']
+
+        return self.json_response.get('card_token', None)
 
     @property
     def pin(self):
-        if 'pin' in self.json_response:
-            return self.json_response['pin']
+
+        return self.json_response.get('pin', None)
 
     @property
     def mid(self):
-        if 'mid' in self.json_response:
-            return self.json_response['mid']
+
+        return self.json_response.get('mid', None)
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+
+        return self.json_response.get('amount', None)
 
     @property
     def card_acceptor(self):
+
         if 'card_acceptor' in self.json_response:
             return CardAcceptorModel(self.json_response['card_acceptor'])
 
     @property
     def webhook(self):
+
         if 'webhook' in self.json_response:
             return Webhook(self.json_response['webhook'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.withdrawal_request_model.WithdrawalRequestModel>'
+        return '<Marqeta.response_models.withdrawal_request_model.WithdrawalRequestModel>'

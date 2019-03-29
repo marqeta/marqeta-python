@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.provisioning_controls import ProvisioningControls
 import json
 
+
 class DigitalWalletTokenization(object):
 
     def __init__(self, json_response):
@@ -17,8 +18,9 @@ class DigitalWalletTokenization(object):
 
     @property
     def provisioning_controls(self):
+
         if 'provisioning_controls' in self.json_response:
             return ProvisioningControls(self.json_response['provisioning_controls'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.digital_wallet_tokenization.DigitalWalletTokenization>'
+        return '<Marqeta.response_models.digital_wallet_tokenization.DigitalWalletTokenization>'

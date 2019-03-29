@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.response import Response
 import json
 
+
 class CardSecurityCodeVerification(object):
 
     def __init__(self, json_response):
@@ -17,13 +18,14 @@ class CardSecurityCodeVerification(object):
 
     @property
     def type(self):
-        if 'type' in self.json_response:
-            return self.json_response['type']
+
+        return self.json_response.get('type', None)
 
     @property
     def response(self):
+
         if 'response' in self.json_response:
             return Response(self.json_response['response'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.card_security_code_verification.CardSecurityCodeVerification>'
+        return '<Marqeta.response_models.card_security_code_verification.CardSecurityCodeVerification>'

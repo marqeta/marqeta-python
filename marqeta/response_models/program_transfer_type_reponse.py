@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ProgramTransferTypeReponse(object):
 
     def __init__(self, json_response):
@@ -16,33 +17,35 @@ class ProgramTransferTypeReponse(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def program_funding_source_token(self):
-        if 'program_funding_source_token' in self.json_response:
-            return self.json_response['program_funding_source_token']
+
+        return self.json_response.get('program_funding_source_token', None)
 
     @property
     def tags(self):
-        if 'tags' in self.json_response:
-            return self.json_response['tags']
+
+        return self.json_response.get('tags', None)
 
     @property
     def memo(self):
-        if 'memo' in self.json_response:
-            return self.json_response['memo']
+
+        return self.json_response.get('memo', None)
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
+
         if 'last_modified_time' in self.json_response:
-                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-         return '<Marqeta.response_models.program_transfer_type_reponse.ProgramTransferTypeReponse>'
+        return '<Marqeta.response_models.program_transfer_type_reponse.ProgramTransferTypeReponse>'

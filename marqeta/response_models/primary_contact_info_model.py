@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class PrimaryContactInfoModel(object):
 
     def __init__(self, json_response):
@@ -16,43 +17,35 @@ class PrimaryContactInfoModel(object):
 
     @property
     def full_name(self):
-        if 'full_name' in self.json_response:
-            return self.json_response['full_name']
+        return self.json_response.get('full_name', None)
 
     @property
     def title(self):
-        if 'title' in self.json_response:
-            return self.json_response['title']
+        return self.json_response.get('title', None)
 
     @property
     def department(self):
-        if 'department' in self.json_response:
-            return self.json_response['department']
+        return self.json_response.get('department', None)
 
     @property
     def phone(self):
-        if 'phone' in self.json_response:
-            return self.json_response['phone']
+        return self.json_response.get('phone', None)
 
     @property
     def extension(self):
-        if 'extension' in self.json_response:
-            return self.json_response['extension']
+        return self.json_response.get('extension', None)
 
     @property
     def fax(self):
-        if 'fax' in self.json_response:
-            return self.json_response['fax']
+        return self.json_response.get('fax', None)
 
     @property
     def mobile(self):
-        if 'mobile' in self.json_response:
-            return self.json_response['mobile']
+        return self.json_response.get('mobile', None)
 
     @property
     def email(self):
-        if 'email' in self.json_response:
-            return self.json_response['email']
+        return self.json_response.get('email', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.primary_contact_info_model.PrimaryContactInfoModel>'
+        return '<Marqeta.response_models.primary_contact_info_model.PrimaryContactInfoModel>'

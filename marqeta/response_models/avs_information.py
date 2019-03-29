@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class AvsInformation(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class AvsInformation(object):
 
     @property
     def street_address(self):
-        if 'street_address' in self.json_response:
-            return self.json_response['street_address']
+        return self.json_response.get('street_address', None)
 
     @property
     def zip(self):
-        if 'zip' in self.json_response:
-            return self.json_response['zip']
+        return self.json_response.get('zip', None)
 
     @property
     def postal_code(self):
-        if 'postal_code' in self.json_response:
-            return self.json_response['postal_code']
+        return self.json_response.get('postal_code', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.avs_information.AvsInformation>'
+        return '<Marqeta.response_models.avs_information.AvsInformation>'

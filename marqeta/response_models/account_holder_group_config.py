@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.pre_kyc_controls import PreKycControls
 import json
 
+
 class AccountHolderGroupConfig(object):
 
     def __init__(self, json_response):
@@ -17,23 +18,24 @@ class AccountHolderGroupConfig(object):
 
     @property
     def kyc_required(self):
-        if 'kyc_required' in self.json_response:
-            return self.json_response['kyc_required']
+
+        return self.json_response.get('kyc_required', None)
 
     @property
     def is_reloadable(self):
-        if 'is_reloadable' in self.json_response:
-            return self.json_response['is_reloadable']
+
+        return self.json_response.get('is_reloadable', None)
 
     @property
     def real_time_fee_group_token(self):
-        if 'real_time_fee_group_token' in self.json_response:
-            return self.json_response['real_time_fee_group_token']
+
+        return self.json_response.get('real_time_fee_group_token', None)
 
     @property
     def pre_kyc_controls(self):
+
         if 'pre_kyc_controls' in self.json_response:
             return PreKycControls(self.json_response['pre_kyc_controls'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.account_holder_group_config.AccountHolderGroupConfig>'
+        return '<Marqeta.response_models.account_holder_group_config.AccountHolderGroupConfig>'

@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ImagesCarrier(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class ImagesCarrier(object):
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+        return self.json_response.get('name', None)
 
     @property
     def message_1(self):
-        if 'message_1' in self.json_response:
-            return self.json_response['message_1']
+        return self.json_response.get('message_1', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.images_carrier.ImagesCarrier>'
+        return '<Marqeta.response_models.images_carrier.ImagesCarrier>'

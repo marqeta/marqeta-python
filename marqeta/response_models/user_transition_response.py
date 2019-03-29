@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class UserTransitionResponse(object):
 
     def __init__(self, json_response):
@@ -16,43 +17,45 @@ class UserTransitionResponse(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def status(self):
-        if 'status' in self.json_response:
-            return self.json_response['status']
+
+        return self.json_response.get('status', None)
 
     @property
     def reason_code(self):
-        if 'reason_code' in self.json_response:
-            return self.json_response['reason_code']
+
+        return self.json_response.get('reason_code', None)
 
     @property
     def reason(self):
-        if 'reason' in self.json_response:
-            return self.json_response['reason']
+
+        return self.json_response.get('reason', None)
 
     @property
     def channel(self):
-        if 'channel' in self.json_response:
-            return self.json_response['channel']
+
+        return self.json_response.get('channel', None)
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
+
         if 'last_modified_time' in self.json_response:
-                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+
+        return self.json_response.get('user_token', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.user_transition_response.UserTransitionResponse>'
+        return '<Marqeta.response_models.user_transition_response.UserTransitionResponse>'

@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class IdentificationRequestModel(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class IdentificationRequestModel(object):
 
     @property
     def type(self):
-        if 'type' in self.json_response:
-            return self.json_response['type']
+        return self.json_response.get('type', None)
 
     @property
     def value(self):
-        if 'value' in self.json_response:
-            return self.json_response['value']
+        return self.json_response.get('value', None)
 
     @property
     def expiration_date(self):
-        if 'expiration_date' in self.json_response:
-            return self.json_response['expiration_date']
+        return self.json_response.get('expiration_date', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.identification_request_model.IdentificationRequestModel>'
+        return '<Marqeta.response_models.identification_request_model.IdentificationRequestModel>'

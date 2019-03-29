@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ControlTokenRequest(object):
 
     def __init__(self, json_response):
@@ -16,8 +17,7 @@ class ControlTokenRequest(object):
 
     @property
     def card_token(self):
-        if 'card_token' in self.json_response:
-            return self.json_response['card_token']
+        return self.json_response.get('card_token', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.control_token_request.ControlTokenRequest>'
+        return '<Marqeta.response_models.control_token_request.ControlTokenRequest>'

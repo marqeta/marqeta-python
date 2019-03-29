@@ -1,37 +1,69 @@
+#!/usr/bin/env python3
+
+'''PROGRAMTRANSFER RESOURCE WITH CRU PARAMETERS'''
+
 from marqeta.resources.collection import Collection
 from marqeta.response_models.program_transfer_response import ProgramTransferResponse
 from marqeta.response_models.program_transfer_type_reponse import ProgramTransferTypeReponse
 
 
 class ProgramTransfersCollection(object):
+    '''
+    Marqeta API 'programtransfers' endpoint list, create, find and update operations
+    '''
     _endpoint = 'programtransfers'
 
     def __init__(self, client):
+        '''
+        Creates a client collection objects
+        :param client: client object
+        '''
         self.client = client
         self.collections = Collection(self.client, ProgramTransferResponse)
         self.types = Types(Collection(client, ProgramTransferTypeReponse))
 
     def page(self, params=None):
+        '''
+        Provides the requested page for programtransfers
+        :param params: query parameters
+        :return: requested page with ProgramTransferResponse object for the requested
+        page 'data'field
+        '''
         return self.collections.page(endpoint=self._endpoint, query_params=params)
 
     def stream(self, params=None):
+        '''
+        Stream through the list of requested endpoint data field
+        :param params: query parameters
+        :return: ProgramTransferResponse object
+        '''
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
-    ''' Lists all the programtransfers  Returns list of all programtransfers object '''
-
     def list(self, params=None, limit=None):
+        '''
+        List all the programtransfers
+        :param params: query parameters
+        :param limit: parameter to limit the list count
+        :return: List of ProgramTransferResponse object
+        '''
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
-    ''' Create a programtransfers with the specified data
-            Returns the card product object which has created programtransfers information'''
-
     def create(self, data, params=None):
+        '''
+        Creates an programtransfers object
+        :param data: data required for creation
+        :param params: query parameters
+        :return: ProgramTransferResponse object
+        '''
         return self.collections.create(endpoint=self._endpoint, query_params=params, data=data)
 
-    ''' Finds the programtransfers information for the requested token
-            Returns the cardproduct object which has programtransfers information '''
-
     def find(self, token, params=None):
+        '''
+        Finds a specific programtransfers object
+        :param token: programtransfers token
+        :param params: query parameters
+        :return: ProgramTransferResponse object
+        '''
         return self.collections.find(endpoint=self._endpoint + '/{}'.format(token), query_params=params)
 
     def __repr__(self):
@@ -39,6 +71,8 @@ class ProgramTransfersCollection(object):
 
 
 class Types(object):
+    ''' Lists, Creates, Update and Finds for ProgramTransfers Types
+        Returns ProgramTransferTypeReponse object '''
     _endpoint = 'programtransfers/types'
 
     def __init__(self, collection):
@@ -50,25 +84,14 @@ class Types(object):
     def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
-    ''' Lists all the programtransfers/types  Returns list of all programtransfers/types object '''
-
     def list(self, params=None, limit=None):
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
-
-    ''' Create a programtransfers/types with the specified data
-            Returns the card product object which has created programtransfers/types information'''
 
     def create(self, data, params=None):
         return self.collections.create(endpoint=self._endpoint, query_params=params, data=data)
 
-    ''' Finds the programtransfers/types information for the requested token
-            Returns the cardproduct object which has programtransfers/types information '''
-
     def find(self, token, params=None):
         return self.collections.find(endpoint=self._endpoint + '/{}'.format(token), query_params=params)
-
-    ''' Update the programtransfers/types information for the requested token  with the data
-                Returns the programtransfers/types object which has updated user information'''
 
     def save(self, token, data):
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))

@@ -3,6 +3,7 @@ from marqeta.response_models.cardholder_balance import CardholderBalance
 from marqeta.response_models.link import Link
 import json
 
+
 class CardholderBalances(object):
 
     def __init__(self, json_response):
@@ -18,13 +19,15 @@ class CardholderBalances(object):
 
     @property
     def gpa(self):
+
         if 'gpa' in self.json_response:
             return CardholderBalance(self.json_response['gpa'])
 
     @property
     def links(self):
+
         if 'links' in self.json_response:
             return [Link(val) for val in self.json_response['links']]
 
     def __repr__(self):
-         return '<Marqeta.response_models.cardholder_balances.CardholderBalances>'
+        return '<Marqeta.response_models.cardholder_balances.CardholderBalances>'

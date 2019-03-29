@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class TokenServiceProvider(object):
 
     def __init__(self, json_response):
@@ -16,58 +17,47 @@ class TokenServiceProvider(object):
 
     @property
     def token_reference_id(self):
-        if 'token_reference_id' in self.json_response:
-            return self.json_response['token_reference_id']
+        return self.json_response.get('token_reference_id', None)
 
     @property
     def pan_reference_id(self):
-        if 'pan_reference_id' in self.json_response:
-            return self.json_response['pan_reference_id']
+        return self.json_response.get('pan_reference_id', None)
 
     @property
     def correlation_id(self):
-        if 'correlation_id' in self.json_response:
-            return self.json_response['correlation_id']
+        return self.json_response.get('correlation_id', None)
 
     @property
     def token_requestor_id(self):
-        if 'token_requestor_id' in self.json_response:
-            return self.json_response['token_requestor_id']
+        return self.json_response.get('token_requestor_id', None)
 
     @property
     def token_requestor_name(self):
-        if 'token_requestor_name' in self.json_response:
-            return self.json_response['token_requestor_name']
+        return self.json_response.get('token_requestor_name', None)
 
     @property
     def token_type(self):
-        if 'token_type' in self.json_response:
-            return self.json_response['token_type']
+        return self.json_response.get('token_type', None)
 
     @property
     def token_pan(self):
-        if 'token_pan' in self.json_response:
-            return self.json_response['token_pan']
+        return self.json_response.get('token_pan', None)
 
     @property
     def token_expiration(self):
-        if 'token_expiration' in self.json_response:
-            return self.json_response['token_expiration']
+        return self.json_response.get('token_expiration', None)
 
     @property
     def token_score(self):
-        if 'token_score' in self.json_response:
-            return self.json_response['token_score']
+        return self.json_response.get('token_score', None)
 
     @property
     def token_assurance_level(self):
-        if 'token_assurance_level' in self.json_response:
-            return self.json_response['token_assurance_level']
+        return self.json_response.get('token_assurance_level', None)
 
     @property
     def token_eligibility_decision(self):
-        if 'token_eligibility_decision' in self.json_response:
-            return self.json_response['token_eligibility_decision']
+        return self.json_response.get('token_eligibility_decision', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.token_service_provider.TokenServiceProvider>'
+        return '<Marqeta.response_models.token_service_provider.TokenServiceProvider>'

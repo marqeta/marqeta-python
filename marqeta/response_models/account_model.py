@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class AccountModel(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class AccountModel(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     @property
     def code(self):
-        if 'code' in self.json_response:
-            return self.json_response['code']
+        return self.json_response.get('code', None)
 
     @property
     def description(self):
-        if 'description' in self.json_response:
-            return self.json_response['description']
+        return self.json_response.get('description', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.account_model.AccountModel>'
+        return '<Marqeta.response_models.account_model.AccountModel>'

@@ -4,6 +4,7 @@ from marqeta.response_models.user_association import UserAssociation
 from marqeta.response_models.expiration_offsét import ExpirationOffsét
 import json
 
+
 class BulkIssuanceResponse(object):
 
     def __init__(self, json_response):
@@ -19,83 +20,89 @@ class BulkIssuanceResponse(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def fulfillment(self):
+
         if 'fulfillment' in self.json_response:
             return CardFulfillmentResponse(self.json_response['fulfillment'])
 
     @property
     def expedite(self):
-        if 'expedite' in self.json_response:
-            return self.json_response['expedite']
+
+        return self.json_response.get('expedite', None)
 
     @property
     def card_product_token(self):
-        if 'card_product_token' in self.json_response:
-            return self.json_response['card_product_token']
+
+        return self.json_response.get('card_product_token', None)
 
     @property
     def card_allocation(self):
-        if 'card_allocation' in self.json_response:
-            return self.json_response['card_allocation']
+
+        return self.json_response.get('card_allocation', None)
 
     @property
     def user_association(self):
+
         if 'user_association' in self.json_response:
             return UserAssociation(self.json_response['user_association'])
 
     @property
     def name_line_1_numeric_postfix(self):
-        if 'name_line_1_numeric_postfix' in self.json_response:
-            return self.json_response['name_line_1_numeric_postfix']
+
+        return self.json_response.get('name_line_1_numeric_postfix', None)
 
     @property
     def expiration_offset(self):
+
         if 'expiration_offset' in self.json_response:
             return ExpirationOffsét(self.json_response['expiration_offset'])
 
     @property
     def cards_processed(self):
-        if 'cards_processed' in self.json_response:
-            return self.json_response['cards_processed']
+
+        return self.json_response.get('cards_processed', None)
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def name_line1_start_index(self):
-        if 'name_line1_start_index' in self.json_response:
-            return self.json_response['name_line1_start_index']
+
+        return self.json_response.get('name_line1_start_index', None)
 
     @property
     def name_line1_end_index(self):
-        if 'name_line1_end_index' in self.json_response:
-            return self.json_response['name_line1_end_index']
+
+        return self.json_response.get('name_line1_end_index', None)
 
     @property
     def card_fulfillment_time(self):
+
         if 'card_fulfillment_time' in self.json_response:
-                return datetime.strptime(self.json_response['card_fulfillment_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['card_fulfillment_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def provider_ship_date(self):
+
         if 'provider_ship_date' in self.json_response:
-                return datetime.strptime(self.json_response['provider_ship_date'], '%Y-%m-%d').date()
+            return datetime.strptime(self.json_response['provider_ship_date'], '%Y-%m-%d').date()
 
     @property
     def provider_shipping_method(self):
-        if 'provider_shipping_method' in self.json_response:
-            return self.json_response['provider_shipping_method']
+
+        return self.json_response.get('provider_shipping_method', None)
 
     @property
     def provider_tracking_number(self):
-        if 'provider_tracking_number' in self.json_response:
-            return self.json_response['provider_tracking_number']
+
+        return self.json_response.get('provider_tracking_number', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.bulk_issuance_response.BulkIssuanceResponse>'
+        return '<Marqeta.response_models.bulk_issuance_response.BulkIssuanceResponse>'

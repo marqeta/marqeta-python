@@ -17,78 +17,82 @@ class AchResponseModel(object):
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
             return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
+
         if 'last_modified_time' in self.json_response:
             return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def account_suffix(self):
-        if 'account_suffix' in self.json_response:
-            return self.json_response['account_suffix']
+
+        return self.json_response.get('account_suffix', None)
 
     @property
     def verification_status(self):
-        if 'verification_status' in self.json_response:
-            return self.json_response['verification_status']
+
+        return self.json_response.get('verification_status', None)
 
     @property
     def account_type(self):
-        if 'account_type' in self.json_response:
-            return self.json_response['account_type']
+
+        return self.json_response.get('account_type', None)
 
     @property
     def name_on_account(self):
-        if 'name_on_account' in self.json_response:
-            return self.json_response['name_on_account']
+
+        return self.json_response.get('name_on_account', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+
+        return self.json_response.get('active', None)
 
     @property
     def date_sent_for_verification(self):
+
         if 'date_sent_for_verification' in self.json_response:
             return datetime.strptime(self.json_response['date_sent_for_verification'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+
+        return self.json_response.get('user_token', None)
 
     @property
     def business_token(self):
-        if 'business_token' in self.json_response:
-            return self.json_response['business_token']
+
+        return self.json_response.get('business_token', None)
 
     @property
     def is_default_account(self):
-        if 'is_default_account' in self.json_response:
-            return self.json_response['is_default_account']
+
+        return self.json_response.get('is_default_account', None)
 
     @property
     def date_verified(self):
+
         if 'date_verified' in self.json_response:
             return datetime.strptime(self.json_response['date_verified'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def verification_override(self):
-        if 'verification_override' in self.json_response:
-            return self.json_response['verification_override']
+
+        return self.json_response.get('verification_override', None)
 
     @property
     def verification_notes(self):
-        if 'verification_notes' in self.json_response:
-            return self.json_response['verification_notes']
+
+        return self.json_response.get('verification_notes', None)
 
     def __repr__(self):
         return '<Marqeta.response_models.ach_response_model.AchResponseModel>'

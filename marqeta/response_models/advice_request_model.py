@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class AdviceRequestModel(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class AdviceRequestModel(object):
 
     @property
     def message(self):
-        if 'message' in self.json_response:
-            return self.json_response['message']
+        return self.json_response.get('message', None)
 
     @property
     def network(self):
-        if 'network' in self.json_response:
-            return self.json_response['network']
+        return self.json_response.get('network', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.advice_request_model.AdviceRequestModel>'
+        return '<Marqeta.response_models.advice_request_model.AdviceRequestModel>'

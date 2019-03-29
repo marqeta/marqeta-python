@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class Transit(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class Transit(object):
 
     @property
     def transaction_type(self):
-        if 'transaction_type' in self.json_response:
-            return self.json_response['transaction_type']
+        return self.json_response.get('transaction_type', None)
 
     @property
     def transportation_mode(self):
-        if 'transportation_mode' in self.json_response:
-            return self.json_response['transportation_mode']
+        return self.json_response.get('transportation_mode', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.transit.Transit>'
+        return '<Marqeta.response_models.transit.Transit>'

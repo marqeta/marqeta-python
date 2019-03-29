@@ -3,6 +3,7 @@ from marqeta.response_models.digital_wallet_token_hash import DigitalWalletToken
 from marqeta.response_models.card_swap_hash import CardSwapHash
 import json
 
+
 class DigitalWalletTokenTransitionResponse(object):
 
     def __init__(self, json_response):
@@ -18,53 +19,56 @@ class DigitalWalletTokenTransitionResponse(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def digital_wallet_token(self):
+
         if 'digital_wallet_token' in self.json_response:
             return DigitalWalletTokenHash(self.json_response['digital_wallet_token'])
 
     @property
     def card_swap(self):
+
         if 'card_swap' in self.json_response:
             return CardSwapHash(self.json_response['card_swap'])
 
     @property
     def type(self):
-        if 'type' in self.json_response:
-            return self.json_response['type']
+
+        return self.json_response.get('type', None)
 
     @property
     def channel(self):
-        if 'channel' in self.json_response:
-            return self.json_response['channel']
+
+        return self.json_response.get('channel', None)
 
     @property
     def state(self):
-        if 'state' in self.json_response:
-            return self.json_response['state']
+
+        return self.json_response.get('state', None)
 
     @property
     def fulfillment_status(self):
-        if 'fulfillment_status' in self.json_response:
-            return self.json_response['fulfillment_status']
+
+        return self.json_response.get('fulfillment_status', None)
 
     @property
     def reason(self):
-        if 'reason' in self.json_response:
-            return self.json_response['reason']
+
+        return self.json_response.get('reason', None)
 
     @property
     def reason_code(self):
-        if 'reason_code' in self.json_response:
-            return self.json_response['reason_code']
+
+        return self.json_response.get('reason_code', None)
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-         return '<Marqeta.response_models.digital_wallet_token_transition_response.DigitalWalletTokenTransitionResponse>'
+        return '<Marqeta.response_models.digital_wallet_token_transition_response.DigitalWalletTokenTransitionResponse>'

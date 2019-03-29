@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class Msa(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class Msa(object):
 
     @property
     def campaign_token(self):
-        if 'campaign_token' in self.json_response:
-            return self.json_response['campaign_token']
+        return self.json_response.get('campaign_token', None)
 
     @property
     def trigger_amount(self):
-        if 'trigger_amount' in self.json_response:
-            return self.json_response['trigger_amount']
+        return self.json_response.get('trigger_amount', None)
 
     @property
     def reload_amount(self):
-        if 'reload_amount' in self.json_response:
-            return self.json_response['reload_amount']
+        return self.json_response.get('reload_amount', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.msa.Msa>'
+        return '<Marqeta.response_models.msa.Msa>'

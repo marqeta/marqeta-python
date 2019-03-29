@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.funding_source_model import FundingSourceModel
 import json
 
+
 class DirectDepositFundingSourceModel(FundingSourceModel):
 
     def __init__(self, json_response):
@@ -17,8 +18,7 @@ class DirectDepositFundingSourceModel(FundingSourceModel):
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+        return self.json_response.get('name', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.direct_deposit_funding_source_model.DirectDepositFundingSourceModel>'
+        return '<Marqeta.response_models.direct_deposit_funding_source_model.DirectDepositFundingSourceModel>'

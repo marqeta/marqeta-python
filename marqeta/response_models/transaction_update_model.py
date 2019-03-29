@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class TransactionUpdateModel(object):
 
     def __init__(self, json_response):
@@ -16,8 +17,7 @@ class TransactionUpdateModel(object):
 
     @property
     def state(self):
-        if 'state' in self.json_response:
-            return self.json_response['state']
+        return self.json_response.get('state', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.transaction_update_model.TransactionUpdateModel>'
+        return '<Marqeta.response_models.transaction_update_model.TransactionUpdateModel>'

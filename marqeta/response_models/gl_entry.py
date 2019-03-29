@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class GlEntry(object):
 
     def __init__(self, json_response):
@@ -16,33 +17,27 @@ class GlEntry(object):
 
     @property
     def detail(self):
-        if 'detail' in self.json_response:
-            return self.json_response['detail']
+        return self.json_response.get('detail', None)
 
     @property
     def tag(self):
-        if 'tag' in self.json_response:
-            return self.json_response['tag']
+        return self.json_response.get('tag', None)
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+        return self.json_response.get('amount', None)
 
     @property
     def layer(self):
-        if 'layer' in self.json_response:
-            return self.json_response['layer']
+        return self.json_response.get('layer', None)
 
     @property
     def account(self):
-        if 'account' in self.json_response:
-            return self.json_response['account']
+        return self.json_response.get('account', None)
 
     @property
     def type(self):
-        if 'type' in self.json_response:
-            return self.json_response['type']
+        return self.json_response.get('type', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.gl_entry.GlEntry>'
+        return '<Marqeta.response_models.gl_entry.GlEntry>'

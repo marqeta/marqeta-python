@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class CardSwapHash(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class CardSwapHash(object):
 
     @property
     def previous_card_token(self):
-        if 'previous_card_token' in self.json_response:
-            return self.json_response['previous_card_token']
+        return self.json_response.get('previous_card_token', None)
 
     @property
     def new_card_token(self):
-        if 'new_card_token' in self.json_response:
-            return self.json_response['new_card_token']
+        return self.json_response.get('new_card_token', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.card_swap_hash.CardSwapHash>'
+        return '<Marqeta.response_models.card_swap_hash.CardSwapHash>'

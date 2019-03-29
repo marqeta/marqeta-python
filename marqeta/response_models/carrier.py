@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class Carrier(object):
 
     def __init__(self, json_response):
@@ -16,23 +17,19 @@ class Carrier(object):
 
     @property
     def template_id(self):
-        if 'template_id' in self.json_response:
-            return self.json_response['template_id']
+        return self.json_response.get('template_id', None)
 
     @property
     def logo_file(self):
-        if 'logo_file' in self.json_response:
-            return self.json_response['logo_file']
+        return self.json_response.get('logo_file', None)
 
     @property
     def logo_thumbnail_file(self):
-        if 'logo_thumbnail_file' in self.json_response:
-            return self.json_response['logo_thumbnail_file']
+        return self.json_response.get('logo_thumbnail_file', None)
 
     @property
     def message_file(self):
-        if 'message_file' in self.json_response:
-            return self.json_response['message_file']
+        return self.json_response.get('message_file', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.carrier.Carrier>'
+        return '<Marqeta.response_models.carrier.Carrier>'

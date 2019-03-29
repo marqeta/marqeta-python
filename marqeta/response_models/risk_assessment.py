@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class RiskAssessment(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class RiskAssessment(object):
 
     @property
     def score(self):
-        if 'score' in self.json_response:
-            return self.json_response['score']
+        return self.json_response.get('score', None)
 
     @property
     def version(self):
-        if 'version' in self.json_response:
-            return self.json_response['version']
+        return self.json_response.get('version', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.risk_assessment.RiskAssessment>'
+        return '<Marqeta.response_models.risk_assessment.RiskAssessment>'

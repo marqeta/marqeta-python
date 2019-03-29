@@ -3,6 +3,7 @@ from marqeta.response_models.gpa import Gpa
 from marqeta.response_models.msa import Msa
 import json
 
+
 class OrderScope(object):
 
     def __init__(self, json_response):
@@ -18,13 +19,15 @@ class OrderScope(object):
 
     @property
     def gpa(self):
+
         if 'gpa' in self.json_response:
             return Gpa(self.json_response['gpa'])
 
     @property
     def msa(self):
+
         if 'msa' in self.json_response:
             return Msa(self.json_response['msa'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.order_scope.OrderScope>'
+        return '<Marqeta.response_models.order_scope.OrderScope>'

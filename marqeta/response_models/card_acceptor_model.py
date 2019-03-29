@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class CardAcceptorModel(object):
 
     def __init__(self, json_response):
@@ -16,48 +17,39 @@ class CardAcceptorModel(object):
 
     @property
     def mcc(self):
-        if 'mcc' in self.json_response:
-            return self.json_response['mcc']
+        return self.json_response.get('mcc', None)
 
     @property
     def partial_approval_capable(self):
-        if 'partial_approval_capable' in self.json_response:
-            return self.json_response['partial_approval_capable']
+        return self.json_response.get('partial_approval_capable', None)
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+        return self.json_response.get('name', None)
 
     @property
     def address(self):
-        if 'address' in self.json_response:
-            return self.json_response['address']
+        return self.json_response.get('address', None)
 
     @property
     def city(self):
-        if 'city' in self.json_response:
-            return self.json_response['city']
+        return self.json_response.get('city', None)
 
     @property
     def state(self):
-        if 'state' in self.json_response:
-            return self.json_response['state']
+        return self.json_response.get('state', None)
 
     @property
     def zip(self):
-        if 'zip' in self.json_response:
-            return self.json_response['zip']
+        return self.json_response.get('zip', None)
 
     @property
     def country(self):
-        if 'country' in self.json_response:
-            return self.json_response['country']
+        return self.json_response.get('country', None)
 
     @property
     def ecommerce_security_level_indicator(self):
-        if 'ecommerce_security_level_indicator' in self.json_response:
-            return self.json_response['ecommerce_security_level_indicator']
+        return self.json_response.get('ecommerce_security_level_indicator', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.card_acceptor_model.CardAcceptorModel>'
+        return '<Marqeta.response_models.card_acceptor_model.CardAcceptorModel>'

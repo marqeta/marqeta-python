@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class RealTimeFeeGroup(object):
 
     def __init__(self, json_response):
@@ -16,33 +17,35 @@ class RealTimeFeeGroup(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
+
         if 'last_modified_time' in self.json_response:
-                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+
+        return self.json_response.get('active', None)
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+
+        return self.json_response.get('name', None)
 
     @property
     def fee_tokens(self):
-        if 'fee_tokens' in self.json_response:
-            return self.json_response['fee_tokens']
+
+        return self.json_response.get('fee_tokens', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.real_time_fee_group.RealTimeFeeGroup>'
+        return '<Marqeta.response_models.real_time_fee_group.RealTimeFeeGroup>'

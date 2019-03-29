@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.jit_funding_api import JitFundingApi
 import json
 
+
 class JitProgramResponse(object):
 
     def __init__(self, json_response):
@@ -17,8 +18,9 @@ class JitProgramResponse(object):
 
     @property
     def jit_funding(self):
+
         if 'jit_funding' in self.json_response:
             return JitFundingApi(self.json_response['jit_funding'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.jit_program_response.JitProgramResponse>'
+        return '<Marqeta.response_models.jit_program_response.JitProgramResponse>'

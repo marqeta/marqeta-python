@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class PaymentCardResponseModel(object):
 
     def __init__(self, json_response):
@@ -16,58 +17,60 @@ class PaymentCardResponseModel(object):
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
+
         if 'last_modified_time' in self.json_response:
-                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def type(self):
-        if 'type' in self.json_response:
-            return self.json_response['type']
+
+        return self.json_response.get('type', None)
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def account_suffix(self):
-        if 'account_suffix' in self.json_response:
-            return self.json_response['account_suffix']
+
+        return self.json_response.get('account_suffix', None)
 
     @property
     def account_type(self):
-        if 'account_type' in self.json_response:
-            return self.json_response['account_type']
+
+        return self.json_response.get('account_type', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+
+        return self.json_response.get('active', None)
 
     @property
     def is_default_account(self):
-        if 'is_default_account' in self.json_response:
-            return self.json_response['is_default_account']
+
+        return self.json_response.get('is_default_account', None)
 
     @property
     def exp_date(self):
-        if 'exp_date' in self.json_response:
-            return self.json_response['exp_date']
+
+        return self.json_response.get('exp_date', None)
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+
+        return self.json_response.get('user_token', None)
 
     @property
     def business_token(self):
-        if 'business_token' in self.json_response:
-            return self.json_response['business_token']
+
+        return self.json_response.get('business_token', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.payment_card_response_model.PaymentCardResponseModel>'
+        return '<Marqeta.response_models.payment_card_response_model.PaymentCardResponseModel>'

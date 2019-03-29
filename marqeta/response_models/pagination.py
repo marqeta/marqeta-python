@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class Pagination(object):
 
     def __init__(self, json_response):
@@ -16,28 +17,23 @@ class Pagination(object):
 
     @property
     def count(self):
-        if 'count' in self.json_response:
-            return self.json_response['count']
+        return self.json_response.get('count', None)
 
     @property
     def start_index(self):
-        if 'start_index' in self.json_response:
-            return self.json_response['start_index']
+        return self.json_response.get('start_index', None)
 
     @property
     def end_index(self):
-        if 'end_index' in self.json_response:
-            return self.json_response['end_index']
+        return self.json_response.get('end_index', None)
 
     @property
     def is_more(self):
-        if 'is_more' in self.json_response:
-            return self.json_response['is_more']
+        return self.json_response.get('is_more', None)
 
     @property
     def data(self):
-        if 'data' in self.json_response:
-            return self.json_response['data']
+        return self.json_response.get('data', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.pagination.Pagination>'
+        return '<Marqeta.response_models.pagination.Pagination>'

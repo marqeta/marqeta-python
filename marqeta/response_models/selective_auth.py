@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class SelectiveAuth(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class SelectiveAuth(object):
 
     @property
     def sa_mode(self):
-        if 'sa_mode' in self.json_response:
-            return self.json_response['sa_mode']
+        return self.json_response.get('sa_mode', None)
 
     @property
     def enable_regex_search_chain(self):
-        if 'enable_regex_search_chain' in self.json_response:
-            return self.json_response['enable_regex_search_chain']
+        return self.json_response.get('enable_regex_search_chain', None)
 
     @property
     def dmd_location_sensitivity(self):
-        if 'dmd_location_sensitivity' in self.json_response:
-            return self.json_response['dmd_location_sensitivity']
+        return self.json_response.get('dmd_location_sensitivity', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.selective_auth.SelectiveAuth>'
+        return '<Marqeta.response_models.selective_auth.SelectiveAuth>'

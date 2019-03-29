@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class MoneyModel(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class MoneyModel(object):
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+        return self.json_response.get('amount', None)
 
     @property
     def currency(self):
-        if 'currency' in self.json_response:
-            return self.json_response['currency']
+        return self.json_response.get('currency', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.money_model.MoneyModel>'
+        return '<Marqeta.response_models.money_model.MoneyModel>'

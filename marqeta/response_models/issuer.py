@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class Issuer(object):
 
     def __init__(self, json_response):
@@ -16,43 +17,35 @@ class Issuer(object):
 
     @property
     def success(self):
-        if 'success' in self.json_response:
-            return self.json_response['success']
+        return self.json_response.get('success', None)
 
     @property
     def fraud_score(self):
-        if 'fraud_score' in self.json_response:
-            return self.json_response['fraud_score']
+        return self.json_response.get('fraud_score', None)
 
     @property
     def fraud_rating(self):
-        if 'fraud_rating' in self.json_response:
-            return self.json_response['fraud_rating']
+        return self.json_response.get('fraud_rating', None)
 
     @property
     def rule_violations(self):
-        if 'rule_violations' in self.json_response:
-            return self.json_response['rule_violations']
+        return self.json_response.get('rule_violations', None)
 
     @property
     def fraud_score_reasons(self):
-        if 'fraud_score_reasons' in self.json_response:
-            return self.json_response['fraud_score_reasons']
+        return self.json_response.get('fraud_score_reasons', None)
 
     @property
     def recommended_action(self):
-        if 'recommended_action' in self.json_response:
-            return self.json_response['recommended_action']
+        return self.json_response.get('recommended_action', None)
 
     @property
     def model(self):
-        if 'model' in self.json_response:
-            return self.json_response['model']
+        return self.json_response.get('model', None)
 
     @property
     def message(self):
-        if 'message' in self.json_response:
-            return self.json_response['message']
+        return self.json_response.get('message', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.issuer.Issuer>'
+        return '<Marqeta.response_models.issuer.Issuer>'

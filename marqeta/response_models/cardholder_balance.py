@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class CardholderBalance(object):
 
     def __init__(self, json_response):
@@ -16,38 +17,31 @@ class CardholderBalance(object):
 
     @property
     def currency_code(self):
-        if 'currency_code' in self.json_response:
-            return self.json_response['currency_code']
+        return self.json_response.get('currency_code', None)
 
     @property
     def ledger_balance(self):
-        if 'ledger_balance' in self.json_response:
-            return self.json_response['ledger_balance']
+        return self.json_response.get('ledger_balance', None)
 
     @property
     def available_balance(self):
-        if 'available_balance' in self.json_response:
-            return self.json_response['available_balance']
+        return self.json_response.get('available_balance', None)
 
     @property
     def credit_balance(self):
-        if 'credit_balance' in self.json_response:
-            return self.json_response['credit_balance']
+        return self.json_response.get('credit_balance', None)
 
     @property
     def pending_credits(self):
-        if 'pending_credits' in self.json_response:
-            return self.json_response['pending_credits']
+        return self.json_response.get('pending_credits', None)
 
     @property
     def impacted_amount(self):
-        if 'impacted_amount' in self.json_response:
-            return self.json_response['impacted_amount']
+        return self.json_response.get('impacted_amount', None)
 
     @property
     def balances(self):
-        if 'balances' in self.json_response:
-            return self.json_response['balances']
+        return self.json_response.get('balances', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.cardholder_balance.CardholderBalance>'
+        return '<Marqeta.response_models.cardholder_balance.CardholderBalance>'

@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class RealTimeStandinCriteria(object):
 
     def __init__(self, json_response):
@@ -16,23 +17,19 @@ class RealTimeStandinCriteria(object):
 
     @property
     def enabled(self):
-        if 'enabled' in self.json_response:
-            return self.json_response['enabled']
+        return self.json_response.get('enabled', None)
 
     @property
     def include_connection_errors(self):
-        if 'include_connection_errors' in self.json_response:
-            return self.json_response['include_connection_errors']
+        return self.json_response.get('include_connection_errors', None)
 
     @property
     def include_response_timeouts(self):
-        if 'include_response_timeouts' in self.json_response:
-            return self.json_response['include_response_timeouts']
+        return self.json_response.get('include_response_timeouts', None)
 
     @property
     def include_application_errors(self):
-        if 'include_application_errors' in self.json_response:
-            return self.json_response['include_application_errors']
+        return self.json_response.get('include_application_errors', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.real_time_standin_criteria.RealTimeStandinCriteria>'
+        return '<Marqeta.response_models.real_time_standin_criteria.RealTimeStandinCriteria>'

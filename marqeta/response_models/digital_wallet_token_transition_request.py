@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.digital_wallet_token_hash import DigitalWalletTokenHash
 import json
 
+
 class DigitalWalletTokenTransitionRequest(object):
 
     def __init__(self, json_response):
@@ -17,43 +18,44 @@ class DigitalWalletTokenTransitionRequest(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def reason_code(self):
-        if 'reason_code' in self.json_response:
-            return self.json_response['reason_code']
+
+        return self.json_response.get('reason_code', None)
 
     @property
     def token_reference_id(self):
-        if 'token_reference_id' in self.json_response:
-            return self.json_response['token_reference_id']
+
+        return self.json_response.get('token_reference_id', None)
 
     @property
     def channel(self):
-        if 'channel' in self.json_response:
-            return self.json_response['channel']
+
+        return self.json_response.get('channel', None)
 
     @property
     def digital_wallet_token(self):
+
         if 'digital_wallet_token' in self.json_response:
             return DigitalWalletTokenHash(self.json_response['digital_wallet_token'])
 
     @property
     def state(self):
-        if 'state' in self.json_response:
-            return self.json_response['state']
+
+        return self.json_response.get('state', None)
 
     @property
     def reason(self):
-        if 'reason' in self.json_response:
-            return self.json_response['reason']
+
+        return self.json_response.get('reason', None)
 
     @property
     def override_tsp_error(self):
-        if 'override_tsp_error' in self.json_response:
-            return self.json_response['override_tsp_error']
+
+        return self.json_response.get('override_tsp_error', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.digital_wallet_token_transition_request.DigitalWalletTokenTransitionRequest>'
+        return '<Marqeta.response_models.digital_wallet_token_transition_request.DigitalWalletTokenTransitionRequest>'

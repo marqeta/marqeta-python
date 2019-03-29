@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class Acquirer(object):
 
     def __init__(self, json_response):
@@ -16,28 +17,23 @@ class Acquirer(object):
 
     @property
     def institution_country(self):
-        if 'institution_country' in self.json_response:
-            return self.json_response['institution_country']
+        return self.json_response.get('institution_country', None)
 
     @property
     def network_international_id(self):
-        if 'network_international_id' in self.json_response:
-            return self.json_response['network_international_id']
+        return self.json_response.get('network_international_id', None)
 
     @property
     def institution_id_code(self):
-        if 'institution_id_code' in self.json_response:
-            return self.json_response['institution_id_code']
+        return self.json_response.get('institution_id_code', None)
 
     @property
     def retrieval_reference_number(self):
-        if 'retrieval_reference_number' in self.json_response:
-            return self.json_response['retrieval_reference_number']
+        return self.json_response.get('retrieval_reference_number', None)
 
     @property
     def system_trace_audit_number(self):
-        if 'system_trace_audit_number' in self.json_response:
-            return self.json_response['system_trace_audit_number']
+        return self.json_response.get('system_trace_audit_number', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.acquirer.Acquirer>'
+        return '<Marqeta.response_models.acquirer.Acquirer>'

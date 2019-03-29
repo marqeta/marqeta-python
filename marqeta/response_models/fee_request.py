@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.real_time_fee_assessment_request import RealTimeFeeAssessmentRequest
 import json
 
+
 class FeeRequest(object):
 
     def __init__(self, json_response):
@@ -17,38 +18,39 @@ class FeeRequest(object):
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+
+        return self.json_response.get('name', None)
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+
+        return self.json_response.get('amount', None)
 
     @property
     def tags(self):
-        if 'tags' in self.json_response:
-            return self.json_response['tags']
+
+        return self.json_response.get('tags', None)
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def currency_code(self):
-        if 'currency_code' in self.json_response:
-            return self.json_response['currency_code']
+
+        return self.json_response.get('currency_code', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+
+        return self.json_response.get('active', None)
 
     @property
     def real_time_assessment(self):
+
         if 'real_time_assessment' in self.json_response:
             return RealTimeFeeAssessmentRequest(self.json_response['real_time_assessment'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.fee_request.FeeRequest>'
+        return '<Marqeta.response_models.fee_request.FeeRequest>'

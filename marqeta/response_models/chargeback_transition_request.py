@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ChargebackTransitionRequest(object):
 
     def __init__(self, json_response):
@@ -16,28 +17,23 @@ class ChargebackTransitionRequest(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     @property
     def state(self):
-        if 'state' in self.json_response:
-            return self.json_response['state']
+        return self.json_response.get('state', None)
 
     @property
     def chargeback_token(self):
-        if 'chargeback_token' in self.json_response:
-            return self.json_response['chargeback_token']
+        return self.json_response.get('chargeback_token', None)
 
     @property
     def reason(self):
-        if 'reason' in self.json_response:
-            return self.json_response['reason']
+        return self.json_response.get('reason', None)
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+        return self.json_response.get('amount', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.chargeback_transition_request.ChargebackTransitionRequest>'
+        return '<Marqeta.response_models.chargeback_transition_request.ChargebackTransitionRequest>'

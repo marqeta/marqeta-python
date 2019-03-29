@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.application import Application
 import json
 
+
 class AccessTokenResponse(object):
 
     def __init__(self, json_response):
@@ -17,43 +18,45 @@ class AccessTokenResponse(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def expires(self):
+
         if 'expires' in self.json_response:
-                return datetime.strptime(self.json_response['expires'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['expires'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def application(self):
+
         if 'application' in self.json_response:
             return Application(self.json_response['application'])
 
     @property
     def tokenTypeMarqetaMaster(self):
-        if 'tokenTypeMarqetaMaster' in self.json_response:
-            return self.json_response['tokenTypeMarqetaMaster']
+
+        return self.json_response.get('tokenTypeMarqetaMaster', None)
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+
+        return self.json_response.get('user_token', None)
 
     @property
     def master_roles(self):
-        if 'master_roles' in self.json_response:
-            return self.json_response['master_roles']
+
+        return self.json_response.get('master_roles', None)
 
     @property
     def token_type(self):
-        if 'token_type' in self.json_response:
-            return self.json_response['token_type']
+
+        return self.json_response.get('token_type', None)
 
     @property
     def one_time(self):
-        if 'one_time' in self.json_response:
-            return self.json_response['one_time']
+
+        return self.json_response.get('one_time', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.access_token_response.AccessTokenResponse>'
+        return '<Marqeta.response_models.access_token_response.AccessTokenResponse>'

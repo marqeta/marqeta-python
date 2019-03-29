@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class FundingSourceModel(object):
 
     def __init__(self, json_response):
@@ -16,33 +17,35 @@ class FundingSourceModel(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+
+        return self.json_response.get('active', None)
 
     @property
     def is_default_account(self):
-        if 'is_default_account' in self.json_response:
-            return self.json_response['is_default_account']
+
+        return self.json_response.get('is_default_account', None)
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
+
         if 'last_modified_time' in self.json_response:
-                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def type(self):
-        if 'type' in self.json_response:
-            return self.json_response['type']
+
+        return self.json_response.get('type', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.funding_source_model.FundingSourceModel>'
+        return '<Marqeta.response_models.funding_source_model.FundingSourceModel>'

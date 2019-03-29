@@ -28,7 +28,7 @@ pip install marqeta
 
 ### Configuring the client
 
-Create an account on marqeta.com to retreive your application token and access token for the shared sandbox. For production, you will need to change `base_url` too.
+Create an account on marqeta.com to retrieve your application token and access token for the shared sandbox. For production, you will need to change `base_url` too.
 
 Configure your client object.
 
@@ -66,7 +66,7 @@ client.chargebacks(token).transitions
 
 There are multiple ways to retrieve collections of objects, depending on your use case. The library will intelligently handle pagination for you, unless you request a specific page of data.
 
-To simply retreive every object in a collection, call `list()` on the resource.
+To simply retrieve every object in a collection, call `list()` on the resource.
 
 ```
 users = client.users.list()
@@ -85,7 +85,7 @@ Both `list()` and `stream()` accept a `limit` parameter. If specified, the libra
 client.users.list(limit=20)
 ```
 
-To retreive a single page, call the `page()` method specifying `start_index` and `count`.
+To retrieve a single page, call the `page()` method specifying `start_index` and `count`.
 
 ```
 page = client.users.page(start_index=0, count=5)

@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class DirectDepositTransitionRequest(object):
 
     def __init__(self, json_response):
@@ -16,38 +17,31 @@ class DirectDepositTransitionRequest(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     @property
     def channel(self):
-        if 'channel' in self.json_response:
-            return self.json_response['channel']
+        return self.json_response.get('channel', None)
 
     @property
     def reason(self):
-        if 'reason' in self.json_response:
-            return self.json_response['reason']
+        return self.json_response.get('reason', None)
 
     @property
     def idempotentHash(self):
-        if 'idempotentHash' in self.json_response:
-            return self.json_response['idempotentHash']
+        return self.json_response.get('idempotentHash', None)
 
     @property
     def direct_deposit_token(self):
-        if 'direct_deposit_token' in self.json_response:
-            return self.json_response['direct_deposit_token']
+        return self.json_response.get('direct_deposit_token', None)
 
     @property
     def state(self):
-        if 'state' in self.json_response:
-            return self.json_response['state']
+        return self.json_response.get('state', None)
 
     @property
     def reason_code(self):
-        if 'reason_code' in self.json_response:
-            return self.json_response['reason_code']
+        return self.json_response.get('reason_code', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.direct_deposit_transition_request.DirectDepositTransitionRequest>'
+        return '<Marqeta.response_models.direct_deposit_transition_request.DirectDepositTransitionRequest>'

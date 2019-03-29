@@ -17,23 +17,19 @@ class BillPaymentTransactionRequest(object):
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+        return self.json_response.get('amount', None)
 
     @property
     def currency(self):
-        if 'currency' in self.json_response:
-            return self.json_response['currency']
+        return self.json_response.get('currency', None)
 
     @property
     def network_reference_id(self):
-        if 'network_reference_id' in self.json_response:
-            return self.json_response['network_reference_id']
+        return self.json_response.get('network_reference_id', None)
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+        return self.json_response.get('user_token', None)
 
     def __repr__(self):
         return '<Marqeta.response_models.bill_payment_transaction_request.BillPaymentTransactionRequest>'

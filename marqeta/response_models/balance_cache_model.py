@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.account_model import AccountModel
 import json
 
+
 class BalanceCacheModel(object):
 
     def __init__(self, json_response):
@@ -17,38 +18,41 @@ class BalanceCacheModel(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def account(self):
+
         if 'account' in self.json_response:
             return AccountModel(self.json_response['account'])
 
     @property
     def balance(self):
-        if 'balance' in self.json_response:
-            return self.json_response['balance']
+
+        return self.json_response.get('balance', None)
 
     @property
     def layers(self):
-        if 'layers' in self.json_response:
-            return self.json_response['layers']
+
+        return self.json_response.get('layers', None)
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+
+        return self.json_response.get('user_token', None)
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
+
         if 'last_modified_time' in self.json_response:
-                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-         return '<Marqeta.response_models.balance_cache_model.BalanceCacheModel>'
+        return '<Marqeta.response_models.balance_cache_model.BalanceCacheModel>'

@@ -4,6 +4,7 @@ from marqeta.response_models.webhook import Webhook
 from marqeta.response_models.card_acceptor_model import CardAcceptorModel
 import json
 
+
 class ClearingModel(object):
 
     def __init__(self, json_response):
@@ -19,43 +20,46 @@ class ClearingModel(object):
 
     @property
     def network_fees(self):
+
         if 'network_fees' in self.json_response:
             return [NetworkFeeModel(val) for val in self.json_response['network_fees']]
 
     @property
     def webhook(self):
+
         if 'webhook' in self.json_response:
             return Webhook(self.json_response['webhook'])
 
     @property
     def is_refund(self):
-        if 'is_refund' in self.json_response:
-            return self.json_response['is_refund']
+
+        return self.json_response.get('is_refund', None)
 
     @property
     def force_post(self):
-        if 'force_post' in self.json_response:
-            return self.json_response['force_post']
+
+        return self.json_response.get('force_post', None)
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+
+        return self.json_response.get('amount', None)
 
     @property
     def original_transaction_token(self):
-        if 'original_transaction_token' in self.json_response:
-            return self.json_response['original_transaction_token']
+
+        return self.json_response.get('original_transaction_token', None)
 
     @property
     def mid(self):
-        if 'mid' in self.json_response:
-            return self.json_response['mid']
+
+        return self.json_response.get('mid', None)
 
     @property
     def card_acceptor(self):
+
         if 'card_acceptor' in self.json_response:
             return CardAcceptorModel(self.json_response['card_acceptor'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.clearing_model.ClearingModel>'
+        return '<Marqeta.response_models.clearing_model.ClearingModel>'

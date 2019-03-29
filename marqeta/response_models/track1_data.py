@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class Track1Data(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class Track1Data(object):
 
     @property
     def cvv(self):
-        if 'cvv' in self.json_response:
-            return self.json_response['cvv']
+        return self.json_response.get('cvv', None)
 
     @property
     def atc(self):
-        if 'atc' in self.json_response:
-            return self.json_response['atc']
+        return self.json_response.get('atc', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.track1_data.Track1Data>'
+        return '<Marqeta.response_models.track1_data.Track1Data>'

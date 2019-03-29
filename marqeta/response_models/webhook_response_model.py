@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.webhook_config_model import WebhookConfigModel
 import json
 
+
 class WebhookResponseModel(object):
 
     def __init__(self, json_response):
@@ -17,38 +18,41 @@ class WebhookResponseModel(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+
+        return self.json_response.get('name', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+
+        return self.json_response.get('active', None)
 
     @property
     def config(self):
+
         if 'config' in self.json_response:
             return WebhookConfigModel(self.json_response['config'])
 
     @property
     def events(self):
-        if 'events' in self.json_response:
-            return self.json_response['events']
+
+        return self.json_response.get('events', None)
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
+
         if 'last_modified_time' in self.json_response:
-                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-         return '<Marqeta.response_models.webhook_response_model.WebhookResponseModel>'
+        return '<Marqeta.response_models.webhook_response_model.WebhookResponseModel>'

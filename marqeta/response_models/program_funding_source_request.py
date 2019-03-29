@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ProgramFundingSourceRequest(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class ProgramFundingSourceRequest(object):
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+        return self.json_response.get('name', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+        return self.json_response.get('active', None)
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.program_funding_source_request.ProgramFundingSourceRequest>'
+        return '<Marqeta.response_models.program_funding_source_request.ProgramFundingSourceRequest>'

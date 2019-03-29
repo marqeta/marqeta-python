@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ProgramReserveTransactionRequest(object):
 
     def __init__(self, json_response):
@@ -16,38 +17,31 @@ class ProgramReserveTransactionRequest(object):
 
     @property
     def idempotentHash(self):
-        if 'idempotentHash' in self.json_response:
-            return self.json_response['idempotentHash']
+        return self.json_response.get('idempotentHash', None)
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+        return self.json_response.get('amount', None)
 
     @property
     def currency_code(self):
-        if 'currency_code' in self.json_response:
-            return self.json_response['currency_code']
+        return self.json_response.get('currency_code', None)
 
     @property
     def memo(self):
-        if 'memo' in self.json_response:
-            return self.json_response['memo']
+        return self.json_response.get('memo', None)
 
     @property
     def tags(self):
-        if 'tags' in self.json_response:
-            return self.json_response['tags']
+        return self.json_response.get('tags', None)
 
     @property
     def type(self):
-        if 'type' in self.json_response:
-            return self.json_response['type']
+        return self.json_response.get('type', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.program_reserve_transaction_request.ProgramReserveTransactionRequest>'
+        return '<Marqeta.response_models.program_reserve_transaction_request.ProgramReserveTransactionRequest>'

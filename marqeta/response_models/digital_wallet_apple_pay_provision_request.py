@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class DigitalWalletApplePayProvisionRequest(object):
 
     def __init__(self, json_response):
@@ -16,33 +17,27 @@ class DigitalWalletApplePayProvisionRequest(object):
 
     @property
     def card_token(self):
-        if 'card_token' in self.json_response:
-            return self.json_response['card_token']
+        return self.json_response.get('card_token', None)
 
     @property
     def device_type(self):
-        if 'device_type' in self.json_response:
-            return self.json_response['device_type']
+        return self.json_response.get('device_type', None)
 
     @property
     def provisioning_app_version(self):
-        if 'provisioning_app_version' in self.json_response:
-            return self.json_response['provisioning_app_version']
+        return self.json_response.get('provisioning_app_version', None)
 
     @property
     def certificates(self):
-        if 'certificates' in self.json_response:
-            return self.json_response['certificates']
+        return self.json_response.get('certificates', None)
 
     @property
     def nonce(self):
-        if 'nonce' in self.json_response:
-            return self.json_response['nonce']
+        return self.json_response.get('nonce', None)
 
     @property
     def nonce_signature(self):
-        if 'nonce_signature' in self.json_response:
-            return self.json_response['nonce_signature']
+        return self.json_response.get('nonce_signature', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.digital_wallet_apple_pay_provision_request.DigitalWalletApplePayProvisionRequest>'
+        return '<Marqeta.response_models.digital_wallet_apple_pay_provision_request.DigitalWalletApplePayProvisionRequest>'

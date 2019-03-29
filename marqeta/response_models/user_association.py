@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class UserAssociation(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class UserAssociation(object):
 
     @property
     def single_inventory_user(self):
-        if 'single_inventory_user' in self.json_response:
-            return self.json_response['single_inventory_user']
+        return self.json_response.get('single_inventory_user', None)
 
     @property
     def single_inventory_user_token(self):
-        if 'single_inventory_user_token' in self.json_response:
-            return self.json_response['single_inventory_user_token']
+        return self.json_response.get('single_inventory_user_token', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.user_association.UserAssociation>'
+        return '<Marqeta.response_models.user_association.UserAssociation>'

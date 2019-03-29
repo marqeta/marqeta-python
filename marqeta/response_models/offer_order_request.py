@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class OfferOrderRequest(object):
 
     def __init__(self, json_response):
@@ -16,33 +17,27 @@ class OfferOrderRequest(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+        return self.json_response.get('user_token', None)
 
     @property
     def business_token(self):
-        if 'business_token' in self.json_response:
-            return self.json_response['business_token']
+        return self.json_response.get('business_token', None)
 
     @property
     def offer_token(self):
-        if 'offer_token' in self.json_response:
-            return self.json_response['offer_token']
+        return self.json_response.get('offer_token', None)
 
     @property
     def funding_source_token(self):
-        if 'funding_source_token' in self.json_response:
-            return self.json_response['funding_source_token']
+        return self.json_response.get('funding_source_token', None)
 
     @property
     def funding_source_address_token(self):
-        if 'funding_source_address_token' in self.json_response:
-            return self.json_response['funding_source_address_token']
+        return self.json_response.get('funding_source_address_token', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.offer_order_request.OfferOrderRequest>'
+        return '<Marqeta.response_models.offer_order_request.OfferOrderRequest>'

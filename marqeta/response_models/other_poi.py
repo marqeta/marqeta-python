@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class OtherPoi(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class OtherPoi(object):
 
     @property
     def allow(self):
-        if 'allow' in self.json_response:
-            return self.json_response['allow']
+        return self.json_response.get('allow', None)
 
     @property
     def card_presence_required(self):
-        if 'card_presence_required' in self.json_response:
-            return self.json_response['card_presence_required']
+        return self.json_response.get('card_presence_required', None)
 
     @property
     def cardholder_presence_required(self):
-        if 'cardholder_presence_required' in self.json_response:
-            return self.json_response['cardholder_presence_required']
+        return self.json_response.get('cardholder_presence_required', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.other_poi.OtherPoi>'
+        return '<Marqeta.response_models.other_poi.OtherPoi>'

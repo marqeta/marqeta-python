@@ -4,6 +4,7 @@ from marqeta.response_models.transaction_options import TransactionOptions
 from marqeta.response_models.webhook import Webhook
 import json
 
+
 class FinancialRequestModel(object):
 
     def __init__(self, json_response):
@@ -19,48 +20,51 @@ class FinancialRequestModel(object):
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+
+        return self.json_response.get('amount', None)
 
     @property
     def card_token(self):
-        if 'card_token' in self.json_response:
-            return self.json_response['card_token']
+
+        return self.json_response.get('card_token', None)
 
     @property
     def pin(self):
-        if 'pin' in self.json_response:
-            return self.json_response['pin']
+
+        return self.json_response.get('pin', None)
 
     @property
     def mid(self):
-        if 'mid' in self.json_response:
-            return self.json_response['mid']
+
+        return self.json_response.get('mid', None)
 
     @property
     def cash_back_amount(self):
-        if 'cash_back_amount' in self.json_response:
-            return self.json_response['cash_back_amount']
+
+        return self.json_response.get('cash_back_amount', None)
 
     @property
     def is_pre_auth(self):
-        if 'is_pre_auth' in self.json_response:
-            return self.json_response['is_pre_auth']
+
+        return self.json_response.get('is_pre_auth', None)
 
     @property
     def card_acceptor(self):
+
         if 'card_acceptor' in self.json_response:
             return CardAcceptorModel(self.json_response['card_acceptor'])
 
     @property
     def transaction_options(self):
+
         if 'transaction_options' in self.json_response:
             return TransactionOptions(self.json_response['transaction_options'])
 
     @property
     def webhook(self):
+
         if 'webhook' in self.json_response:
             return Webhook(self.json_response['webhook'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.financial_request_model.FinancialRequestModel>'
+        return '<Marqeta.response_models.financial_request_model.FinancialRequestModel>'

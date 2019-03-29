@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class UserValidationRequest(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,19 @@ class UserValidationRequest(object):
 
     @property
     def birth_date(self):
+
         if 'birth_date' in self.json_response:
-                return datetime.strptime(self.json_response['birth_date'], '%Y-%m-%d').date()
+            return datetime.strptime(self.json_response['birth_date'], '%Y-%m-%d').date()
 
     @property
     def phone(self):
-        if 'phone' in self.json_response:
-            return self.json_response['phone']
+
+        return self.json_response.get('phone', None)
 
     @property
     def ssn(self):
-        if 'ssn' in self.json_response:
-            return self.json_response['ssn']
+
+        return self.json_response.get('ssn', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.user_validation_request.UserValidationRequest>'
+        return '<Marqeta.response_models.user_validation_request.UserValidationRequest>'

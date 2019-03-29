@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class TransactionOptions(object):
 
     def __init__(self, json_response):
@@ -16,33 +17,27 @@ class TransactionOptions(object):
 
     @property
     def additional_data(self):
-        if 'additional_data' in self.json_response:
-            return self.json_response['additional_data']
+        return self.json_response.get('additional_data', None)
 
     @property
     def database_transaction_timeout(self):
-        if 'database_transaction_timeout' in self.json_response:
-            return self.json_response['database_transaction_timeout']
+        return self.json_response.get('database_transaction_timeout', None)
 
     @property
     def pre_auth_time_limit(self):
-        if 'pre_auth_time_limit' in self.json_response:
-            return self.json_response['pre_auth_time_limit']
+        return self.json_response.get('pre_auth_time_limit', None)
 
     @property
     def send_expiration_date(self):
-        if 'send_expiration_date' in self.json_response:
-            return self.json_response['send_expiration_date']
+        return self.json_response.get('send_expiration_date', None)
 
     @property
     def send_track_data(self):
-        if 'send_track_data' in self.json_response:
-            return self.json_response['send_track_data']
+        return self.json_response.get('send_track_data', None)
 
     @property
     def card_expiration_date_yymm(self):
-        if 'card_expiration_date_yymm' in self.json_response:
-            return self.json_response['card_expiration_date_yymm']
+        return self.json_response.get('card_expiration_date_yymm', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.transaction_options.TransactionOptions>'
+        return '<Marqeta.response_models.transaction_options.TransactionOptions>'

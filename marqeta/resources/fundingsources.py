@@ -13,47 +13,108 @@ from marqeta.response_models.ach_verification_model import AchVerificationModel
 
 
 class FundingSourcesCollection(object):
+    '''
+    Marqeta API 'fundingsources' endpoint list, create, find and update operations
+    '''
     _endpoint = 'fundingsources'
 
     def __init__(self, client):
+        '''
+        Creates a client collection objects
+        :param client: client object
+        '''
         self.client = client
         self.collections = Collection(self.client, FundingAccountResponseModel)
         self.ach = Ach(self.client, Collection(self.client, AchResponseModel))
         self.addresses = Addresses(Collection(self.client, CardholderAddressResponse))
         self.payment_card = PaymentCard(Collection(self.client, PaymentCardResponseModel))
-        self.program_gateway = ProgramGateway(Collection(self.client, GatewayProgramFundingSourceResponse))
+        self.program_gateway = ProgramGateway(Collection(self.client,
+                                                         GatewayProgramFundingSourceResponse))
         self.program = Program(Collection(self.client, ProgramFundingSourceResponse))
 
     def __call__(self, token):
+        '''
+        Special case call made with token
+        :param token: fundingsources token
+        :return: FundingAccountResponseModel object
+        '''
         return FundingSourceMakeDefualt(token, self.client)
 
     def page_for_user(self, user_token, params=None):
-        return self.collections.page(endpoint=self._endpoint + '/user/{}'.format(user_token), query_params=params)
-
-    def page_for_business(self, business_token, params=None):
-        return self.collections.page(endpoint=self._endpoint + '/business/{}'.format(business_token),
+        '''
+        Provides the requested page for fundingsources
+        :param user_token: user token
+        :param params: query parameters
+        :return: requested page with FundingAccountResponseModel object for the requested
+        page 'data'field
+        '''
+        return self.collections.page(endpoint=self._endpoint + '/user/{}'.format(user_token),
                                      query_params=params)
 
-    def stream_for_user(self, user_token, params=None):
-        return self.collections.stream(endpoint=self._endpoint + '/user/{}'.format(user_token), query_params=params)
+    def page_for_business(self, business_token, params=None):
+        '''
+        Provides the requested page for fundingsources
+        :param business_token: user token
+        :param params: query parameters
+        :return: requested page with FundingAccountResponseModel object for the requested
+        page 'data'field
+        '''
+        return self.collections.page(endpoint=self._endpoint + '/business/{}'.
+                                     format(business_token), query_params=params)
 
-    def stream_for_business(self, business_token, params=None):
-        return self.collections.stream(endpoint=self._endpoint + '/business/{}'.format(business_token),
+    def stream_for_user(self, user_token, params=None):
+        '''
+        Stream through the list of requested endpoint data field
+        :param user_token: user token
+        :param params: query parameters
+        :return: FundingAccountResponseModel object
+        '''
+        return self.collections.stream(endpoint=self._endpoint + '/user/{}'.format(user_token),
                                        query_params=params)
 
+    def stream_for_business(self, business_token, params=None):
+        '''
+        Stream through the list of requested endpoint data field
+        :param user_token: user token
+        :param params: query parameters
+        :return: FundingAccountResponseModel object
+        '''
+        return self.collections.stream(endpoint=self._endpoint + '/business/{}'.
+                                       format(business_token), query_params=params)
+
     def list_for_user(self, user_token, params=None, limit=None):
+        '''
+        List all the funding sources for user
+        :param params: query parameters
+        :param limit: parameter to limit the list count
+        :param user_token: user token
+        :param params:
+        :return: List of FundingAccountResponseModel object:
+        '''
         return self.collections.list(endpoint=self._endpoint + '/user/{}'.format(user_token),
                                      query_params=params, limit=limit)
 
     def list_for_business(self, business_token, params=None, limit=None):
-        return self.collections.list(endpoint=self._endpoint + '/business/{}'.format(business_token),
-                                     query_params=params, limit=limit)
+        '''
+        List all the funding sources for business
+        :param params: query parameters
+        :param limit: parameter to limit the list count
+        :param business_token: business token
+        :param params:
+        :return: List of FundingAccountResponseModel object:
+        '''
+        return self.collections.list(endpoint=self._endpoint + '/business/{}'.
+                                     format(business_token), query_params=params, limit=limit)
 
     def __repr__(self):
         return '<Marqeta.resources.funding_sources.FundingSourcesCollection>'
 
 
 class FundingSourceMakeDefualt(FundingSourcesCollection):
+    '''
+    Class to make a default funding source
+    Returns PaymentCardResponseModel object
+    '''
 
     def __init__(self, token, client):
         super(FundingSourceMakeDefualt, self).__init__(client)
@@ -61,57 +122,70 @@ class FundingSourceMakeDefualt(FundingSourcesCollection):
         self.collections = Collection(self.client, PaymentCardResponseModel)
 
     def make_default(self):
-        return self.collections.save(data={}, endpoint='fundingsources/{}/default'.format(self.token))
+        return self.collections.save(data={}, endpoint='fundingsources/{}/default'.
+                                     format(self.token))
 
 
 class AchContext(object):
+    '''
+    class for account verification model
+    Returns AchVerificationModel object
+    '''
 
     def __init__(self, token, collection):
         self.token = token
         self.collections = collection
 
     def verification_amounts(self, params=None):
-        return self.collections.find(endpoint='fundingsources/ach/{}/verificationamounts'.format(self.token),
-                                     query_params=params)
+        return self.collections.find(endpoint='fundingsources/ach/{}/verificationamounts'.
+                                     format(self.token), query_params=params)
 
     def __repr__(self):
         return '<Marqeta.resources.funding_sources.AchContext>'
 
 
 class Addresses(object):
+    '''
+    Lists, Creates, UPdates and Finds the funding address
+    Returns CardholderAddressResponse object
+    '''
     _endpoint = 'fundingsources/addresses'
 
     def __init__(self, collection):
         self.collections = collection
 
     def page_for_user(self, user_token, params=None):
-        return self.collections.page(endpoint=self._endpoint + '/user/{}'.format(user_token), query_params=params)
+        return self.collections.page(endpoint=self._endpoint + '/user/{}'.
+                                     format(user_token), query_params=params)
 
     def page_for_business(self, business_token, params=None):
-        return self.collections.page(endpoint=self._endpoint + '/business/{}'.format(business_token),
-                                     query_params=params)
+        return self.collections.page(endpoint=self._endpoint + '/business/{}'.
+                                     format(business_token), query_params=params)
 
     def stream_for_user(self, user_token, params=None):
-        return self.collections.stream(endpoint=self._endpoint + '/user/{}'.format(user_token), query_params=params)
+        return self.collections.stream(endpoint=self._endpoint + '/user/{}'.
+                                       format(user_token), query_params=params)
 
     def stream_for_business(self, business_token, params=None):
-        return self.collections.stream(endpoint=self._endpoint + '/business/{}'.format(business_token),
-                                       query_params=params)
+        return self.collections.stream(endpoint=self._endpoint + '/business/{}'.
+                                       format(business_token), query_params=params)
 
     def list_for_user(self, user_token, params=None, limit=None):
-        return self.collections.list(endpoint=self._endpoint + '/user/{}'.format(user_token),
-                                     query_params=params, limit=limit)
+        return self.collections.list(endpoint=self._endpoint + '/user/{}'.
+                                     format(user_token), query_params=params, limit=limit)
 
     def list_for_business(self, business_token, params=None,
                           limit=None):
-        return self.collections.list(endpoint=self._endpoint + '/business/{}'.format(business_token),
+        return self.collections.list(endpoint=self._endpoint + '/business/{}'.
+                                     format(business_token),
                                      query_params=params, limit=limit)
 
     def create(self, data={}):
         return self.collections.create(endpoint=self._endpoint, data=data)
 
     def find(self, token, params=None):
-        return self.collections.find(endpoint=self._endpoint + '/{}'.format(token), query_params=params)
+        return self.collections.find(endpoint=self._endpoint + '/{}'.format(token),
+                                     query_params=params)
 
     def save(self, token, data):
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
@@ -121,6 +195,10 @@ class Addresses(object):
 
 
 class Ach(object):
+    '''
+    Lists, Creates, Updates and Finds the funding address
+    Returns AchResponseModel object
+    '''
     _endpoint = 'fundingsources/ach'
 
     def __init__(self, client, collection):
@@ -134,7 +212,8 @@ class Ach(object):
         return self.collections.create(endpoint=self._endpoint, data=data)
 
     def find(self, funding_token, params=None):
-        return self.collections.find(endpoint=self._endpoint + '/{}'.format(funding_token), query_params=params)
+        return self.collections.find(endpoint=self._endpoint + '/{}'.format(funding_token),
+                                     query_params=params)
 
     def save(self, token, data):
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
@@ -144,6 +223,10 @@ class Ach(object):
 
 
 class PaymentCard(object):
+    '''
+    Creates, Updates and Finds the funding address
+    Returns PaymentCardResponseModel object
+    '''
     _endpoint = 'fundingsources/paymentcard'
 
     def __init__(self, collection):
@@ -153,7 +236,8 @@ class PaymentCard(object):
         return self.collections.create(endpoint=self._endpoint, data=data)
 
     def find(self, funding_token, params=None):
-        return self.collections.find(endpoint=self._endpoint + '/{}'.format(funding_token), query_params=params)
+        return self.collections.find(endpoint=self._endpoint + '/{}'.format(funding_token),
+                                     query_params=params)
 
     def save(self, token, data):
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
@@ -163,6 +247,10 @@ class PaymentCard(object):
 
 
 class ProgramGateway(object):
+    '''
+    Creates, Updates and Finds the funding address
+    Returns GatewayProgramFundingSourceResponse object
+    '''
     _endpoint = 'fundingsources/programgateway'
 
     def __init__(self, collection):
@@ -172,7 +260,8 @@ class ProgramGateway(object):
         return self.collections.create(endpoint=self._endpoint, data=data)
 
     def find(self, funding_token, params=None):
-        return self.collections.find(endpoint=self._endpoint + '/{}'.format(funding_token), query_params=params)
+        return self.collections.find(endpoint=self._endpoint + '/{}'.format(funding_token),
+                                     query_params=params)
 
     def save(self, token, data):
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
@@ -182,6 +271,10 @@ class ProgramGateway(object):
 
 
 class Program(object):
+    '''
+    Creates, Updates and Finds the funding address
+    Returns ProgramFundingSourceResponse object
+    '''
     _endpoint = 'fundingsources/program'
 
     def __init__(self, collection):
@@ -191,7 +284,8 @@ class Program(object):
         return self.collections.create(endpoint=self._endpoint, data=data)
 
     def find(self, funding_token, params=None):
-        return self.collections.find(endpoint=self._endpoint + '/{}'.format(funding_token), query_params=params)
+        return self.collections.find(endpoint=self._endpoint + '/{}'.format(funding_token),
+                                     query_params=params)
 
     def save(self, token, data):
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))

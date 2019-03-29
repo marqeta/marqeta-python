@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.gateway_response import GatewayResponse
 import json
 
+
 class GatewayLogModel(object):
 
     def __init__(self, json_response):
@@ -17,33 +18,34 @@ class GatewayLogModel(object):
 
     @property
     def order_number(self):
-        if 'order_number' in self.json_response:
-            return self.json_response['order_number']
+
+        return self.json_response.get('order_number', None)
 
     @property
     def transaction_id(self):
-        if 'transaction_id' in self.json_response:
-            return self.json_response['transaction_id']
+
+        return self.json_response.get('transaction_id', None)
 
     @property
     def message(self):
-        if 'message' in self.json_response:
-            return self.json_response['message']
+
+        return self.json_response.get('message', None)
 
     @property
     def duration(self):
-        if 'duration' in self.json_response:
-            return self.json_response['duration']
+
+        return self.json_response.get('duration', None)
 
     @property
     def timed_out(self):
-        if 'timed_out' in self.json_response:
-            return self.json_response['timed_out']
+
+        return self.json_response.get('timed_out', None)
 
     @property
     def response(self):
+
         if 'response' in self.json_response:
             return GatewayResponse(self.json_response['response'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.gateway_log_model.GatewayLogModel>'
+        return '<Marqeta.response_models.gateway_log_model.GatewayLogModel>'

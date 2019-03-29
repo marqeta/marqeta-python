@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.digital_wallet_token_card_info import DigitalWalletTokenCardInfo
 import json
 
+
 class DigitalWalletTokenCheckEligibilityRequest(object):
 
     def __init__(self, json_response):
@@ -17,13 +18,14 @@ class DigitalWalletTokenCheckEligibilityRequest(object):
 
     @property
     def pan_source(self):
-        if 'pan_source' in self.json_response:
-            return self.json_response['pan_source']
+
+        return self.json_response.get('pan_source', None)
 
     @property
     def digital_wallet_token_card_data(self):
+
         if 'digital_wallet_token_card_data' in self.json_response:
             return DigitalWalletTokenCardInfo(self.json_response['digital_wallet_token_card_data'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.digital_wallet_token_check_eligibility_request.DigitalWalletTokenCheckEligibilityRequest>'
+        return '<Marqeta.response_models.digital_wallet_token_check_eligibility_request.DigitalWalletTokenCheckEligibilityRequest>'

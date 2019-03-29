@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.android_push_token_request_address import AndroidPushTokenRequestAddress
 import json
 
+
 class PushTokenizeRequestData(object):
 
     def __init__(self, json_response):
@@ -17,33 +18,34 @@ class PushTokenizeRequestData(object):
 
     @property
     def display_name(self):
-        if 'display_name' in self.json_response:
-            return self.json_response['display_name']
+
+        return self.json_response.get('display_name', None)
 
     @property
     def last_digits(self):
-        if 'last_digits' in self.json_response:
-            return self.json_response['last_digits']
+
+        return self.json_response.get('last_digits', None)
 
     @property
     def network(self):
-        if 'network' in self.json_response:
-            return self.json_response['network']
+
+        return self.json_response.get('network', None)
 
     @property
     def token_service_provider(self):
-        if 'token_service_provider' in self.json_response:
-            return self.json_response['token_service_provider']
+
+        return self.json_response.get('token_service_provider', None)
 
     @property
     def opaque_payment_card(self):
-        if 'opaque_payment_card' in self.json_response:
-            return self.json_response['opaque_payment_card']
+
+        return self.json_response.get('opaque_payment_card', None)
 
     @property
     def user_address(self):
+
         if 'user_address' in self.json_response:
             return AndroidPushTokenRequestAddress(self.json_response['user_address'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.push_tokenize_request_data.PushTokenizeRequestData>'
+        return '<Marqeta.response_models.push_tokenize_request_data.PushTokenizeRequestData>'

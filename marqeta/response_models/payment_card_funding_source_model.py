@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.funding_source_model import FundingSourceModel
 import json
 
+
 class PaymentCardFundingSourceModel(FundingSourceModel):
 
     def __init__(self, json_response):
@@ -17,28 +18,23 @@ class PaymentCardFundingSourceModel(FundingSourceModel):
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+        return self.json_response.get('user_token', None)
 
     @property
     def business_token(self):
-        if 'business_token' in self.json_response:
-            return self.json_response['business_token']
+        return self.json_response.get('business_token', None)
 
     @property
     def account_suffix(self):
-        if 'account_suffix' in self.json_response:
-            return self.json_response['account_suffix']
+        return self.json_response.get('account_suffix', None)
 
     @property
     def account_type(self):
-        if 'account_type' in self.json_response:
-            return self.json_response['account_type']
+        return self.json_response.get('account_type', None)
 
     @property
     def exp_date(self):
-        if 'exp_date' in self.json_response:
-            return self.json_response['exp_date']
+        return self.json_response.get('exp_date', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.payment_card_funding_source_model.PaymentCardFundingSourceModel>'
+        return '<Marqeta.response_models.payment_card_funding_source_model.PaymentCardFundingSourceModel>'

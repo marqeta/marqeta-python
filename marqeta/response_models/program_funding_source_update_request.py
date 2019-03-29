@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ProgramFundingSourceUpdateRequest(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class ProgramFundingSourceUpdateRequest(object):
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+        return self.json_response.get('name', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+        return self.json_response.get('active', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.program_funding_source_update_request.ProgramFundingSourceUpdateRequest>'
+        return '<Marqeta.response_models.program_funding_source_update_request.ProgramFundingSourceUpdateRequest>'

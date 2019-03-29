@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ImagesCard(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class ImagesCard(object):
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+        return self.json_response.get('name', None)
 
     @property
     def thermal_color(self):
-        if 'thermal_color' in self.json_response:
-            return self.json_response['thermal_color']
+        return self.json_response.get('thermal_color', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.images_card.ImagesCard>'
+        return '<Marqeta.response_models.images_card.ImagesCard>'

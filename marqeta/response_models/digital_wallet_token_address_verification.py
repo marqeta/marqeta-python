@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class DigitalWalletTokenAddressVerification(object):
 
     def __init__(self, json_response):
@@ -16,8 +17,7 @@ class DigitalWalletTokenAddressVerification(object):
 
     @property
     def validate(self):
-        if 'validate' in self.json_response:
-            return self.json_response['validate']
+        return self.json_response.get('validate', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.digital_wallet_token_address_verification.DigitalWalletTokenAddressVerification>'
+        return '<Marqeta.response_models.digital_wallet_token_address_verification.DigitalWalletTokenAddressVerification>'

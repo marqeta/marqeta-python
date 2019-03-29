@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class FundingRequestModel(object):
 
     def __init__(self, json_response):
@@ -16,43 +17,35 @@ class FundingRequestModel(object):
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+        return self.json_response.get('user_token', None)
 
     @property
     def order_number(self):
-        if 'order_number' in self.json_response:
-            return self.json_response['order_number']
+        return self.json_response.get('order_number', None)
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+        return self.json_response.get('amount', None)
 
     @property
     def funding_source(self):
-        if 'funding_source' in self.json_response:
-            return self.json_response['funding_source']
+        return self.json_response.get('funding_source', None)
 
     @property
     def funding_address(self):
-        if 'funding_address' in self.json_response:
-            return self.json_response['funding_address']
+        return self.json_response.get('funding_address', None)
 
     @property
     def fundgpadetail(self):
-        if 'fundgpadetail' in self.json_response:
-            return self.json_response['fundgpadetail']
+        return self.json_response.get('fundgpadetail', None)
 
     @property
     def order_token(self):
-        if 'order_token' in self.json_response:
-            return self.json_response['order_token']
+        return self.json_response.get('order_token', None)
 
     @property
     def currency_code(self):
-        if 'currency_code' in self.json_response:
-            return self.json_response['currency_code']
+        return self.json_response.get('currency_code', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.funding_request_model.FundingRequestModel>'
+        return '<Marqeta.response_models.funding_request_model.FundingRequestModel>'

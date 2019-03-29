@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class PeerTransferRequest(object):
 
     def __init__(self, json_response):
@@ -16,48 +17,39 @@ class PeerTransferRequest(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+        return self.json_response.get('amount', None)
 
     @property
     def tags(self):
-        if 'tags' in self.json_response:
-            return self.json_response['tags']
+        return self.json_response.get('tags', None)
 
     @property
     def memo(self):
-        if 'memo' in self.json_response:
-            return self.json_response['memo']
+        return self.json_response.get('memo', None)
 
     @property
     def sender_user_token(self):
-        if 'sender_user_token' in self.json_response:
-            return self.json_response['sender_user_token']
+        return self.json_response.get('sender_user_token', None)
 
     @property
     def recipient_user_token(self):
-        if 'recipient_user_token' in self.json_response:
-            return self.json_response['recipient_user_token']
+        return self.json_response.get('recipient_user_token', None)
 
     @property
     def sender_business_token(self):
-        if 'sender_business_token' in self.json_response:
-            return self.json_response['sender_business_token']
+        return self.json_response.get('sender_business_token', None)
 
     @property
     def recipient_business_token(self):
-        if 'recipient_business_token' in self.json_response:
-            return self.json_response['recipient_business_token']
+        return self.json_response.get('recipient_business_token', None)
 
     @property
     def currency_code(self):
-        if 'currency_code' in self.json_response:
-            return self.json_response['currency_code']
+        return self.json_response.get('currency_code', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.peer_transfer_request.PeerTransferRequest>'
+        return '<Marqeta.response_models.peer_transfer_request.PeerTransferRequest>'

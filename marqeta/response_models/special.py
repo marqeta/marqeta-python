@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class Special(object):
 
     def __init__(self, json_response):
@@ -16,8 +17,7 @@ class Special(object):
 
     @property
     def merchant_on_boarding(self):
-        if 'merchant_on_boarding' in self.json_response:
-            return self.json_response['merchant_on_boarding']
+        return self.json_response.get('merchant_on_boarding', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.special.Special>'
+        return '<Marqeta.response_models.special.Special>'

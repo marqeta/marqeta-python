@@ -8,6 +8,7 @@ from marqeta.response_models.identification_response_model import Identification
 from marqeta.response_models.deposit_account import DepositAccount
 import json
 
+
 class BusinessCardHolderResponse(object):
 
     def __init__(self, json_response):
@@ -23,148 +24,159 @@ class BusinessCardHolderResponse(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+
+        return self.json_response.get('active', None)
 
     @property
     def notes(self):
-        if 'notes' in self.json_response:
-            return self.json_response['notes']
+
+        return self.json_response.get('notes', None)
 
     @property
     def ip_address(self):
-        if 'ip_address' in self.json_response:
-            return self.json_response['ip_address']
+
+        return self.json_response.get('ip_address', None)
 
     @property
     def password(self):
-        if 'password' in self.json_response:
-            return self.json_response['password']
+
+        return self.json_response.get('password', None)
 
     @property
     def phone(self):
-        if 'phone' in self.json_response:
-            return self.json_response['phone']
+
+        return self.json_response.get('phone', None)
 
     @property
     def metadata(self):
-        if 'metadata' in self.json_response:
-            return self.json_response['metadata']
+
+        return self.json_response.get('metadata', None)
 
     @property
     def account_holder_group_token(self):
-        if 'account_holder_group_token' in self.json_response:
-            return self.json_response['account_holder_group_token']
+
+        return self.json_response.get('account_holder_group_token', None)
 
     @property
     def authentication(self):
+
         if 'authentication' in self.json_response:
             return Authentication(self.json_response['authentication'])
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
+
         if 'last_modified_time' in self.json_response:
-                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def status(self):
-        if 'status' in self.json_response:
-            return self.json_response['status']
+
+        return self.json_response.get('status', None)
 
     @property
     def business_name_legal(self):
-        if 'business_name_legal' in self.json_response:
-            return self.json_response['business_name_legal']
+
+        return self.json_response.get('business_name_legal', None)
 
     @property
     def business_name_dba(self):
-        if 'business_name_dba' in self.json_response:
-            return self.json_response['business_name_dba']
+
+        return self.json_response.get('business_name_dba', None)
 
     @property
     def office_location(self):
+
         if 'office_location' in self.json_response:
             return AddressResponseModel(self.json_response['office_location'])
 
     @property
     def in_current_location_since(self):
+
         if 'in_current_location_since' in self.json_response:
-                return datetime.strptime(self.json_response['in_current_location_since'], '%Y-%m-%d').date()
+            return datetime.strptime(self.json_response['in_current_location_since'], '%Y-%m-%d').date()
 
     @property
     def website(self):
-        if 'website' in self.json_response:
-            return self.json_response['website']
+
+        return self.json_response.get('website', None)
 
     @property
     def date_established(self):
+
         if 'date_established' in self.json_response:
-                return datetime.strptime(self.json_response['date_established'], '%Y-%m-%d').date()
+            return datetime.strptime(self.json_response['date_established'], '%Y-%m-%d').date()
 
     @property
     def general_business_description(self):
-        if 'general_business_description' in self.json_response:
-            return self.json_response['general_business_description']
+
+        return self.json_response.get('general_business_description', None)
 
     @property
     def history(self):
-        if 'history' in self.json_response:
-            return self.json_response['history']
+
+        return self.json_response.get('history', None)
 
     @property
     def business_type(self):
-        if 'business_type' in self.json_response:
-            return self.json_response['business_type']
+
+        return self.json_response.get('business_type', None)
 
     @property
     def international_office_locations(self):
-        if 'international_office_locations' in self.json_response:
-            return self.json_response['international_office_locations']
+
+        return self.json_response.get('international_office_locations', None)
 
     @property
     def taxpayer_id(self):
-        if 'taxpayer_id' in self.json_response:
-            return self.json_response['taxpayer_id']
+
+        return self.json_response.get('taxpayer_id', None)
 
     @property
     def duns_number(self):
-        if 'duns_number' in self.json_response:
-            return self.json_response['duns_number']
+
+        return self.json_response.get('duns_number', None)
 
     @property
     def primary_contact(self):
+
         if 'primary_contact' in self.json_response:
             return PrimaryContactInfoModel(self.json_response['primary_contact'])
 
     @property
     def incorporation(self):
+
         if 'incorporation' in self.json_response:
             return BusinessIncorporationResponseModel(self.json_response['incorporation'])
 
     @property
     def proprietor_or_officer(self):
+
         if 'proprietor_or_officer' in self.json_response:
             return BusinessProprietorResponseModel(self.json_response['proprietor_or_officer'])
 
     @property
     def identifications(self):
+
         if 'identifications' in self.json_response:
             return [IdentificationResponseModel(val) for val in self.json_response['identifications']]
 
     @property
     def deposit_account(self):
+
         if 'deposit_account' in self.json_response:
             return DepositAccount(self.json_response['deposit_account'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.business_card_holder_response.BusinessCardHolderResponse>'
+        return '<Marqeta.response_models.business_card_holder_response.BusinessCardHolderResponse>'

@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.jit_program_response import JitProgramResponse
 import json
 
+
 class GatewayResponse(object):
 
     def __init__(self, json_response):
@@ -17,13 +18,14 @@ class GatewayResponse(object):
 
     @property
     def code(self):
-        if 'code' in self.json_response:
-            return self.json_response['code']
+
+        return self.json_response.get('code', None)
 
     @property
     def data(self):
+
         if 'data' in self.json_response:
             return JitProgramResponse(self.json_response['data'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.gateway_response.GatewayResponse>'
+        return '<Marqeta.response_models.gateway_response.GatewayResponse>'

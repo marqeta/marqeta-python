@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class AchModel(object):
 
     def __init__(self, json_response):
@@ -16,53 +17,43 @@ class AchModel(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+        return self.json_response.get('token', None)
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+        return self.json_response.get('user_token', None)
 
     @property
     def business_token(self):
-        if 'business_token' in self.json_response:
-            return self.json_response['business_token']
+        return self.json_response.get('business_token', None)
 
     @property
     def account_number(self):
-        if 'account_number' in self.json_response:
-            return self.json_response['account_number']
+        return self.json_response.get('account_number', None)
 
     @property
     def routing_number(self):
-        if 'routing_number' in self.json_response:
-            return self.json_response['routing_number']
+        return self.json_response.get('routing_number', None)
 
     @property
     def name_on_account(self):
-        if 'name_on_account' in self.json_response:
-            return self.json_response['name_on_account']
+        return self.json_response.get('name_on_account', None)
 
     @property
     def account_type(self):
-        if 'account_type' in self.json_response:
-            return self.json_response['account_type']
+        return self.json_response.get('account_type', None)
 
     @property
     def verification_override(self):
-        if 'verification_override' in self.json_response:
-            return self.json_response['verification_override']
+        return self.json_response.get('verification_override', None)
 
     @property
     def verification_notes(self):
-        if 'verification_notes' in self.json_response:
-            return self.json_response['verification_notes']
+        return self.json_response.get('verification_notes', None)
 
     @property
     def is_default_account(self):
-        if 'is_default_account' in self.json_response:
-            return self.json_response['is_default_account']
+        return self.json_response.get('is_default_account', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.ach_model.AchModel>'
+        return '<Marqeta.response_models.ach_model.AchModel>'

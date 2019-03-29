@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class DigitalWalletTokenCardInfo(object):
 
     def __init__(self, json_response):
@@ -16,23 +17,19 @@ class DigitalWalletTokenCardInfo(object):
 
     @property
     def pan(self):
-        if 'pan' in self.json_response:
-            return self.json_response['pan']
+        return self.json_response.get('pan', None)
 
     @property
     def exp_month(self):
-        if 'exp_month' in self.json_response:
-            return self.json_response['exp_month']
+        return self.json_response.get('exp_month', None)
 
     @property
     def exp_year(self):
-        if 'exp_year' in self.json_response:
-            return self.json_response['exp_year']
+        return self.json_response.get('exp_year', None)
 
     @property
     def cvv(self):
-        if 'cvv' in self.json_response:
-            return self.json_response['cvv']
+        return self.json_response.get('cvv', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.digital_wallet_token_card_info.DigitalWalletTokenCardInfo>'
+        return '<Marqeta.response_models.digital_wallet_token_card_info.DigitalWalletTokenCardInfo>'

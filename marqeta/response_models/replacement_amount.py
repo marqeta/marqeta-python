@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ReplacementAmount(object):
 
     def __init__(self, json_response):
@@ -16,23 +17,19 @@ class ReplacementAmount(object):
 
     @property
     def transaction_amount(self):
-        if 'transaction_amount' in self.json_response:
-            return self.json_response['transaction_amount']
+        return self.json_response.get('transaction_amount', None)
 
     @property
     def settlement_amount(self):
-        if 'settlement_amount' in self.json_response:
-            return self.json_response['settlement_amount']
+        return self.json_response.get('settlement_amount', None)
 
     @property
     def transaction_fee(self):
-        if 'transaction_fee' in self.json_response:
-            return self.json_response['transaction_fee']
+        return self.json_response.get('transaction_fee', None)
 
     @property
     def settlement_fee(self):
-        if 'settlement_fee' in self.json_response:
-            return self.json_response['settlement_fee']
+        return self.json_response.get('settlement_fee', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.replacement_amount.ReplacementAmount>'
+        return '<Marqeta.response_models.replacement_amount.ReplacementAmount>'

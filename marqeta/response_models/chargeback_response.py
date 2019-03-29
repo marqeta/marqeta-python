@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ChargebackResponse(object):
 
     def __init__(self, json_response):
@@ -16,68 +17,70 @@ class ChargebackResponse(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def transaction_token(self):
-        if 'transaction_token' in self.json_response:
-            return self.json_response['transaction_token']
+
+        return self.json_response.get('transaction_token', None)
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+
+        return self.json_response.get('amount', None)
 
     @property
     def reason_description(self):
-        if 'reason_description' in self.json_response:
-            return self.json_response['reason_description']
+
+        return self.json_response.get('reason_description', None)
 
     @property
     def reason_code(self):
-        if 'reason_code' in self.json_response:
-            return self.json_response['reason_code']
+
+        return self.json_response.get('reason_code', None)
 
     @property
     def memo(self):
-        if 'memo' in self.json_response:
-            return self.json_response['memo']
+
+        return self.json_response.get('memo', None)
 
     @property
     def state(self):
-        if 'state' in self.json_response:
-            return self.json_response['state']
+
+        return self.json_response.get('state', None)
 
     @property
     def channel(self):
-        if 'channel' in self.json_response:
-            return self.json_response['channel']
+
+        return self.json_response.get('channel', None)
 
     @property
     def network(self):
-        if 'network' in self.json_response:
-            return self.json_response['network']
+
+        return self.json_response.get('network', None)
 
     @property
     def network_case_id(self):
-        if 'network_case_id' in self.json_response:
-            return self.json_response['network_case_id']
+
+        return self.json_response.get('network_case_id', None)
 
     @property
     def credit_user(self):
-        if 'credit_user' in self.json_response:
-            return self.json_response['credit_user']
+
+        return self.json_response.get('credit_user', None)
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
+
         if 'last_modified_time' in self.json_response:
-                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-         return '<Marqeta.response_models.chargeback_response.ChargebackResponse>'
+        return '<Marqeta.response_models.chargeback_response.ChargebackResponse>'

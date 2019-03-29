@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class Available(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class Available(object):
 
     @property
     def uses(self):
-        if 'uses' in self.json_response:
-            return self.json_response['uses']
+        return self.json_response.get('uses', None)
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+        return self.json_response.get('amount', None)
 
     @property
     def days_remaining(self):
-        if 'days_remaining' in self.json_response:
-            return self.json_response['days_remaining']
+        return self.json_response.get('days_remaining', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.available.Available>'
+        return '<Marqeta.response_models.available.Available>'

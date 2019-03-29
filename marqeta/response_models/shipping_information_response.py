@@ -3,6 +3,7 @@ from marqeta.response_models.fulfillment_address_response import FulfillmentAddr
 from marqeta.response_models.fulfillment_address_response import FulfillmentAddressResponse
 import json
 
+
 class ShippingInformationResponse(object):
 
     def __init__(self, json_response):
@@ -18,23 +19,25 @@ class ShippingInformationResponse(object):
 
     @property
     def method(self):
-        if 'method' in self.json_response:
-            return self.json_response['method']
+
+        return self.json_response.get('method', None)
 
     @property
     def return_address(self):
+
         if 'return_address' in self.json_response:
             return FulfillmentAddressResponse(self.json_response['return_address'])
 
     @property
     def recipient_address(self):
+
         if 'recipient_address' in self.json_response:
             return FulfillmentAddressResponse(self.json_response['recipient_address'])
 
     @property
     def care_of_line(self):
-        if 'care_of_line' in self.json_response:
-            return self.json_response['care_of_line']
+
+        return self.json_response.get('care_of_line', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.shipping_information_response.ShippingInformationResponse>'
+        return '<Marqeta.response_models.shipping_information_response.ShippingInformationResponse>'

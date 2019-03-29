@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class CampaignUpdateModel(object):
 
     def __init__(self, json_response):
@@ -16,28 +17,23 @@ class CampaignUpdateModel(object):
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+        return self.json_response.get('name', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+        return self.json_response.get('active', None)
 
     @property
     def start_date(self):
-        if 'start_date' in self.json_response:
-            return self.json_response['start_date']
+        return self.json_response.get('start_date', None)
 
     @property
     def end_date(self):
-        if 'end_date' in self.json_response:
-            return self.json_response['end_date']
+        return self.json_response.get('end_date', None)
 
     @property
     def store_tokens(self):
-        if 'store_tokens' in self.json_response:
-            return self.json_response['store_tokens']
+        return self.json_response.get('store_tokens', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.campaign_update_model.CampaignUpdateModel>'
+        return '<Marqeta.response_models.campaign_update_model.CampaignUpdateModel>'

@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class BusinessMetadata(object):
 
     def __init__(self, json_response):
@@ -16,8 +17,7 @@ class BusinessMetadata(object):
 
     @property
     def metadata(self):
-        if 'metadata' in self.json_response:
-            return self.json_response['metadata']
+        return self.json_response.get('metadata', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.business_metadata.BusinessMetadata>'
+        return '<Marqeta.response_models.business_metadata.BusinessMetadata>'

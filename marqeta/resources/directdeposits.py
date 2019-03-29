@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+
+'''DIRECTDEPOSIT RESOURCE WITH CRU PARAMETERS'''
+
 from marqeta.resources.collection import Collection
 from marqeta.response_models.deposit_deposit_response import DepositDepositResponse
 from marqeta.response_models.deposit_account import DepositAccount
@@ -5,45 +9,79 @@ from marqeta.response_models.direct_deposit_transition_response import DirectDep
 
 
 class DirectDepositsCollection(object):
+    '''
+     Marqeta API 'directdeposits' endpoint list, create, find and update operations
+    '''
     _endpoint = 'directdeposits'
 
     def __init__(self, client):
+        '''
+        Creates a client collection objects for different responses
+        :param client: client object
+        '''
         self.client = client
         self.collections = Collection(self.client, DepositDepositResponse)
         self.accounts = Accounts(Collection(self.client, DepositAccount))
 
     def __call__(self, token):
+        '''
+        Special case call made with token
+        :param token: directdeposits token
+        :return: DirectDepositsContext object
+        '''
         return DirectDepositsContext(token, self.client)
 
     def page(self, params=None):
+        '''
+         Provides the requested page for directdeposits
+        :param params: query parameters
+        :return: requested page with DepositDepositResponse object for the requested
+        page 'data'field
+        '''
         return self.collections.page(endpoint=self._endpoint, query_params=params)
 
     def stream(self, params=None):
+        '''
+        Stream through the list of requested endpoint data field
+        :param params: query parameters
+        :return: DepositDepositResponse object
+        '''
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
-    ''' Lists all the directdeposits  Returns list of all directdeposits object '''
-
     def list(self, params=None, limit=None):
+        '''
+        List all the directdeposits
+        :param params: query parameters
+        :param limit: parameter to limit the list count
+        :return: List of DepositDepositResponse object
+        '''
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
-    ''' Finds the directdeposits information for the requested token
-            Returns the cardproduct object which has directdeposits information '''
-
     def find(self, token, params=None):
-        return self.collections.find(endpoint=self._endpoint + '/{}'.format(token), query_params=params)
+        '''
+        Finds a specific directdeposits object
+        :param token: directdeposits token
+        :param params: query parameters
+        :return: DepositDepositResponse object
+        '''
+        return self.collections.find(endpoint=self._endpoint + '/{}'.format(token),
+                                     query_params=params)
 
     def __repr__(self):
         return '<Marqeta.resources.directdeposits.DirectDepositsCollection>'
 
 
 class Accounts(object):
+    ''' Class for find and updating the directdeposit account  '''
+
     _endpoint = 'directdeposits/accounts'
 
     def __init__(self, collection):
         self.collections = collection
 
     def find(self, token, params=None):
-        return self.collections.find(endpoint=self._endpoint + '/{}'.format(token), query_params=params)
+        return self.collections.find(endpoint=self._endpoint + '/{}'.format(token),
+                                     query_params=params)
 
     def save(self, token, data):
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
@@ -53,13 +91,19 @@ class Accounts(object):
 
 
 class DirectDepositsContext(DirectDepositsCollection):
+    ''' class to specify sub endpoints for directdeposits '''
 
     def __init__(self, token, client):
         super(DirectDepositsContext, self).__init__(client)
         self.token = token
-        self.transitions = self.Transitions(self.token, Collection(client, DirectDepositTransitionResponse))
+        self.transitions = self.Transitions(self.token, Collection(client,
+                                                                   DirectDepositTransitionResponse))
 
     class Transitions(object):
+        '''
+        Lists, Creates and Finds the notes for directdeposits
+        Returns DirectDepositTransitionResponse object
+        '''
         _endpoint = 'directdeposits/transitions'
 
         def __init__(self, token, collection):
@@ -89,3 +133,6 @@ class DirectDepositsContext(DirectDepositsCollection):
 
         def __repr__(self):
             return '<Marqeta.resources.directdeposit.DirectdepositsContext.Transitions>'
+
+    def __repr__(self):
+        return '<Marqeta.resources.directdeposit.DirectdepositsContext>'

@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ClearingAndSettlement(object):
 
     def __init__(self, json_response):
@@ -16,8 +17,7 @@ class ClearingAndSettlement(object):
 
     @property
     def overdraft_destination(self):
-        if 'overdraft_destination' in self.json_response:
-            return self.json_response['overdraft_destination']
+        return self.json_response.get('overdraft_destination', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.clearing_and_settlement.ClearingAndSettlement>'
+        return '<Marqeta.response_models.clearing_and_settlement.ClearingAndSettlement>'

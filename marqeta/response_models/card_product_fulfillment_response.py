@@ -3,6 +3,7 @@ from marqeta.response_models.shipping_information_response import ShippingInform
 from marqeta.response_models.card_personalization import CardPersonalization
 import json
 
+
 class CardProductFulfillmentResponse(object):
 
     def __init__(self, json_response):
@@ -18,63 +19,65 @@ class CardProductFulfillmentResponse(object):
 
     @property
     def shipping(self):
+
         if 'shipping' in self.json_response:
             return ShippingInformationResponse(self.json_response['shipping'])
 
     @property
     def card_personalization(self):
+
         if 'card_personalization' in self.json_response:
             return CardPersonalization(self.json_response['card_personalization'])
 
     @property
     def payment_instrument(self):
-        if 'payment_instrument' in self.json_response:
-            return self.json_response['payment_instrument']
+
+        return self.json_response.get('payment_instrument', None)
 
     @property
     def package_id(self):
-        if 'package_id' in self.json_response:
-            return self.json_response['package_id']
+
+        return self.json_response.get('package_id', None)
 
     @property
     def all_zero_card_security_code(self):
-        if 'all_zero_card_security_code' in self.json_response:
-            return self.json_response['all_zero_card_security_code']
+
+        return self.json_response.get('all_zero_card_security_code', None)
 
     @property
     def bin_prefix(self):
-        if 'bin_prefix' in self.json_response:
-            return self.json_response['bin_prefix']
+
+        return self.json_response.get('bin_prefix', None)
 
     @property
     def bulk_ship(self):
-        if 'bulk_ship' in self.json_response:
-            return self.json_response['bulk_ship']
+
+        return self.json_response.get('bulk_ship', None)
 
     @property
     def pan_length(self):
-        if 'pan_length' in self.json_response:
-            return self.json_response['pan_length']
+
+        return self.json_response.get('pan_length', None)
 
     @property
     def fulfillment_provider(self):
-        if 'fulfillment_provider' in self.json_response:
-            return self.json_response['fulfillment_provider']
+
+        return self.json_response.get('fulfillment_provider', None)
 
     @property
     def allow_card_creation(self):
-        if 'allow_card_creation' in self.json_response:
-            return self.json_response['allow_card_creation']
+
+        return self.json_response.get('allow_card_creation', None)
 
     @property
     def uppercase_name_lines(self):
-        if 'uppercase_name_lines' in self.json_response:
-            return self.json_response['uppercase_name_lines']
+
+        return self.json_response.get('uppercase_name_lines', None)
 
     @property
     def enable_offline_pin(self):
-        if 'enable_offline_pin' in self.json_response:
-            return self.json_response['enable_offline_pin']
+
+        return self.json_response.get('enable_offline_pin', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.card_product_fulfillment_response.CardProductFulfillmentResponse>'
+        return '<Marqeta.response_models.card_product_fulfillment_response.CardProductFulfillmentResponse>'

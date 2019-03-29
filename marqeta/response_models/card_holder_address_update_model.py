@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class CardHolderAddressUpdateModel(object):
 
     def __init__(self, json_response):
@@ -16,63 +17,51 @@ class CardHolderAddressUpdateModel(object):
 
     @property
     def first_name(self):
-        if 'first_name' in self.json_response:
-            return self.json_response['first_name']
+        return self.json_response.get('first_name', None)
 
     @property
     def last_name(self):
-        if 'last_name' in self.json_response:
-            return self.json_response['last_name']
+        return self.json_response.get('last_name', None)
 
     @property
     def address_1(self):
-        if 'address_1' in self.json_response:
-            return self.json_response['address_1']
+        return self.json_response.get('address_1', None)
 
     @property
     def address_2(self):
-        if 'address_2' in self.json_response:
-            return self.json_response['address_2']
+        return self.json_response.get('address_2', None)
 
     @property
     def city(self):
-        if 'city' in self.json_response:
-            return self.json_response['city']
+        return self.json_response.get('city', None)
 
     @property
     def state(self):
-        if 'state' in self.json_response:
-            return self.json_response['state']
+        return self.json_response.get('state', None)
 
     @property
     def zip(self):
-        if 'zip' in self.json_response:
-            return self.json_response['zip']
+        return self.json_response.get('zip', None)
 
     @property
     def country(self):
-        if 'country' in self.json_response:
-            return self.json_response['country']
+        return self.json_response.get('country', None)
 
     @property
     def phone(self):
-        if 'phone' in self.json_response:
-            return self.json_response['phone']
+        return self.json_response.get('phone', None)
 
     @property
     def is_default_address(self):
-        if 'is_default_address' in self.json_response:
-            return self.json_response['is_default_address']
+        return self.json_response.get('is_default_address', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+        return self.json_response.get('active', None)
 
     @property
     def postal_code(self):
-        if 'postal_code' in self.json_response:
-            return self.json_response['postal_code']
+        return self.json_response.get('postal_code', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.card_holder_address_update_model.CardHolderAddressUpdateModel>'
+        return '<Marqeta.response_models.card_holder_address_update_model.CardHolderAddressUpdateModel>'

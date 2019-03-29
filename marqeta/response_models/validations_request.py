@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.user_validation_request import UserValidationRequest
 import json
 
+
 class ValidationsRequest(object):
 
     def __init__(self, json_response):
@@ -17,8 +18,9 @@ class ValidationsRequest(object):
 
     @property
     def user(self):
+
         if 'user' in self.json_response:
             return UserValidationRequest(self.json_response['user'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.validations_request.ValidationsRequest>'
+        return '<Marqeta.response_models.validations_request.ValidationsRequest>'

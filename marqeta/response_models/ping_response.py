@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.health_check_result import HealthCheckResult
 import json
 
+
 class PingResponse(object):
 
     def __init__(self, json_response):
@@ -17,38 +18,39 @@ class PingResponse(object):
 
     @property
     def success(self):
-        if 'success' in self.json_response:
-            return self.json_response['success']
+
+        return self.json_response.get('success', None)
 
     @property
     def version(self):
-        if 'version' in self.json_response:
-            return self.json_response['version']
+
+        return self.json_response.get('version', None)
 
     @property
     def revision(self):
-        if 'revision' in self.json_response:
-            return self.json_response['revision']
+
+        return self.json_response.get('revision', None)
 
     @property
     def timestamp(self):
-        if 'timestamp' in self.json_response:
-            return self.json_response['timestamp']
+
+        return self.json_response.get('timestamp', None)
 
     @property
     def env(self):
-        if 'env' in self.json_response:
-            return self.json_response['env']
+
+        return self.json_response.get('env', None)
 
     @property
     def id(self):
-        if 'id' in self.json_response:
-            return self.json_response['id']
+
+        return self.json_response.get('id', None)
 
     @property
     def system_components(self):
+
         if 'system_components' in self.json_response:
             return [HealthCheckResult(val) for val in self.json_response['system_components']]
 
     def __repr__(self):
-         return '<Marqeta.response_models.ping_response.PingResponse>'
+        return '<Marqeta.response_models.ping_response.PingResponse>'

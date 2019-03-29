@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class AuthUser(object):
 
     def __init__(self, json_response):
@@ -16,33 +17,35 @@ class AuthUser(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def username(self):
-        if 'username' in self.json_response:
-            return self.json_response['username']
+
+        return self.json_response.get('username', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+
+        return self.json_response.get('active', None)
 
     @property
     def roles(self):
-        if 'roles' in self.json_response:
-            return self.json_response['roles']
+
+        return self.json_response.get('roles', None)
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
+
         if 'last_modified_time' in self.json_response:
-                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-         return '<Marqeta.response_models.auth_user.AuthUser>'
+        return '<Marqeta.response_models.auth_user.AuthUser>'

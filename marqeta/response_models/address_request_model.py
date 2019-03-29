@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class AddressRequestModel(object):
 
     def __init__(self, json_response):
@@ -16,38 +17,31 @@ class AddressRequestModel(object):
 
     @property
     def address1(self):
-        if 'address1' in self.json_response:
-            return self.json_response['address1']
+        return self.json_response.get('address1', None)
 
     @property
     def address2(self):
-        if 'address2' in self.json_response:
-            return self.json_response['address2']
+        return self.json_response.get('address2', None)
 
     @property
     def city(self):
-        if 'city' in self.json_response:
-            return self.json_response['city']
+        return self.json_response.get('city', None)
 
     @property
     def state(self):
-        if 'state' in self.json_response:
-            return self.json_response['state']
+        return self.json_response.get('state', None)
 
     @property
     def zip(self):
-        if 'zip' in self.json_response:
-            return self.json_response['zip']
+        return self.json_response.get('zip', None)
 
     @property
     def country(self):
-        if 'country' in self.json_response:
-            return self.json_response['country']
+        return self.json_response.get('country', None)
 
     @property
     def postal_code(self):
-        if 'postal_code' in self.json_response:
-            return self.json_response['postal_code']
+        return self.json_response.get('postal_code', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.address_request_model.AddressRequestModel>'
+        return '<Marqeta.response_models.address_request_model.AddressRequestModel>'

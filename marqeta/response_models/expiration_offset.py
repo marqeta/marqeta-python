@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.min_offset import MinOffset
 import json
 
+
 class ExpirationOffset(object):
 
     def __init__(self, json_response):
@@ -17,18 +18,19 @@ class ExpirationOffset(object):
 
     @property
     def unit(self):
-        if 'unit' in self.json_response:
-            return self.json_response['unit']
+
+        return self.json_response.get('unit', None)
 
     @property
     def value(self):
-        if 'value' in self.json_response:
-            return self.json_response['value']
+
+        return self.json_response.get('value', None)
 
     @property
     def min_offset(self):
+
         if 'min_offset' in self.json_response:
             return MinOffset(self.json_response['min_offset'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.expiration_offset.ExpirationOffset>'
+        return '<Marqeta.response_models.expiration_offset.ExpirationOffset>'

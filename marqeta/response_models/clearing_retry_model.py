@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ClearingRetryModel(object):
 
     def __init__(self, json_response):
@@ -16,33 +17,27 @@ class ClearingRetryModel(object):
 
     @property
     def original_failed_transaction_token(self):
-        if 'original_failed_transaction_token' in self.json_response:
-            return self.json_response['original_failed_transaction_token']
+        return self.json_response.get('original_failed_transaction_token', None)
 
     @property
     def new_network_reference(self):
-        if 'new_network_reference' in self.json_response:
-            return self.json_response['new_network_reference']
+        return self.json_response.get('new_network_reference', None)
 
     @property
     def new_approval_code(self):
-        if 'new_approval_code' in self.json_response:
-            return self.json_response['new_approval_code']
+        return self.json_response.get('new_approval_code', None)
 
     @property
     def new_stan(self):
-        if 'new_stan' in self.json_response:
-            return self.json_response['new_stan']
+        return self.json_response.get('new_stan', None)
 
     @property
     def find_original_window_days(self):
-        if 'find_original_window_days' in self.json_response:
-            return self.json_response['find_original_window_days']
+        return self.json_response.get('find_original_window_days', None)
 
     @property
     def new_processing_code(self):
-        if 'new_processing_code' in self.json_response:
-            return self.json_response['new_processing_code']
+        return self.json_response.get('new_processing_code', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.clearing_retry_model.ClearingRetryModel>'
+        return '<Marqeta.response_models.clearing_retry_model.ClearingRetryModel>'

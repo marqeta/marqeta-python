@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class TextValue(object):
 
     def __init__(self, json_response):
@@ -16,8 +17,7 @@ class TextValue(object):
 
     @property
     def value(self):
-        if 'value' in self.json_response:
-            return self.json_response['value']
+        return self.json_response.get('value', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.text_value.TextValue>'
+        return '<Marqeta.response_models.text_value.TextValue>'

@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.issuer import Issuer
 import json
 
+
 class Fraud(object):
 
     def __init__(self, json_response):
@@ -17,38 +18,39 @@ class Fraud(object):
 
     @property
     def merchant_risk_score(self):
-        if 'merchant_risk_score' in self.json_response:
-            return self.json_response['merchant_risk_score']
+
+        return self.json_response.get('merchant_risk_score', None)
 
     @property
     def merchant_risk_score_reason_code(self):
-        if 'merchant_risk_score_reason_code' in self.json_response:
-            return self.json_response['merchant_risk_score_reason_code']
+
+        return self.json_response.get('merchant_risk_score_reason_code', None)
 
     @property
     def transaction_risk_score(self):
-        if 'transaction_risk_score' in self.json_response:
-            return self.json_response['transaction_risk_score']
+
+        return self.json_response.get('transaction_risk_score', None)
 
     @property
     def transaction_risk_score_reason_code(self):
-        if 'transaction_risk_score_reason_code' in self.json_response:
-            return self.json_response['transaction_risk_score_reason_code']
+
+        return self.json_response.get('transaction_risk_score_reason_code', None)
 
     @property
     def account_risk_score(self):
-        if 'account_risk_score' in self.json_response:
-            return self.json_response['account_risk_score']
+
+        return self.json_response.get('account_risk_score', None)
 
     @property
     def account_risk_score_reason_code(self):
-        if 'account_risk_score_reason_code' in self.json_response:
-            return self.json_response['account_risk_score_reason_code']
+
+        return self.json_response.get('account_risk_score_reason_code', None)
 
     @property
     def issuerFraudModel(self):
+
         if 'issuerFraudModel' in self.json_response:
             return Issuer(self.json_response['issuerFraudModel'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.fraud.Fraud>'
+        return '<Marqeta.response_models.fraud.Fraud>'

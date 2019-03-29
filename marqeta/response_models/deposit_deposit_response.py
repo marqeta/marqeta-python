@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class DepositDepositResponse(object):
 
     def __init__(self, json_response):
@@ -16,93 +17,96 @@ class DepositDepositResponse(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+
+        return self.json_response.get('amount', None)
 
     @property
     def type(self):
-        if 'type' in self.json_response:
-            return self.json_response['type']
+
+        return self.json_response.get('type', None)
 
     @property
     def state(self):
-        if 'state' in self.json_response:
-            return self.json_response['state']
+
+        return self.json_response.get('state', None)
 
     @property
     def settlement_date(self):
+
         if 'settlement_date' in self.json_response:
-                return datetime.strptime(self.json_response['settlement_date'], '%Y-%m-%d').date()
+            return datetime.strptime(self.json_response['settlement_date'], '%Y-%m-%d').date()
 
     @property
     def state_reason(self):
-        if 'state_reason' in self.json_response:
-            return self.json_response['state_reason']
+
+        return self.json_response.get('state_reason', None)
 
     @property
     def state_reason_code(self):
-        if 'state_reason_code' in self.json_response:
-            return self.json_response['state_reason_code']
+
+        return self.json_response.get('state_reason_code', None)
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+
+        return self.json_response.get('user_token', None)
 
     @property
     def business_token(self):
-        if 'business_token' in self.json_response:
-            return self.json_response['business_token']
+
+        return self.json_response.get('business_token', None)
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
+
         if 'last_modified_time' in self.json_response:
-                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def standard_entry_class_code(self):
-        if 'standard_entry_class_code' in self.json_response:
-            return self.json_response['standard_entry_class_code']
+
+        return self.json_response.get('standard_entry_class_code', None)
 
     @property
     def company_name(self):
-        if 'company_name' in self.json_response:
-            return self.json_response['company_name']
+
+        return self.json_response.get('company_name', None)
 
     @property
     def company_discretionary_data(self):
-        if 'company_discretionary_data' in self.json_response:
-            return self.json_response['company_discretionary_data']
+
+        return self.json_response.get('company_discretionary_data', None)
 
     @property
     def company_identification(self):
-        if 'company_identification' in self.json_response:
-            return self.json_response['company_identification']
+
+        return self.json_response.get('company_identification', None)
 
     @property
     def company_entry_description(self):
-        if 'company_entry_description' in self.json_response:
-            return self.json_response['company_entry_description']
+
+        return self.json_response.get('company_entry_description', None)
 
     @property
     def individual_identification_number(self):
-        if 'individual_identification_number' in self.json_response:
-            return self.json_response['individual_identification_number']
+
+        return self.json_response.get('individual_identification_number', None)
 
     @property
     def individual_name(self):
-        if 'individual_name' in self.json_response:
-            return self.json_response['individual_name']
+
+        return self.json_response.get('individual_name', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.deposit_deposit_response.DepositDepositResponse>'
+        return '<Marqeta.response_models.deposit_deposit_response.DepositDepositResponse>'

@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.address_response_model import AddressResponseModel
 import json
 
+
 class BusinessIncorporationResponseModel(object):
 
     def __init__(self, json_response):
@@ -17,33 +18,34 @@ class BusinessIncorporationResponseModel(object):
 
     @property
     def is_public(self):
-        if 'is_public' in self.json_response:
-            return self.json_response['is_public']
+
+        return self.json_response.get('is_public', None)
 
     @property
     def stock_symbol(self):
-        if 'stock_symbol' in self.json_response:
-            return self.json_response['stock_symbol']
+
+        return self.json_response.get('stock_symbol', None)
 
     @property
     def state_of_incorporation(self):
-        if 'state_of_incorporation' in self.json_response:
-            return self.json_response['state_of_incorporation']
+
+        return self.json_response.get('state_of_incorporation', None)
 
     @property
     def name_registered_under(self):
-        if 'name_registered_under' in self.json_response:
-            return self.json_response['name_registered_under']
+
+        return self.json_response.get('name_registered_under', None)
 
     @property
     def address_registered_under(self):
+
         if 'address_registered_under' in self.json_response:
             return AddressResponseModel(self.json_response['address_registered_under'])
 
     @property
     def incorporation_type(self):
-        if 'incorporation_type' in self.json_response:
-            return self.json_response['incorporation_type']
+
+        return self.json_response.get('incorporation_type', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.business_incorporation_response_model.BusinessIncorporationResponseModel>'
+        return '<Marqeta.response_models.business_incorporation_response_model.BusinessIncorporationResponseModel>'

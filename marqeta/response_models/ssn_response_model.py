@@ -17,8 +17,7 @@ class SsnResponseModel(object):
 
     @property
     def ssn(self):
-        if 'ssn' in self.json_response:
-            return self.json_response['ssn']
+        return self.json_response.get('ssn', None)
 
     def __repr__(self):
         return '<Marqeta.response_models.ssn_response_model.SsnResponseModel>'

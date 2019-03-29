@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class AcceptedCountriesModel(object):
 
     def __init__(self, json_response):
@@ -16,33 +17,35 @@ class AcceptedCountriesModel(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+
+        return self.json_response.get('name', None)
 
     @property
     def is_whitelist(self):
-        if 'is_whitelist' in self.json_response:
-            return self.json_response['is_whitelist']
+
+        return self.json_response.get('is_whitelist', None)
 
     @property
     def country_codes(self):
-        if 'country_codes' in self.json_response:
-            return self.json_response['country_codes']
+
+        return self.json_response.get('country_codes', None)
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
+
         if 'last_modified_time' in self.json_response:
-                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-         return '<Marqeta.response_models.accepted_countries_model.AcceptedCountriesModel>'
+        return '<Marqeta.response_models.accepted_countries_model.AcceptedCountriesModel>'

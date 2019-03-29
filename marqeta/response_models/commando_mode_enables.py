@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class CommandoModeEnables(object):
 
     def __init__(self, json_response):
@@ -16,23 +17,19 @@ class CommandoModeEnables(object):
 
     @property
     def program_funding_source(self):
-        if 'program_funding_source' in self.json_response:
-            return self.json_response['program_funding_source']
+        return self.json_response.get('program_funding_source', None)
 
     @property
     def velocity_controls(self):
-        if 'velocity_controls' in self.json_response:
-            return self.json_response['velocity_controls']
+        return self.json_response.get('velocity_controls', None)
 
     @property
     def auth_controls(self):
-        if 'auth_controls' in self.json_response:
-            return self.json_response['auth_controls']
+        return self.json_response.get('auth_controls', None)
 
     @property
     def ignore_card_suspended_state(self):
-        if 'ignore_card_suspended_state' in self.json_response:
-            return self.json_response['ignore_card_suspended_state']
+        return self.json_response.get('ignore_card_suspended_state', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.commando_mode_enables.CommandoModeEnables>'
+        return '<Marqeta.response_models.commando_mode_enables.CommandoModeEnables>'

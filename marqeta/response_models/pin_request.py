@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class PinRequest(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class PinRequest(object):
 
     @property
     def control_token(self):
-        if 'control_token' in self.json_response:
-            return self.json_response['control_token']
+        return self.json_response.get('control_token', None)
 
     @property
     def pin(self):
-        if 'pin' in self.json_response:
-            return self.json_response['pin']
+        return self.json_response.get('pin', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.pin_request.PinRequest>'
+        return '<Marqeta.response_models.pin_request.PinRequest>'

@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class AchVerificationModel(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class AchVerificationModel(object):
 
     @property
     def verify_amount1(self):
-        if 'verify_amount1' in self.json_response:
-            return self.json_response['verify_amount1']
+        return self.json_response.get('verify_amount1', None)
 
     @property
     def verify_amount2(self):
-        if 'verify_amount2' in self.json_response:
-            return self.json_response['verify_amount2']
+        return self.json_response.get('verify_amount2', None)
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+        return self.json_response.get('active', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.ach_verification_model.AchVerificationModel>'
+        return '<Marqeta.response_models.ach_verification_model.AchVerificationModel>'

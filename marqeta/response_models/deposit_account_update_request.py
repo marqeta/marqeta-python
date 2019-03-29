@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class DepositAccountUpdateRequest(object):
 
     def __init__(self, json_response):
@@ -16,8 +17,7 @@ class DepositAccountUpdateRequest(object):
 
     @property
     def allow_immediate_credit(self):
-        if 'allow_immediate_credit' in self.json_response:
-            return self.json_response['allow_immediate_credit']
+        return self.json_response.get('allow_immediate_credit', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.deposit_account_update_request.DepositAccountUpdateRequest>'
+        return '<Marqeta.response_models.deposit_account_update_request.DepositAccountUpdateRequest>'

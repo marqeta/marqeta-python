@@ -12,6 +12,7 @@ from marqeta.response_models.card_options import CardOptions
 from marqeta.response_models.advanced_auth_poi import AdvancedAuthPoi
 import json
 
+
 class AdvAuthRequestModel(object):
 
     def __init__(self, json_response):
@@ -27,243 +28,257 @@ class AdvAuthRequestModel(object):
 
     @property
     def mti(self):
-        if 'mti' in self.json_response:
-            return self.json_response['mti']
+
+        return self.json_response.get('mti', None)
 
     @property
     def network(self):
-        if 'network' in self.json_response:
-            return self.json_response['network']
+
+        return self.json_response.get('network', None)
 
     @property
     def sub_network(self):
-        if 'sub_network' in self.json_response:
-            return self.json_response['sub_network']
+
+        return self.json_response.get('sub_network', None)
 
     @property
     def is_router_simulator(self):
-        if 'is_router_simulator' in self.json_response:
-            return self.json_response['is_router_simulator']
+
+        return self.json_response.get('is_router_simulator', None)
 
     @property
     def network_reference_id(self):
-        if 'network_reference_id' in self.json_response:
-            return self.json_response['network_reference_id']
+
+        return self.json_response.get('network_reference_id', None)
 
     @property
     def local_transaction_date(self):
+
         if 'local_transaction_date' in self.json_response:
-                return datetime.strptime(self.json_response['local_transaction_date'], '%Y-%m-%d').date()
+            return datetime.strptime(self.json_response['local_transaction_date'], '%Y-%m-%d').date()
 
     @property
     def transaction_date(self):
+
         if 'transaction_date' in self.json_response:
-                return datetime.strptime(self.json_response['transaction_date'], '%Y-%m-%d').date()
+            return datetime.strptime(self.json_response['transaction_date'], '%Y-%m-%d').date()
 
     @property
     def settlement_date(self):
+
         if 'settlement_date' in self.json_response:
-                return datetime.strptime(self.json_response['settlement_date'], '%Y-%m-%d').date()
+            return datetime.strptime(self.json_response['settlement_date'], '%Y-%m-%d').date()
 
     @property
     def stan(self):
-        if 'stan' in self.json_response:
-            return self.json_response['stan']
+
+        return self.json_response.get('stan', None)
 
     @property
     def rrn(self):
-        if 'rrn' in self.json_response:
-            return self.json_response['rrn']
+
+        return self.json_response.get('rrn', None)
 
     @property
     def processing_code(self):
-        if 'processing_code' in self.json_response:
-            return self.json_response['processing_code']
+
+        return self.json_response.get('processing_code', None)
 
     @property
     def function_code(self):
-        if 'function_code' in self.json_response:
-            return self.json_response['function_code']
+
+        return self.json_response.get('function_code', None)
 
     @property
     def reason_code(self):
-        if 'reason_code' in self.json_response:
-            return self.json_response['reason_code']
+
+        return self.json_response.get('reason_code', None)
 
     @property
     def acquirer_reference_id(self):
-        if 'acquirer_reference_id' in self.json_response:
-            return self.json_response['acquirer_reference_id']
+
+        return self.json_response.get('acquirer_reference_id', None)
 
     @property
     def forwarding_institution_id(self):
-        if 'forwarding_institution_id' in self.json_response:
-            return self.json_response['forwarding_institution_id']
+
+        return self.json_response.get('forwarding_institution_id', None)
 
     @property
     def local_transaction_amount(self):
-        if 'local_transaction_amount' in self.json_response:
-            return self.json_response['local_transaction_amount']
+
+        return self.json_response.get('local_transaction_amount', None)
 
     @property
     def local_currency_code(self):
-        if 'local_currency_code' in self.json_response:
-            return self.json_response['local_currency_code']
+
+        return self.json_response.get('local_currency_code', None)
 
     @property
     def settlement_amount(self):
-        if 'settlement_amount' in self.json_response:
-            return self.json_response['settlement_amount']
+
+        return self.json_response.get('settlement_amount', None)
 
     @property
     def cardholder_billing_amount(self):
-        if 'cardholder_billing_amount' in self.json_response:
-            return self.json_response['cardholder_billing_amount']
+
+        return self.json_response.get('cardholder_billing_amount', None)
 
     @property
     def cardholder_billing_conversion_rate(self):
-        if 'cardholder_billing_conversion_rate' in self.json_response:
-            return self.json_response['cardholder_billing_conversion_rate']
+
+        return self.json_response.get('cardholder_billing_conversion_rate', None)
 
     @property
     def cardholder_billing_currency(self):
-        if 'cardholder_billing_currency' in self.json_response:
-            return self.json_response['cardholder_billing_currency']
+
+        return self.json_response.get('cardholder_billing_currency', None)
 
     @property
     def settlement_currency_code(self):
-        if 'settlement_currency_code' in self.json_response:
-            return self.json_response['settlement_currency_code']
+
+        return self.json_response.get('settlement_currency_code', None)
 
     @property
     def approval_code(self):
-        if 'approval_code' in self.json_response:
-            return self.json_response['approval_code']
+
+        return self.json_response.get('approval_code', None)
 
     @property
     def network_response(self):
-        if 'network_response' in self.json_response:
-            return self.json_response['network_response']
+
+        return self.json_response.get('network_response', None)
 
     @property
     def stan_padding_length(self):
-        if 'stan_padding_length' in self.json_response:
-            return self.json_response['stan_padding_length']
+
+        return self.json_response.get('stan_padding_length', None)
 
     @property
     def card_token(self):
-        if 'card_token' in self.json_response:
-            return self.json_response['card_token']
+
+        return self.json_response.get('card_token', None)
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+
+        return self.json_response.get('amount', None)
 
     @property
     def cash_back_amount(self):
-        if 'cash_back_amount' in self.json_response:
-            return self.json_response['cash_back_amount']
+
+        return self.json_response.get('cash_back_amount', None)
 
     @property
     def mid(self):
-        if 'mid' in self.json_response:
-            return self.json_response['mid']
+
+        return self.json_response.get('mid', None)
 
     @property
     def pin(self):
-        if 'pin' in self.json_response:
-            return self.json_response['pin']
+
+        return self.json_response.get('pin', None)
 
     @property
     def pos_pan_entry_mode(self):
-        if 'pos_pan_entry_mode' in self.json_response:
-            return self.json_response['pos_pan_entry_mode']
+
+        return self.json_response.get('pos_pan_entry_mode', None)
 
     @property
     def acquirer_fee_amount(self):
-        if 'acquirer_fee_amount' in self.json_response:
-            return self.json_response['acquirer_fee_amount']
+
+        return self.json_response.get('acquirer_fee_amount', None)
 
     @property
     def stip_reason_code(self):
-        if 'stip_reason_code' in self.json_response:
-            return self.json_response['stip_reason_code']
+
+        return self.json_response.get('stip_reason_code', None)
 
     @property
     def is_recurring(self):
-        if 'is_recurring' in self.json_response:
-            return self.json_response['is_recurring']
+
+        return self.json_response.get('is_recurring', None)
 
     @property
     def network_fees(self):
+
         if 'network_fees' in self.json_response:
             return [NetworkFeeModel(val) for val in self.json_response['network_fees']]
 
     @property
     def card_acceptor(self):
+
         if 'card_acceptor' in self.json_response:
             return AdvancedAuthCardAcceptorModel(self.json_response['card_acceptor'])
 
     @property
     def transaction_options(self):
+
         if 'transaction_options' in self.json_response:
             return TransactionOptions(self.json_response['transaction_options'])
 
     @property
     def original_data_elements(self):
+
         if 'original_data_elements' in self.json_response:
             return OriginalDataElements(self.json_response['original_data_elements'])
 
     @property
     def replacement_amount(self):
+
         if 'replacement_amount' in self.json_response:
             return ReplacementAmount(self.json_response['replacement_amount'])
 
     @property
     def webhook(self):
+
         if 'webhook' in self.json_response:
             return Webhook(self.json_response['webhook'])
 
     @property
     def digital_wallet_token(self):
+
         if 'digital_wallet_token' in self.json_response:
             return DigitalWalletToken(self.json_response['digital_wallet_token'])
 
     @property
     def digital_wallet_token_device_info(self):
+
         if 'digital_wallet_token_device_info' in self.json_response:
             return DigitalWalletTokenDevice(self.json_response['digital_wallet_token_device_info'])
 
     @property
     def digital_wallet_token_wallet_provider_info(self):
+
         if 'digital_wallet_token_wallet_provider_info' in self.json_response:
             return DigitalWalletTokenWalletProvider(self.json_response['digital_wallet_token_wallet_provider_info'])
 
     @property
     def raw_iso_fields(self):
-        if 'raw_iso_fields' in self.json_response:
-            return self.json_response['raw_iso_fields']
+
+        return self.json_response.get('raw_iso_fields', None)
 
     @property
     def cavv_result_code(self):
-        if 'cavv_result_code' in self.json_response:
-            return self.json_response['cavv_result_code']
+
+        return self.json_response.get('cavv_result_code', None)
 
     @property
     def card_options(self):
+
         if 'card_options' in self.json_response:
             return CardOptions(self.json_response['card_options'])
 
     @property
     def poi(self):
+
         if 'poi' in self.json_response:
             return AdvancedAuthPoi(self.json_response['poi'])
 
     @property
     def is_stip_approval(self):
-        if 'is_stip_approval' in self.json_response:
-            return self.json_response['is_stip_approval']
+
+        return self.json_response.get('is_stip_approval', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.adv_auth_request_model.AdvAuthRequestModel>'
+        return '<Marqeta.response_models.adv_auth_request_model.AdvAuthRequestModel>'

@@ -2,6 +2,7 @@ from datetime import datetime, date
 from marqeta.response_models.kyc_answer import KycAnswer
 import json
 
+
 class KycSubmitAnswersRequestModel(object):
 
     def __init__(self, json_response):
@@ -17,8 +18,9 @@ class KycSubmitAnswersRequestModel(object):
 
     @property
     def answers(self):
+
         if 'answers' in self.json_response:
             return [KycAnswer(val) for val in self.json_response['answers']]
 
     def __repr__(self):
-         return '<Marqeta.response_models.kyc_submit_answers_request_model.KycSubmitAnswersRequestModel>'
+        return '<Marqeta.response_models.kyc_submit_answers_request_model.KycSubmitAnswersRequestModel>'

@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class OfferUpdateModel(object):
 
     def __init__(self, json_response):
@@ -16,23 +17,19 @@ class OfferUpdateModel(object):
 
     @property
     def active(self):
-        if 'active' in self.json_response:
-            return self.json_response['active']
+        return self.json_response.get('active', None)
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+        return self.json_response.get('name', None)
 
     @property
     def start_date(self):
-        if 'start_date' in self.json_response:
-            return self.json_response['start_date']
+        return self.json_response.get('start_date', None)
 
     @property
     def end_date(self):
-        if 'end_date' in self.json_response:
-            return self.json_response['end_date']
+        return self.json_response.get('end_date', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.offer_update_model.OfferUpdateModel>'
+        return '<Marqeta.response_models.offer_update_model.OfferUpdateModel>'

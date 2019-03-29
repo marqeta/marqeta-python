@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class CommandoModeNestedTransition(object):
 
     def __init__(self, json_response):
@@ -16,23 +17,19 @@ class CommandoModeNestedTransition(object):
 
     @property
     def commando_enabled(self):
-        if 'commando_enabled' in self.json_response:
-            return self.json_response['commando_enabled']
+        return self.json_response.get('commando_enabled', None)
 
     @property
     def reason(self):
-        if 'reason' in self.json_response:
-            return self.json_response['reason']
+        return self.json_response.get('reason', None)
 
     @property
     def channel(self):
-        if 'channel' in self.json_response:
-            return self.json_response['channel']
+        return self.json_response.get('channel', None)
 
     @property
     def username(self):
-        if 'username' in self.json_response:
-            return self.json_response['username']
+        return self.json_response.get('username', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.commando_mode_nested_transition.CommandoModeNestedTransition>'
+        return '<Marqeta.response_models.commando_mode_nested_transition.CommandoModeNestedTransition>'

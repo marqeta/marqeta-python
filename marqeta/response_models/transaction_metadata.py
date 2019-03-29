@@ -3,6 +3,7 @@ from marqeta.response_models.transit import Transit
 from marqeta.response_models.airline import Airline
 import json
 
+
 class TransactionMetadata(object):
 
     def __init__(self, json_response):
@@ -18,43 +19,46 @@ class TransactionMetadata(object):
 
     @property
     def transaction_category(self):
-        if 'transaction_category' in self.json_response:
-            return self.json_response['transaction_category']
+
+        return self.json_response.get('transaction_category', None)
 
     @property
     def payment_channel(self):
-        if 'payment_channel' in self.json_response:
-            return self.json_response['payment_channel']
+
+        return self.json_response.get('payment_channel', None)
 
     @property
     def cross_border_transaction(self):
-        if 'cross_border_transaction' in self.json_response:
-            return self.json_response['cross_border_transaction']
+
+        return self.json_response.get('cross_border_transaction', None)
 
     @property
     def authorization_life_cyle(self):
-        if 'authorization_life_cyle' in self.json_response:
-            return self.json_response['authorization_life_cyle']
+
+        return self.json_response.get('authorization_life_cyle', None)
 
     @property
     def is_lodging_auto_rental(self):
-        if 'is_lodging_auto_rental' in self.json_response:
-            return self.json_response['is_lodging_auto_rental']
+
+        return self.json_response.get('is_lodging_auto_rental', None)
 
     @property
     def lodging_auto_rental_start_date(self):
+
         if 'lodging_auto_rental_start_date' in self.json_response:
-                return datetime.strptime(self.json_response['lodging_auto_rental_start_date'], '%Y-%m-%d').date()
+            return datetime.strptime(self.json_response['lodging_auto_rental_start_date'], '%Y-%m-%d').date()
 
     @property
     def transit(self):
+
         if 'transit' in self.json_response:
             return Transit(self.json_response['transit'])
 
     @property
     def airline(self):
+
         if 'airline' in self.json_response:
             return Airline(self.json_response['airline'])
 
     def __repr__(self):
-         return '<Marqeta.response_models.transaction_metadata.TransactionMetadata>'
+        return '<Marqeta.response_models.transaction_metadata.TransactionMetadata>'

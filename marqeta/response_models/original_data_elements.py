@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class OriginalDataElements(object):
 
     def __init__(self, json_response):
@@ -16,38 +17,31 @@ class OriginalDataElements(object):
 
     @property
     def mti(self):
-        if 'mti' in self.json_response:
-            return self.json_response['mti']
+        return self.json_response.get('mti', None)
 
     @property
     def stan(self):
-        if 'stan' in self.json_response:
-            return self.json_response['stan']
+        return self.json_response.get('stan', None)
 
     @property
     def transmission_time(self):
-        if 'transmission_time' in self.json_response:
-            return self.json_response['transmission_time']
+        return self.json_response.get('transmission_time', None)
 
     @property
     def acquiring_institution_id(self):
-        if 'acquiring_institution_id' in self.json_response:
-            return self.json_response['acquiring_institution_id']
+        return self.json_response.get('acquiring_institution_id', None)
 
     @property
     def network_reference_id(self):
-        if 'network_reference_id' in self.json_response:
-            return self.json_response['network_reference_id']
+        return self.json_response.get('network_reference_id', None)
 
     @property
     def forwarding_institution_id(self):
-        if 'forwarding_institution_id' in self.json_response:
-            return self.json_response['forwarding_institution_id']
+        return self.json_response.get('forwarding_institution_id', None)
 
     @property
     def transaction_token(self):
-        if 'transaction_token' in self.json_response:
-            return self.json_response['transaction_token']
+        return self.json_response.get('transaction_token', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.original_data_elements.OriginalDataElements>'
+        return '<Marqeta.response_models.original_data_elements.OriginalDataElements>'

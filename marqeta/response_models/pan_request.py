@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class PanRequest(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class PanRequest(object):
 
     @property
     def pan(self):
-        if 'pan' in self.json_response:
-            return self.json_response['pan']
+        return self.json_response.get('pan', None)
 
     @property
     def cvv_number(self):
-        if 'cvv_number' in self.json_response:
-            return self.json_response['cvv_number']
+        return self.json_response.get('cvv_number', None)
 
     @property
     def expiration(self):
-        if 'expiration' in self.json_response:
-            return self.json_response['expiration']
+        return self.json_response.get('expiration', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.pan_request.PanRequest>'
+        return '<Marqeta.response_models.pan_request.PanRequest>'

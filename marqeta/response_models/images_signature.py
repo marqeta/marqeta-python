@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class ImagesSignature(object):
 
     def __init__(self, json_response):
@@ -16,8 +17,7 @@ class ImagesSignature(object):
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+        return self.json_response.get('name', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.images_signature.ImagesSignature>'
+        return '<Marqeta.response_models.images_signature.ImagesSignature>'

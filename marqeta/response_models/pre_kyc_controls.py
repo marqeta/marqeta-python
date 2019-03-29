@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class PreKycControls(object):
 
     def __init__(self, json_response):
@@ -16,28 +17,23 @@ class PreKycControls(object):
 
     @property
     def cash_access_enabled(self):
-        if 'cash_access_enabled' in self.json_response:
-            return self.json_response['cash_access_enabled']
+        return self.json_response.get('cash_access_enabled', None)
 
     @property
     def international_enabled(self):
-        if 'international_enabled' in self.json_response:
-            return self.json_response['international_enabled']
+        return self.json_response.get('international_enabled', None)
 
     @property
     def balance_max(self):
-        if 'balance_max' in self.json_response:
-            return self.json_response['balance_max']
+        return self.json_response.get('balance_max', None)
 
     @property
     def enable_non_program_loads(self):
-        if 'enable_non_program_loads' in self.json_response:
-            return self.json_response['enable_non_program_loads']
+        return self.json_response.get('enable_non_program_loads', None)
 
     @property
     def is_reloadable_pre_kyc(self):
-        if 'is_reloadable_pre_kyc' in self.json_response:
-            return self.json_response['is_reloadable_pre_kyc']
+        return self.json_response.get('is_reloadable_pre_kyc', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.pre_kyc_controls.PreKycControls>'
+        return '<Marqeta.response_models.pre_kyc_controls.PreKycControls>'

@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class SpendControlAssociation(object):
 
     def __init__(self, json_response):
@@ -16,13 +17,11 @@ class SpendControlAssociation(object):
 
     @property
     def card_product_token(self):
-        if 'card_product_token' in self.json_response:
-            return self.json_response['card_product_token']
+        return self.json_response.get('card_product_token', None)
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+        return self.json_response.get('user_token', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.spend_control_association.SpendControlAssociation>'
+        return '<Marqeta.response_models.spend_control_association.SpendControlAssociation>'

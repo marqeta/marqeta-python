@@ -3,6 +3,7 @@ from marqeta.response_models.result import Result
 from marqeta.response_models.kyc_question import KycQuestion
 import json
 
+
 class KycResponse(object):
 
     def __init__(self, json_response):
@@ -18,53 +19,57 @@ class KycResponse(object):
 
     @property
     def created_time(self):
+
         if 'created_time' in self.json_response:
-                return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
+
         if 'last_modified_time' in self.json_response:
-                return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def user_token(self):
-        if 'user_token' in self.json_response:
-            return self.json_response['user_token']
+
+        return self.json_response.get('user_token', None)
 
     @property
     def business_token(self):
-        if 'business_token' in self.json_response:
-            return self.json_response['business_token']
+
+        return self.json_response.get('business_token', None)
 
     @property
     def result(self):
+
         if 'result' in self.json_response:
             return Result(self.json_response['result'])
 
     @property
     def manual_override(self):
-        if 'manual_override' in self.json_response:
-            return self.json_response['manual_override']
+
+        return self.json_response.get('manual_override', None)
 
     @property
     def notes(self):
-        if 'notes' in self.json_response:
-            return self.json_response['notes']
+
+        return self.json_response.get('notes', None)
 
     @property
     def questions(self):
+
         if 'questions' in self.json_response:
             return [KycQuestion(val) for val in self.json_response['questions']]
 
     @property
     def reference_id(self):
-        if 'reference_id' in self.json_response:
-            return self.json_response['reference_id']
+
+        return self.json_response.get('reference_id', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.kyc_response.KycResponse>'
+        return '<Marqeta.response_models.kyc_response.KycResponse>'

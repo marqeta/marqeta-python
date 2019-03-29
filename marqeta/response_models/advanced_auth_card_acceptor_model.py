@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class AdvancedAuthCardAcceptorModel(object):
 
     def __init__(self, json_response):
@@ -16,43 +17,35 @@ class AdvancedAuthCardAcceptorModel(object):
 
     @property
     def mcc(self):
-        if 'mcc' in self.json_response:
-            return self.json_response['mcc']
+        return self.json_response.get('mcc', None)
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+        return self.json_response.get('name', None)
 
     @property
     def address(self):
-        if 'address' in self.json_response:
-            return self.json_response['address']
+        return self.json_response.get('address', None)
 
     @property
     def city(self):
-        if 'city' in self.json_response:
-            return self.json_response['city']
+        return self.json_response.get('city', None)
 
     @property
     def state(self):
-        if 'state' in self.json_response:
-            return self.json_response['state']
+        return self.json_response.get('state', None)
 
     @property
     def zip(self):
-        if 'zip' in self.json_response:
-            return self.json_response['zip']
+        return self.json_response.get('zip', None)
 
     @property
     def country(self):
-        if 'country' in self.json_response:
-            return self.json_response['country']
+        return self.json_response.get('country', None)
 
     @property
     def tid(self):
-        if 'tid' in self.json_response:
-            return self.json_response['tid']
+        return self.json_response.get('tid', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.advanced_auth_card_acceptor_model.AdvancedAuthCardAcceptorModel>'
+        return '<Marqeta.response_models.advanced_auth_card_acceptor_model.AdvancedAuthCardAcceptorModel>'

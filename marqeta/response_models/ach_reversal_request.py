@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class AchReversalRequest(object):
 
     def __init__(self, json_response):
@@ -16,8 +17,7 @@ class AchReversalRequest(object):
 
     @property
     def reason_code(self):
-        if 'reason_code' in self.json_response:
-            return self.json_response['reason_code']
+        return self.json_response.get('reason_code', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.ach_reversal_request.AchReversalRequest>'
+        return '<Marqeta.response_models.ach_reversal_request.AchReversalRequest>'

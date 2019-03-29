@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""BUSINESSES RESOURCE WITH CRU PARAMETERS"""
+
+'''BUSINESSES RESOURCE WITH CRU PARAMETERS'''
 
 from marqeta.resources.collection import Collection
 from marqeta.response_models.business_card_holder_model import BusinessCardHolderModel
@@ -12,93 +13,128 @@ from marqeta.response_models.ssn_response_model import SsnResponseModel
 
 
 class BusinessesCollection(object):
+    '''
+    Marqeta API 'businesses' endpoint list, create, find and update operations
+    '''
     _endpoint = 'businesses'
 
     def __init__(self, client):
+        '''
+        Creates a client collection objects for different responses
+        :param client: client object
+        '''
         self.client = client
-        self.collections_business_model = Collection(self.client, BusinessCardHolderModel)
-        self.collections_business_response_model = Collection(self.client, BusinessCardHolderResponse)
-        self.collections_business_update_model = Collection(self.client, BusinessCardHolderUpdateModel)
+        self.collections = Collection(self.client, BusinessCardHolderModel)
+        self.collections_business = Collection(self.client,
+                                               BusinessCardHolderResponse)
+        self.collections_update = Collection(self.client,
+                                             BusinessCardHolderUpdateModel)
 
     def __call__(self, token):
+        '''
+        Special case call made with token
+        :param token: business token
+        :return: BusinessContext object
+        '''
         return BusinessContext(token, self.client)
 
-    ''' Iterates through businesses
-        returns business object one at a time'''
-
     def page(self, params=None):
-        return self.collections_business_model.page(endpoint=self._endpoint, query_params=params)
+        '''
+        Provides the requested page for businesses
+        :param params: query parameters
+        :return: requested page with BusinessCardHolderModel object for the requested
+        page 'data'field
+        '''
+        return self.collections.page(endpoint=self._endpoint, query_params=params)
 
     def stream(self, params=None):
-        return self.collections_business_model.stream(endpoint=self._endpoint, query_params=params)
-
-    ''' Lists all the businesses Returns list of all business object '''
+        '''
+        Stream through the list of requested endpoint data field
+        :param params: query parameters
+        :return: BusinessCardHolderModel object
+        '''
+        return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
     def list(self, params=None, limit=None):
-        return self.collections_business_model.list(endpoint=self._endpoint, query_params=params, limit=limit)
-
-    ''' Creates a business user with the specified data
-            Returns the BusinessCardHolderModel object which has created business user information'''
+        '''
+        List all the businesses
+        :param params: query parameters
+        :param limit: parameter to limit the list count
+        :return: List of BusinessCardHolderModel object
+        '''
+        return self.collections.list(endpoint=self._endpoint, query_params=params,
+                                     limit=limit)
 
     def create(self, data={}):
-        return self.collections_business_model.create(endpoint=self._endpoint, data=data)
-
-    ''' Finds the user information for the requested token
-            Returns the UserResource object which has user information
-            fields is specified by as list of fields'''
+        '''
+        Creates an businesses object
+        :param data: data required for creation
+        :param params: query parameters
+        :return: BusinessCardHolderResponse object
+        '''
+        return self.collections_business.create(endpoint=self._endpoint, data=data)
 
     def find(self, token, params=None):
-        return self.collections_business_response_model.find(endpoint=self._endpoint + '/{}'.format(token),
-                                                             query_params=params)
-
-    ''' Update the user information for the requested token  with the data
-                Returns the UserResource object which has updated user information'''
+        '''
+        Finds a specific businesses object
+        :param token: businesses token
+        :param params: query parameters
+        :return: BusinessCardHolderResponse object
+        '''
+        return self.collections_business.find(endpoint=self._endpoint + '/{}'.
+                                              format(token), query_params=params)
 
     def save(self, token, data):
-        return self.collections_business_update_model.save(data, endpoint=self._endpoint + '/{}'.format(token), )
-
-    ''' Looks for the user information based on the specified data
-        Returns UserResource object of list of the matched users for the data '''
+        '''
+        Updates an businesses object
+        :param token: businesses token
+        :param data: data to be updated
+        :return: BusinessCardHolderUpdateModel object
+        '''
+        return self.collections_update.save(data, endpoint=self._endpoint + '/{}'.
+                                            format(token))
 
     def look_up(self, data, params=None):
-        query_params = {'count': 100, 'start_index': 0}
-        if params is not None:
-            query_params.update(params)
-        look_up_data = []
-        while True:
-            response = self.client.post(self._endpoint + '/lookup', data, query_params=query_params)[0]
-            if response['is_more'] is False:
-                for val in range(response['count']):
-                    look_up_data.append(CardHolderModel(response['data'][val]))
-                break
-            for val in range(response['count']):
-                look_up_data.append(CardHolderModel(response['data'][val]))
-            query_params['start_index'] = query_params['start_index'] + query_params['count']
-        return look_up_data
+        '''
+        Lists all the business which matches the data fields
+        :param data: data to look for
+        :param params: query parameters
+        :return: List of BusinessCardHolderModel object
+        '''
+        response = self.client.post(self._endpoint + '/lookup', data, query_params=params)[0]
+        return BusinessCardHolderModel(response['data'])
 
     def __repr__(self):
         return '<Marqeta.resources.businesses.BusinessesCollection>'
 
 
 class BusinessContext(BusinessesCollection):
+    ''' class to specify sub endpoints for business '''
 
     def __init__(self, token, client):
         super(BusinessContext, self).__init__(client)
         self.token = token
         self.children = self.Children(self.token, Collection(client, CardHolderModel))
-        self.notes = self.Notes(self.token, client, Collection(client, CardholderNoteResponseModel))
-        self.transitions = self.Transitions(self.token, Collection(client, BusinessTransitionResponse))
-
-    ''' for 'client.users({token).ssn()' -- user can specify to get full ssn '''
+        self.notes = self.Notes(self.token, client, Collection(client,
+                                                               CardholderNoteResponseModel))
+        self.transitions = self.Transitions(self.token, Collection(client,
+                                                                   BusinessTransitionResponse))
 
     def ssn(self, full_ssn=False):
-        response = self.client.get('businesses/{}/ssn'.format(self.token), query_params={'full_name': full_ssn})[0]
+        '''
+        Provides SSN details
+        :param full_ssn: set to True or False based on requirement
+        :return: SsnResponseModel object
+        '''
+        response = self.client.get('businesses/{}/ssn'.format(self.token),
+                                   query_params={'full_name': full_ssn})[0]
         return SsnResponseModel(response)
 
-    def __repr__(self):
-        return '<Marqeta.resources.businesses.BusinessContext>'
-
     class Children(object):
+        '''
+        Lists the children for parent business
+        Returns CardHolderModel object
+        '''
 
         def __init__(self, token, collection):
             self.token = token
@@ -109,16 +145,22 @@ class BusinessContext(BusinessesCollection):
                                         endpoint='businesses/{}/children'.format(self.token))
 
         def stream(self, params=None):
-            return self.collection.stream(query_params=params, endpoint='businesses/{}/children'.format(self.token))
+            return self.collection.stream(query_params=params,
+                                          endpoint='businesses/{}/children'.format(self.token))
 
         def list(self, params=None, limit=None):
             return self.collection.list(query_params=params,
-                                        endpoint='businesses/{}/children'.format(self.token), limit=limit)
+                                        endpoint='businesses/{}/children'.format(self.token),
+                                        limit=limit)
 
         def __repr__(self):
             return '<Marqeta.resources.businesses.BusinessContext.Children>'
 
     class Notes(object):
+        '''
+        Lists, Creates and Updates the notes for business
+        Returns CardholderNoteResponseModel object
+        '''
         _endpoint = 'businesses/{}/notes'
 
         def __init__(self, token, client, collection):
@@ -127,25 +169,34 @@ class BusinessContext(BusinessesCollection):
             self.client = client
 
         def page(self, params=None):
-            return self.collection.page(endpoint=self._endpoint.format(self.token), query_params=params)
+            return self.collection.page(endpoint=self._endpoint.format(self.token),
+                                        query_params=params)
 
         def stream(self, params=None):
-            return self.collection.stream(endpoint=self._endpoint.format(self.token), query_params=params)
+            return self.collection.stream(endpoint=self._endpoint.format(self.token),
+                                          query_params=params)
 
         def list(self, params=None, limit=None):
-            return self.collection.list(endpoint=self._endpoint.format(self.token), query_params=params, limit=limit)
+            return self.collection.list(endpoint=self._endpoint.format(self.token),
+                                        query_params=params,
+                                        limit=limit)
 
         def create(self, data):
             return self.collection.create(data, endpoint=self._endpoint.format(self.token))
 
         def save(self, notes_token, data):
             return self.collection.save(data,
-                                        endpoint=self._endpoint.format(self.token) + '/{}'.format(notes_token))
+                                        endpoint=self._endpoint.format(self.token) + '/{}'.
+                                        format(notes_token))
 
         def __repr__(self):
             return '<Marqeta.resources.businesses.BusinessContext.Notes>'
 
     class Transitions(object):
+        '''
+        Lists, Creates and Finds the notes for business
+        Returns BusinessTransitionResponse object
+        '''
         _endpoint = 'businesstransitions'
 
         def __init__(self, token, collection):
@@ -158,11 +209,13 @@ class BusinessContext(BusinessesCollection):
 
         def stream(self, params=None, limit=None):
             return self.collection.stream(query_params=params,
-                                          endpoint=self._endpoint + '/business/{}'.format(self.token), limit=limit)
+                                          endpoint=self._endpoint + '/business/{}'.format(self.token),
+                                          limit=limit)
 
         def list(self, params=None, limit=None):
             return self.collection.list(query_params=params,
-                                        endpoint=self._endpoint + '/business/{}'.format(self.token), limit=limit)
+                                        endpoint=self._endpoint + '/business/{}'.format(self.token),
+                                        limit=limit)
 
         def create(self, data):
             return self.collection.create(data, endpoint=self._endpoint)
@@ -173,3 +226,6 @@ class BusinessContext(BusinessesCollection):
 
         def __repr__(self):
             return '<Marqeta.resources.businesses.BusinessContext.Transitions>'
+
+    def __repr__(self):
+        return '<Marqeta.resources.businesses.BusinessContext>'

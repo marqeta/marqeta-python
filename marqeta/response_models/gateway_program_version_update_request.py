@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class GatewayProgramVersionUpdateRequest(object):
 
     def __init__(self, json_response):
@@ -16,8 +17,7 @@ class GatewayProgramVersionUpdateRequest(object):
 
     @property
     def version(self):
-        if 'version' in self.json_response:
-            return self.json_response['version']
+        return self.json_response.get('version', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.gateway_program_version_update_request.GatewayProgramVersionUpdateRequest>'
+        return '<Marqeta.response_models.gateway_program_version_update_request.GatewayProgramVersionUpdateRequest>'

@@ -3,16 +3,34 @@
 
 
 class Collection(object):
+    '''
+    Marqeta API -endpoint list, create, find and update operations
+    '''
 
     def __init__(self, client, resource):
+        '''
+        Creates a client collection objects for different responses
+        :param client: client object
+        '''
         self.client = client
         self.resource = resource
 
     def _page(self, **kwargs):
-        ''' sort_by can be specified in ascending or descending order "-" '''
+        '''
+        get the requested page from the API
+        :param kwargs: requests arguments
+        :return: the specified resource
+        '''
         return self.client.get(kwargs['endpoint'], query_params=kwargs['query_params'])[0]
 
     def page(self, endpoint, query_params=None):
+        '''
+        Provides the requested page for Endpoint
+        :param endpoint: Endpoint
+        :param query_params: query parameters
+        :return: requested page with resource object for the requested
+        page 'data'field
+        '''
         params = {'count': 5, 'start_index': 0}
         if query_params is not None:
             params.update(query_params)
@@ -21,24 +39,34 @@ class Collection(object):
             response['data'][val] = self.resource(response['data'][val])
         return response
 
-    ''' stream is a generator function iterates through endpoint contents
-        Return : endpoint object, limit is the number of pages to fetch  '''
-    def stream(self, endpoint=None,query_params=None):
+    def stream(self, endpoint=None, query_params=None):
+        '''
+        Stream is a generator function iterates through endpoint contents
+        :param endpoint: Endpoint
+        :param query_params: query parameters
+        :return: resource object
+        '''
         params = {'count': 5, 'start_index': 0}
         if query_params is not None:
             params.update(query_params)
         while True:
-            response = self._page(endpoint=endpoint, query_params= params)
+            response = self._page(endpoint=endpoint, query_params=params)
             if response['is_more'] is False:
                 for count in range(response['count']):
-                    yield (self.resource(response["data"][count]))
+                    yield self.resource(response["data"][count])
                 break
             for count in range(response['count']):
-                yield (self.resource(response["data"][count]))
+                yield self.resource(response["data"][count])
             params['start_index'] = params['start_index'] + params['count']
 
-    '''  Returns list of all endpoint object '''
-    def list(self, endpoint=None, query_params=None, limit =None):
+    def list(self, endpoint=None, query_params=None, limit=None):
+        '''
+        Lists the specified endpoint data field parameters
+        :param endpoint: Endpoint
+        :param query_params: query parameters
+        :param limit: limit count for the list
+        :return: list of resource object
+        '''
         list_of_user_object = []
         for count in self.stream(endpoint=endpoint, query_params=query_params):
             list_of_user_object.append(count)
@@ -46,26 +74,36 @@ class Collection(object):
                 break
         return list_of_user_object
 
-    ''' Create the resource with the specified data
-        Returns the Resource object '''
-
-    def create(self, data, endpoint=None, query_params = None):
+    def create(self, data, endpoint=None, query_params=None):
+        '''
+        Creates an endpoint object
+        :param data: data required for creation
+        :param query_params: query parameters
+        :param limit: limit count for the list
+        :return: list of resource object
+        '''
         response = self.client.post(endpoint, data, query_params)[0]
         return self.resource(response)
 
-    ''' Finds the Resource information for the requested token
-        Returns the Resource object '''
-
     def find(self, endpoint=None, query_params=None):
+        '''
+        Finds a specific endpoint object
+        :param endpoint: Endpoint
+        :param query_params: query parameters
+        :return: list of resource object
+        '''
         response = self.client.get(endpoint, query_params=query_params)[0]
         return self.resource(response)
 
-    ''' Update the Resource information for the requested token  with the data
-            Returns the Resource object'''
     def save(self, data, endpoint=None):
+        '''
+        Updates an endpoint object
+        :param data: data to be updated
+        :param endpoint: Endpoint
+        :return: resource object
+        '''
         response = self.client.put(endpoint, data)[0]
         return self.resource(response)
 
     def __repr__(self):
         return '<Marqeta.resources.collection.Collection>'
-

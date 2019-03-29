@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class AcceptedCountriesUpdateModel(object):
 
     def __init__(self, json_response):
@@ -16,18 +17,15 @@ class AcceptedCountriesUpdateModel(object):
 
     @property
     def name(self):
-        if 'name' in self.json_response:
-            return self.json_response['name']
+        return self.json_response.get('name', None)
 
     @property
     def is_whitelist(self):
-        if 'is_whitelist' in self.json_response:
-            return self.json_response['is_whitelist']
+        return self.json_response.get('is_whitelist', None)
 
     @property
     def country_codes(self):
-        if 'country_codes' in self.json_response:
-            return self.json_response['country_codes']
+        return self.json_response.get('country_codes', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.accepted_countries_update_model.AcceptedCountriesUpdateModel>'
+        return '<Marqeta.response_models.accepted_countries_update_model.AcceptedCountriesUpdateModel>'

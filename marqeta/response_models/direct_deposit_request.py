@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import json
 
+
 class DirectDepositRequest(object):
 
     def __init__(self, json_response):
@@ -16,63 +17,64 @@ class DirectDepositRequest(object):
 
     @property
     def token(self):
-        if 'token' in self.json_response:
-            return self.json_response['token']
+
+        return self.json_response.get('token', None)
 
     @property
     def amount(self):
-        if 'amount' in self.json_response:
-            return self.json_response['amount']
+
+        return self.json_response.get('amount', None)
 
     @property
     def type(self):
-        if 'type' in self.json_response:
-            return self.json_response['type']
+
+        return self.json_response.get('type', None)
 
     @property
     def account_number(self):
-        if 'account_number' in self.json_response:
-            return self.json_response['account_number']
+
+        return self.json_response.get('account_number', None)
 
     @property
     def settlement_date(self):
+
         if 'settlement_date' in self.json_response:
-                return datetime.strptime(self.json_response['settlement_date'], '%Y-%m-%d').date()
+            return datetime.strptime(self.json_response['settlement_date'], '%Y-%m-%d').date()
 
     @property
     def standard_entry_class_code(self):
-        if 'standard_entry_class_code' in self.json_response:
-            return self.json_response['standard_entry_class_code']
+
+        return self.json_response.get('standard_entry_class_code', None)
 
     @property
     def company_name(self):
-        if 'company_name' in self.json_response:
-            return self.json_response['company_name']
+
+        return self.json_response.get('company_name', None)
 
     @property
     def company_discretionary_data(self):
-        if 'company_discretionary_data' in self.json_response:
-            return self.json_response['company_discretionary_data']
+
+        return self.json_response.get('company_discretionary_data', None)
 
     @property
     def company_identification(self):
-        if 'company_identification' in self.json_response:
-            return self.json_response['company_identification']
+
+        return self.json_response.get('company_identification', None)
 
     @property
     def company_entry_description(self):
-        if 'company_entry_description' in self.json_response:
-            return self.json_response['company_entry_description']
+
+        return self.json_response.get('company_entry_description', None)
 
     @property
     def individual_identification_number(self):
-        if 'individual_identification_number' in self.json_response:
-            return self.json_response['individual_identification_number']
+
+        return self.json_response.get('individual_identification_number', None)
 
     @property
     def individual_name(self):
-        if 'individual_name' in self.json_response:
-            return self.json_response['individual_name']
+
+        return self.json_response.get('individual_name', None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.direct_deposit_request.DirectDepositRequest>'
+        return '<Marqeta.response_models.direct_deposit_request.DirectDepositRequest>'
