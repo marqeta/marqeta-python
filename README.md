@@ -66,23 +66,19 @@ client.chargebacks(token).transitions
 
 There are multiple ways to retrieve collections of objects, depending on your use case. The library will intelligently handle pagination for you, unless you request a specific page of data.
 
-To simply retrieve every object in a collection, call `list()` on the resource.
+To simply retrieve every object in a collection, call `list(limit=None)` on the resource.
 
 ```
-users = client.users.list()
+users = client.users.list(limit=None)
 ```
+
+If an integer is specified for 'limit', the library will return up to maximum of `limit` objects. The default value of `limit` is typically `None`, however for `client.users.list()` and `client.card_products.list()` the default limits are 1000 and 25 respectively.
 
 The `stream()` method returns a generator that efficiently downloads subsequent pages as needed, as opposed to downloading all objects into memory at once.
 
 ```
 for user in client.users.stream():
     pass
-```
-
-`list()` accept a `limit` parameter. If specified, the library will return up to maximum of `limit` objects. The default value of `limit` is `None`.
-
-```
-client.users.list(limit=20)
 ```
 
 To retrieve a single page, call the `page()` method specifying `start_index` and `count`.
@@ -104,16 +100,8 @@ See [Sorting & Pagination](https://www.marqeta.com/api/docs/Vh2cbhwAAMsAF3db/sor
 
 Most methods support specifying additional query parameters as a `params` dictionary. The keys and values are the same as the HTTP API.
 
-
-[Field filtering](https://www.marqeta.com/api/docs/Vh2clxwAAB8AF3hh/field-filtering):
 ```
-client.users.list(params={'fields': 'field_1,field_2'})
-```
-
-[Object expansion](https://www.marqeta.com/api/docs/WObAlCkAAENCbcqA/object-expansion):
-
-```
-client.cards.list(params={'expand': 'user'})
+client.cards.find_show_pan(card_token, params={'show_cvv_number': True})
 ```
 
 ### Finding a specific objects
@@ -467,7 +455,7 @@ card_product = client.card_products.save(token, {...})
 
 ```
 # List cards by last 4
-cards = client.cards.list()
+cards = client.cards.list(last_four='6789')
 for card in client.cards.stream():
     pass
 cards_page = client.cards.page()
@@ -483,7 +471,7 @@ card = client.cards.find(token)
 # Returns a specific card - PAN visible
 card = client.cards.find_show_pan(token)
 
-# Returns a card metadata
+# Retrieve a card by its barcode
 card = client.cards.find_by_barcode(barcode)
 
 # Creates a card
