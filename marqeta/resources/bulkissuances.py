@@ -18,7 +18,7 @@ class BulkIssuancesCollection(object):
         self.client = client
         self.collections = Collection(self.client, BulkIssuanceResponse)
 
-    def page(self, count=5, start_index=0):
+    def page(self, count=5, start_index=0, params=None):
         '''
         Provides the requested page for bulkissuances
         :param count: data to be displayed per page
@@ -26,7 +26,7 @@ class BulkIssuancesCollection(object):
         page 'data'field
         '''
         return self.collections.page(endpoint=self._endpoint, count=count,
-                                     start_index=start_index)
+                                     start_index=start_index,query_params=params)
 
     def stream(self, params=None):
         '''

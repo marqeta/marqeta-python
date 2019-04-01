@@ -29,7 +29,7 @@ class DigitalWalletTokensCollection(object):
         '''
         return DigitalContext(token, self.client)
 
-    def page(self, count=5, start_index=0):
+    def page(self, count=5, start_index=0, params=None):
         '''
         Provides the requested page for digitalwallettokens
         :param count: data to be displayed per page
@@ -38,7 +38,7 @@ class DigitalWalletTokensCollection(object):
         page 'data'field
         '''
         return self.collections.page(endpoint=self._endpoint, count=count,
-                                     start_index=start_index)
+                                     start_index=start_index, query_params=params)
 
     def stream(self, params={}):
         '''
@@ -59,7 +59,7 @@ class DigitalWalletTokensCollection(object):
         '''
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
-    def page_for_card(self, user_token, count=5, start_index=0):
+    def page_for_card(self, user_token, count=5, start_index=0, params=None):
         '''
         Provides the requested page for card
         :param user_token:
@@ -68,7 +68,7 @@ class DigitalWalletTokensCollection(object):
         page 'data'field
         '''
         return self.collections.page(endpoint=self._endpoint + "/card/{}".format(user_token),
-                                     count=count, start_index=start_index)
+                                     count=count, start_index=start_index, query_params=params)
 
     def stream_for_card(self, user_token, params=None):
         '''
@@ -136,8 +136,8 @@ class DigitalContext(DigitalWalletTokensCollection):
             self.token = token
             self.collection = collection
 
-        def page(self, count=5, start_index=0):
-            return self.collection.page(count=count, start_index=start_index,
+        def page(self, count=5, start_index=0, params=None):
+            return self.collection.page(count=count, start_index=start_index,query_params=params,
                                         endpoint=self._endpoint + '/digitalwallettoken/{}'.
                                         format(self.token))
 

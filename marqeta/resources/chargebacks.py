@@ -109,8 +109,8 @@ class ChargeBackContext(ChargebacksCollection):
             self.token = token
             self.collection = collection
 
-        def page(self, count=5, start_index=0):
-            return self.collection.page(count=count, start_index=start_index,
+        def page(self, count=5, start_index=0, params=None):
+            return self.collection.page(count=count, start_index=start_index, query_params=params,
                                         endpoint=self._endpoint + '/{}/transitions'.
                                         format(self.token))
 

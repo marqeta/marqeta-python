@@ -34,7 +34,7 @@ class PushtocardsDisburseCollection(object):
         self.client = client
         self.collections_disburse = Collection(self.client, PushToCardDisbursementResponse)
 
-    def page(self, count=5, start_index=0):
+    def page(self, count=5, start_index=0, params=None):
         '''
          Provides the requested page for pushtocards disburse
         :param count: data to be displayed per page
@@ -43,7 +43,7 @@ class PushtocardsDisburseCollection(object):
         page 'data'field
         '''
         return self.collections_disburse.page(endpoint=self._endpoint, count=count,
-                                              start_index=start_index)
+                                              start_index=start_index, query_params=params)
 
     def stream(self, params=None):
         '''

@@ -30,7 +30,8 @@ class AccountHolderGroupsCollection(object):
         query_params = {'count': 10}
         if params is not None:
             query_params.update(params)
-        return self.collections.page(endpoint=self._endpoint, count=count, start_index=start_index)
+        return self.collections.page(endpoint=self._endpoint, count=count, start_index=start_index,
+                                     query_params=query_params)
 
     def stream(self, params=None):
         '''

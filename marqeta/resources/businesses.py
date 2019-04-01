@@ -38,7 +38,7 @@ class BusinessesCollection(object):
         '''
         return BusinessContext(token, self.client)
 
-    def page(self, count=5, start_index=0):
+    def page(self, count=5, start_index=0, params=None):
         '''
         Provides the requested page for businesses
         :param count: data to be displayed per page
@@ -46,7 +46,8 @@ class BusinessesCollection(object):
         :return: requested page with BusinessCardHolderModel object for the requested
         page 'data'field
         '''
-        return self.collections.page(endpoint=self._endpoint, count=count, start_index=start_index)
+        return self.collections.page(endpoint=self._endpoint, count=count, start_index=start_index,
+                                     query_params=params)
 
     def stream(self, params=None):
         '''
@@ -140,8 +141,8 @@ class BusinessContext(BusinessesCollection):
             self.token = token
             self.collection = collection
 
-        def page(self, count=5, start_index=0):
-            return self.collection.page(count=count, start_index=start_index,
+        def page(self, count=5, start_index=0, params=None):
+            return self.collection.page(count=count, start_index=start_index,query_params=params,
                                         endpoint='businesses/{}/children'.format(self.token))
 
         def stream(self, params=None):
@@ -168,9 +169,9 @@ class BusinessContext(BusinessesCollection):
             self.collection = collection
             self.client = client
 
-        def page(self, count=5, start_index=0):
+        def page(self, count=5, start_index=0, params=None):
             return self.collection.page(endpoint=self._endpoint.format(self.token),
-                                        count=count, start_index=start_index)
+                                        count=count, start_index=start_index, query_params=params)
 
         def stream(self, params=None):
             return self.collection.stream(endpoint=self._endpoint.format(self.token),
@@ -203,8 +204,8 @@ class BusinessContext(BusinessesCollection):
             self.token = token
             self.collection = collection
 
-        def page(self, count=5, start_index=0):
-            return self.collection.page(count=count, start_index=start_index,
+        def page(self, count=5, start_index=0, params=None):
+            return self.collection.page(count=count, start_index=start_index,query_params=params,
                                         endpoint=self._endpoint + '/business/{}'.format(self.token))
 
         def stream(self, params=None, limit=None):

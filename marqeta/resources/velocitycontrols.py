@@ -19,7 +19,7 @@ class VelocityControlsCollection(object):
         self.client = client
         self.collections = Collection(self.client, VelocityControlResponse)
 
-    def page(self, count=5, start_index=0):
+    def page(self, count=5, start_index=0, params=None):
         '''
         Provides the requested page for velocitycontrols
         :param count: data to be displayed per page
@@ -27,9 +27,10 @@ class VelocityControlsCollection(object):
         :return: requested page with VelocityControlResponse object for the requested
         page 'data'field
         '''
-        return self.collections.page(endpoint=self._endpoint, count=count, start_index=start_index)
+        return self.collections.page(endpoint=self._endpoint, count=count, start_index=start_index,
+                                     query_params=params)
 
-    def page_available_for_user(self, token, count=5, start_index=0):
+    def page_available_for_user(self, token, count=5, start_index=0, params=None):
         '''
         Provides the requested page for velocitycontrols
         :param token: user token
@@ -39,7 +40,7 @@ class VelocityControlsCollection(object):
         page 'data'field
         '''
         return self.collections.page(endpoint=self._endpoint + '/user/{}/available'.format(token),
-                                     count=count, start_index=start_index)
+                                     count=count, start_index=start_index, query_params=params)
 
     def stream(self, params=None):
         '''

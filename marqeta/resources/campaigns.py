@@ -104,9 +104,9 @@ class CampaignsContext(CampaignsCollection):
             self.token = token
             self.collection = collection
 
-        def page(self, count=5, start_index=0):
+        def page(self, count=5, start_index=0, params=None):
             return self.collection.page(endpoint=self._endpoint.format(self.token),
-                                        count=count, start_index=start_index)
+                                        count=count, start_index=start_index, query_params=params)
 
         def stream(self, params=None, limit=None):
             return self.collection.stream(endpoint=self._endpoint.format(self.token),

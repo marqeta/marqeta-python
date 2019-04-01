@@ -32,7 +32,7 @@ class UsersCollection(object):
         '''
         return UserContext(token, self.client)
 
-    def page(self, count=5, start_index=0):
+    def page(self, count=5, start_index=0, params=None):
         '''
         Provides the requested page for users
          :param count: data to be displayed per page
@@ -41,7 +41,7 @@ class UsersCollection(object):
         page 'data'field
         '''
         return self.collections_cardmodel.page(endpoint=self._endpoint, count=count,
-                                               start_index=start_index)
+                                               start_index=start_index, query_params=params)
 
     def stream(self, params=None):
         '''
@@ -150,9 +150,9 @@ class UserContext(UsersCollection):
             self.token = token
             self.collection = collection
 
-        def page(self, count=5, start_index=0):
+        def page(self, count=5, start_index=0, params=None):
             return self.collection.page(endpoint='users/{}/children'.format(self.token),
-                                        count=count, start_index=start_index)
+                                        count=count, start_index=start_index, query_params=params)
 
         def stream(self, params=None):
             return self.collection.stream(endpoint='users/{}/children'.format(self.token),
@@ -176,9 +176,9 @@ class UserContext(UsersCollection):
             self.token = token
             self.collection = collection
 
-        def page(self, count=5, start_index=0):
+        def page(self, count=5, start_index=0, params=None):
             return self.collection.page(endpoint=self._endpoint.format(self.token),
-                                        count=count, start_index=start_index)
+                                        count=count, start_index=start_index, query_params=params)
 
         def stream(self, params=None):
             return self.collection.stream(endpoint=self._endpoint.format(self.token),
@@ -210,9 +210,9 @@ class UserContext(UsersCollection):
             self.token = token
             self.collection = collection
 
-        def page(self, count=5, start_index=0):
+        def page(self, count=5, start_index=0, params=None):
             return self.collection.page(endpoint=self._endpoint + '/user/{}'.format(self.token),
-                                        count=count, start_index=start_index)
+                                        count=count, start_index=start_index, query_params=params)
 
         def stream(self, params=None):
             return self.collection.stream(endpoint=self._endpoint + '/user/{}'.format(self.token),

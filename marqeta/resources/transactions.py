@@ -28,7 +28,7 @@ class TransactionsCollection(object):
         '''
         return TranscationContext(token, self.client, self.collections)
 
-    def page(self, count=5, start_index=0):
+    def page(self, count=5, start_index=0, params=None):
         '''
         Provides the requested page for transactions
         :param count: data to be displayed per page
@@ -37,7 +37,7 @@ class TransactionsCollection(object):
         page 'data'field
         '''
         return self.collections.page(endpoint=self._endpoint, count=count,
-                                     start_index=start_index)
+                                     start_index=start_index, query_params=params)
 
     def stream(self, params=None):
         '''
@@ -56,7 +56,7 @@ class TransactionsCollection(object):
         '''
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
-    def page_for_funding_source(self, token, count=5, start_index=0):
+    def page_for_funding_source(self, token, count=5, start_index=0, params=None):
         '''
         Provides the requested page for transactions for specified funding source
        :param count: data to be displayed per page
@@ -122,9 +122,9 @@ class TranscationContext(TransactionsCollection):
             self.token = token
             self.collections = collections
 
-        def page(self, count=5, start_index=0):
+        def page(self, count=5, start_index=0, params=None):
             return self.collections.page(endpoint=self._endpoint.format(self.token),
-                                         count=count, start_index=start_index)
+                                         count=count, start_index=start_index, query_params=params)
 
         def stream(self, params=None):
             return self.collections.stream(endpoint=self._endpoint.format(self.token),

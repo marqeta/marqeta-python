@@ -65,7 +65,7 @@ class CardsCollection(object):
         return self.collections_card_response.list(endpoint=self._endpoint, query_params=params,
                                                    limit=limit)
 
-    def page_for_user(self, user_token, count=5, start_index=0):
+    def page_for_user(self, user_token, count=5, start_index=0, params=None):
         '''
         Provides the requested page for cards
         :param user_token: user token
@@ -75,7 +75,8 @@ class CardsCollection(object):
         page 'data'field
         '''
         return self.collections_card_response.page(endpoint=self._endpoint + "/user/{}".
-                                                   format(user_token), count=count, start_index=start_index)
+                                                   format(user_token), count=count, start_index=start_index,
+                                                   query_params=params)
 
     def stream_for_user(self, user_token, params=None):
         '''
@@ -216,8 +217,8 @@ class CardsContext(CardsCollection):
             self.token = token
             self.collection = collection
 
-        def page(self, count=5, start_index=0):
-            return self.collection.page(count=count, start_index=start_index,
+        def page(self, count=5, start_index=0, params=None):
+            return self.collection.page(count=count, start_index=start_index, query_params=params,
                                         endpoint=self._endpoint + '/card/{}'.format(self.token))
 
         def stream(self, params=None):

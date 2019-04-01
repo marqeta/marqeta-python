@@ -20,7 +20,7 @@ class KycCollection(object):
         self.client = client
         self.collections = Collection(self.client, KycResponse)
 
-    def page_for_user(self, user_token, count=5, start_index=0):
+    def page_for_user(self, user_token, count=5, start_index=0, params=None):
         '''
         Provides the requested page for kyc
         :param user_token: user token
@@ -30,9 +30,9 @@ class KycCollection(object):
         page 'data'field
         '''
         return self.collections.page(endpoint=self._endpoint + '/user/{}'.format(user_token),
-                                     count=count, start_index=start_index)
+                                     count=count, start_index=start_index, query_params=params)
 
-    def page_for_business(self, business_token, count=5, start_index=0):
+    def page_for_business(self, business_token, count=5, start_index=0, params=None):
         '''
         Provides the requested page for kyc
         :param business_token: user token
@@ -42,7 +42,8 @@ class KycCollection(object):
         page 'data'field
         '''
         return self.collections.page(endpoint=self._endpoint + '/business/{}'.
-                                     format(business_token), count=count, start_index=start_index)
+                                     format(business_token), count=count, start_index=start_index,
+                                     query_params=params)
 
     def stream_for_user(self, user_token, params=None):
         '''

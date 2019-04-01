@@ -18,7 +18,7 @@ class AcceptedCountriesCollection(object):
         self.client = client
         self.collections = Collection(self.client, AcceptedCountriesModel)
 
-    def page(self, count=5, start_index=0):
+    def page(self, count=5, start_index=0, params=None):
         '''
         Provides the requested page for acceptedcountries
         :param count: data to be displayed per page
@@ -26,15 +26,15 @@ class AcceptedCountriesCollection(object):
         :return: requested page with AcceptedCountriesModel object for the requested
         page 'data'field
         '''
-        return self.collections.page(endpoint=self._endpoint, count=count, start_index=start_index)
+        return self.collections.page(endpoint=self._endpoint, count=count, start_index=start_index, query_params=params)
 
-    def stream(self, params=None):
+    def stream(self, params=None, limit=None):
         '''
         Stream through the list of requested endpoint data field
         :param params: query parameters
         :return: AcceptedCountriesModel object
         '''
-        return self.collections.stream(endpoint=self._endpoint, query_params=params)
+        return self.collections.stream(endpoint=self._endpoint, query_params=params, limit=limit)
 
     def list(self, params=None, limit=None):
         '''
