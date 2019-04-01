@@ -18,12 +18,10 @@ class ManualEntry(object):
 
     @property
     def enabled(self):
-
         return self.json_response.get('enabled', None)
 
     @property
     def address_verification(self):
-
         if 'address_verification' in self.json_response:
             return DigitalWalletTokenAddressVerification(self.json_response['address_verification'])
 

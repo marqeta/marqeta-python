@@ -18,7 +18,6 @@ class ValidationsResponse(object):
 
     @property
     def user(self):
-
         if 'user' in self.json_response:
             return UserValidationResponse(self.json_response['user'])
 

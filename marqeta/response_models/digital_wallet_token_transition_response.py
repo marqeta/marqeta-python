@@ -24,49 +24,40 @@ class DigitalWalletTokenTransitionResponse(object):
 
     @property
     def digital_wallet_token(self):
-
         if 'digital_wallet_token' in self.json_response:
             return DigitalWalletTokenHash(self.json_response['digital_wallet_token'])
 
     @property
     def card_swap(self):
-
         if 'card_swap' in self.json_response:
             return CardSwapHash(self.json_response['card_swap'])
 
     @property
     def type(self):
-
         return self.json_response.get('type', None)
 
     @property
     def channel(self):
-
         return self.json_response.get('channel', None)
 
     @property
     def state(self):
-
         return self.json_response.get('state', None)
 
     @property
     def fulfillment_status(self):
-
         return self.json_response.get('fulfillment_status', None)
 
     @property
     def reason(self):
-
         return self.json_response.get('reason', None)
 
     @property
     def reason_code(self):
-
         return self.json_response.get('reason_code', None)
 
     @property
     def created_time(self):
-
         if 'created_time' in self.json_response:
             return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 

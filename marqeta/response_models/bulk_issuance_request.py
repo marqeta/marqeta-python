@@ -20,39 +20,32 @@ class BulkIssuanceRequest(object):
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def fulfillment(self):
-
         if 'fulfillment' in self.json_response:
             return Fulfillment(self.json_response['fulfillment'])
 
     @property
     def expedite(self):
-
         return self.json_response.get('expedite', None)
 
     @property
     def card_product_token(self):
-
         return self.json_response.get('card_product_token', None)
 
     @property
     def card_allocation(self):
-
         return self.json_response.get('card_allocation', None)
 
     @property
     def user_association(self):
-
         if 'user_association' in self.json_response:
             return UserAssociation(self.json_response['user_association'])
 
     @property
     def name_line_1_numeric_postfix(self):
-
         return self.json_response.get('name_line_1_numeric_postfix', None)
 
     @property

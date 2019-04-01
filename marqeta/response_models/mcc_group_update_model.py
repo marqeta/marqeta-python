@@ -18,22 +18,18 @@ class MccGroupUpdateModel(object):
 
     @property
     def name(self):
-
         return self.json_response.get('name', None)
 
     @property
     def mccs(self):
-
         return self.json_response.get('mccs', None)
 
     @property
     def active(self):
-
         return self.json_response.get('active', None)
 
     @property
     def config(self):
-
         if 'config' in self.json_response:
             return Config(self.json_response['config'])
 

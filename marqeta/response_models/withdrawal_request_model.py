@@ -19,38 +19,31 @@ class WithdrawalRequestModel(object):
 
     @property
     def account_type(self):
-
         return self.json_response.get('account_type', None)
 
     @property
     def card_token(self):
-
         return self.json_response.get('card_token', None)
 
     @property
     def pin(self):
-
         return self.json_response.get('pin', None)
 
     @property
     def mid(self):
-
         return self.json_response.get('mid', None)
 
     @property
     def amount(self):
-
         return self.json_response.get('amount', None)
 
     @property
     def card_acceptor(self):
-
         if 'card_acceptor' in self.json_response:
             return CardAcceptorModel(self.json_response['card_acceptor'])
 
     @property
     def webhook(self):
-
         if 'webhook' in self.json_response:
             return Webhook(self.json_response['webhook'])
 

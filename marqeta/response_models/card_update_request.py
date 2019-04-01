@@ -18,28 +18,23 @@ class CardUpdateRequest(object):
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def user_token(self):
-
         return self.json_response.get('user_token', None)
 
     @property
     def expedite(self):
-
         return self.json_response.get('expedite', None)
 
     @property
     def fulfillment(self):
-
         if 'fulfillment' in self.json_response:
             return Fulfillment(self.json_response['fulfillment'])
 
     @property
     def metadata(self):
-
         return self.json_response.get('metadata', None)
 
     def __repr__(self):

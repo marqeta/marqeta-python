@@ -18,17 +18,19 @@ class AutoReloadsCollection(object):
         self.client = client
         self.collections = Collection(self.client, AutoReloadResponseModel)
 
-    def page(self, params=None):
+    def page(self, count=5, start_index=0):
         '''
         Provides the requested page for autoreloads
-        :param params: query parameters
+        :param count: data to be displayed per page
+        :param start_index: start_index
         :return: requested page with AutoReloadResponseModel object for the requested
         page 'data'field
         '''
         query_params = {'count': 10}
         if params is not None:
             query_params.update(params)
-        return self.collections.page(endpoint=self._endpoint, query_params=query_params)
+        return self.collections.page(endpoint=self._endpoint, count=count,
+                                     start_index=start_index)
 
     def stream(self, params=None):
         '''

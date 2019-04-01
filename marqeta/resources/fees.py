@@ -18,7 +18,7 @@ class FeesCollection(object):
         self.client = client
         self.collections = Collection(self.client, Fee)
 
-    def page(self, params=None):
+    def page(self, count=5, start_index=0):
         '''
         Provides the requested page for fees
         :param params: query parameters

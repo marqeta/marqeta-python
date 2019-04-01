@@ -18,32 +18,26 @@ class PushTokenizeRequestData(object):
 
     @property
     def display_name(self):
-
         return self.json_response.get('display_name', None)
 
     @property
     def last_digits(self):
-
         return self.json_response.get('last_digits', None)
 
     @property
     def network(self):
-
         return self.json_response.get('network', None)
 
     @property
     def token_service_provider(self):
-
         return self.json_response.get('token_service_provider', None)
 
     @property
     def opaque_payment_card(self):
-
         return self.json_response.get('opaque_payment_card', None)
 
     @property
     def user_address(self):
-
         if 'user_address' in self.json_response:
             return AndroidPushTokenRequestAddress(self.json_response['user_address'])
 

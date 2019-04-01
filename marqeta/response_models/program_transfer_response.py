@@ -19,64 +19,52 @@ class ProgramTransferResponse(object):
 
     @property
     def fees(self):
-
         if 'fees' in self.json_response:
             return [FeeDetail(val) for val in self.json_response['fees']]
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def type_token(self):
-
         return self.json_response.get('type_token', None)
 
     @property
     def user_token(self):
-
         return self.json_response.get('user_token', None)
 
     @property
     def business_token(self):
-
         return self.json_response.get('business_token', None)
 
     @property
     def transaction_token(self):
-
         return self.json_response.get('transaction_token', None)
 
     @property
     def currency_code(self):
-
         return self.json_response.get('currency_code', None)
 
     @property
     def amount(self):
-
         return self.json_response.get('amount', None)
 
     @property
     def memo(self):
-
         return self.json_response.get('memo', None)
 
     @property
     def tags(self):
-
         return self.json_response.get('tags', None)
 
     @property
     def created_time(self):
-
         if 'created_time' in self.json_response:
             return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def jit_funding(self):
-
         if 'jit_funding' in self.json_response:
             return JitFundingApi(self.json_response['jit_funding'])
 

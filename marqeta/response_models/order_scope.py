@@ -19,13 +19,11 @@ class OrderScope(object):
 
     @property
     def gpa(self):
-
         if 'gpa' in self.json_response:
             return Gpa(self.json_response['gpa'])
 
     @property
     def msa(self):
-
         if 'msa' in self.json_response:
             return Msa(self.json_response['msa'])
 

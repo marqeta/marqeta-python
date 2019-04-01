@@ -19,13 +19,11 @@ class AvsControls(object):
 
     @property
     def av_messages(self):
-
         if 'av_messages' in self.json_response:
             return AvsControlOptions(self.json_response['av_messages'])
 
     @property
     def auth_messages(self):
-
         if 'auth_messages' in self.json_response:
             return AvsControlOptions(self.json_response['auth_messages'])
 

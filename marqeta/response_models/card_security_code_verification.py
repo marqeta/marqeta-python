@@ -18,12 +18,10 @@ class CardSecurityCodeVerification(object):
 
     @property
     def type(self):
-
         return self.json_response.get('type', None)
 
     @property
     def response(self):
-
         if 'response' in self.json_response:
             return Response(self.json_response['response'])
 

@@ -18,22 +18,18 @@ class MerchantCardRequest(object):
 
     @property
     def card_product_token(self):
-
         return self.json_response.get('card_product_token', None)
 
     @property
     def expedite(self):
-
         return self.json_response.get('expedite', None)
 
     @property
     def metadata(self):
-
         return self.json_response.get('metadata', None)
 
     @property
     def expiration_offset(self):
-
         if 'expiration_offset' in self.json_response:
             return ExpirationOffsét(self.json_response['expiration_offset'])
 

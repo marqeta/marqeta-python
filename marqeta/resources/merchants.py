@@ -29,14 +29,15 @@ class MerchantsCollection(object):
         '''
         return MerchantContext(token, self.client)
 
-    def page(self, params=None):
+    def page(self, count=5, start_index=0):
         '''
         Provides the requested page for merchants
-        :param params: query parameters
+        :param count: data to be displayed per page
+        :param start_index: start_index
         :return: requested page with MerchantResponseModel object for the requested
         page 'data'field
         '''
-        return self.collections.page(endpoint=self._endpoint, query_params=params)
+        return self.collections.page(endpoint=self._endpoint, count=count, start_index=start_index)
 
     def stream(self, params=None):
         '''
@@ -106,9 +107,9 @@ class MerchantContext(MerchantsCollection):
             self.token = token
             self.collection = collection
 
-        def page(self, params=None):
+        def page(self, count=5, start_index=0):
             return self.collection.page(endpoint=self._endpoint.format(self.token),
-                                        query_params=params)
+                                        count=count, start_index=start_index)
 
         def stream(self, params=None):
             return self.collection.stream(endpoint=self._endpoint.format(self.token),
@@ -116,7 +117,7 @@ class MerchantContext(MerchantsCollection):
 
         def list(self, params=None, limit=None):
             return self.collection.list(endpoint=self._endpoint.format(self.token),
-                                        query_params=params, imit=limit)
+                                        query_params=params, limit=limit)
 
         def __repr__(self):
             return '<<Marqeta.resources.merchants.MerchantContext.Stores>'

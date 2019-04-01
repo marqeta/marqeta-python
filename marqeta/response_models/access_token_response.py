@@ -18,44 +18,36 @@ class AccessTokenResponse(object):
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def expires(self):
-
         if 'expires' in self.json_response:
             return datetime.strptime(self.json_response['expires'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def application(self):
-
         if 'application' in self.json_response:
             return Application(self.json_response['application'])
 
     @property
     def tokenTypeMarqetaMaster(self):
-
         return self.json_response.get('tokenTypeMarqetaMaster', None)
 
     @property
     def user_token(self):
-
         return self.json_response.get('user_token', None)
 
     @property
     def master_roles(self):
-
         return self.json_response.get('master_roles', None)
 
     @property
     def token_type(self):
-
         return self.json_response.get('token_type', None)
 
     @property
     def one_time(self):
-
         return self.json_response.get('one_time', None)
 
     def __repr__(self):

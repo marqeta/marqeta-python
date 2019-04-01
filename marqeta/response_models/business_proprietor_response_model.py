@@ -19,59 +19,48 @@ class BusinessProprietorResponseModel(object):
 
     @property
     def first_name(self):
-
         return self.json_response.get('first_name', None)
 
     @property
     def middle_name(self):
-
         return self.json_response.get('middle_name', None)
 
     @property
     def last_name(self):
-
         return self.json_response.get('last_name', None)
 
     @property
     def alternative_names(self):
-
         return self.json_response.get('alternative_names', None)
 
     @property
     def title(self):
-
         return self.json_response.get('title', None)
 
     @property
     def home(self):
-
         if 'home' in self.json_response:
             return AddressResponseModel(self.json_response['home'])
 
     @property
     def ssn(self):
-
         return self.json_response.get('ssn', None)
 
     @property
     def dob(self):
-
         if 'dob' in self.json_response:
             return datetime.strptime(self.json_response['dob'], '%Y-%m-%d').date()
 
     @property
     def phone(self):
-
         return self.json_response.get('phone', None)
 
     @property
     def email(self):
-
         return self.json_response.get('email', None)
 
     @property
     def identifications(self):
-
         if 'identifications' in self.json_response:
             return [IdentificationResponseModel(val) for val in self.json_response['identifications']]
 

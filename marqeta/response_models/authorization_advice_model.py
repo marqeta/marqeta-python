@@ -20,29 +20,24 @@ class AuthorizationAdviceModel(object):
 
     @property
     def amount(self):
-
         return self.json_response.get('amount', None)
 
     @property
     def network_fees(self):
-
         if 'network_fees' in self.json_response:
             return [NetworkFeeModel(val) for val in self.json_response['network_fees']]
 
     @property
     def webhook(self):
-
         if 'webhook' in self.json_response:
             return Webhook(self.json_response['webhook'])
 
     @property
     def original_transaction_token(self):
-
         return self.json_response.get('original_transaction_token', None)
 
     @property
     def transaction_options(self):
-
         if 'transaction_options' in self.json_response:
             return TransactionOptions(self.json_response['transaction_options'])
 

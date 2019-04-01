@@ -18,7 +18,6 @@ class CurrencyConversion(object):
 
     @property
     def network(self):
-
         if 'network' in self.json_response:
             return Network(self.json_response['network'])
 

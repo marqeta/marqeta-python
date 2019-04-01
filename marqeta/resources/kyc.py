@@ -20,27 +20,29 @@ class KycCollection(object):
         self.client = client
         self.collections = Collection(self.client, KycResponse)
 
-    def page_for_user(self, user_token, params=None):
+    def page_for_user(self, user_token, count=5, start_index=0):
         '''
         Provides the requested page for kyc
         :param user_token: user token
-        :param params: query parameters
+        :param count: data to be displayed per page
+        :param start_index: start_index
         :return: requested page with KycResponse object for the requested
         page 'data'field
         '''
         return self.collections.page(endpoint=self._endpoint + '/user/{}'.format(user_token),
-                                     query_params=params)
+                                     count=count, start_index=start_index)
 
-    def page_for_business(self, business_token, params=None):
+    def page_for_business(self, business_token, count=5, start_index=0):
         '''
         Provides the requested page for kyc
         :param business_token: user token
-        :param params: query parameters
+       :param count: data to be displayed per page
+        :param start_index: start_index
         :return: requested page with KycResponse object for the requested
         page 'data'field
         '''
         return self.collections.page(endpoint=self._endpoint + '/business/{}'.
-                                     format(business_token), query_params=params)
+                                     format(business_token), count=count, start_index=start_index)
 
     def stream_for_user(self, user_token, params=None):
         '''
@@ -55,7 +57,7 @@ class KycCollection(object):
     def stream_for_business(self, business_token, params=None):
         '''
         Stream through the list of requested endpoint data field
-        :param user_token: user token
+        :param business_token: user token
         :param params: query parameters
         :return: KycResponse object
         '''
@@ -90,7 +92,6 @@ class KycCollection(object):
         '''
         Creates an kyc object
         :param data: data required for creation
-        :param params: query parameters
         :return: KycResponse object
         '''
         return self.collections.create(endpoint=self._endpoint, data=data)

@@ -17,34 +17,28 @@ class CampaignModel(object):
 
     @property
     def active(self):
-
         return self.json_response.get('active', None)
 
     @property
     def name(self):
-
         return self.json_response.get('name', None)
 
     @property
     def start_date(self):
-
         if 'start_date' in self.json_response:
             return datetime.strptime(self.json_response['start_date'], '%Y-%m-%d').date()
 
     @property
     def end_date(self):
-
         if 'end_date' in self.json_response:
             return datetime.strptime(self.json_response['end_date'], '%Y-%m-%d').date()
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def store_tokens(self):
-
         return self.json_response.get('store_tokens', None)
 
     def __repr__(self):

@@ -18,7 +18,6 @@ class KycSubmitAnswersRequestModel(object):
 
     @property
     def answers(self):
-
         if 'answers' in self.json_response:
             return [KycAnswer(val) for val in self.json_response['answers']]
 

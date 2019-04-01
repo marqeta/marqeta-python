@@ -18,48 +18,39 @@ class ProgramTransfer(object):
 
     @property
     def fees(self):
-
         if 'fees' in self.json_response:
             return [FeeModel(val) for val in self.json_response['fees']]
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def user_token(self):
-
         return self.json_response.get('user_token', None)
 
     @property
     def business_token(self):
-
         return self.json_response.get('business_token', None)
 
     @property
     def amount(self):
-
         return self.json_response.get('amount', None)
 
     @property
     def type_token(self):
-
         return self.json_response.get('type_token', None)
 
     @property
     def tags(self):
-
         return self.json_response.get('tags', None)
 
     @property
     def memo(self):
-
         return self.json_response.get('memo', None)
 
     @property
     def currency_code(self):
-
         return self.json_response.get('currency_code', None)
 
     def __repr__(self):

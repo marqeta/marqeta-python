@@ -18,22 +18,18 @@ class CardOptions(object):
 
     @property
     def cvv(self):
-
         return self.json_response.get('cvv', None)
 
     @property
     def card_present(self):
-
         return self.json_response.get('card_present', None)
 
     @property
     def expiration(self):
-
         return self.json_response.get('expiration', None)
 
     @property
     def billing_address(self):
-
         if 'billing_address' in self.json_response:
             return BillingAddress(self.json_response['billing_address'])
 

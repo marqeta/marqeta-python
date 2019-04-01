@@ -18,7 +18,6 @@ class JitProgramResponse(object):
 
     @property
     def jit_funding(self):
-
         if 'jit_funding' in self.json_response:
             return JitFundingApi(self.json_response['jit_funding'])
 

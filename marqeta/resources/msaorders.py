@@ -62,8 +62,8 @@ class MsaordersUnloadsCollection(object):
         '''
         self.collections = collection
 
-    def page(self, params=None):
-        return self.collections.page(endpoint=self._endpoint, query_params=params)
+    def page(self, count=5, start_index=0):
+        return self.collections.page(endpoint=self._endpoint, count=count, start_index=start_index)
 
     def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)

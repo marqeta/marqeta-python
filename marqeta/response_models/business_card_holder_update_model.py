@@ -106,44 +106,36 @@ class BusinessCardHolderUpdateModel(object):
 
     @property
     def history(self):
-
         return self.json_response.get('history', None)
 
     @property
     def business_type(self):
-
         return self.json_response.get('business_type', None)
 
     @property
     def international_office_locations(self):
-
         return self.json_response.get('international_office_locations', None)
 
     @property
     def taxpayer_id(self):
-
         return self.json_response.get('taxpayer_id', None)
 
     @property
     def duns_number(self):
-
         return self.json_response.get('duns_number', None)
 
     @property
     def primary_contact(self):
-
         if 'primary_contact' in self.json_response:
             return PrimaryContactInfoModel(self.json_response['primary_contact'])
 
     @property
     def incorporation(self):
-
         if 'incorporation' in self.json_response:
             return BusinessIncorporationRequestModel(self.json_response['incorporation'])
 
     @property
     def proprietor_or_officer(self):
-
         if 'proprietor_or_officer' in self.json_response:
             return BusinessProprietorRequestModel(self.json_response['proprietor_or_officer'])
 

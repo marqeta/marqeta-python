@@ -22,14 +22,16 @@ class AuthControlsCollection(object):
         self.collections = Collection(self.client, AuthControlResponse)
         self.exempt_mids = AuthcontrolsExemptmidsCollection(self.client)
 
-    def page(self, params=None):
+    def page(self, count=5, start_index=0):
         '''
         Provides the requested page for authcontrols
-        :param params: query parameters
+        :param count: data to be displayed per page
+        :param start_index: start_index
         :return: requested page with AuthControlResponse object for the requested
         page 'data'field
         '''
-        return self.collections.page(endpoint=self._endpoint, query_params=params)
+        return self.collections.page(endpoint=self._endpoint, count=count,
+                                     start_index=start_index)
 
     def stream(self, params=None):
         '''
@@ -94,14 +96,16 @@ class AuthcontrolsExemptmidsCollection(object):
         self.client = client
         self.collections = Collection(self.client, AuthControlExemptMidsResponse)
 
-    def page(self, params=None):
+    def page(self, count=5, start_index=0):
         '''
         Provides the requested page for authcontrols/exemptmids
-        :param params: query parameters
+        :param count: data to be displayed per page
+        :param start_index: start_inde
         :return: requested page with AuthControlExemptMidsResponse object for the requested
         page 'data'field
         '''
-        return self.collections.page(endpoint=self._endpoint, query_params=params)
+        return self.collections.page(endpoint=self._endpoint, count=count,
+                                     start_index=start_index)
 
     def stream(self, params=None):
         '''

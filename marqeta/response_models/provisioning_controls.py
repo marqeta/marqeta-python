@@ -20,19 +20,16 @@ class ProvisioningControls(object):
 
     @property
     def manual_entry(self):
-
         if 'manual_entry' in self.json_response:
             return ManualEntry(self.json_response['manual_entry'])
 
     @property
     def wallet_provider_card_on_file(self):
-
         if 'wallet_provider_card_on_file' in self.json_response:
             return WalletProviderCardOnFile(self.json_response['wallet_provider_card_on_file'])
 
     @property
     def in_app_provisioning(self):
-
         if 'in_app_provisioning' in self.json_response:
             return InAppProvisioning(self.json_response['in_app_provisioning'])
 

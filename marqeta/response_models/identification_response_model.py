@@ -25,7 +25,8 @@ class IdentificationResponseModel(object):
 
     @property
     def expiration_date(self):
-        return self.json_response.get('expiration_date', None)
+        if 'expiration_date' in self.json_response:
+            return datetime.strptime(self.json_response['expiration_date'], '%Y-%m-%d').date()
 
     def __repr__(self):
         return '<Marqeta.response_models.identification_response_model.IdentificationResponseModel>'

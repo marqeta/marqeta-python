@@ -18,22 +18,18 @@ class FundingResponseModel(object):
 
     @property
     def id(self):
-
         return self.json_response.get('id', None)
 
     @property
     def accounting_balance(self):
-
         return self.json_response.get('accounting_balance', None)
 
     @property
     def available_balance(self):
-
         return self.json_response.get('available_balance', None)
 
     @property
     def transaction(self):
-
         if 'transaction' in self.json_response:
             return Gatewaylog(self.json_response['transaction'])
 

@@ -23,16 +23,18 @@ class Collection(object):
         '''
         return self.client.get(kwargs['endpoint'], query_params=kwargs['query_params'])[0]
 
-    def page(self, endpoint, query_params=None):
+    def page(self, endpoint, count=5, start_index=0, query_params= None):
         '''
         Provides the requested page for Endpoint
         :param endpoint: Endpoint
+        :param count: data to be displayed per page
+        :param start_index: start_index
         :param query_params: query parameters
         :return: requested page with resource object for the requested
         page 'data'field
         '''
-        params = {'count': 5, 'start_index': 0}
-        if query_params is not None:
+        params = {'count': count, 'start_index': start_index}
+        if query_params:
             params.update(query_params)
         response = self.client.get(endpoint, query_params=params)[0]
         for val in range(len(response['data'])):
@@ -47,7 +49,7 @@ class Collection(object):
         :return: resource object
         '''
         params = {'count': 5, 'start_index': 0}
-        if query_params is not None:
+        if query_params:
             params.update(query_params)
         while True:
             response = self._page(endpoint=endpoint, query_params=params)

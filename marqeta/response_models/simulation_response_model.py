@@ -18,13 +18,11 @@ class SimulationResponseModel(object):
 
     @property
     def transaction(self):
-
         if 'transaction' in self.json_response:
             return TransactionModel(self.json_response['transaction'])
 
     @property
     def raw_iso8583(self):
-
         return self.json_response.get('raw_iso8583', None)
 
     def __repr__(self):

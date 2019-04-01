@@ -18,17 +18,14 @@ class AccountHolderGroupRequest(object):
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def name(self):
-
         return self.json_response.get('name', None)
 
     @property
     def config(self):
-
         if 'config' in self.json_response:
             return AccountHolderGroupConfig(self.json_response['config'])
 

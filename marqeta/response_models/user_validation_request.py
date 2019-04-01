@@ -17,18 +17,15 @@ class UserValidationRequest(object):
 
     @property
     def birth_date(self):
-
         if 'birth_date' in self.json_response:
             return datetime.strptime(self.json_response['birth_date'], '%Y-%m-%d').date()
 
     @property
     def phone(self):
-
         return self.json_response.get('phone', None)
 
     @property
     def ssn(self):
-
         return self.json_response.get('ssn', None)
 
     def __repr__(self):

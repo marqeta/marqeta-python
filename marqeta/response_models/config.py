@@ -18,7 +18,6 @@ class Config(object):
 
     @property
     def authorization_controls(self):
-
         if 'authorization_controls' in self.json_response:
             return AuthorizationControls(self.json_response['authorization_controls'])
 

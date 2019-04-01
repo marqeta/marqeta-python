@@ -20,24 +20,20 @@ class Funding(object):
 
     @property
     def amount(self):
-
         return self.json_response.get('amount', None)
 
     @property
     def source(self):
-
         if 'source' in self.json_response:
             return FundingSourceModel(self.json_response['source'])
 
     @property
     def source_address(self):
-
         if 'source_address' in self.json_response:
             return CardholderAddressResponse(self.json_response['source_address'])
 
     @property
     def gateway_log(self):
-
         if 'gateway_log' in self.json_response:
             return GatewayLogModel(self.json_response['gateway_log'])
 

@@ -22,14 +22,16 @@ class ProgramTransfersCollection(object):
         self.collections = Collection(self.client, ProgramTransferResponse)
         self.types = Types(Collection(client, ProgramTransferTypeReponse))
 
-    def page(self, params=None):
+    def page(self, count=5, start_index=0):
         '''
         Provides the requested page for programtransfers
-        :param params: query parameters
+        :param count: data to be displayed per page
+        :param start_index: start_index
         :return: requested page with ProgramTransferResponse object for the requested
         page 'data'field
         '''
-        return self.collections.page(endpoint=self._endpoint, query_params=params)
+        return self.collections.page(endpoint=self._endpoint, count=count,
+                                     start_index=start_index)
 
     def stream(self, params=None):
         '''
@@ -78,8 +80,8 @@ class Types(object):
     def __init__(self, collection):
         self.collections = collection
 
-    def page(self, params=None):
-        return self.collections.page(endpoint=self._endpoint, query_params=params)
+    def page(self, count=5, start_index=0):
+        return self.collections.page(endpoint=self._endpoint, count=count, start_index=start_index)
 
     def stream(self, params=None):
         return self.collections.stream(endpoint=self._endpoint, query_params=params)

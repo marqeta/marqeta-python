@@ -23,22 +23,18 @@ class CardProductUpdateModel(object):
 
     @property
     def active(self):
-
         return self.json_response.get('active', None)
 
     @property
     def start_date(self):
-
         return self.json_response.get('start_date', None)
 
     @property
     def end_date(self):
-
         return self.json_response.get('end_date', None)
 
     @property
     def config(self):
-
         if 'config' in self.json_response:
             return CardProductConfig(self.json_response['config'])
 

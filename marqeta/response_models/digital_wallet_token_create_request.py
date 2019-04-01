@@ -22,7 +22,6 @@ class DigitalWalletTokenCreateRequest(object):
 
     @property
     def network(self):
-
         return self.json_response.get('network', None)
 
     @property
@@ -33,25 +32,21 @@ class DigitalWalletTokenCreateRequest(object):
 
     @property
     def digital_wallet_token(self):
-
         if 'digital_wallet_token' in self.json_response:
             return DigitalWalletToken(self.json_response['digital_wallet_token'])
 
     @property
     def digital_wallet_token_device(self):
-
         if 'digital_wallet_token_device' in self.json_response:
             return DigitalWalletTokenDevice(self.json_response['digital_wallet_token_device'])
 
     @property
     def digital_wallet_token_wallet_provider(self):
-
         if 'digital_wallet_token_wallet_provider' in self.json_response:
             return DigitalWalletTokenWalletProvider(self.json_response['digital_wallet_token_wallet_provider'])
 
     @property
     def digital_wallet_token_request_address(self):
-
         if 'digital_wallet_token_request_address' in self.json_response:
             return DigitalWalletTokenRequestAddress(self.json_response['digital_wallet_token_request_address'])
 

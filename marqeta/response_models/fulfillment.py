@@ -19,13 +19,11 @@ class Fulfillment(object):
 
     @property
     def shipping(self):
-
         if 'shipping' in self.json_response:
             return Shipping(self.json_response['shipping'])
 
     @property
     def card_personalization(self):
-
         if 'card_personalization' in self.json_response:
             return CardPersonalization(self.json_response['card_personalization'])
 

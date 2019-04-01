@@ -1138,7 +1138,7 @@ for child_cardholder in client.users(token).children.stream():
     pass
 child_cardholders_page = client.users(token).children.page(start_index=0)
 
-# Search for users
+# Search for users, if look_up data is not specified by default lists 1000 users 
 users = client.users.look_up({...})
 ```
 

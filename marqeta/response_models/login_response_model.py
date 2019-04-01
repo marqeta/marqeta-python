@@ -19,13 +19,11 @@ class LoginResponseModel(object):
 
     @property
     def access_token(self):
-
         if 'access_token' in self.json_response:
             return AccessTokenResponse(self.json_response['access_token'])
 
     @property
     def user(self):
-
         if 'user' in self.json_response:
             return UserCardHolderResponse(self.json_response['user'])
 

@@ -20,19 +20,16 @@ class JitFunding(object):
 
     @property
     def paymentcard_funding_source(self):
-
         if 'paymentcard_funding_source' in self.json_response:
             return JitFundingPaymentcardFundingSource(self.json_response['paymentcard_funding_source'])
 
     @property
     def programgateway_funding_source(self):
-
         if 'programgateway_funding_source' in self.json_response:
             return JitFundingProgramgatewayFundingSource(self.json_response['programgateway_funding_source'])
 
     @property
     def program_funding_source(self):
-
         if 'program_funding_source' in self.json_response:
             return JitFundingProgramFundingSource(self.json_response['program_funding_source'])
 

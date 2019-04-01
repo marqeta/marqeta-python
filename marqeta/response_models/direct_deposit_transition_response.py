@@ -17,47 +17,38 @@ class DirectDepositTransitionResponse(object):
 
     @property
     def channel(self):
-
         return self.json_response.get('channel', None)
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def reason(self):
-
         return self.json_response.get('reason', None)
 
     @property
     def type(self):
-
         return self.json_response.get('type', None)
 
     @property
     def direct_deposit_token(self):
-
         return self.json_response.get('direct_deposit_token', None)
 
     @property
     def transaction_token(self):
-
         return self.json_response.get('transaction_token', None)
 
     @property
     def state(self):
-
         return self.json_response.get('state', None)
 
     @property
     def reason_code(self):
-
         return self.json_response.get('reason_code', None)
 
     @property
     def created_time(self):
-
         if 'created_time' in self.json_response:
             return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 

@@ -29,14 +29,16 @@ class CommandoModesCollection(object):
         '''
         return CommandoModesContext(token, self.client)
 
-    def page(self, params=None):
+    def page(self, count=5, start_index=0):
         '''
         Provides the requested page for commandomodes
-        :param params: query parameters
+        :param count: data to be displayed per page
+        :param start_index: start_index
         :return: requested page with CommandoModeResponse object for the requested
         page 'data'field
         '''
-        return self.collections.page(endpoint=self._endpoint, query_params=params)
+        return self.collections.page(endpoint=self._endpoint, count=count,
+                                     start_index=start_index)
 
     def stream(self, params=None):
         '''
@@ -91,9 +93,9 @@ class CommandoModesContext(CommandoModesCollection):
             self.token = token
             self.collection = collection
 
-        def page(self, params=None):
+        def page(self, count=5, start_index=0):
             return self.collection.page(endpoint=self._endpoint + '/{}/transitions'.
-                                        format(self.token), query_params=params)
+                                        format(self.token), count=count, start_index=start_index)
 
         def stream(self, params=None):
             return self.collection.stream(endpoint=self._endpoint + '/{}/transitions'.

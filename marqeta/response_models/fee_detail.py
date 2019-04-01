@@ -18,27 +18,22 @@ class FeeDetail(object):
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def memo(self):
-
         return self.json_response.get('memo', None)
 
     @property
     def tags(self):
-
         return self.json_response.get('tags', None)
 
     @property
     def transaction_token(self):
-
         return self.json_response.get('transaction_token', None)
 
     @property
     def fee(self):
-
         if 'fee' in self.json_response:
             return Fee(self.json_response['fee'])
 

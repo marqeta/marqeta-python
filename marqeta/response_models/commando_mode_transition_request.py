@@ -18,17 +18,14 @@ class CommandoModeTransitionRequest(object):
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def commando_mode_token(self):
-
         return self.json_response.get('commando_mode_token', None)
 
     @property
     def transition(self):
-
         if 'transition' in self.json_response:
             return CommandoModeNestedTransition(self.json_response['transition'])
 

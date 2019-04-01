@@ -20,97 +20,79 @@ class GpaResponse(object):
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def amount(self):
-
         return self.json_response.get('amount', None)
 
     @property
     def tags(self):
-
         return self.json_response.get('tags', None)
 
     @property
     def memo(self):
-
         return self.json_response.get('memo', None)
 
     @property
     def fees(self):
-
         if 'fees' in self.json_response:
             return [FeeDetail(val) for val in self.json_response['fees']]
 
     @property
     def created_time(self):
-
         if 'created_time' in self.json_response:
             return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
-
         if 'last_modified_time' in self.json_response:
             return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def transaction_token(self):
-
         return self.json_response.get('transaction_token', None)
 
     @property
     def state(self):
-
         return self.json_response.get('state', None)
 
     @property
     def response(self):
-
         if 'response' in self.json_response:
             return Response(self.json_response['response'])
 
     @property
     def funding(self):
-
         if 'funding' in self.json_response:
             return Funding(self.json_response['funding'])
 
     @property
     def funding_source_token(self):
-
         return self.json_response.get('funding_source_token', None)
 
     @property
     def funding_source_address_token(self):
-
         return self.json_response.get('funding_source_address_token', None)
 
     @property
     def user_token(self):
-
         return self.json_response.get('user_token', None)
 
     @property
     def business_token(self):
-
         return self.json_response.get('business_token', None)
 
     @property
     def currency_code(self):
-
         return self.json_response.get('currency_code', None)
 
     @property
     def gateway_token(self):
-
         return self.json_response.get('gateway_token', None)
 
     @property
     def gateway_message(self):
-
         return self.json_response.get('gateway_message', None)
 
     def __repr__(self):

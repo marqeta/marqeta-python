@@ -18,17 +18,14 @@ class ExpirationOffset(object):
 
     @property
     def unit(self):
-
         return self.json_response.get('unit', None)
 
     @property
     def value(self):
-
         return self.json_response.get('value', None)
 
     @property
     def min_offset(self):
-
         if 'min_offset' in self.json_response:
             return MinOffset(self.json_response['min_offset'])
 

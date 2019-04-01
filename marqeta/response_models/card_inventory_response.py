@@ -17,23 +17,19 @@ class CardInventoryResponse(object):
 
     @property
     def created_time(self):
-
         if 'created_time' in self.json_response:
             return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def package_id(self):
-
         return self.json_response.get('package_id', None)
 
     @property
     def starting_inventory(self):
-
         return self.json_response.get('starting_inventory', None)
 
     def __repr__(self):

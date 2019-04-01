@@ -18,12 +18,10 @@ class DigitalWalletTokenCheckEligibilityRequest(object):
 
     @property
     def pan_source(self):
-
         return self.json_response.get('pan_source', None)
 
     @property
     def digital_wallet_token_card_data(self):
-
         if 'digital_wallet_token_card_data' in self.json_response:
             return DigitalWalletTokenCardInfo(self.json_response['digital_wallet_token_card_data'])
 

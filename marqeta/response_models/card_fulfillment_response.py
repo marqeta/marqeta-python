@@ -25,7 +25,6 @@ class CardFulfillmentResponse(object):
 
     @property
     def card_personalization(self):
-
         if 'card_personalization' in self.json_response:
             return CardPersonalization(self.json_response['card_personalization'])
 

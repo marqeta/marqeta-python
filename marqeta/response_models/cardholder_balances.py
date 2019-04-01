@@ -19,13 +19,11 @@ class CardholderBalances(object):
 
     @property
     def gpa(self):
-
         if 'gpa' in self.json_response:
             return CardholderBalance(self.json_response['gpa'])
 
     @property
     def links(self):
-
         if 'links' in self.json_response:
             return [Link(val) for val in self.json_response['links']]
 

@@ -31,7 +31,7 @@ class CardsCollection(object):
         '''
         return CardsContext(token, self.client)
 
-    def page(self, last_four, params={}):
+    def page(self, last_four, params={}, count=5, start_index=0):
         '''
         Provides the requested page for cards
         :param params: query parameters
@@ -40,7 +40,8 @@ class CardsCollection(object):
         page 'data'field
         '''
         params['last_four'] = last_four
-        return self.collections_card_response.page(endpoint=self._endpoint, query_params=params)
+        return self.collections_card_response.page(endpoint=self._endpoint, query_params=params,
+                                                   count=count, start_index=start_index)
 
     def stream(self, last_four, params={}):
         '''
@@ -64,16 +65,17 @@ class CardsCollection(object):
         return self.collections_card_response.list(endpoint=self._endpoint, query_params=params,
                                                    limit=limit)
 
-    def page_for_user(self, user_token, params=None):
+    def page_for_user(self, user_token, count=5, start_index=0):
         '''
         Provides the requested page for cards
         :param user_token: user token
-        :param params: query parameters
+         :param count: data to be displayed per page
+        :param start_index: start_index
         :return: requested page with CardResponse object for the requested
         page 'data'field
         '''
         return self.collections_card_response.page(endpoint=self._endpoint + "/user/{}".
-                                                   format(user_token), query_params=params)
+                                                   format(user_token), count=count, start_index=start_index)
 
     def stream_for_user(self, user_token, params=None):
         '''
@@ -214,8 +216,8 @@ class CardsContext(CardsCollection):
             self.token = token
             self.collection = collection
 
-        def page(self, params=None):
-            return self.collection.page(query_params=params,
+        def page(self, count=5, start_index=0):
+            return self.collection.page(count=count, start_index=start_index,
                                         endpoint=self._endpoint + '/card/{}'.format(self.token))
 
         def stream(self, params=None):

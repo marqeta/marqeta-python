@@ -18,7 +18,6 @@ class ClearingFileResponse(object):
 
     @property
     def clearing_files(self):
-
         if 'clearing_files' in self.json_response:
             return [ClearingFile(val) for val in self.json_response['clearing_files']]
 

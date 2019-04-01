@@ -18,30 +18,25 @@ class ClientAccessTokenResponse(object):
 
     @property
     def application(self):
-
         if 'application' in self.json_response:
             return Application(self.json_response['application'])
 
     @property
     def created(self):
-
         if 'created' in self.json_response:
             return datetime.strptime(self.json_response['created'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def expires(self):
-
         if 'expires' in self.json_response:
             return datetime.strptime(self.json_response['expires'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def card_token(self):
-
         return self.json_response.get('card_token', None)
 
     def __repr__(self):

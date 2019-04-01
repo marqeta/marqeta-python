@@ -18,7 +18,6 @@ class WebhookPingModel(object):
 
     @property
     def pings(self):
-
         if 'pings' in self.json_response:
             return [EchoPingRequest(val) for val in self.json_response['pings']]
 

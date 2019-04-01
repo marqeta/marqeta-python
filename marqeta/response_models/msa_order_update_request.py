@@ -17,18 +17,15 @@ class MsaOrderUpdateRequest(object):
 
     @property
     def active(self):
-
         return self.json_response.get('active', None)
 
     @property
     def start_date(self):
-
         if 'start_date' in self.json_response:
             return datetime.strptime(self.json_response['start_date'], '%Y-%m-%d').date()
 
     @property
     def end_date(self):
-
         if 'end_date' in self.json_response:
             return datetime.strptime(self.json_response['end_date'], '%Y-%m-%d').date()
 

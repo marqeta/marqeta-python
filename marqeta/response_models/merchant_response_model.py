@@ -17,93 +17,75 @@ class MerchantResponseModel(object):
 
     @property
     def name(self):
-
         return self.json_response.get('name', None)
 
     @property
     def active(self):
-
         return self.json_response.get('active', None)
 
     @property
     def contact(self):
-
         return self.json_response.get('contact', None)
 
     @property
     def contact_email(self):
-
         return self.json_response.get('contact_email', None)
 
     @property
     def longitude(self):
-
         return self.json_response.get('longitude', None)
 
     @property
     def latitude(self):
-
         return self.json_response.get('latitude', None)
 
     @property
     def address1(self):
-
         return self.json_response.get('address1', None)
 
     @property
     def address2(self):
-
         return self.json_response.get('address2', None)
 
     @property
     def city(self):
-
         return self.json_response.get('city', None)
 
     @property
     def state(self):
-
         return self.json_response.get('state', None)
 
     @property
     def province(self):
-
         return self.json_response.get('province', None)
 
     @property
     def zip(self):
-
         return self.json_response.get('zip', None)
 
     @property
     def phone(self):
-
         return self.json_response.get('phone', None)
 
     @property
     def country(self):
-
         return self.json_response.get('country', None)
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def partial_auth_flag(self):
-
         return self.json_response.get('partial_auth_flag', None)
 
     @property
     def created_time(self):
-
         if 'created_time' in self.json_response:
             return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
-
         if 'last_modified_time' in self.json_response:
             return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 

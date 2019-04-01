@@ -18,28 +18,23 @@ class WebhookRequestModel(object):
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def name(self):
-
         return self.json_response.get('name', None)
 
     @property
     def active(self):
-
         return self.json_response.get('active', None)
 
     @property
     def config(self):
-
         if 'config' in self.json_response:
             return WebhookConfigModel(self.json_response['config'])
 
     @property
     def events(self):
-
         return self.json_response.get('events', None)
 
     def __repr__(self):

@@ -18,14 +18,16 @@ class BalancesTokenCollection(object):
         self.client = client
         self.collections = Collection(self.client, CardholderBalances)
 
-    def page_msas_for_user_or_business(self, token, params=None):
+    def page_msas_for_user_or_business(self, token, count=5, start_index=0):
         '''
         Provides the requested page for balances
         :param token: user or business token
-        :param params: query parameters
+        :param count: data to be displayed per page
+        :param start_index: start_index
         :return: CardholderBalances object
         '''
-        return self.collections.page(endpoint=self._endpoint + '/{}/msas'.format(token), query_params=params)
+        return self.collections.page(endpoint=self._endpoint + '/{}/msas'.format(token), count=5,
+                                     start_index=0)
 
     def stream_msas_for_user_or_business(self, token, params=None):
         '''

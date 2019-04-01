@@ -18,17 +18,14 @@ class CreateCachesResponse(object):
 
     @property
     def created(self):
-
         return self.json_response.get('created', None)
 
     @property
     def already_exists(self):
-
         return self.json_response.get('already_exists', None)
 
     @property
     def errors(self):
-
         if 'errors' in self.json_response:
             return [CacheError(val) for val in self.json_response['errors']]
 

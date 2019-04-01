@@ -18,7 +18,6 @@ class DigitalWalletTokenization(object):
 
     @property
     def provisioning_controls(self):
-
         if 'provisioning_controls' in self.json_response:
             return ProvisioningControls(self.json_response['provisioning_controls'])
 

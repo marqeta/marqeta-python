@@ -18,37 +18,30 @@ class FeeRequest(object):
 
     @property
     def name(self):
-
         return self.json_response.get('name', None)
 
     @property
     def amount(self):
-
         return self.json_response.get('amount', None)
 
     @property
     def tags(self):
-
         return self.json_response.get('tags', None)
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def currency_code(self):
-
         return self.json_response.get('currency_code', None)
 
     @property
     def active(self):
-
         return self.json_response.get('active', None)
 
     @property
     def real_time_assessment(self):
-
         if 'real_time_assessment' in self.json_response:
             return RealTimeFeeAssessmentRequest(self.json_response['real_time_assessment'])
 

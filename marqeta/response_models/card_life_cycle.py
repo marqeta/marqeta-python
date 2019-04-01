@@ -18,23 +18,19 @@ class CardLifeCycle(object):
 
     @property
     def activate_upon_issue(self):
-
         return self.json_response.get('activate_upon_issue', None)
 
     @property
     def expiration_offset(self):
-
         if 'expiration_offset' in self.json_response:
             return ExpirationOffset(self.json_response['expiration_offset'])
 
     @property
     def card_service_code(self):
-
         return self.json_response.get('card_service_code', None)
 
     @property
     def update_expiration_upon_activation(self):
-
         return self.json_response.get('update_expiration_upon_activation', None)
 
     def __repr__(self):

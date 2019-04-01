@@ -19,13 +19,11 @@ class AddressVerificationSource(object):
 
     @property
     def on_file(self):
-
         if 'on_file' in self.json_response:
             return AvsInformation(self.json_response['on_file'])
 
     @property
     def response(self):
-
         if 'response' in self.json_response:
             return Response(self.json_response['response'])
 

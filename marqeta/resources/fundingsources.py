@@ -40,27 +40,29 @@ class FundingSourcesCollection(object):
         '''
         return FundingSourceMakeDefualt(token, self.client)
 
-    def page_for_user(self, user_token, params=None):
+    def page_for_user(self, user_token, count=5, start_index=0):
         '''
         Provides the requested page for fundingsources
         :param user_token: user token
-        :param params: query parameters
+         :param count: data to be displayed per page
+        :param start_index: start_index
         :return: requested page with FundingAccountResponseModel object for the requested
         page 'data'field
         '''
         return self.collections.page(endpoint=self._endpoint + '/user/{}'.format(user_token),
-                                     query_params=params)
+                                     count=count, start_index=start_index)
 
-    def page_for_business(self, business_token, params=None):
+    def page_for_business(self, business_token, count=5, start_index=0):
         '''
         Provides the requested page for fundingsources
         :param business_token: user token
-        :param params: query parameters
+         :param count: data to be displayed per page
+        :param start_index: start_index
         :return: requested page with FundingAccountResponseModel object for the requested
         page 'data'field
         '''
         return self.collections.page(endpoint=self._endpoint + '/business/{}'.
-                                     format(business_token), query_params=params)
+                                     format(business_token), count=count, start_index=start_index)
 
     def stream_for_user(self, user_token, params=None):
         '''
@@ -88,7 +90,6 @@ class FundingSourcesCollection(object):
         :param params: query parameters
         :param limit: parameter to limit the list count
         :param user_token: user token
-        :param params:
         :return: List of FundingAccountResponseModel object:
         '''
         return self.collections.list(endpoint=self._endpoint + '/user/{}'.format(user_token),
@@ -100,7 +101,6 @@ class FundingSourcesCollection(object):
         :param params: query parameters
         :param limit: parameter to limit the list count
         :param business_token: business token
-        :param params:
         :return: List of FundingAccountResponseModel object:
         '''
         return self.collections.list(endpoint=self._endpoint + '/business/{}'.
@@ -154,13 +154,15 @@ class Addresses(object):
     def __init__(self, collection):
         self.collections = collection
 
-    def page_for_user(self, user_token, params=None):
+    def page_for_user(self, user_token, count=5, start_index=0):
         return self.collections.page(endpoint=self._endpoint + '/user/{}'.
-                                     format(user_token), query_params=params)
+                                     format(user_token), count=count,
+                                     start_index=start_index)
 
-    def page_for_business(self, business_token, params=None):
+    def page_for_business(self, business_token, count=5, start_index=0):
         return self.collections.page(endpoint=self._endpoint + '/business/{}'.
-                                     format(business_token), query_params=params)
+                                     format(business_token), count=count,
+                                     start_index=start_index)
 
     def stream_for_user(self, user_token, params=None):
         return self.collections.stream(endpoint=self._endpoint + '/user/{}'.

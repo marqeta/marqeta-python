@@ -17,18 +17,15 @@ class Airline(object):
 
     @property
     def passenger_name(self):
-
         return self.json_response.get('passenger_name', None)
 
     @property
     def depart_date(self):
-
         if 'depart_date' in self.json_response:
             return datetime.strptime(self.json_response['depart_date'], '%Y-%m-%d').date()
 
     @property
     def origination_city(self):
-
         return self.json_response.get('origination_city', None)
 
     def __repr__(self):

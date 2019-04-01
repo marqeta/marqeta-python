@@ -31,14 +31,16 @@ class DirectDepositsCollection(object):
         '''
         return DirectDepositsContext(token, self.client)
 
-    def page(self, params=None):
+    def page(self, count=5, start_index=0):
         '''
-         Provides the requested page for directdeposits
-        :param params: query parameters
+        Provides the requested page for directdeposits
+        :param count: data to be displayed per page
+        :param start_index: start_index
         :return: requested page with DepositDepositResponse object for the requested
         page 'data'field
         '''
-        return self.collections.page(endpoint=self._endpoint, query_params=params)
+        return self.collections.page(endpoint=self._endpoint, count=count,
+                                     start_index=start_index)
 
     def stream(self, params=None):
         '''
@@ -110,8 +112,9 @@ class DirectDepositsContext(DirectDepositsCollection):
             self.token = token
             self.collection = collection
 
-        def page(self, params=None):
-            return self.collection.page(endpoint=self._endpoint, query_params=params)
+        def page(self, count=5, start_index=0):
+            return self.collection.page(endpoint=self._endpoint, count=count,
+                                        start_index=start_index)
 
         def stream(self, params=None):
             return self.collection.stream(endpoint=self._endpoint, query_params=params)

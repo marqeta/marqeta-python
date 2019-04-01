@@ -29,29 +29,24 @@ class AutoReloadModel(object):
 
     @property
     def funding_source_token(self):
-
         return self.json_response.get('funding_source_token', None)
 
     @property
     def funding_source_address_token(self):
-
         return self.json_response.get('funding_source_address_token', None)
 
     @property
     def association(self):
-
         if 'association' in self.json_response:
             return AutoReloadAssociation(self.json_response['association'])
 
     @property
     def order_scope(self):
-
         if 'order_scope' in self.json_response:
             return OrderScope(self.json_response['order_scope'])
 
     @property
     def currency_code(self):
-
         return self.json_response.get('currency_code', None)
 
     def __repr__(self):

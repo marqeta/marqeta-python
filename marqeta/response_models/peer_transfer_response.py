@@ -17,52 +17,42 @@ class PeerTransferResponse(object):
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def amount(self):
-
         return self.json_response.get('amount', None)
 
     @property
     def tags(self):
-
         return self.json_response.get('tags', None)
 
     @property
     def memo(self):
-
         return self.json_response.get('memo', None)
 
     @property
     def currency_code(self):
-
         return self.json_response.get('currency_code', None)
 
     @property
     def sender_user_token(self):
-
         return self.json_response.get('sender_user_token', None)
 
     @property
     def recipient_user_token(self):
-
         return self.json_response.get('recipient_user_token', None)
 
     @property
     def sender_business_token(self):
-
         return self.json_response.get('sender_business_token', None)
 
     @property
     def recipient_business_token(self):
-
         return self.json_response.get('recipient_business_token', None)
 
     @property
     def created_time(self):
-
         if 'created_time' in self.json_response:
             return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 

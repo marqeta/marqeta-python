@@ -17,88 +17,71 @@ class CardholderAddressResponse(object):
 
     @property
     def user_token(self):
-
         return self.json_response.get('user_token', None)
 
     @property
     def business_token(self):
-
         return self.json_response.get('business_token', None)
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def first_name(self):
-
         return self.json_response.get('first_name', None)
 
     @property
     def last_name(self):
-
         return self.json_response.get('last_name', None)
 
     @property
     def address_1(self):
-
         return self.json_response.get('address_1', None)
 
     @property
     def address_2(self):
-
         return self.json_response.get('address_2', None)
 
     @property
     def city(self):
-
         return self.json_response.get('city', None)
 
     @property
     def state(self):
-
         return self.json_response.get('state', None)
 
     @property
     def zip(self):
-
         return self.json_response.get('zip', None)
 
     @property
     def postal_code(self):
-
         return self.json_response.get('postal_code', None)
 
     @property
     def country(self):
-
         return self.json_response.get('country', None)
 
     @property
     def phone(self):
-
         return self.json_response.get('phone', None)
 
     @property
     def is_default_address(self):
-
         return self.json_response.get('is_default_address', None)
 
     @property
     def active(self):
-
         return self.json_response.get('active', None)
 
     @property
     def created_time(self):
-
         if 'created_time' in self.json_response:
             return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def last_modified_time(self):
-
         if 'last_modified_time' in self.json_response:
             return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 

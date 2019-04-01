@@ -20,60 +20,49 @@ class CardRequest(object):
 
     @property
     def card_product_token(self):
-
         return self.json_response.get('card_product_token', None)
 
     @property
     def expedite(self):
-
         return self.json_response.get('expedite', None)
 
     @property
     def metadata(self):
-
         return self.json_response.get('metadata', None)
 
     @property
     def expiration_offset(self):
-
         if 'expiration_offset' in self.json_response:
             return ExpirationOffsét(self.json_response['expiration_offset'])
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def user_token(self):
-
         return self.json_response.get('user_token', None)
 
     @property
     def fulfillment(self):
-
         if 'fulfillment' in self.json_response:
             return Fulfillment(self.json_response['fulfillment'])
 
     @property
     def reissue_pan_from_card_token(self):
-
         return self.json_response.get('reissue_pan_from_card_token', None)
 
     @property
     def translate_pin_from_card_token(self):
-
         return self.json_response.get('translate_pin_from_card_token', None)
 
     @property
     def activation_actions(self):
-
         if 'activation_actions' in self.json_response:
             return ActivationActions(self.json_response['activation_actions'])
 
     @property
     def bulk_issuance_token(self):
-
         return self.json_response.get('bulk_issuance_token', None)
 
     def __repr__(self):

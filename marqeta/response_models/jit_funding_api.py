@@ -18,57 +18,46 @@ class JitFundingApi(object):
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def method(self):
-
         return self.json_response.get('method', None)
 
     @property
     def user_token(self):
-
         return self.json_response.get('user_token', None)
 
     @property
     def acting_user_token(self):
-
         return self.json_response.get('acting_user_token', None)
 
     @property
     def business_token(self):
-
         return self.json_response.get('business_token', None)
 
     @property
     def amount(self):
-
         return self.json_response.get('amount', None)
 
     @property
     def memo(self):
-
         return self.json_response.get('memo', None)
 
     @property
     def tags(self):
-
         return self.json_response.get('tags', None)
 
     @property
     def original_jit_funding_token(self):
-
         return self.json_response.get('original_jit_funding_token', None)
 
     @property
     def incremental_authorization_jit_funding_tokens(self):
-
         return self.json_response.get('incremental_authorization_jit_funding_tokens', None)
 
     @property
     def address_verification(self):
-
         if 'address_verification' in self.json_response:
             return JitAddressVerification(self.json_response['address_verification'])
 

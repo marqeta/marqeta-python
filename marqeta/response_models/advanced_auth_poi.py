@@ -18,18 +18,15 @@ class AdvancedAuthPoi(object):
 
     @property
     def other(self):
-
         if 'other' in self.json_response:
             return AdvancedAuthOtherPoi(self.json_response['other'])
 
     @property
     def ecommerce(self):
-
         return self.json_response.get('ecommerce', None)
 
     @property
     def atm(self):
-
         return self.json_response.get('atm', None)
 
     def __repr__(self):

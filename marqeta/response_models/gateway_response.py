@@ -18,12 +18,10 @@ class GatewayResponse(object):
 
     @property
     def code(self):
-
         return self.json_response.get('code', None)
 
     @property
     def data(self):
-
         if 'data' in self.json_response:
             return JitProgramResponse(self.json_response['data'])
 

@@ -18,34 +18,28 @@ class CommandoModeTransitionResponse(object):
 
     @property
     def type(self):
-
         return self.json_response.get('type', None)
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
 
     @property
     def commando_mode_token(self):
-
         return self.json_response.get('commando_mode_token', None)
 
     @property
     def transition(self):
-
         if 'transition' in self.json_response:
             return CommandoModeNestedTransition(self.json_response['transition'])
 
     @property
     def created_time(self):
-
         if 'created_time' in self.json_response:
             return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def name(self):
-
         return self.json_response.get('name', None)
 
     def __repr__(self):
