@@ -34,4 +34,4 @@ class PanResponse(object):
         return self.json_response.get('card_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.pan_response.PanResponse>'
+        return '<Marqeta.response_models.pan_response.PanResponse>' + self.__str__()

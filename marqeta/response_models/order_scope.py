@@ -28,4 +28,4 @@ class OrderScope(object):
             return Msa(self.json_response['msa'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.order_scope.OrderScope>'
+        return '<Marqeta.response_models.order_scope.OrderScope>' + self.__str__()

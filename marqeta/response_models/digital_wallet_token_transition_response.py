@@ -62,4 +62,5 @@ class DigitalWalletTokenTransitionResponse(object):
             return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_token_transition_response.DigitalWalletTokenTransitionResponse>'
+        return '<Marqeta.response_models.digital_wallet_token_transition_response.' \
+               'DigitalWalletTokenTransitionResponse>' + self.__str__()

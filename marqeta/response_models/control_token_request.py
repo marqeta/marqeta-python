@@ -20,4 +20,4 @@ class ControlTokenRequest(object):
         return self.json_response.get('card_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.control_token_request.ControlTokenRequest>'
+        return '<Marqeta.response_models.control_token_request.ControlTokenRequest>' + self.__str__()

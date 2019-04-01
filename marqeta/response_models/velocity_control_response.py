@@ -76,4 +76,4 @@ class VelocityControlResponse(object):
         return self.json_response.get('active', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.velocity_control_response.VelocityControlResponse>'
+        return '<Marqeta.response_models.velocity_control_response.VelocityControlResponse>' + self.__str__()

@@ -21,4 +21,5 @@ class DirectDepositFundingSourceModel(FundingSourceModel):
         return self.json_response.get('name', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.direct_deposit_funding_source_model.DirectDepositFundingSourceModel>'
+        return '<Marqeta.response_models.direct_deposit_funding_source_model.' \
+               'DirectDepositFundingSourceModel>' + self.__str__()

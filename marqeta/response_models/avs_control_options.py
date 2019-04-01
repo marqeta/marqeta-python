@@ -28,4 +28,4 @@ class AvsControlOptions(object):
         return self.json_response.get('decline_on_postal_code_mismatch', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.avs_control_options.AvsControlOptions>'
+        return '<Marqeta.response_models.avs_control_options.AvsControlOptions>' + self.__str__()

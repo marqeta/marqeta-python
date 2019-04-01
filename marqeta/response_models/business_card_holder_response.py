@@ -151,4 +151,4 @@ class BusinessCardHolderResponse(object):
             return DepositAccount(self.json_response['deposit_account'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.business_card_holder_response.BusinessCardHolderResponse>'
+        return '<Marqeta.response_models.business_card_holder_response.BusinessCardHolderResponse>' + self.__str__()

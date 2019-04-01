@@ -24,4 +24,5 @@ class JitFundingPaymentcardFundingSource(object):
         return self.json_response.get('refunds_destination', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.jit_funding_paymentcard_funding_source.JitFundingPaymentcardFundingSource>'
+        return '<Marqeta.response_models.jit_funding_paymentcard_funding_source.' \
+               'JitFundingPaymentcardFundingSource>' + self.__str__()

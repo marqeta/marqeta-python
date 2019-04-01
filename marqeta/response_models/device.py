@@ -48,4 +48,4 @@ class Device(object):
         return self.json_response.get('ip_address', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.device.Device>'
+        return '<Marqeta.response_models.device.Device>' + self.__str__()

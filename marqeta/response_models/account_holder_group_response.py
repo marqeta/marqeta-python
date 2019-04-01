@@ -30,4 +30,4 @@ class AccountHolderGroupResponse(object):
             return AccountHolderGroupConfig(self.json_response['config'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.account_holder_group_response.AccountHolderGroupResponse>'
+        return '<Marqeta.response_models.account_holder_group_response.AccountHolderGroupResponse>' + self.__str__()

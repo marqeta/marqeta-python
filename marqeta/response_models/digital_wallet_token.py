@@ -80,4 +80,4 @@ class DigitalWalletToken(object):
             return UserCardHolderResponse(self.json_response['user'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_token.DigitalWalletToken>'
+        return '<Marqeta.response_models.digital_wallet_token.DigitalWalletToken>' + self.__str__()

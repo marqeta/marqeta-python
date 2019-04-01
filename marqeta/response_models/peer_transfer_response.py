@@ -57,4 +57,4 @@ class PeerTransferResponse(object):
             return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-        return '<Marqeta.response_models.peer_transfer_response.PeerTransferResponse>'
+        return '<Marqeta.response_models.peer_transfer_response.PeerTransferResponse>' + self.__str__()

@@ -20,4 +20,4 @@ class ImagesSignature(object):
         return self.json_response.get('name', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.images_signature.ImagesSignature>'
+        return '<Marqeta.response_models.images_signature.ImagesSignature>' + self.__str__()

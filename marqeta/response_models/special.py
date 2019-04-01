@@ -20,4 +20,4 @@ class Special(object):
         return self.json_response.get('merchant_on_boarding', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.special.Special>'
+        return '<Marqeta.response_models.special.Special>' + self.__str__()

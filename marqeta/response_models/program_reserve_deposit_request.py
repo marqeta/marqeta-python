@@ -40,4 +40,4 @@ class ProgramReserveDepositRequest(object):
         return self.json_response.get('tags', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.program_reserve_deposit_request.ProgramReserveDepositRequest>'
+        return '<Marqeta.response_models.program_reserve_deposit_request.ProgramReserveDepositRequest>' + self.__str__()

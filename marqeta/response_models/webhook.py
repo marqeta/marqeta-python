@@ -32,4 +32,4 @@ class Webhook(object):
         return self.json_response.get('secret', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.webhook.Webhook>'
+        return '<Marqeta.response_models.webhook.Webhook>' + self.__str__()

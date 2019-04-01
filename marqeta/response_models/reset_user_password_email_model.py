@@ -20,4 +20,4 @@ class ResetUserPasswordEmailModel(object):
         return self.json_response.get('email', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.reset_user_password_email_model.ResetUserPasswordEmailModel>'
+        return '<Marqeta.response_models.reset_user_password_email_model.ResetUserPasswordEmailModel>' + self.__str__()

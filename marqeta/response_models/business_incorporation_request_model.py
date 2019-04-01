@@ -42,4 +42,5 @@ class BusinessIncorporationRequestModel(object):
         return self.json_response.get('incorporation_type', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.business_incorporation_request_model.BusinessIncorporationRequestModel>'
+        return '<Marqeta.response_models.business_incorporation_request_model.BusinessIncorporationRequestModel>' \
+               + self.__str__()

@@ -32,4 +32,4 @@ class CommandoModeNestedTransition(object):
         return self.json_response.get('username', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.commando_mode_nested_transition.CommandoModeNestedTransition>'
+        return '<Marqeta.response_models.commando_mode_nested_transition.CommandoModeNestedTransition>' + self.__str__()

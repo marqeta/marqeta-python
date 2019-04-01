@@ -32,4 +32,4 @@ class HealthCheckResult(object):
         return self.json_response.get('status', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.health_check_result.HealthCheckResult>'
+        return '<Marqeta.response_models.health_check_result.HealthCheckResult>' + self.__str__()

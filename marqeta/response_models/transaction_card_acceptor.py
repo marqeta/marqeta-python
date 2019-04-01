@@ -62,4 +62,4 @@ class TransactionCardAcceptor(object):
             return TerminalModel(self.json_response['poi'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.transaction_card_acceptor.TransactionCardAcceptor>'
+        return '<Marqeta.response_models.transaction_card_acceptor.TransactionCardAcceptor>' + self.__str__()

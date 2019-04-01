@@ -28,4 +28,4 @@ class AuthUserUpdateRequest(object):
         return self.json_response.get('roles', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.auth_user_update_request.AuthUserUpdateRequest>'
+        return '<Marqeta.response_models.auth_user_update_request.AuthUserUpdateRequest>' + self.__str__()

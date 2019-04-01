@@ -100,4 +100,4 @@ class StoreUpdateModel(object):
         return self.json_response.get('keyed_auth_cvv_enforced', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.store_update_model.StoreUpdateModel>'
+        return '<Marqeta.response_models.store_update_model.StoreUpdateModel>' + self.__str__()

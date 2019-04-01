@@ -91,4 +91,4 @@ class DepositDepositResponse(object):
         return self.json_response.get('individual_name', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.deposit_deposit_response.DepositDepositResponse>'
+        return '<Marqeta.response_models.deposit_deposit_response.DepositDepositResponse>' + self.__str__()

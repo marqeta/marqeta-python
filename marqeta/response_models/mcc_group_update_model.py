@@ -34,4 +34,4 @@ class MccGroupUpdateModel(object):
             return Config(self.json_response['config'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.mcc_group_update_model.MccGroupUpdateModel>'
+        return '<Marqeta.response_models.mcc_group_update_model.MccGroupUpdateModel>' + self.__str__()

@@ -74,4 +74,4 @@ class GpaReturns(object):
         return self.json_response.get('original_order_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.gpa_returns.GpaReturns>'
+        return '<Marqeta.response_models.gpa_returns.GpaReturns>' + self.__str__()

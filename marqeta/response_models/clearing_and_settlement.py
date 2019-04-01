@@ -20,4 +20,4 @@ class ClearingAndSettlement(object):
         return self.json_response.get('overdraft_destination', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.clearing_and_settlement.ClearingAndSettlement>'
+        return '<Marqeta.response_models.clearing_and_settlement.ClearingAndSettlement>' + self.__str__()

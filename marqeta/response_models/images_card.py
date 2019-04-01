@@ -24,4 +24,4 @@ class ImagesCard(object):
         return self.json_response.get('thermal_color', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.images_card.ImagesCard>'
+        return '<Marqeta.response_models.images_card.ImagesCard>' + self.__str__()

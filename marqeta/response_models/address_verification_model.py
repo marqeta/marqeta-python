@@ -34,4 +34,4 @@ class AddressVerificationModel(object):
             return Response(self.json_response['response'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.address_verification_model.AddressVerificationModel>'
+        return '<Marqeta.response_models.address_verification_model.AddressVerificationModel>' + self.__str__()

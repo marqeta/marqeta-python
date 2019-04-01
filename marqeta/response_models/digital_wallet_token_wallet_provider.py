@@ -52,4 +52,5 @@ class DigitalWalletTokenWalletProvider(object):
         return self.json_response.get('cardholder_wallet_account_email', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_token_wallet_provider.DigitalWalletTokenWalletProvider>'
+        return '<Marqeta.response_models.digital_wallet_token_wallet_provider.' \
+               'DigitalWalletTokenWalletProvider>' + self.__str__()

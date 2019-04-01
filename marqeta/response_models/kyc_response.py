@@ -62,4 +62,4 @@ class KycResponse(object):
         return self.json_response.get('reference_id', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.kyc_response.KycResponse>'
+        return '<Marqeta.response_models.kyc_response.KycResponse>' + self.__str__()

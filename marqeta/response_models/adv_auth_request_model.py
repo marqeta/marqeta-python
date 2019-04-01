@@ -234,4 +234,4 @@ class AdvAuthRequestModel(object):
         return self.json_response.get('is_stip_approval', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.adv_auth_request_model.AdvAuthRequestModel>'
+        return '<Marqeta.response_models.adv_auth_request_model.AdvAuthRequestModel>' + self.__str__()

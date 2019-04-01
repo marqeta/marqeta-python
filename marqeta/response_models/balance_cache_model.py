@@ -48,4 +48,4 @@ class BalanceCacheModel(object):
             return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-        return '<Marqeta.response_models.balance_cache_model.BalanceCacheModel>'
+        return '<Marqeta.response_models.balance_cache_model.BalanceCacheModel>' + self.__str__()

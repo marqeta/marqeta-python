@@ -36,4 +36,5 @@ class DigitalWalletAndroidPayProvisionRequest(object):
         return self.json_response.get('device_id', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_android_pay_provision_request.DigitalWalletAndroidPayProvisionRequest>'
+        return '<Marqeta.response_models.digital_wallet_android_pay_provision_request.' \
+               'DigitalWalletAndroidPayProvisionRequest>' + self.__str__()

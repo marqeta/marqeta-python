@@ -28,4 +28,4 @@ class AvsInformation(object):
         return self.json_response.get('postal_code', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.avs_information.AvsInformation>'
+        return '<Marqeta.response_models.avs_information.AvsInformation>' + self.__str__()

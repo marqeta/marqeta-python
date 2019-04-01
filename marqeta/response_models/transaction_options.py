@@ -40,4 +40,4 @@ class TransactionOptions(object):
         return self.json_response.get('card_expiration_date_yymm', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.transaction_options.TransactionOptions>'
+        return '<Marqeta.response_models.transaction_options.TransactionOptions>' + self.__str__()

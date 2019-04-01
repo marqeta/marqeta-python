@@ -27,4 +27,4 @@ class InAppProvisioning(object):
             return DigitalWalletTokenAddressVerification(self.json_response['address_verification'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.in_app_provisioning.InAppProvisioning>'
+        return '<Marqeta.response_models.in_app_provisioning.InAppProvisioning>' + self.__str__()

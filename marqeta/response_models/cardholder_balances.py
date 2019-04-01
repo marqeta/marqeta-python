@@ -28,4 +28,4 @@ class CardholderBalances(object):
             return [Link(val) for val in self.json_response['links']]
 
     def __repr__(self):
-        return '<Marqeta.response_models.cardholder_balances.CardholderBalances>'
+        return '<Marqeta.response_models.cardholder_balances.CardholderBalances>' + self.__str__()

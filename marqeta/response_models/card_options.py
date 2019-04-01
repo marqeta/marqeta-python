@@ -34,4 +34,4 @@ class CardOptions(object):
             return BillingAddress(self.json_response['billing_address'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_options.CardOptions>'
+        return '<Marqeta.response_models.card_options.CardOptions>' + self.__str__()

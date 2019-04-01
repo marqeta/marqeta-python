@@ -54,4 +54,4 @@ class ClearingModel(object):
             return CardAcceptorModel(self.json_response['card_acceptor'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.clearing_model.ClearingModel>'
+        return '<Marqeta.response_models.clearing_model.ClearingModel>' + self.__str__()

@@ -44,4 +44,4 @@ class MsaBalances(object):
         return self.json_response.get('balances', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.msa_balances.MsaBalances>'
+        return '<Marqeta.response_models.msa_balances.MsaBalances>' + self.__str__()

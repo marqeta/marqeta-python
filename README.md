@@ -79,7 +79,7 @@ for user in client.users.stream():
     pass
 ```
 
-Both `list()` and `stream()` accept a `limit` parameter. If specified, the library will return up to maximum of `limit` objects. The default value of `limit` is `None`.
+`list()` accept a `limit` parameter. If specified, the library will return up to maximum of `limit` objects. The default value of `limit` is `None`.
 
 ```
 client.users.list(limit=20)

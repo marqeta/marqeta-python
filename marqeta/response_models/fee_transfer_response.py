@@ -44,4 +44,4 @@ class FeeTransferResponse(object):
             return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-        return '<Marqeta.response_models.fee_transfer_response.FeeTransferResponse>'
+        return '<Marqeta.response_models.fee_transfer_response.FeeTransferResponse>' + self.__str__()

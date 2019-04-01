@@ -32,4 +32,4 @@ class ReplacementAmount(object):
         return self.json_response.get('settlement_fee', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.replacement_amount.ReplacementAmount>'
+        return '<Marqeta.response_models.replacement_amount.ReplacementAmount>' + self.__str__()

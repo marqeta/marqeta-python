@@ -34,4 +34,5 @@ class DigitalWalletTokenActivateRequest(object):
             return DigitalWalletTokenWalletProvider(self.json_response['digital_wallet_token_wallet_provider'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_token_activate_request.DigitalWalletTokenActivateRequest>'
+        return '<Marqeta.response_models.digital_wallet_token_activate_request.' \
+               'DigitalWalletTokenActivateRequest>' + self.__str__()

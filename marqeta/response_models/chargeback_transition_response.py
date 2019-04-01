@@ -62,4 +62,4 @@ class ChargebackTransitionResponse(object):
         return self.json_response.get('amount', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.chargeback_transition_response.ChargebackTransitionResponse>'
+        return '<Marqeta.response_models.chargeback_transition_response.ChargebackTransitionResponse>' + self.__str__()

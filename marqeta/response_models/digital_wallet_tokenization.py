@@ -22,4 +22,5 @@ class DigitalWalletTokenization(object):
             return ProvisioningControls(self.json_response['provisioning_controls'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_tokenization.DigitalWalletTokenization>'
+        return '<Marqeta.response_models.digital_wallet_tokenization.' \
+               'DigitalWalletTokenization>'  + self.__str__()

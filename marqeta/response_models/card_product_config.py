@@ -71,4 +71,4 @@ class CardProductConfig(object):
             return CardProductFulfillment(self.json_response['fulfillment'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_product_config.CardProductConfig>'
+        return '<Marqeta.response_models.card_product_config.CardProductConfig>' + self.__str__()

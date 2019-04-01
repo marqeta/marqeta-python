@@ -28,4 +28,4 @@ class EchoPingResponse(object):
         return self.json_response.get('payload', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.echo_ping_response.EchoPingResponse>'
+        return '<Marqeta.response_models.echo_ping_response.EchoPingResponse>' + self.__str__()

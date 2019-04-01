@@ -28,4 +28,4 @@ class OneTimeRequestModel(object):
         return self.json_response.get('user_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.one_time_request_model.OneTimeRequestModel>'
+        return '<Marqeta.response_models.one_time_request_model.OneTimeRequestModel>' + self.__str__()

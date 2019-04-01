@@ -37,4 +37,5 @@ class DigitalWalletAndroidPayProvisionResponse(object):
             return PushTokenizeRequestData(self.json_response['push_tokenize_request_data'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_android_pay_provision_response.DigitalWalletAndroidPayProvisionResponse>'
+        return '<Marqeta.response_models.digital_wallet_android_pay_provision_response.' \
+               'DigitalWalletAndroidPayProvisionResponse>' + self.__str__()

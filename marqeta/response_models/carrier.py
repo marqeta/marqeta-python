@@ -32,4 +32,4 @@ class Carrier(object):
         return self.json_response.get('message_file', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.carrier.Carrier>'
+        return '<Marqeta.response_models.carrier.Carrier>' + self.__str__()

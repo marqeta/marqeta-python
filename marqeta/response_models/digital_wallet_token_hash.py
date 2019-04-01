@@ -20,4 +20,4 @@ class DigitalWalletTokenHash(object):
         return self.json_response.get('token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_token_hash.DigitalWalletTokenHash>'
+        return '<Marqeta.response_models.digital_wallet_token_hash.DigitalWalletTokenHash>' + self.__str__()

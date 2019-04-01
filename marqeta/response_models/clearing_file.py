@@ -24,4 +24,4 @@ class ClearingFile(object):
         return self.json_response.get('file', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.clearing_file.ClearingFile>'
+        return '<Marqeta.response_models.clearing_file.ClearingFile>' + self.__str__()

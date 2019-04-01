@@ -28,4 +28,4 @@ class LoginResponseModel(object):
             return UserCardHolderResponse(self.json_response['user'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.login_response_model.LoginResponseModel>'
+        return '<Marqeta.response_models.login_response_model.LoginResponseModel>' + self.__str__()

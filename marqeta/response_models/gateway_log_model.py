@@ -42,4 +42,4 @@ class GatewayLogModel(object):
             return GatewayResponse(self.json_response['response'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.gateway_log_model.GatewayLogModel>'
+        return '<Marqeta.response_models.gateway_log_model.GatewayLogModel>' + self.__str__()

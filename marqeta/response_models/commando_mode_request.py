@@ -36,4 +36,4 @@ class CommandoModeRequest(object):
         return self.json_response.get('token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.commando_mode_request.CommandoModeRequest>'
+        return '<Marqeta.response_models.commando_mode_request.CommandoModeRequest>' + self.__str__()

@@ -30,4 +30,4 @@ class CommandoModeTransitionRequest(object):
             return CommandoModeNestedTransition(self.json_response['transition'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.commando_mode_transition_request.CommandoModeTransitionRequest>'
+        return '<Marqeta.response_models.commando_mode_transition_request.CommandoModeTransitionRequest>' + self.__str__()

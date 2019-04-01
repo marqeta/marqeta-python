@@ -46,4 +46,4 @@ class FileProcessingResponse(object):
         return self.json_response.get('file_process_status', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.file_processing_response.FileProcessingResponse>'
+        return '<Marqeta.response_models.file_processing_response.FileProcessingResponse>' + self.__str__()

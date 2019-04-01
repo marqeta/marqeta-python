@@ -48,4 +48,4 @@ class WithdrawalRequestModel(object):
             return Webhook(self.json_response['webhook'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.withdrawal_request_model.WithdrawalRequestModel>'
+        return '<Marqeta.response_models.withdrawal_request_model.WithdrawalRequestModel>' + self.__str__()

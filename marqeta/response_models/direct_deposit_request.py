@@ -65,4 +65,4 @@ class DirectDepositRequest(object):
         return self.json_response.get('individual_name', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.direct_deposit_request.DirectDepositRequest>'
+        return '<Marqeta.response_models.direct_deposit_request.DirectDepositRequest>' + self.__str__()

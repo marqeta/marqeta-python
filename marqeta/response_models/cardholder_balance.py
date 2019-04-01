@@ -44,4 +44,4 @@ class CardholderBalance(object):
         return self.json_response.get('balances', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.cardholder_balance.CardholderBalance>'
+        return '<Marqeta.response_models.cardholder_balance.CardholderBalance>' + self.__str__()

@@ -44,4 +44,4 @@ class LoadVelocityModel(object):
         return self.json_response.get('active', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.load_velocity_model.LoadVelocityModel>'
+        return '<Marqeta.response_models.load_velocity_model.LoadVelocityModel>' + self.__str__()

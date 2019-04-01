@@ -28,4 +28,4 @@ class AvsControls(object):
             return AvsControlOptions(self.json_response['auth_messages'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.avs_controls.AvsControls>'
+        return '<Marqeta.response_models.avs_controls.AvsControls>' + self.__str__()

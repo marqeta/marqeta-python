@@ -24,4 +24,4 @@ class GatewayClearingRequest(object):
         return self.json_response.get('amount', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.gateway_clearing_request.GatewayClearingRequest>'
+        return '<Marqeta.response_models.gateway_clearing_request.GatewayClearingRequest>' + self.__str__()

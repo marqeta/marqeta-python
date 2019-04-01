@@ -30,4 +30,4 @@ class Result(object):
         return self.json_response.get('failed_questions_count', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.result.Result>'
+        return '<Marqeta.response_models.result.Result>' + self.__str__()

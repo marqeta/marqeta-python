@@ -32,4 +32,4 @@ class BillingAddress(object):
         return self.json_response.get('zip', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.billing_address.BillingAddress>'
+        return '<Marqeta.response_models.billing_address.BillingAddress>' + self.__str__()

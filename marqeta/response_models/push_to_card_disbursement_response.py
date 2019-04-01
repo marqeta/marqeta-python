@@ -50,4 +50,5 @@ class PushToCardDisbursementResponse(object):
         return self.json_response.get('memo', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.push_to_card_disbursement_response.PushToCardDisbursementResponse>'
+        return '<Marqeta.response_models.push_to_card_disbursement_response.PushToCardDisbursementResponse>' \
+               + self.__str__()

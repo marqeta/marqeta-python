@@ -20,4 +20,4 @@ class AchReversalRequest(object):
         return self.json_response.get('reason_code', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.ach_reversal_request.AchReversalRequest>'
+        return '<Marqeta.response_models.ach_reversal_request.AchReversalRequest>' + self.__str__()

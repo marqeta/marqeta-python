@@ -173,4 +173,4 @@ class AdvancedClearingRequestModel(object):
         return self.json_response.get('cross_border_indicator', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.advanced_clearing_request_model.AdvancedClearingRequestModel>'
+        return '<Marqeta.response_models.advanced_clearing_request_model.AdvancedClearingRequestModel>' + self.__str__()

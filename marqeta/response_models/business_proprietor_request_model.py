@@ -65,4 +65,5 @@ class BusinessProprietorRequestModel(object):
             return [IdentificationRequestModel(val) for val in self.json_response['identifications']]
 
     def __repr__(self):
-        return '<Marqeta.response_models.business_proprietor_request_model.BusinessProprietorRequestModel>'
+        return '<Marqeta.response_models.business_proprietor_request_model.BusinessProprietorRequestModel>' \
+               + self.__str__()

@@ -44,4 +44,4 @@ class DigitalWalletTokenDevice(object):
         return self.json_response.get('device_ip_address', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_token_device.DigitalWalletTokenDevice>'
+        return '<Marqeta.response_models.digital_wallet_token_device.DigitalWalletTokenDevice>' + self.__str__()

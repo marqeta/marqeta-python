@@ -58,4 +58,5 @@ class AuthControlExemptMidsResponse(object):
             return datetime.strptime(self.json_response['last_updated'], '%Y-%m-%d').date()
 
     def __repr__(self):
-        return '<Marqeta.response_models.auth_control_exempt_mids_response.AuthControlExemptMidsResponse>'
+        return '<Marqeta.response_models.auth_control_exempt_mids_response.AuthControlExemptMidsResponse>'\
+               + self.__str__()

@@ -24,4 +24,4 @@ class Response(object):
         return self.json_response.get('memo', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.response.Response>'
+        return '<Marqeta.response_models.response.Response>' + self.__str__()

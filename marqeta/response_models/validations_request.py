@@ -22,4 +22,4 @@ class ValidationsRequest(object):
             return UserValidationRequest(self.json_response['user'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.validations_request.ValidationsRequest>'
+        return '<Marqeta.response_models.validations_request.ValidationsRequest>' + self.__str__()

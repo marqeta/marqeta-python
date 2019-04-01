@@ -30,4 +30,4 @@ class MsaOrderUpdateRequest(object):
             return datetime.strptime(self.json_response['end_date'], '%Y-%m-%d').date()
 
     def __repr__(self):
-        return '<Marqeta.response_models.msa_order_update_request.MsaOrderUpdateRequest>'
+        return '<Marqeta.response_models.msa_order_update_request.MsaOrderUpdateRequest>' + self.__str__()

@@ -34,4 +34,4 @@ class CardLifeCycle(object):
         return self.json_response.get('update_expiration_upon_activation', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_life_cycle.CardLifeCycle>'
+        return '<Marqeta.response_models.card_life_cycle.CardLifeCycle>' + self.__str__()

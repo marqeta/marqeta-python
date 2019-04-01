@@ -53,4 +53,4 @@ class TransactionMetadata(object):
             return Airline(self.json_response['airline'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.transaction_metadata.TransactionMetadata>'
+        return '<Marqeta.response_models.transaction_metadata.TransactionMetadata>' + self.__str__()

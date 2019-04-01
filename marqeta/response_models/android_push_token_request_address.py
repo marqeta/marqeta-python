@@ -52,4 +52,5 @@ class AndroidPushTokenRequestAddress(object):
         return self.json_response.get('phone', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.android_push_token_request_address.AndroidPushTokenRequestAddress>'
+        return '<Marqeta.response_models.android_push_token_request_address.AndroidPushTokenRequestAddress>' \
+               + self.__str__()

@@ -48,4 +48,4 @@ class Issuer(object):
         return self.json_response.get('message', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.issuer.Issuer>'
+        return '<Marqeta.response_models.issuer.Issuer>' + self.__str__()

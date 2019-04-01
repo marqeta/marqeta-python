@@ -28,4 +28,4 @@ class CardholderAuthenticationData(object):
         return self.json_response.get('verification_value_created_by', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.cardholder_authentication_data.CardholderAuthenticationData>'
+        return '<Marqeta.response_models.cardholder_authentication_data.CardholderAuthenticationData>' + self.__str__()

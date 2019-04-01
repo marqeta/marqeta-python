@@ -50,4 +50,4 @@ class AuthControlResponse(object):
         return self.json_response.get('active', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.auth_control_response.AuthControlResponse>'
+        return '<Marqeta.response_models.auth_control_response.AuthControlResponse>' + self.__str__()

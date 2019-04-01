@@ -311,4 +311,4 @@ class TransactionModel(object):
             return CardholderAuthenticationData(self.json_response['cardholder_authentication_data'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.transaction_model.TransactionModel>'
+        return '<Marqeta.response_models.transaction_model.TransactionModel>' + self.__str__()

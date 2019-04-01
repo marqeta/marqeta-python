@@ -48,4 +48,4 @@ class FundingRequestModel(object):
         return self.json_response.get('currency_code', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.funding_request_model.FundingRequestModel>'
+        return '<Marqeta.response_models.funding_request_model.FundingRequestModel>' + self.__str__()

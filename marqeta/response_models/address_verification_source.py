@@ -28,4 +28,4 @@ class AddressVerificationSource(object):
             return Response(self.json_response['response'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.address_verification_source.AddressVerificationSource>'
+        return '<Marqeta.response_models.address_verification_source.AddressVerificationSource>' + self.__str__()

@@ -28,4 +28,4 @@ class Network(object):
         return self.json_response.get('original_currency_code', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.network.Network>'
+        return '<Marqeta.response_models.network.Network>' + self.__str__()

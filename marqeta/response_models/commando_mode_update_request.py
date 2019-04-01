@@ -32,4 +32,4 @@ class CommandoModeUpdateRequest(object):
             return CommandoModeEnables(self.json_response['commando_mode_enables'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.commando_mode_update_request.CommandoModeUpdateRequest>'
+        return '<Marqeta.response_models.commando_mode_update_request.CommandoModeUpdateRequest>' + self.__str__()

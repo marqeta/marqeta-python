@@ -28,4 +28,4 @@ class ProgramFundingSourceRequest(object):
         return self.json_response.get('token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.program_funding_source_request.ProgramFundingSourceRequest>'
+        return '<Marqeta.response_models.program_funding_source_request.ProgramFundingSourceRequest>' + self.__str__()

@@ -32,4 +32,4 @@ class RealTimeStandinCriteria(object):
         return self.json_response.get('include_application_errors', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.real_time_standin_criteria.RealTimeStandinCriteria>'
+        return '<Marqeta.response_models.real_time_standin_criteria.RealTimeStandinCriteria>' + self.__str__()

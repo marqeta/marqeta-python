@@ -24,4 +24,4 @@ class ExpirationOffsét(object):
         return self.json_response.get('value', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.expiration_offsét.ExpirationOffsét>'
+        return '<Marqeta.response_models.expiration_offsét.ExpirationOffsét>' + self.__str__()

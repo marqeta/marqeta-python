@@ -48,4 +48,4 @@ class PrimaryContactInfoModel(object):
         return self.json_response.get('email', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.primary_contact_info_model.PrimaryContactInfoModel>'
+        return '<Marqeta.response_models.primary_contact_info_model.PrimaryContactInfoModel>' + self.__str__()

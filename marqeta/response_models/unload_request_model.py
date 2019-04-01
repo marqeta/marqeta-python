@@ -40,4 +40,4 @@ class UnloadRequestModel(object):
         return self.json_response.get('funding_source_address_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.unload_request_model.UnloadRequestModel>'
+        return '<Marqeta.response_models.unload_request_model.UnloadRequestModel>' + self.__str__()

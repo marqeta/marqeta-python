@@ -28,4 +28,4 @@ class PanRequest(object):
         return self.json_response.get('expiration', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.pan_request.PanRequest>'
+        return '<Marqeta.response_models.pan_request.PanRequest>' + self.__str__()

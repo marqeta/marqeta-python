@@ -32,4 +32,4 @@ class FileProcessingRequest(object):
         return self.json_response.get('archive_file', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.file_processing_request.FileProcessingRequest>'
+        return '<Marqeta.response_models.file_processing_request.FileProcessingRequest>' + self.__str__()

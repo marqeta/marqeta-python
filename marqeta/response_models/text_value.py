@@ -20,4 +20,4 @@ class TextValue(object):
         return self.json_response.get('value', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.text_value.TextValue>'
+        return '<Marqeta.response_models.text_value.TextValue>' + self.__str__()

@@ -44,4 +44,4 @@ class Application(object):
         return self.json_response.get('access_code', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.application.Application>'
+        return '<Marqeta.response_models.application.Application>' + self.__str__()

@@ -50,4 +50,4 @@ class BusinessTransitionResponse(object):
         return self.json_response.get('business_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.business_transition_response.BusinessTransitionResponse>'
+        return '<Marqeta.response_models.business_transition_response.BusinessTransitionResponse>' + self.__str__()

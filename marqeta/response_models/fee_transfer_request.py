@@ -38,4 +38,4 @@ class FeeTransferRequest(object):
         return self.json_response.get('business_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.fee_transfer_request.FeeTransferRequest>'
+        return '<Marqeta.response_models.fee_transfer_request.FeeTransferRequest>' + self.__str__()

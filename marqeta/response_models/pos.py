@@ -76,4 +76,4 @@ class Pos(object):
         return self.json_response.get('is_recurring', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.pos.Pos>'
+        return '<Marqeta.response_models.pos.Pos>' + self.__str__()

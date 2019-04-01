@@ -48,4 +48,5 @@ class AdvancedAuthCardAcceptorModel(object):
         return self.json_response.get('tid', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.advanced_auth_card_acceptor_model.AdvancedAuthCardAcceptorModel>'
+        return '<Marqeta.response_models.advanced_auth_card_acceptor_model.AdvancedAuthCardAcceptorModel>' \
+               + self.__str__()

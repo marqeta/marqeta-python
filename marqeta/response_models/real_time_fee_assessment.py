@@ -28,4 +28,4 @@ class RealTimeFeeAssessment(object):
         return self.json_response.get('domestic_enabled', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.real_time_fee_assessment.RealTimeFeeAssessment>'
+        return '<Marqeta.response_models.real_time_fee_assessment.RealTimeFeeAssessment>' + self.__str__()

@@ -34,4 +34,4 @@ class FundingResponseModel(object):
             return Gatewaylog(self.json_response['transaction'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.funding_response_model.FundingResponseModel>'
+        return '<Marqeta.response_models.funding_response_model.FundingResponseModel>' + self.__str__()

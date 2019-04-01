@@ -28,4 +28,4 @@ class AchVerificationModel(object):
         return self.json_response.get('active', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.ach_verification_model.AchVerificationModel>'
+        return '<Marqeta.response_models.ach_verification_model.AchVerificationModel>' + self.__str__()

@@ -26,4 +26,5 @@ class DigitalWalletTokenCheckEligibilityRequest(object):
             return DigitalWalletTokenCardInfo(self.json_response['digital_wallet_token_card_data'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_token_check_eligibility_request.DigitalWalletTokenCheckEligibilityRequest>'
+        return '<Marqeta.response_models.digital_wallet_token_check_eligibility_request.' \
+               'DigitalWalletTokenCheckEligibilityRequest>' + self.__str__()

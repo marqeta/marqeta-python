@@ -24,4 +24,4 @@ class PasswordUpdateModel(object):
         return self.json_response.get('current_password', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.password_update_model.PasswordUpdateModel>'
+        return '<Marqeta.response_models.password_update_model.PasswordUpdateModel>' + self.__str__()

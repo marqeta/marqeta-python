@@ -52,4 +52,4 @@ class CardAcceptorModel(object):
         return self.json_response.get('ecommerce_security_level_indicator', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_acceptor_model.CardAcceptorModel>'
+        return '<Marqeta.response_models.card_acceptor_model.CardAcceptorModel>' + self.__str__()

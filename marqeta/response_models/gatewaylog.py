@@ -142,4 +142,4 @@ class Gatewaylog(object):
             return datetime.strptime(self.json_response['modified'], '%Y-%m-%d').date()
 
     def __repr__(self):
-        return '<Marqeta.response_models.gatewaylog.Gatewaylog>'
+        return '<Marqeta.response_models.gatewaylog.Gatewaylog>' + self.__str__()

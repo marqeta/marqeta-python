@@ -149,4 +149,4 @@ class UserCardHolderUpdateModel(object):
         return self.json_response.get('postal_code', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.user_card_holder_update_model.UserCardHolderUpdateModel>'
+        return '<Marqeta.response_models.user_card_holder_update_model.UserCardHolderUpdateModel>' + self.__str__()

@@ -28,4 +28,4 @@ class AcceptedCountriesUpdateModel(object):
         return self.json_response.get('country_codes', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.accepted_countries_update_model.AcceptedCountriesUpdateModel>'
+        return '<Marqeta.response_models.accepted_countries_update_model.AcceptedCountriesUpdateModel>' + self.__str__()

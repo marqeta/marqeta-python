@@ -20,4 +20,5 @@ class AuthControlExemptMidsUpdateRequest(object):
         return self.json_response.get('active', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.auth_control_exempt_mids_update_request.AuthControlExemptMidsUpdateRequest>'
+        return '<Marqeta.response_models.auth_control_exempt_mids_update_request.AuthControlExemptMidsUpdateRequest>' \
+               + self.__str__()

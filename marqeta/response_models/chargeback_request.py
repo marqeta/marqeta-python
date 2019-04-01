@@ -48,4 +48,4 @@ class ChargebackRequest(object):
         return self.json_response.get('channel', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.chargeback_request.ChargebackRequest>'
+        return '<Marqeta.response_models.chargeback_request.ChargebackRequest>' + self.__str__()

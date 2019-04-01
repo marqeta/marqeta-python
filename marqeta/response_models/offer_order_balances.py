@@ -44,4 +44,4 @@ class OfferOrderBalances(object):
         return self.json_response.get('balances', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.offer_order_balances.OfferOrderBalances>'
+        return '<Marqeta.response_models.offer_order_balances.OfferOrderBalances>' + self.__str__()

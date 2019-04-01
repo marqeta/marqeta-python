@@ -32,4 +32,4 @@ class OfferUpdateModel(object):
         return self.json_response.get('end_date', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.offer_update_model.OfferUpdateModel>'
+        return '<Marqeta.response_models.offer_update_model.OfferUpdateModel>' + self.__str__()

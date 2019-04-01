@@ -26,4 +26,4 @@ class WalletProviderCardOnFile(object):
             return DigitalWalletTokenAddressVerification(self.json_response['address_verification'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.wallet_provider_card_on_file.WalletProviderCardOnFile>'
+        return '<Marqeta.response_models.wallet_provider_card_on_file.WalletProviderCardOnFile>' + self.__str__()

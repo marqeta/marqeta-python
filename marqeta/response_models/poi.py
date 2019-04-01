@@ -30,4 +30,4 @@ class Poi(object):
         return self.json_response.get('atm', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.poi.Poi>'
+        return '<Marqeta.response_models.poi.Poi>' + self.__str__()

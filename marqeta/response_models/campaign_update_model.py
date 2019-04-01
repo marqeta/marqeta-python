@@ -36,4 +36,4 @@ class CampaignUpdateModel(object):
         return self.json_response.get('store_tokens', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.campaign_update_model.CampaignUpdateModel>'
+        return '<Marqeta.response_models.campaign_update_model.CampaignUpdateModel>' + self.__str__()

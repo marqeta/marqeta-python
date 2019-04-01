@@ -44,4 +44,4 @@ class WalletProviderProfile(object):
         return self.json_response.get('recommendation_reasons', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.wallet_provider_profile.WalletProviderProfile>'
+        return '<Marqeta.response_models.wallet_provider_profile.WalletProviderProfile>' + self.__str__()

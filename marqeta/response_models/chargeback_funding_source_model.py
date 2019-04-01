@@ -25,4 +25,4 @@ class ChargebackFundingSourceModel(FundingSourceModel):
         return self.json_response.get('credit', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.chargeback_funding_source_model.ChargebackFundingSourceModel>'
+        return '<Marqeta.response_models.chargeback_funding_source_model.ChargebackFundingSourceModel>' + self.__str__()

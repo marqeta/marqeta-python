@@ -58,4 +58,4 @@ class FinancialRequestModel(object):
             return Webhook(self.json_response['webhook'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.financial_request_model.FinancialRequestModel>'
+        return '<Marqeta.response_models.financial_request_model.FinancialRequestModel>' + self.__str__()

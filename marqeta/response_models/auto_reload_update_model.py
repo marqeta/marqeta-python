@@ -48,4 +48,4 @@ class AutoReloadUpdateModel(object):
         return self.json_response.get('currency_code', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.auto_reload_update_model.AutoReloadUpdateModel>'
+        return '<Marqeta.response_models.auto_reload_update_model.AutoReloadUpdateModel>' + self.__str__()

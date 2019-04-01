@@ -68,4 +68,4 @@ class OfferModel(object):
         return self.json_response.get('currency_code', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.offer_model.OfferModel>'
+        return '<Marqeta.response_models.offer_model.OfferModel>' + self.__str__()

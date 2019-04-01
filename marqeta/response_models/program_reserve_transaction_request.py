@@ -44,4 +44,5 @@ class ProgramReserveTransactionRequest(object):
         return self.json_response.get('type', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.program_reserve_transaction_request.ProgramReserveTransactionRequest>'
+        return '<Marqeta.response_models.program_reserve_transaction_request.ProgramReserveTransactionRequest>'\
+               + self.__str__()

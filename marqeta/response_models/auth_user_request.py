@@ -36,4 +36,4 @@ class AuthUserRequest(object):
         return self.json_response.get('token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.auth_user_request.AuthUserRequest>'
+        return '<Marqeta.response_models.auth_user_request.AuthUserRequest>' + self.__str__()

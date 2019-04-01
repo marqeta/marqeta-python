@@ -28,4 +28,4 @@ class AutoReloadAssociation(object):
         return self.json_response.get('business_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.auto_reload_association.AutoReloadAssociation>'
+        return '<Marqeta.response_models.auto_reload_association.AutoReloadAssociation>' + self.__str__()

@@ -36,4 +36,4 @@ class CalculationSchedule(object):
         return self.json_response.get('step_values', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.calculation_schedule.CalculationSchedule>'
+        return '<Marqeta.response_models.calculation_schedule.CalculationSchedule>' + self.__str__()

@@ -90,4 +90,4 @@ class BulkIssuanceResponse(object):
         return self.json_response.get('provider_tracking_number', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.bulk_issuance_response.BulkIssuanceResponse>'
+        return '<Marqeta.response_models.bulk_issuance_response.BulkIssuanceResponse>' + self.__str__()

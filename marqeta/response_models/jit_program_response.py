@@ -22,4 +22,4 @@ class JitProgramResponse(object):
             return JitFundingApi(self.json_response['jit_funding'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.jit_program_response.JitProgramResponse>'
+        return '<Marqeta.response_models.jit_program_response.JitProgramResponse>' + self.__str__()

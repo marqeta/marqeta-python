@@ -24,4 +24,4 @@ class MoneyModel(object):
         return self.json_response.get('currency', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.money_model.MoneyModel>'
+        return '<Marqeta.response_models.money_model.MoneyModel>' + self.__str__()

@@ -50,4 +50,4 @@ class UserTransitionResponse(object):
         return self.json_response.get('user_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.user_transition_response.UserTransitionResponse>'
+        return '<Marqeta.response_models.user_transition_response.UserTransitionResponse>' + self.__str__()

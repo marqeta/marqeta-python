@@ -48,4 +48,4 @@ class WebhookResponseModel(object):
             return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-        return '<Marqeta.response_models.webhook_response_model.WebhookResponseModel>'
+        return '<Marqeta.response_models.webhook_response_model.WebhookResponseModel>' + self.__str__()

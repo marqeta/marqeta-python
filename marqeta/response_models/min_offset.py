@@ -24,4 +24,4 @@ class MinOffset(object):
         return self.json_response.get('value', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.min_offset.MinOffset>'
+        return '<Marqeta.response_models.min_offset.MinOffset>' + self.__str__()

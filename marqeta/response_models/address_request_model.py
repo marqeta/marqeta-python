@@ -44,4 +44,4 @@ class AddressRequestModel(object):
         return self.json_response.get('postal_code', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.address_request_model.AddressRequestModel>'
+        return '<Marqeta.response_models.address_request_model.AddressRequestModel>' + self.__str__()

@@ -50,4 +50,4 @@ class BalanceInquiryRequestModel(object):
             return CardAcceptorModel(self.json_response['card_acceptor'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.balance_inquiry_request_model.BalanceInquiryRequestModel>'
+        return '<Marqeta.response_models.balance_inquiry_request_model.BalanceInquiryRequestModel>' + self.__str__()

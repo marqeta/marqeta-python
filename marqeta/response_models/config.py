@@ -22,4 +22,4 @@ class Config(object):
             return AuthorizationControls(self.json_response['authorization_controls'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.config.Config>'
+        return '<Marqeta.response_models.config.Config>' + self.__str__()

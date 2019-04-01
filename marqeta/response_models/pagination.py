@@ -36,4 +36,4 @@ class Pagination(object):
         return self.json_response.get('data', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.pagination.Pagination>'
+        return '<Marqeta.response_models.pagination.Pagination>' + self.__str__()

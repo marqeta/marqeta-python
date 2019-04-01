@@ -28,4 +28,4 @@ class MonitorResponse(object):
         return self.json_response.get('errors', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.monitor_response.MonitorResponse>'
+        return '<Marqeta.response_models.monitor_response.MonitorResponse>' + self.__str__()

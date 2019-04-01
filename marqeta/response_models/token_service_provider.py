@@ -60,4 +60,4 @@ class TokenServiceProvider(object):
         return self.json_response.get('token_eligibility_decision', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.token_service_provider.TokenServiceProvider>'
+        return '<Marqeta.response_models.token_service_provider.TokenServiceProvider>' + self.__str__()

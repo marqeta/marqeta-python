@@ -43,4 +43,4 @@ class CommandoModeTransitionResponse(object):
         return self.json_response.get('name', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.commando_mode_transition_response.CommandoModeTransitionResponse>'
+        return '<Marqeta.response_models.commando_mode_transition_response.CommandoModeTransitionResponse>' + self.__str__()

@@ -38,4 +38,4 @@ class WebhookRequestModel(object):
         return self.json_response.get('events', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.webhook_request_model.WebhookRequestModel>'
+        return '<Marqeta.response_models.webhook_request_model.WebhookRequestModel>' + self.__str__()

@@ -53,4 +53,4 @@ class Fraud(object):
             return Issuer(self.json_response['issuerFraudModel'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.fraud.Fraud>'
+        return '<Marqeta.response_models.fraud.Fraud>' + self.__str__()

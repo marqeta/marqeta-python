@@ -24,4 +24,4 @@ class PinRequest(object):
         return self.json_response.get('pin', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.pin_request.PinRequest>'
+        return '<Marqeta.response_models.pin_request.PinRequest>' + self.__str__()

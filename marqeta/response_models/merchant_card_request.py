@@ -34,4 +34,4 @@ class MerchantCardRequest(object):
             return ExpirationOffsét(self.json_response['expiration_offset'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.merchant_card_request.MerchantCardRequest>'
+        return '<Marqeta.response_models.merchant_card_request.MerchantCardRequest>' + self.__str__()

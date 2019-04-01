@@ -24,4 +24,4 @@ class Track1Data(object):
         return self.json_response.get('atc', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.track1_data.Track1Data>'
+        return '<Marqeta.response_models.track1_data.Track1Data>' + self.__str__()

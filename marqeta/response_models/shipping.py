@@ -36,4 +36,4 @@ class Shipping(object):
         return self.json_response.get('care_of_line', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.shipping.Shipping>'
+        return '<Marqeta.response_models.shipping.Shipping>' + self.__str__()

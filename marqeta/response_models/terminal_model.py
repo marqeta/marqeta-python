@@ -44,4 +44,4 @@ class TerminalModel(object):
         return self.json_response.get('pin_present', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.terminal_model.TerminalModel>'
+        return '<Marqeta.response_models.terminal_model.TerminalModel>' + self.__str__()

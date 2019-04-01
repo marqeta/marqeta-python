@@ -24,4 +24,4 @@ class Transit(object):
         return self.json_response.get('transportation_mode', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.transit.Transit>'
+        return '<Marqeta.response_models.transit.Transit>' + self.__str__()

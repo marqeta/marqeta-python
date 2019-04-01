@@ -67,4 +67,4 @@ class OfferOrderResponse(object):
             return datetime.strptime(self.json_response['last_transaction_date'], '%Y-%m-%d').date()
 
     def __repr__(self):
-        return '<Marqeta.response_models.offer_order_response.OfferOrderResponse>'
+        return '<Marqeta.response_models.offer_order_response.OfferOrderResponse>' + self.__str__()

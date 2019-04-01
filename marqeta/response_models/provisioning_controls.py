@@ -34,4 +34,4 @@ class ProvisioningControls(object):
             return InAppProvisioning(self.json_response['in_app_provisioning'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.provisioning_controls.ProvisioningControls>'
+        return '<Marqeta.response_models.provisioning_controls.ProvisioningControls>' + self.__str__()

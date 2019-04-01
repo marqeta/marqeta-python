@@ -28,4 +28,4 @@ class Fulfillment(object):
             return CardPersonalization(self.json_response['card_personalization'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.fulfillment.Fulfillment>'
+        return '<Marqeta.response_models.fulfillment.Fulfillment>' + self.__str__()

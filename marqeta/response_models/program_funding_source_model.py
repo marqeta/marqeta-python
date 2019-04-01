@@ -21,4 +21,4 @@ class ProgramFundingSourceModel(FundingSourceModel):
         return self.json_response.get('name', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.program_funding_source_model.ProgramFundingSourceModel>'
+        return '<Marqeta.response_models.program_funding_source_model.ProgramFundingSourceModel>' + self.__str__()

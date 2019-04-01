@@ -80,4 +80,4 @@ class MerchantModel(object):
         return self.json_response.get('partial_auth_flag', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.merchant_model.MerchantModel>'
+        return '<Marqeta.response_models.merchant_model.MerchantModel>' + self.__str__()

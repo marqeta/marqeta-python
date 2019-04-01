@@ -42,4 +42,4 @@ class AuthorizationAdviceModel(object):
             return TransactionOptions(self.json_response['transaction_options'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.authorization_advice_model.AuthorizationAdviceModel>'
+        return '<Marqeta.response_models.authorization_advice_model.AuthorizationAdviceModel>' + self.__str__()

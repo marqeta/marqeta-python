@@ -46,4 +46,4 @@ class AchReturn(object):
         return self.json_response.get('achType', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.ach_return.AchReturn>'
+        return '<Marqeta.response_models.ach_return.AchReturn>' + self.__str__()

@@ -20,4 +20,4 @@ class SsnResponseModel(object):
         return self.json_response.get('ssn', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.ssn_response_model.SsnResponseModel>'
+        return '<Marqeta.response_models.ssn_response_model.SsnResponseModel>' + self.__str__()

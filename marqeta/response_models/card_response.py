@@ -121,4 +121,4 @@ class CardResponse(object):
         return self.json_response.get('metadata', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_response.CardResponse>'
+        return '<Marqeta.response_models.card_response.CardResponse>' + self.__str__()

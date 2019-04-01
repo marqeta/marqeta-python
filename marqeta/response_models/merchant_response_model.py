@@ -90,4 +90,4 @@ class MerchantResponseModel(object):
             return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-        return '<Marqeta.response_models.merchant_response_model.MerchantResponseModel>'
+        return '<Marqeta.response_models.merchant_response_model.MerchantResponseModel>' + self.__str__()

@@ -29,4 +29,4 @@ class Airline(object):
         return self.json_response.get('origination_city', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.airline.Airline>'
+        return '<Marqeta.response_models.airline.Airline>' + self.__str__()

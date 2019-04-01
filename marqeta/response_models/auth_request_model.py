@@ -70,4 +70,4 @@ class AuthRequestModel(object):
             return TransactionOptions(self.json_response['transaction_options'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.auth_request_model.AuthRequestModel>'
+        return '<Marqeta.response_models.auth_request_model.AuthRequestModel>' + self.__str__()

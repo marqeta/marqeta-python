@@ -51,4 +51,5 @@ class DigitalWalletTokenCreateRequest(object):
             return DigitalWalletTokenRequestAddress(self.json_response['digital_wallet_token_request_address'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_token_create_request.DigitalWalletTokenCreateRequest>'
+        return '<Marqeta.response_models.digital_wallet_token_create_request.' \
+               'DigitalWalletTokenCreateRequest>' + self.__str__()

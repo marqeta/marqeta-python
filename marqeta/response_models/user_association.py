@@ -24,4 +24,4 @@ class UserAssociation(object):
         return self.json_response.get('single_inventory_user_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.user_association.UserAssociation>'
+        return '<Marqeta.response_models.user_association.UserAssociation>' + self.__str__()

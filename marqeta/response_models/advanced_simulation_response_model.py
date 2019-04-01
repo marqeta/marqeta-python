@@ -26,4 +26,5 @@ class AdvancedSimulationResponseModel(object):
         return self.json_response.get('raw_iso8583', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.advanced_simulation_response_model.AdvancedSimulationResponseModel>'
+        return '<Marqeta.response_models.advanced_simulation_response_model.AdvancedSimulationResponseModel>' \
+               + self.__str__()

@@ -28,4 +28,4 @@ class Link(object):
         return self.json_response.get('href', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.link.Link>'
+        return '<Marqeta.response_models.link.Link>' + self.__str__()

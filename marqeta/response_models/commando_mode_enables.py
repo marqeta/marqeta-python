@@ -32,4 +32,4 @@ class CommandoModeEnables(object):
         return self.json_response.get('ignore_card_suspended_state', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.commando_mode_enables.CommandoModeEnables>'
+        return '<Marqeta.response_models.commando_mode_enables.CommandoModeEnables>' + self.__str__()

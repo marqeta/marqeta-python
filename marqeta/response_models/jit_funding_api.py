@@ -62,4 +62,4 @@ class JitFundingApi(object):
             return JitAddressVerification(self.json_response['address_verification'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.jit_funding_api.JitFundingApi>'
+        return '<Marqeta.response_models.jit_funding_api.JitFundingApi>' + self.__str__()

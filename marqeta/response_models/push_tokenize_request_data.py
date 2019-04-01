@@ -42,4 +42,4 @@ class PushTokenizeRequestData(object):
             return AndroidPushTokenRequestAddress(self.json_response['user_address'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.push_tokenize_request_data.PushTokenizeRequestData>'
+        return '<Marqeta.response_models.push_tokenize_request_data.PushTokenizeRequestData>' + self.__str__()

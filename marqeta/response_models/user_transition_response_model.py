@@ -46,3 +46,6 @@ class UserTransitionResponse(object):
     def user_token(self):
         if 'user_token' in self.response:
             return self.response['user_token']
+
+    def __repr__(self):
+        return '<Marqeta.response_models.user_validation_request.UserTransitionResponse>' + self.__str__()

@@ -28,4 +28,4 @@ class LoginRequestModel(object):
         return self.json_response.get('user_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.login_request_model.LoginRequestModel>'
+        return '<Marqeta.response_models.login_request_model.LoginRequestModel>' + self.__str__()

@@ -36,4 +36,4 @@ class BulkRequestModel(object):
         return self.json_response.get('dda_tokens', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.bulk_request_model.BulkRequestModel>'
+        return '<Marqeta.response_models.bulk_request_model.BulkRequestModel>' + self.__str__()

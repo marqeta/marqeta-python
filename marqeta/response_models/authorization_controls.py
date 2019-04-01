@@ -26,4 +26,4 @@ class AuthorizationControls(object):
         return self.json_response.get('hold_expiration_days', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.authorization_controls.AuthorizationControls>'
+        return '<Marqeta.response_models.authorization_controls.AuthorizationControls>' + self.__str__()

@@ -30,4 +30,4 @@ class ExpirationOffset(object):
             return MinOffset(self.json_response['min_offset'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.expiration_offset.ExpirationOffset>'
+        return '<Marqeta.response_models.expiration_offset.ExpirationOffset>' + self.__str__()

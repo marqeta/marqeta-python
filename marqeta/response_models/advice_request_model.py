@@ -24,4 +24,4 @@ class AdviceRequestModel(object):
         return self.json_response.get('network', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.advice_request_model.AdviceRequestModel>'
+        return '<Marqeta.response_models.advice_request_model.AdviceRequestModel>' + self.__str__()

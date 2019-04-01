@@ -29,4 +29,4 @@ class IdentificationRequestModel(object):
             return datetime.strptime(self.json_response['passport_expiration_date'], '%Y-%m-%d').date()
 
     def __repr__(self):
-        return '<Marqeta.response_models.identification_request_model.IdentificationRequestModel>'
+        return '<Marqeta.response_models.identification_request_model.IdentificationRequestModel>' + self.__str__()

@@ -26,4 +26,4 @@ class ManualEntry(object):
             return DigitalWalletTokenAddressVerification(self.json_response['address_verification'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.manual_entry.ManualEntry>'
+        return '<Marqeta.response_models.manual_entry.ManualEntry>' + self.__str__()

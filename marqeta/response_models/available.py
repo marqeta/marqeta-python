@@ -28,4 +28,4 @@ class Available(object):
         return self.json_response.get('days_remaining', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.available.Available>'
+        return '<Marqeta.response_models.available.Available>' + self.__str__()

@@ -20,4 +20,4 @@ class BusinessMetadata(object):
         return self.json_response.get('metadata', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.business_metadata.BusinessMetadata>'
+        return '<Marqeta.response_models.business_metadata.BusinessMetadata>' + self.__str__()

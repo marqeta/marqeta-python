@@ -24,4 +24,4 @@ class CardSwapHash(object):
         return self.json_response.get('new_card_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_swap_hash.CardSwapHash>'
+        return '<Marqeta.response_models.card_swap_hash.CardSwapHash>' + self.__str__()

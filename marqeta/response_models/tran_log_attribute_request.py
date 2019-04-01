@@ -28,4 +28,4 @@ class TranLogAttributeRequest(object):
         return self.json_response.get('attribute_value', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.tran_log_attribute_request.TranLogAttributeRequest>'
+        return '<Marqeta.response_models.tran_log_attribute_request.TranLogAttributeRequest>' + self.__str__()

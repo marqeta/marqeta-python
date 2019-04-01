@@ -28,4 +28,4 @@ class CardInventoryRequest(object):
         return self.json_response.get('starting_inventory', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_inventory_request.CardInventoryRequest>'
+        return '<Marqeta.response_models.card_inventory_request.CardInventoryRequest>' + self.__str__()

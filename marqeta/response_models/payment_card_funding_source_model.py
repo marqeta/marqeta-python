@@ -37,4 +37,5 @@ class PaymentCardFundingSourceModel(FundingSourceModel):
         return self.json_response.get('exp_date', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.payment_card_funding_source_model.PaymentCardFundingSourceModel>'
+        return '<Marqeta.response_models.payment_card_funding_source_model.PaymentCardFundingSourceModel>' \
+               + self.__str__()

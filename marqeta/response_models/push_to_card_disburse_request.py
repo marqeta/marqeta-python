@@ -40,4 +40,4 @@ class PushToCardDisburseRequest(object):
         return self.json_response.get('payment_instrument_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.push_to_card_disburse_request.PushToCardDisburseRequest>'
+        return '<Marqeta.response_models.push_to_card_disburse_request.PushToCardDisburseRequest>' + self.__str__()

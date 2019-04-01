@@ -24,4 +24,4 @@ class BillPaymentCompletionRequest(object):
         return self.json_response.get('original_transaction_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.bill_payment_completion_request.BillPaymentCompletionRequest>'
+        return '<Marqeta.response_models.bill_payment_completion_request.BillPaymentCompletionRequest>' + self.__str__()

@@ -37,4 +37,4 @@ class JitAddressVerification(object):
             return AddressVerificationSource(self.json_response['gateway'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.jit_address_verification.JitAddressVerification>'
+        return '<Marqeta.response_models.jit_address_verification.JitAddressVerification>' + self.__str__()

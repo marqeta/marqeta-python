@@ -28,4 +28,4 @@ class Account(object):
         return self.json_response.get('score', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.account.Account>'
+        return '<Marqeta.response_models.account.Account>' + self.__str__()

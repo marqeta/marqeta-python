@@ -38,4 +38,4 @@ class FeeDetail(object):
             return Fee(self.json_response['fee'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.fee_detail.FeeDetail>'
+        return '<Marqeta.response_models.fee_detail.FeeDetail>' + self.__str__()

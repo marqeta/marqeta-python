@@ -53,4 +53,5 @@ class DirectDepositTransitionResponse(object):
             return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-        return '<Marqeta.response_models.direct_deposit_transition_response.DirectDepositTransitionResponse>'
+        return '<Marqeta.response_models.direct_deposit_transition_response.' \
+               'DirectDepositTransitionResponse>' + self.__str__()

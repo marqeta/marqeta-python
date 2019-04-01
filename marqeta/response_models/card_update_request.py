@@ -38,4 +38,4 @@ class CardUpdateRequest(object):
         return self.json_response.get('metadata', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_update_request.CardUpdateRequest>'
+        return '<Marqeta.response_models.card_update_request.CardUpdateRequest>' + self.__str__()

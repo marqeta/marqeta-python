@@ -40,4 +40,5 @@ class DigitalWalletApplePayProvisionRequest(object):
         return self.json_response.get('nonce_signature', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_apple_pay_provision_request.DigitalWalletApplePayProvisionRequest>'
+        return '<Marqeta.response_models.digital_wallet_apple_pay_provision_request.' \
+               'DigitalWalletApplePayProvisionRequest>' + self.__str__()

@@ -80,4 +80,4 @@ class AchResponseModel(object):
         return self.json_response.get('verification_notes', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.ach_response_model.AchResponseModel>'
+        return '<Marqeta.response_models.ach_response_model.AchResponseModel>' + self.__str__()

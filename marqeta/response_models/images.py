@@ -40,4 +40,4 @@ class Images(object):
             return ImagesCarrierReturnWindow(self.json_response['carrier_return_window'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.images.Images>'
+        return '<Marqeta.response_models.images.Images>' + self.__str__()

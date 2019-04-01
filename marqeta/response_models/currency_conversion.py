@@ -22,4 +22,4 @@ class CurrencyConversion(object):
             return Network(self.json_response['network'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.currency_conversion.CurrencyConversion>'
+        return '<Marqeta.response_models.currency_conversion.CurrencyConversion>' + self.__str__()

@@ -52,4 +52,4 @@ class TokenRequest(object):
         return self.json_response.get('is_default_account', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.token_request.TokenRequest>'
+        return '<Marqeta.response_models.token_request.TokenRequest>' + self.__str__()

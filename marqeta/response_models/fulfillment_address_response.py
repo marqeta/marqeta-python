@@ -60,4 +60,4 @@ class FulfillmentAddressResponse(object):
         return self.json_response.get('phone', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.fulfillment_address_response.FulfillmentAddressResponse>'
+        return '<Marqeta.response_models.fulfillment_address_response.FulfillmentAddressResponse>' + self.__str__()

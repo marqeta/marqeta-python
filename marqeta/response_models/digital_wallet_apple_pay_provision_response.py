@@ -42,4 +42,5 @@ class DigitalWalletApplePayProvisionResponse(object):
         return self.json_response.get('ephemeral_public_key', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_apple_pay_provision_response.DigitalWalletApplePayProvisionResponse>'
+        return '<Marqeta.response_models.digital_wallet_apple_pay_provision_response.' \
+               'DigitalWalletApplePayProvisionResponse>' + self.__str__()

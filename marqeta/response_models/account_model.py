@@ -28,4 +28,4 @@ class AccountModel(object):
         return self.json_response.get('description', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.account_model.AccountModel>'
+        return '<Marqeta.response_models.account_model.AccountModel>' + self.__str__()

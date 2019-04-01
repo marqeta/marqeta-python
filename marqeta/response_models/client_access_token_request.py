@@ -24,4 +24,4 @@ class ClientAccessTokenRequest(object):
         return self.json_response.get('card_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.client_access_token_request.ClientAccessTokenRequest>'
+        return '<Marqeta.response_models.client_access_token_request.ClientAccessTokenRequest>' + self.__str__()

@@ -24,4 +24,4 @@ class RiskAssessment(object):
         return self.json_response.get('version', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.risk_assessment.RiskAssessment>'
+        return '<Marqeta.response_models.risk_assessment.RiskAssessment>' + self.__str__()

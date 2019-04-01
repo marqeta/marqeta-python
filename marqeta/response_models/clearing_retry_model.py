@@ -40,4 +40,4 @@ class ClearingRetryModel(object):
         return self.json_response.get('new_processing_code', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.clearing_retry_model.ClearingRetryModel>'
+        return '<Marqeta.response_models.clearing_retry_model.ClearingRetryModel>' + self.__str__()

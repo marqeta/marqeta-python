@@ -32,4 +32,4 @@ class DigitalWalletTokenCardInfo(object):
         return self.json_response.get('cvv', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_token_card_info.DigitalWalletTokenCardInfo>'
+        return '<Marqeta.response_models.digital_wallet_token_card_info.DigitalWalletTokenCardInfo>' + self.__str__()

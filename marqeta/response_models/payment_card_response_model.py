@@ -62,4 +62,4 @@ class PaymentCardResponseModel(object):
         return self.json_response.get('business_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.payment_card_response_model.PaymentCardResponseModel>'
+        return '<Marqeta.response_models.payment_card_response_model.PaymentCardResponseModel>' + self.__str__()

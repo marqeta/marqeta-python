@@ -34,4 +34,4 @@ class JitFunding(object):
             return JitFundingProgramFundingSource(self.json_response['program_funding_source'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.jit_funding.JitFunding>'
+        return '<Marqeta.response_models.jit_funding.JitFunding>' + self.__str__()

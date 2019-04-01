@@ -184,4 +184,4 @@ class UserCardHolderResponse(object):
             return datetime.strptime(self.json_response['id_card_expiration_date'], '%Y-%m-%d').date()
 
     def __repr__(self):
-        return '<Marqeta.response_models.user_card_holder_response.UserCardHolderResponse>'
+        return '<Marqeta.response_models.user_card_holder_response.UserCardHolderResponse>' + self.__str__()

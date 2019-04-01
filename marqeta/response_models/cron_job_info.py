@@ -59,4 +59,4 @@ class CronJobInfo(object):
             return datetime.strptime(self.json_response['start_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-        return '<Marqeta.response_models.cron_job_info.CronJobInfo>'
+        return '<Marqeta.response_models.cron_job_info.CronJobInfo>' + self.__str__()

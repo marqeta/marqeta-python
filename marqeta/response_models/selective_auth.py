@@ -28,4 +28,4 @@ class SelectiveAuth(object):
         return self.json_response.get('dmd_location_sensitivity', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.selective_auth.SelectiveAuth>'
+        return '<Marqeta.response_models.selective_auth.SelectiveAuth>' + self.__str__()

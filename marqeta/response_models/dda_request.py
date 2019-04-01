@@ -20,4 +20,4 @@ class DdaRequest(object):
         return self.json_response.get('dda', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.dda_request.DdaRequest>'
+        return '<Marqeta.response_models.dda_request.DdaRequest>' + self.__str__()

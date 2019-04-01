@@ -54,4 +54,4 @@ class ProgramTransfer(object):
         return self.json_response.get('currency_code', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.program_transfer.ProgramTransfer>'
+        return '<Marqeta.response_models.program_transfer.ProgramTransfer>' + self.__str__()

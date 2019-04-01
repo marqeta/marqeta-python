@@ -32,4 +32,4 @@ class AddressVerification(object):
         return self.json_response.get('postal_code', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.address_verification.AddressVerification>'
+        return '<Marqeta.response_models.address_verification.AddressVerification>' + self.__str__()

@@ -46,4 +46,4 @@ class FeeRequest(object):
             return RealTimeFeeAssessmentRequest(self.json_response['real_time_assessment'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.fee_request.FeeRequest>'
+        return '<Marqeta.response_models.fee_request.FeeRequest>' + self.__str__()

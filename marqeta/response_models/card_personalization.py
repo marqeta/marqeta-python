@@ -34,4 +34,4 @@ class CardPersonalization(object):
             return Carrier(self.json_response['carrier'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_personalization.CardPersonalization>'
+        return '<Marqeta.response_models.card_personalization.CardPersonalization>' + self.__str__()

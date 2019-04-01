@@ -56,4 +56,4 @@ class AchModel(object):
         return self.json_response.get('is_default_account', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.ach_model.AchModel>'
+        return '<Marqeta.response_models.ach_model.AchModel>' + self.__str__()

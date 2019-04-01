@@ -36,4 +36,4 @@ class MsaUnloadRequestModel(object):
         return self.json_response.get('memo', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.msa_unload_request_model.MsaUnloadRequestModel>'
+        return '<Marqeta.response_models.msa_unload_request_model.MsaUnloadRequestModel>' + self.__str__()

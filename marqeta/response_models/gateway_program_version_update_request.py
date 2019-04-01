@@ -20,4 +20,5 @@ class GatewayProgramVersionUpdateRequest(object):
         return self.json_response.get('version', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.gateway_program_version_update_request.GatewayProgramVersionUpdateRequest>'
+        return '<Marqeta.response_models.gateway_program_version_update_request.GatewayProgramVersionUpdateRequest>' \
+               + self.__str__()

@@ -58,4 +58,4 @@ class GpaRequest(object):
         return self.json_response.get('funding_source_address_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.gpa_request.GpaRequest>'
+        return '<Marqeta.response_models.gpa_request.GpaRequest>' + self.__str__()

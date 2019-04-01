@@ -100,4 +100,4 @@ class StoreModel(object):
         return self.json_response.get('keyed_auth_cvv_enforced', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.store_model.StoreModel>'
+        return '<Marqeta.response_models.store_model.StoreModel>' + self.__str__()

@@ -34,4 +34,4 @@ class GlTransactionRequest(object):
         return self.json_response.get('reference_transaction_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.gl_transaction_request.GlTransactionRequest>'
+        return '<Marqeta.response_models.gl_transaction_request.GlTransactionRequest>' + self.__str__()

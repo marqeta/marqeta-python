@@ -30,4 +30,4 @@ class AdvancedAuthPoi(object):
         return self.json_response.get('atm', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.advanced_auth_poi.AdvancedAuthPoi>'
+        return '<Marqeta.response_models.advanced_auth_poi.AdvancedAuthPoi>' + self.__str__()

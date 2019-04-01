@@ -32,4 +32,4 @@ class WebhookConfigModel(object):
         return self.json_response.get('basic_auth_password', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.webhook_config_model.WebhookConfigModel>'
+        return '<Marqeta.response_models.webhook_config_model.WebhookConfigModel>' + self.__str__()

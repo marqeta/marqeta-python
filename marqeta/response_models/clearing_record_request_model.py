@@ -175,4 +175,4 @@ class ClearingRecordRequestModel(object):
         return self.json_response.get('mti', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.clearing_record_request_model.ClearingRecordRequestModel>'
+        return '<Marqeta.response_models.clearing_record_request_model.ClearingRecordRequestModel>' + self.__str__()

@@ -34,4 +34,4 @@ class AccountHolderGroupConfig(object):
             return PreKycControls(self.json_response['pre_kyc_controls'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.account_holder_group_config.AccountHolderGroupConfig>'
+        return '<Marqeta.response_models.account_holder_group_config.AccountHolderGroupConfig>' + self.__str__()

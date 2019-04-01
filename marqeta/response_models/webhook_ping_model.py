@@ -22,4 +22,4 @@ class WebhookPingModel(object):
             return [EchoPingRequest(val) for val in self.json_response['pings']]
 
     def __repr__(self):
-        return '<Marqeta.response_models.webhook_ping_model.WebhookPingModel>'
+        return '<Marqeta.response_models.webhook_ping_model.WebhookPingModel>' + self.__str__()

@@ -40,4 +40,4 @@ class OfferOrderRequest(object):
         return self.json_response.get('funding_source_address_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.offer_order_request.OfferOrderRequest>'
+        return '<Marqeta.response_models.offer_order_request.OfferOrderRequest>' + self.__str__()

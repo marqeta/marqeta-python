@@ -24,4 +24,4 @@ class CacheError(object):
         return self.json_response.get('message', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.cache_error.CacheError>'
+        return '<Marqeta.response_models.cache_error.CacheError>' + self.__str__()

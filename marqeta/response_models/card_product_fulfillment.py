@@ -68,4 +68,4 @@ class CardProductFulfillment(object):
         return self.json_response.get('enable_offline_pin', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_product_fulfillment.CardProductFulfillment>'
+        return '<Marqeta.response_models.card_product_fulfillment.CardProductFulfillment>' + self.__str__()

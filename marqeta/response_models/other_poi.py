@@ -28,4 +28,4 @@ class OtherPoi(object):
         return self.json_response.get('cardholder_presence_required', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.other_poi.OtherPoi>'
+        return '<Marqeta.response_models.other_poi.OtherPoi>' + self.__str__()

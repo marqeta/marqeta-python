@@ -76,4 +76,4 @@ class VelocityControlUpdateRequest(object):
         return self.json_response.get('active', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.velocity_control_update_request.VelocityControlUpdateRequest>'
+        return '<Marqeta.response_models.velocity_control_update_request.VelocityControlUpdateRequest>' + self.__str__()

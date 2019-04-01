@@ -29,4 +29,4 @@ class IdentificationResponseModel(object):
             return datetime.strptime(self.json_response['expiration_date'], '%Y-%m-%d').date()
 
     def __repr__(self):
-        return '<Marqeta.response_models.identification_response_model.IdentificationResponseModel>'
+        return '<Marqeta.response_models.identification_response_model.IdentificationResponseModel>' + self.__str__()

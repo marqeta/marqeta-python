@@ -46,4 +46,4 @@ class PingResponse(object):
             return [HealthCheckResult(val) for val in self.json_response['system_components']]
 
     def __repr__(self):
-        return '<Marqeta.response_models.ping_response.PingResponse>'
+        return '<Marqeta.response_models.ping_response.PingResponse>' + self.__str__()

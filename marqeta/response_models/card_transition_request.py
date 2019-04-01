@@ -46,4 +46,4 @@ class CardTransitionRequest(object):
         return self.json_response.get('state', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_transition_request.CardTransitionRequest>'
+        return '<Marqeta.response_models.card_transition_request.CardTransitionRequest>' + self.__str__()

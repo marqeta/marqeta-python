@@ -121,4 +121,4 @@ class CardTransitionResponse(object):
         return self.json_response.get('expedite', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_transition_response.CardTransitionResponse>'
+        return '<Marqeta.response_models.card_transition_response.CardTransitionResponse>' + self.__str__()

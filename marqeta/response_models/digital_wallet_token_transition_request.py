@@ -50,4 +50,5 @@ class DigitalWalletTokenTransitionRequest(object):
         return self.json_response.get('override_tsp_error', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_token_transition_request.DigitalWalletTokenTransitionRequest>'
+        return '<Marqeta.response_models.digital_wallet_token_transition_request.' \
+               'DigitalWalletTokenTransitionRequest>' + self.__str__()

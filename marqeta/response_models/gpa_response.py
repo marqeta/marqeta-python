@@ -96,4 +96,4 @@ class GpaResponse(object):
         return self.json_response.get('gateway_message', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.gpa_response.GpaResponse>'
+        return '<Marqeta.response_models.gpa_response.GpaResponse>' + self.__str__()

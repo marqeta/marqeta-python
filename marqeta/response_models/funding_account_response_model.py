@@ -87,6 +87,5 @@ class FundingAccountResponseModel(object):
     def verification_notes(self):
         return self.json_response.get('verification_notes', None)
 
-    # def __repr__(self):
-    #     return self.__str__()
-    #     #return '<Marqeta.response_models.funding_account_response_model.FundingAccountResponseModel>'
+    def __repr__(self):
+        return '<Marqeta.response_models.funding_account_response_model.FundingAccountResponseModel>' + self.__str__()

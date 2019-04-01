@@ -44,4 +44,5 @@ class GatewayProgramFundingSourceRequest(object):
         return self.json_response.get('timeout_millis', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.gateway_program_funding_source_request.GatewayProgramFundingSourceRequest>'
+        return '<Marqeta.response_models.gateway_program_funding_source_request.GatewayProgramFundingSourceRequest>'\
+               + self.__str__()

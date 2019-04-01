@@ -66,4 +66,4 @@ class CardRequest(object):
         return self.json_response.get('bulk_issuance_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_request.CardRequest>'
+        return '<Marqeta.response_models.card_request.CardRequest>' + self.__str__()

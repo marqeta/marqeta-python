@@ -29,4 +29,4 @@ class UserValidationResponse(object):
         return self.json_response.get('ssn', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.user_validation_response.UserValidationResponse>'
+        return '<Marqeta.response_models.user_validation_response.UserValidationResponse>' + self.__str__()

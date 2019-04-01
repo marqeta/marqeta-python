@@ -24,4 +24,4 @@ class ResultCode(object):
         return self.json_response.get('message', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.result_code.ResultCode>'
+        return '<Marqeta.response_models.result_code.ResultCode>' + self.__str__()

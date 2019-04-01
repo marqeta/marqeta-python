@@ -28,4 +28,4 @@ class TokenUpdateRequest(object):
         return self.json_response.get('is_default_account', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.token_update_request.TokenUpdateRequest>'
+        return '<Marqeta.response_models.token_update_request.TokenUpdateRequest>' + self.__str__()

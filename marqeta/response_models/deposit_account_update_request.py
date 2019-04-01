@@ -20,4 +20,4 @@ class DepositAccountUpdateRequest(object):
         return self.json_response.get('allow_immediate_credit', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.deposit_account_update_request.DepositAccountUpdateRequest>'
+        return '<Marqeta.response_models.deposit_account_update_request.DepositAccountUpdateRequest>' + self.__str__()

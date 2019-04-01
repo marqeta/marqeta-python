@@ -70,4 +70,4 @@ class TransactionControls(object):
             return AvsControls(self.json_response['address_verification'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.transaction_controls.TransactionControls>'
+        return '<Marqeta.response_models.transaction_controls.TransactionControls>' + self.__str__()

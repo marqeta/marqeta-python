@@ -58,4 +58,4 @@ class AutoReloadResponseModel(object):
             return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
 
     def __repr__(self):
-        return '<Marqeta.response_models.auto_reload_response_model.AutoReloadResponseModel>'
+        return '<Marqeta.response_models.auto_reload_response_model.AutoReloadResponseModel>' + self.__str__()

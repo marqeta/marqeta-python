@@ -26,4 +26,4 @@ class CardSecurityCodeVerification(object):
             return Response(self.json_response['response'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_security_code_verification.CardSecurityCodeVerification>'
+        return '<Marqeta.response_models.card_security_code_verification.CardSecurityCodeVerification>' + self.__str__()

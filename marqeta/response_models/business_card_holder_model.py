@@ -124,4 +124,4 @@ class BusinessCardHolderModel(object):
             return BusinessProprietorRequestModel(self.json_response['proprietor_or_officer'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.business_card_holder_model.BusinessCardHolderModel>'
+        return '<Marqeta.response_models.business_card_holder_model.BusinessCardHolderModel>' + self.__str__()

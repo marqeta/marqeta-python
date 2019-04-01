@@ -24,4 +24,4 @@ class ActivationActions(object):
         return self.json_response.get('swap_digital_wallet_tokens_from_card_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.activation_actions.ActivationActions>'
+        return '<Marqeta.response_models.activation_actions.ActivationActions>' + self.__str__()

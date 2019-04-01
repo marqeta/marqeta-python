@@ -44,4 +44,5 @@ class DirectDepositTransitionRequest(object):
         return self.json_response.get('reason_code', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.direct_deposit_transition_request.DirectDepositTransitionRequest>'
+        return '<Marqeta.response_models.direct_deposit_transition_request.' \
+               'DirectDepositTransitionRequest>' + self.__str__()

@@ -46,4 +46,4 @@ class CardProductRequest(object):
             return CardProductConfig(self.json_response['config'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_product_request.CardProductRequest>'
+        return '<Marqeta.response_models.card_product_request.CardProductRequest>' + self.__str__()

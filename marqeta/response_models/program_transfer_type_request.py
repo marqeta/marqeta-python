@@ -32,4 +32,4 @@ class ProgramTransferTypeRequest(object):
         return self.json_response.get('memo', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.program_transfer_type_request.ProgramTransferTypeRequest>'
+        return '<Marqeta.response_models.program_transfer_type_request.ProgramTransferTypeRequest>' + self.__str__()

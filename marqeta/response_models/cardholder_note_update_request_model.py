@@ -20,4 +20,5 @@ class CardholderNoteUpdateRequestModel(object):
         return self.json_response.get('description', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.cardholder_note_update_request_model.CardholderNoteUpdateRequestModel>'
+        return '<Marqeta.response_models.cardholder_note_update_request_model.CardholderNoteUpdateRequestModel>' \
+               + self.__str__()

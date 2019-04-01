@@ -26,4 +26,4 @@ class GatewayResponse(object):
             return JitProgramResponse(self.json_response['data'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.gateway_response.GatewayResponse>'
+        return '<Marqeta.response_models.gateway_response.GatewayResponse>' + self.__str__()

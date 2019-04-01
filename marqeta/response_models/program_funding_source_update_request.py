@@ -24,4 +24,5 @@ class ProgramFundingSourceUpdateRequest(object):
         return self.json_response.get('active', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.program_funding_source_update_request.ProgramFundingSourceUpdateRequest>'
+        return '<Marqeta.response_models.program_funding_source_update_request.ProgramFundingSourceUpdateRequest>'\
+               + self.__str__()

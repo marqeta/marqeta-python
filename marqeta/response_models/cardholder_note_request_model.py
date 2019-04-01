@@ -36,4 +36,4 @@ class CardholderNoteRequestModel(object):
         return self.json_response.get('private', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.cardholder_note_request_model.CardholderNoteRequestModel>'
+        return '<Marqeta.response_models.cardholder_note_request_model.CardholderNoteRequestModel>' + self.__str__()

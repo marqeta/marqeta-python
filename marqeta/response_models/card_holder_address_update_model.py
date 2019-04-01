@@ -64,4 +64,5 @@ class CardHolderAddressUpdateModel(object):
         return self.json_response.get('postal_code', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_holder_address_update_model.CardHolderAddressUpdateModel>'
+        return '<Marqeta.response_models.card_holder_address_update_model.CardHolderAddressUpdateModel>' \
+               + self.__str__()

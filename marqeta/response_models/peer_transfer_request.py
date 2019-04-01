@@ -52,4 +52,4 @@ class PeerTransferRequest(object):
         return self.json_response.get('currency_code', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.peer_transfer_request.PeerTransferRequest>'
+        return '<Marqeta.response_models.peer_transfer_request.PeerTransferRequest>' + self.__str__()

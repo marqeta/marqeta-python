@@ -28,4 +28,4 @@ class MerchantScope(object):
         return self.json_response.get('mcc_group', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.merchant_scope.MerchantScope>'
+        return '<Marqeta.response_models.merchant_scope.MerchantScope>' + self.__str__()

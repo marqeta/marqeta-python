@@ -40,4 +40,4 @@ class ProgramReserveAccountBalance(object):
         return self.json_response.get('balances', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.program_reserve_account_balance.ProgramReserveAccountBalance>'
+        return '<Marqeta.response_models.program_reserve_account_balance.ProgramReserveAccountBalance>' + self.__str__()

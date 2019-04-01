@@ -51,4 +51,4 @@ class AccessTokenResponse(object):
         return self.json_response.get('one_time', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.access_token_response.AccessTokenResponse>'
+        return '<Marqeta.response_models.access_token_response.AccessTokenResponse>' + self.__str__()

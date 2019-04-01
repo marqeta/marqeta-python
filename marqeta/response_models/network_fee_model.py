@@ -28,4 +28,4 @@ class NetworkFeeModel(object):
         return self.json_response.get('credit_debit', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.network_fee_model.NetworkFeeModel>'
+        return '<Marqeta.response_models.network_fee_model.NetworkFeeModel>' + self.__str__()

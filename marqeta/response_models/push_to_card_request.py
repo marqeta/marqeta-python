@@ -64,4 +64,4 @@ class PushToCardRequest(object):
         return self.json_response.get('exp_date', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.push_to_card_request.PushToCardRequest>'
+        return '<Marqeta.response_models.push_to_card_request.PushToCardRequest>' + self.__str__()

@@ -55,4 +55,4 @@ class BulkIssuanceRequest(object):
             return ExpirationOffsét(self.json_response['expiration_offset'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.bulk_issuance_request.BulkIssuanceRequest>'
+        return '<Marqeta.response_models.bulk_issuance_request.BulkIssuanceRequest>' + self.__str__()

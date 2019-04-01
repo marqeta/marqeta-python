@@ -40,4 +40,4 @@ class UserCardHolderSearchModel(object):
         return self.json_response.get('email', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.user_card_holder_search_model.UserCardHolderSearchModel>'
+        return '<Marqeta.response_models.user_card_holder_search_model.UserCardHolderSearchModel>' + self.__str__()

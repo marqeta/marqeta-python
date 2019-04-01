@@ -38,4 +38,4 @@ class ReportRequest(object):
         return self.json_response.get('sendFiles', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.report_request.ReportRequest>'
+        return '<Marqeta.response_models.report_request.ReportRequest>' + self.__str__()

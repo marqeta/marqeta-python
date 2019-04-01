@@ -103,4 +103,4 @@ class MsaOrderResponse(object):
         return self.json_response.get('transaction_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.msa_order_response.MsaOrderResponse>'
+        return '<Marqeta.response_models.msa_order_response.MsaOrderResponse>' + self.__str__()

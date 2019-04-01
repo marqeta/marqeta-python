@@ -32,4 +32,5 @@ class RealTimeFeeGroupCreateRequest(object):
         return self.json_response.get('fee_tokens', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.real_time_fee_group_create_request.RealTimeFeeGroupCreateRequest>'
+        return '<Marqeta.response_models.real_time_fee_group_create_request.RealTimeFeeGroupCreateRequest>' \
+               + self.__str__()

@@ -44,4 +44,4 @@ class ReversalModel(object):
         return self.json_response.get('is_advice', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.reversal_model.ReversalModel>'
+        return '<Marqeta.response_models.reversal_model.ReversalModel>' + self.__str__()

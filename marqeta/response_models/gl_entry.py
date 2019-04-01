@@ -40,4 +40,4 @@ class GlEntry(object):
         return self.json_response.get('type', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.gl_entry.GlEntry>'
+        return '<Marqeta.response_models.gl_entry.GlEntry>' + self.__str__()

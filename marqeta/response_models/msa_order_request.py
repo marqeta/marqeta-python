@@ -66,4 +66,4 @@ class MsaOrderRequest(object):
         return self.json_response.get('funding_source_address_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.msa_order_request.MsaOrderRequest>'
+        return '<Marqeta.response_models.msa_order_request.MsaOrderRequest>' + self.__str__()

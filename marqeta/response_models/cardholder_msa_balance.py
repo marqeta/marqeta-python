@@ -52,4 +52,4 @@ class CardholderMsaBalance(object):
         return self.json_response.get('campaign_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.cardholder_msa_balance.CardholderMsaBalance>'
+        return '<Marqeta.response_models.cardholder_msa_balance.CardholderMsaBalance>' + self.__str__()

@@ -44,4 +44,4 @@ class AddressResponseModel(object):
         return self.json_response.get('country', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.address_response_model.AddressResponseModel>'
+        return '<Marqeta.response_models.address_response_model.AddressResponseModel>' + self.__str__()

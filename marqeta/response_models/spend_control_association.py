@@ -24,4 +24,4 @@ class SpendControlAssociation(object):
         return self.json_response.get('user_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.spend_control_association.SpendControlAssociation>'
+        return '<Marqeta.response_models.spend_control_association.SpendControlAssociation>' + self.__str__()

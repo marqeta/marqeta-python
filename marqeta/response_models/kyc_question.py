@@ -28,4 +28,4 @@ class KycQuestion(object):
         return self.json_response.get('answers', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.kyc_question.KycQuestion>'
+        return '<Marqeta.response_models.kyc_question.KycQuestion>' + self.__str__()

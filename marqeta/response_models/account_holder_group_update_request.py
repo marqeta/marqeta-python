@@ -26,4 +26,5 @@ class AccountHolderGroupUpdateRequest(object):
             return AccountHolderGroupConfig(self.json_response['config'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.account_holder_group_update_request.AccountHolderGroupUpdateRequest>'
+        return '<Marqeta.response_models.account_holder_group_update_request.AccountHolderGroupUpdateRequest>' + \
+               self.__str__()

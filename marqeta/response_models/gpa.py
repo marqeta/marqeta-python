@@ -24,4 +24,4 @@ class Gpa(object):
         return self.json_response.get('reload_amount', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.gpa.Gpa>'
+        return '<Marqeta.response_models.gpa.Gpa>' + self.__str__()

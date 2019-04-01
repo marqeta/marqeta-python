@@ -28,4 +28,4 @@ class Msa(object):
         return self.json_response.get('reload_amount', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.msa.Msa>'
+        return '<Marqeta.response_models.msa.Msa>' + self.__str__()

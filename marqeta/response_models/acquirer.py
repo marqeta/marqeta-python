@@ -36,4 +36,4 @@ class Acquirer(object):
         return self.json_response.get('system_trace_audit_number', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.acquirer.Acquirer>'
+        return '<Marqeta.response_models.acquirer.Acquirer>' + self.__str__()

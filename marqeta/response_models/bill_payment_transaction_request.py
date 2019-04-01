@@ -32,4 +32,4 @@ class BillPaymentTransactionRequest(object):
         return self.json_response.get('user_token', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.bill_payment_transaction_request.BillPaymentTransactionRequest>'
+        return '<Marqeta.response_models.bill_payment_transaction_request.BillPaymentTransactionRequest>' + self.__str__()

@@ -24,4 +24,4 @@ class ImagesCarrier(object):
         return self.json_response.get('message_1', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.images_carrier.ImagesCarrier>'
+        return '<Marqeta.response_models.images_carrier.ImagesCarrier>' + self.__str__()

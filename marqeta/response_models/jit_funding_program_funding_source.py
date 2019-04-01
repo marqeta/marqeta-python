@@ -28,4 +28,5 @@ class JitFundingProgramFundingSource(object):
         return self.json_response.get('refunds_destination', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.jit_funding_program_funding_source.JitFundingProgramFundingSource>'
+        return '<Marqeta.response_models.jit_funding_program_funding_source.' \
+               'JitFundingProgramFundingSource>' + self.__str__()

@@ -24,4 +24,4 @@ class HoldIncrease(object):
         return self.json_response.get('value', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.hold_increase.HoldIncrease>'
+        return '<Marqeta.response_models.hold_increase.HoldIncrease>' + self.__str__()

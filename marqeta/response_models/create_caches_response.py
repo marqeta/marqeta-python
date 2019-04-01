@@ -30,4 +30,4 @@ class CreateCachesResponse(object):
             return [CacheError(val) for val in self.json_response['errors']]
 
     def __repr__(self):
-        return '<Marqeta.response_models.create_caches_response.CreateCachesResponse>'
+        return '<Marqeta.response_models.create_caches_response.CreateCachesResponse>' + self.__str__()

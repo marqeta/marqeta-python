@@ -45,4 +45,5 @@ class BankAccountFundingSourceModel(FundingSourceModel):
         return self.json_response.get('verification_status', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.bank_account_funding_source_model.BankAccountFundingSourceModel>'
+        return '<Marqeta.response_models.bank_account_funding_source_model.BankAccountFundingSourceModel>'\
+               + self.__str__()
