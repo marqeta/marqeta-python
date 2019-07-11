@@ -35,7 +35,7 @@ Configure your client object.
 ```
 from marqeta import Client
 
-base_url = "https://shared-sandbox-api.marqeta.com/v3"
+base_url = "https://shared-sandbox-api.marqeta.com/v3/"
 application_token = "MY_APPLICATION_TOKEN"
 access_token = "MY_ACCESS_TOKEN"
 timeout = 60 # seconds
@@ -43,7 +43,7 @@ timeout = 60 # seconds
 client = Client(base_url, application_token, access_token, timeout)
 ```
 
-When specifying your base url, include the `/v3` version prefix.
+When specifying your base url, include the `/v3/` version prefix with the trailing slash.
 
 ### Accessing resources
 
