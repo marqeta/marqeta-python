@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class Network(object):
 
@@ -27,5 +28,6 @@ class Network(object):
     def original_currency_code(self):
         return self.json_response.get('original_currency_code', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.network.Network>' + self.__str__()
+         return '<Marqeta.response_models.network.Network>' + self.__str__()

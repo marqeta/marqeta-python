@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class PrimaryContactInfoModel(object):
 
@@ -19,33 +20,41 @@ class PrimaryContactInfoModel(object):
     def full_name(self):
         return self.json_response.get('full_name', None)
 
+
     @property
     def title(self):
         return self.json_response.get('title', None)
+
 
     @property
     def department(self):
         return self.json_response.get('department', None)
 
+
     @property
     def phone(self):
         return self.json_response.get('phone', None)
+
 
     @property
     def extension(self):
         return self.json_response.get('extension', None)
 
+
     @property
     def fax(self):
         return self.json_response.get('fax', None)
+
 
     @property
     def mobile(self):
         return self.json_response.get('mobile', None)
 
+
     @property
     def email(self):
         return self.json_response.get('email', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.primary_contact_info_model.PrimaryContactInfoModel>' + self.__str__()
+         return '<Marqeta.response_models.primary_contact_info_model.PrimaryContactInfoModel>' + self.__str__()

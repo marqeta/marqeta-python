@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.user_validation_response import UserValidationResponse
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class ValidationsResponse(object):
 
@@ -22,4 +23,4 @@ class ValidationsResponse(object):
             return UserValidationResponse(self.json_response['user'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.validations_response.ValidationsResponse>' + self.__str__()
+         return '<Marqeta.response_models.validations_response.ValidationsResponse>' + self.__str__()

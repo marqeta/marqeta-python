@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class GatewayProgramVersionUpdateRequest(object):
 
@@ -19,6 +20,6 @@ class GatewayProgramVersionUpdateRequest(object):
     def version(self):
         return self.json_response.get('version', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.gateway_program_version_update_request.GatewayProgramVersionUpdateRequest>' \
-               + self.__str__()
+         return '<Marqeta.response_models.gateway_program_version_update_request.GatewayProgramVersionUpdateRequest>' + self.__str__()

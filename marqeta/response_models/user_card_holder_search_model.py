@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class UserCardHolderSearchModel(object):
 
@@ -19,25 +20,31 @@ class UserCardHolderSearchModel(object):
     def ssn(self):
         return self.json_response.get('ssn', None)
 
+
     @property
     def dda(self):
         return self.json_response.get('dda', None)
+
 
     @property
     def first_name(self):
         return self.json_response.get('first_name', None)
 
+
     @property
     def last_name(self):
         return self.json_response.get('last_name', None)
+
 
     @property
     def phone(self):
         return self.json_response.get('phone', None)
 
+
     @property
     def email(self):
         return self.json_response.get('email', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.user_card_holder_search_model.UserCardHolderSearchModel>' + self.__str__()
+         return '<Marqeta.response_models.user_card_holder_search_model.UserCardHolderSearchModel>' + self.__str__()

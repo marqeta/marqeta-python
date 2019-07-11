@@ -2,8 +2,9 @@ from datetime import datetime, date
 from marqeta.response_models.jit_funding_paymentcard_funding_source import JitFundingPaymentcardFundingSource
 from marqeta.response_models.jit_funding_programgateway_funding_source import JitFundingProgramgatewayFundingSource
 from marqeta.response_models.jit_funding_program_funding_source import JitFundingProgramFundingSource
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class JitFunding(object):
 
@@ -34,4 +35,4 @@ class JitFunding(object):
             return JitFundingProgramFundingSource(self.json_response['program_funding_source'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.jit_funding.JitFunding>' + self.__str__()
+         return '<Marqeta.response_models.jit_funding.JitFunding>' + self.__str__()

@@ -1,8 +1,9 @@
 from datetime import datetime, date
 from marqeta.response_models.text_value import TextValue
 from marqeta.response_models.text_value import TextValue
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class Text(object):
 
@@ -28,4 +29,4 @@ class Text(object):
             return TextValue(self.json_response['name_line_2'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.text.Text>' + self.__str__()
+         return '<Marqeta.response_models.text.Text>' + self.__str__()

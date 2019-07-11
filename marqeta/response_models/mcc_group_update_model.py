@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.config import Config
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class MccGroupUpdateModel(object):
 
@@ -20,6 +21,7 @@ class MccGroupUpdateModel(object):
     def name(self):
         return self.json_response.get('name', None)
 
+
     @property
     def mccs(self):
         return self.json_response.get('mccs', None)
@@ -34,4 +36,4 @@ class MccGroupUpdateModel(object):
             return Config(self.json_response['config'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.mcc_group_update_model.MccGroupUpdateModel>' + self.__str__()
+         return '<Marqeta.response_models.mcc_group_update_model.MccGroupUpdateModel>' + self.__str__()

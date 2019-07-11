@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class PaymentCardResponseModel(object):
 
@@ -18,28 +19,34 @@ class PaymentCardResponseModel(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('created_time', self.json_response)
+
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('last_modified_time', self.json_response)
+
 
     @property
     def type(self):
         return self.json_response.get('type', None)
 
+
     @property
     def token(self):
         return self.json_response.get('token', None)
+
 
     @property
     def account_suffix(self):
         return self.json_response.get('account_suffix', None)
 
+
     @property
     def account_type(self):
         return self.json_response.get('account_type', None)
+
 
     @property
     def active(self):
@@ -53,13 +60,16 @@ class PaymentCardResponseModel(object):
     def exp_date(self):
         return self.json_response.get('exp_date', None)
 
+
     @property
     def user_token(self):
         return self.json_response.get('user_token', None)
+
 
     @property
     def business_token(self):
         return self.json_response.get('business_token', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.payment_card_response_model.PaymentCardResponseModel>' + self.__str__()
+         return '<Marqeta.response_models.payment_card_response_model.PaymentCardResponseModel>' + self.__str__()

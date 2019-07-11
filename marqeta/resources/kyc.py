@@ -1,15 +1,15 @@
-#!/usr/bin/env python3
+
 
 '''KYC RESOURCE WITH CRU PARAMETERS'''
 
 from marqeta.resources.collection import Collection
 from marqeta.response_models.kyc_response import KycResponse
 
-
 class KycCollection(object):
     '''
     Marqeta API 'kyc' endpoint list, create, find and update operations
     '''
+
     _endpoint = 'kyc'
 
     def __init__(self, client):
@@ -20,12 +20,14 @@ class KycCollection(object):
         self.client = client
         self.collections = Collection(self.client, KycResponse)
 
+
     def page_for_user(self, user_token, count=5, start_index=0, params=None):
         '''
         Provides the requested page for kyc
         :param user_token: user token
         :param count: data to be displayed per page
         :param start_index: start_index
+        :param params: query parameters
         :return: requested page with KycResponse object for the requested
         page 'data'field
         '''
@@ -36,8 +38,9 @@ class KycCollection(object):
         '''
         Provides the requested page for kyc
         :param business_token: user token
-       :param count: data to be displayed per page
+        :param count: data to be displayed per page
         :param start_index: start_index
+        :param params: query parameters
         :return: requested page with KycResponse object for the requested
         page 'data'field
         '''
@@ -88,7 +91,6 @@ class KycCollection(object):
         '''
         return self.collections.list(endpoint=self._endpoint + '/business/{}'.
                                      format(business_token), query_params=params, limit=limit)
-
     def create(self, data={}):
         '''
         Creates an kyc object
@@ -115,6 +117,6 @@ class KycCollection(object):
         :return: KycResponse object
         '''
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
-
     def __repr__(self):
         return '<Marqeta.resources.kyc.KycCollection>'
+

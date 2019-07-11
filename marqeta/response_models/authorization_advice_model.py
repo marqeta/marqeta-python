@@ -2,8 +2,9 @@ from datetime import datetime, date
 from marqeta.response_models.network_fee_model import NetworkFeeModel
 from marqeta.response_models.webhook import Webhook
 from marqeta.response_models.transaction_options import TransactionOptions
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class AuthorizationAdviceModel(object):
 
@@ -36,10 +37,11 @@ class AuthorizationAdviceModel(object):
     def original_transaction_token(self):
         return self.json_response.get('original_transaction_token', None)
 
+
     @property
     def transaction_options(self):
         if 'transaction_options' in self.json_response:
             return TransactionOptions(self.json_response['transaction_options'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.authorization_advice_model.AuthorizationAdviceModel>' + self.__str__()
+         return '<Marqeta.response_models.authorization_advice_model.AuthorizationAdviceModel>' + self.__str__()

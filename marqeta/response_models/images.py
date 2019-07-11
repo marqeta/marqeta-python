@@ -3,8 +3,9 @@ from marqeta.response_models.images_card import ImagesCard
 from marqeta.response_models.images_carrier import ImagesCarrier
 from marqeta.response_models.images_signature import ImagesSignature
 from marqeta.response_models.images_carrier_return_window import ImagesCarrierReturnWindow
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class Images(object):
 
@@ -40,4 +41,4 @@ class Images(object):
             return ImagesCarrierReturnWindow(self.json_response['carrier_return_window'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.images.Images>' + self.__str__()
+         return '<Marqeta.response_models.images.Images>' + self.__str__()

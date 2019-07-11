@@ -2,8 +2,9 @@ from datetime import datetime, date
 from marqeta.response_models.spend_control_association import SpendControlAssociation
 from marqeta.response_models.merchant_scope import MerchantScope
 from marqeta.response_models.available import Available
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class VelocityControlBalanceResponse(object):
 
@@ -22,9 +23,11 @@ class VelocityControlBalanceResponse(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def name(self):
         return self.json_response.get('name', None)
+
 
     @property
     def association(self):
@@ -64,6 +67,7 @@ class VelocityControlBalanceResponse(object):
     def currency_code(self):
         return self.json_response.get('currency_code', None)
 
+
     @property
     def amount_limit(self):
         return self.json_response.get('amount_limit', None)
@@ -71,6 +75,7 @@ class VelocityControlBalanceResponse(object):
     @property
     def velocity_window(self):
         return self.json_response.get('velocity_window', None)
+
 
     @property
     def active(self):
@@ -82,5 +87,4 @@ class VelocityControlBalanceResponse(object):
             return Available(self.json_response['available'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.velocity_control_balance_response.' \
-               'VelocityControlBalanceResponse>' + self.__str__()
+         return '<Marqeta.response_models.velocity_control_balance_response.VelocityControlBalanceResponse>' + self.__str__()

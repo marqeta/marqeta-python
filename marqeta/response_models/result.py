@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.result_code import ResultCode
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class Result(object):
 
@@ -20,6 +21,7 @@ class Result(object):
     def status(self):
         return self.json_response.get('status', None)
 
+
     @property
     def codes(self):
         if 'codes' in self.json_response:
@@ -30,4 +32,4 @@ class Result(object):
         return self.json_response.get('failed_questions_count', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.result.Result>' + self.__str__()
+         return '<Marqeta.response_models.result.Result>' + self.__str__()

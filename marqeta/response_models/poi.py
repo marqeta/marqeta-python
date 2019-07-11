@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.other_poi import OtherPoi
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class Poi(object):
 
@@ -30,4 +31,4 @@ class Poi(object):
         return self.json_response.get('atm', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.poi.Poi>' + self.__str__()
+         return '<Marqeta.response_models.poi.Poi>' + self.__str__()

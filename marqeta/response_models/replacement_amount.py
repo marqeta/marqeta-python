@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class ReplacementAmount(object):
 
@@ -32,4 +33,4 @@ class ReplacementAmount(object):
         return self.json_response.get('settlement_fee', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.replacement_amount.ReplacementAmount>' + self.__str__()
+         return '<Marqeta.response_models.replacement_amount.ReplacementAmount>' + self.__str__()

@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class LoginRequestModel(object):
 
@@ -19,13 +20,16 @@ class LoginRequestModel(object):
     def email(self):
         return self.json_response.get('email', None)
 
+
     @property
     def password(self):
         return self.json_response.get('password', None)
+
 
     @property
     def user_token(self):
         return self.json_response.get('user_token', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.login_request_model.LoginRequestModel>' + self.__str__()
+         return '<Marqeta.response_models.login_request_model.LoginRequestModel>' + self.__str__()

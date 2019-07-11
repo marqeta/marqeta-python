@@ -31,8 +31,9 @@ from marqeta.response_models.card_security_code_verification import CardSecurity
 from marqeta.response_models.transaction_metadata import TransactionMetadata
 from marqeta.response_models.user_card_holder_response import UserCardHolderResponse
 from marqeta.response_models.cardholder_authentication_data import CardholderAuthenticationData
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class TransactionModel(object):
 
@@ -51,29 +52,36 @@ class TransactionModel(object):
     def type(self):
         return self.json_response.get('type', None)
 
+
     @property
     def state(self):
         return self.json_response.get('state', None)
+
 
     @property
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def user_token(self):
         return self.json_response.get('user_token', None)
+
 
     @property
     def business_token(self):
         return self.json_response.get('business_token', None)
 
+
     @property
     def acting_user_token(self):
         return self.json_response.get('acting_user_token', None)
 
+
     @property
     def card_token(self):
         return self.json_response.get('card_token', None)
+
 
     @property
     def duration(self):
@@ -82,17 +90,20 @@ class TransactionModel(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('created_time', self.json_response)
+
 
     @property
     def user_transaction_time(self):
         if 'user_transaction_time' in self.json_response:
-            return datetime.strptime(self.json_response['user_transaction_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('user_transaction_time', self.json_response)
+
 
     @property
     def settlement_date(self):
         if 'settlement_date' in self.json_response:
-            return datetime.strptime(self.json_response['settlement_date'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('settlement_date', self.json_response)
+
 
     @property
     def request_amount(self):
@@ -115,9 +126,11 @@ class TransactionModel(object):
     def currency_code(self):
         return self.json_response.get('currency_code', None)
 
+
     @property
     def approval_code(self):
         return self.json_response.get('approval_code', None)
+
 
     @property
     def response(self):
@@ -127,6 +140,7 @@ class TransactionModel(object):
     @property
     def preceding_related_transaction_token(self):
         return self.json_response.get('preceding_related_transaction_token', None)
+
 
     @property
     def incremental_authorization_transaction_tokens(self):
@@ -206,6 +220,7 @@ class TransactionModel(object):
     def polarity(self):
         return self.json_response.get('polarity', None)
 
+
     @property
     def real_time_fee_group(self):
         if 'real_time_fee_group' in self.json_response:
@@ -225,9 +240,11 @@ class TransactionModel(object):
     def network(self):
         return self.json_response.get('network', None)
 
+
     @property
     def subnetwork(self):
         return self.json_response.get('subnetwork', None)
+
 
     @property
     def acquirer_fee_amount(self):
@@ -297,13 +314,16 @@ class TransactionModel(object):
     def standin_approved_by(self):
         return self.json_response.get('standin_approved_by', None)
 
+
     @property
     def network_reference_id(self):
         return self.json_response.get('network_reference_id', None)
 
+
     @property
     def acquirer_reference_id(self):
         return self.json_response.get('acquirer_reference_id', None)
+
 
     @property
     def cardholder_authentication_data(self):
@@ -311,4 +331,4 @@ class TransactionModel(object):
             return CardholderAuthenticationData(self.json_response['cardholder_authentication_data'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.transaction_model.TransactionModel>' + self.__str__()
+         return '<Marqeta.response_models.transaction_model.TransactionModel>' + self.__str__()

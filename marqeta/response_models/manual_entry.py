@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.digital_wallet_token_address_verification import DigitalWalletTokenAddressVerification
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class ManualEntry(object):
 
@@ -26,4 +27,4 @@ class ManualEntry(object):
             return DigitalWalletTokenAddressVerification(self.json_response['address_verification'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.manual_entry.ManualEntry>' + self.__str__()
+         return '<Marqeta.response_models.manual_entry.ManualEntry>' + self.__str__()

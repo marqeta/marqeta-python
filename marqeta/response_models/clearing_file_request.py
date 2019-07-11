@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.clearing_record_request_model import ClearingRecordRequestModel
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class ClearingFileRequest(object):
 
@@ -29,9 +30,11 @@ class ClearingFileRequest(object):
     def batch_id(self):
         return self.json_response.get('batch_id', None)
 
+
     @property
     def clearing_folder(self):
         return self.json_response.get('clearing_folder', None)
+
 
     @property
     def encrypt_file(self):
@@ -42,4 +45,4 @@ class ClearingFileRequest(object):
         return self.json_response.get('create_completion_file', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.clearing_file_request.ClearingFileRequest>' + self.__str__()
+         return '<Marqeta.response_models.clearing_file_request.ClearingFileRequest>' + self.__str__()

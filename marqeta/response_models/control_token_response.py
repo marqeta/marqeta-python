@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class ControlTokenResponse(object):
 
@@ -19,5 +20,6 @@ class ControlTokenResponse(object):
     def control_token(self):
         return self.json_response.get('control_token', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.control_token_response.ControlTokenResponse>' + self.__str__()
+         return '<Marqeta.response_models.control_token_response.ControlTokenResponse>' + self.__str__()

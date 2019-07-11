@@ -1,8 +1,9 @@
 from datetime import datetime, date
 from marqeta.response_models.spend_control_association import SpendControlAssociation
 from marqeta.response_models.merchant_scope import MerchantScope
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class AuthControlResponse(object):
 
@@ -21,9 +22,11 @@ class AuthControlResponse(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def name(self):
         return self.json_response.get('name', None)
+
 
     @property
     def association(self):
@@ -38,16 +41,18 @@ class AuthControlResponse(object):
     @property
     def start_time(self):
         if 'start_time' in self.json_response:
-            return datetime.strptime(self.json_response['start_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('start_time', self.json_response)
+
 
     @property
     def end_time(self):
         if 'end_time' in self.json_response:
-            return datetime.strptime(self.json_response['end_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('end_time', self.json_response)
+
 
     @property
     def active(self):
         return self.json_response.get('active', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.auth_control_response.AuthControlResponse>' + self.__str__()
+         return '<Marqeta.response_models.auth_control_response.AuthControlResponse>' + self.__str__()

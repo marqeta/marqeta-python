@@ -1,8 +1,9 @@
 from datetime import datetime, date
 from marqeta.response_models.account import Account
 from marqeta.response_models.risk_assessment import RiskAssessment
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class WalletProviderProfile(object):
 
@@ -31,17 +32,20 @@ class WalletProviderProfile(object):
     def device_score(self):
         return self.json_response.get('device_score', None)
 
+
     @property
     def pan_source(self):
         return self.json_response.get('pan_source', None)
 
+
     @property
     def reason_code(self):
         return self.json_response.get('reason_code', None)
+
 
     @property
     def recommendation_reasons(self):
         return self.json_response.get('recommendation_reasons', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.wallet_provider_profile.WalletProviderProfile>' + self.__str__()
+         return '<Marqeta.response_models.wallet_provider_profile.WalletProviderProfile>' + self.__str__()

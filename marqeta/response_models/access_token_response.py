@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.application import Application
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class AccessTokenResponse(object):
 
@@ -20,10 +21,12 @@ class AccessTokenResponse(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def expires(self):
         if 'expires' in self.json_response:
-            return datetime.strptime(self.json_response['expires'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('expires', self.json_response)
+
 
     @property
     def application(self):
@@ -38,6 +41,7 @@ class AccessTokenResponse(object):
     def user_token(self):
         return self.json_response.get('user_token', None)
 
+
     @property
     def master_roles(self):
         return self.json_response.get('master_roles', None)
@@ -46,9 +50,10 @@ class AccessTokenResponse(object):
     def token_type(self):
         return self.json_response.get('token_type', None)
 
+
     @property
     def one_time(self):
         return self.json_response.get('one_time', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.access_token_response.AccessTokenResponse>' + self.__str__()
+         return '<Marqeta.response_models.access_token_response.AccessTokenResponse>' + self.__str__()

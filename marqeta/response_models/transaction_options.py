@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class TransactionOptions(object):
 
@@ -19,6 +20,7 @@ class TransactionOptions(object):
     def additional_data(self):
         return self.json_response.get('additional_data', None)
 
+
     @property
     def database_transaction_timeout(self):
         return self.json_response.get('database_transaction_timeout', None)
@@ -26,6 +28,7 @@ class TransactionOptions(object):
     @property
     def pre_auth_time_limit(self):
         return self.json_response.get('pre_auth_time_limit', None)
+
 
     @property
     def send_expiration_date(self):
@@ -39,5 +42,6 @@ class TransactionOptions(object):
     def card_expiration_date_yymm(self):
         return self.json_response.get('card_expiration_date_yymm', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.transaction_options.TransactionOptions>' + self.__str__()
+         return '<Marqeta.response_models.transaction_options.TransactionOptions>' + self.__str__()

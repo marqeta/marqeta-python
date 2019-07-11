@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class MerchantScope(object):
 
@@ -19,13 +20,16 @@ class MerchantScope(object):
     def mid(self):
         return self.json_response.get('mid', None)
 
+
     @property
     def mcc(self):
         return self.json_response.get('mcc', None)
+
 
     @property
     def mcc_group(self):
         return self.json_response.get('mcc_group', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.merchant_scope.MerchantScope>' + self.__str__()
+         return '<Marqeta.response_models.merchant_scope.MerchantScope>' + self.__str__()

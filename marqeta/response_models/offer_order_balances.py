@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class OfferOrderBalances(object):
 
@@ -18,6 +19,7 @@ class OfferOrderBalances(object):
     @property
     def currency_code(self):
         return self.json_response.get('currency_code', None)
+
 
     @property
     def ledger_balance(self):
@@ -44,4 +46,4 @@ class OfferOrderBalances(object):
         return self.json_response.get('balances', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.offer_order_balances.OfferOrderBalances>' + self.__str__()
+         return '<Marqeta.response_models.offer_order_balances.OfferOrderBalances>' + self.__str__()

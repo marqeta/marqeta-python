@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.gl_entry import GlEntry
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class GlTransactionRequest(object):
 
@@ -25,6 +26,7 @@ class GlTransactionRequest(object):
     def detail(self):
         return self.json_response.get('detail', None)
 
+
     @property
     def cardholder_visible(self):
         return self.json_response.get('cardholder_visible', None)
@@ -33,5 +35,6 @@ class GlTransactionRequest(object):
     def reference_transaction_token(self):
         return self.json_response.get('reference_transaction_token', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.gl_transaction_request.GlTransactionRequest>' + self.__str__()
+         return '<Marqeta.response_models.gl_transaction_request.GlTransactionRequest>' + self.__str__()

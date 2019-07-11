@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
 
-'''BUSINESSES RESOURCE WITH CRU PARAMETERS'''
+'''WEBHOOKS RESOURCE WITH CRU PARAMETERS'''
 
 from marqeta.resources.collection import Collection
 from marqeta.response_models.webhook_response_model import WebhookResponseModel
@@ -9,8 +8,9 @@ from marqeta.response_models.webhook_ping_model import WebhookPingModel
 
 class WebhooksCollection(object):
     '''
-     Marqeta API 'businesses' endpoint list, create, find and update operations
+    Marqeta API 'webhooks' endpoint list, create, find and update operations
     '''
+
     _endpoint = 'webhooks'
 
     def __init__(self, client):
@@ -24,17 +24,18 @@ class WebhooksCollection(object):
     def __call__(self, token):
         '''
         Special case call made with token
-        :param token: business token
-        :return: BusinessContext object
+        :param token: webhooks token
+        :return: WebhooksContext object
         '''
         return WebhooksContext(token, self.client)
 
-    def page(self, count=5, start_index=0, params=None):
+    def page(self, params=None, count=5, start_index=0):
         '''
-        Provides the requested page for businesses
-         :param count: data to be displayed per page
+        Provides the requested page for webhooks
+        :param count: data to be displayed per page
         :param start_index: start_index
-        :return: requested page with BusinessCardHolderModel object for the requested
+        :param params: query parameters
+        :return: requested page with WebhookResponseModel object for the requested
         page 'data'field
         '''
         return self.collections.page(endpoint=self._endpoint, count=count,
@@ -44,54 +45,54 @@ class WebhooksCollection(object):
         '''
         Stream through the list of requested endpoint data field
         :param params: query parameters
-        :return: BusinessCardHolderModel object
+        :return: WebhookResponseModel object
         '''
         return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
     def list(self, params=None, limit=None):
         '''
-        List all the businesses
+
+        List all the webhooks
         :param params: query parameters
         :param limit: parameter to limit the list count
-        :return: List of BusinessCardHolderModel object
+        :return: List of WebhookResponseModel object:
         '''
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
 
+
+
     def create(self, data, params=None):
         '''
-        Creates an businesses object
+        Creates an webhooks object
         :param data: data required for creation
         :param params: query parameters
-        :return: BusinessCardHolderResponse object
+        :return: WebhookResponseModel object
         '''
         return self.collections.create(endpoint=self._endpoint, query_params=params, data=data)
-
     def find(self, token, params=None):
         '''
-        Finds a specific businesses object
-        :param token: businesses token
+        Finds a specific webhooks object
+        :param token: webhooks token
         :param params: query parameters
-        :return: BusinessCardHolderResponse object
+        :return: WebhookResponseModel object
         '''
         return self.collections.find(endpoint=self._endpoint + '/{}'.format(token),
                                      query_params=params)
 
     def save(self, token, data):
         '''
-        Updates an businesses object
-        :param token: businesses token
+        Updates an webhooks  object
+        :param token: webhooks  token
         :param data: data to be updated
-        :return: BusinessCardHolderUpdateModel object
+        :return: WebhookResponseModel object
         '''
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
-
     def __repr__(self):
         return '<Marqeta.resources.webhooks.WebhooksCollection>'
 
 
 class WebhooksContext(WebhooksCollection):
     ''' class to specify sub endpoints for business '''
-
     _endpoint = 'webhooks/{}'
 
     def __init__(self, token, client):
@@ -121,3 +122,4 @@ class WebhooksContext(WebhooksCollection):
 
     def __repr__(self):
         return '<Marqeta.resources.webhooks.WebhooksContext>'
+

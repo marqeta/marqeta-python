@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.expiration_offset import ExpirationOffset
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class CardLifeCycle(object):
 
@@ -34,4 +35,4 @@ class CardLifeCycle(object):
         return self.json_response.get('update_expiration_upon_activation', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_life_cycle.CardLifeCycle>' + self.__str__()
+         return '<Marqeta.response_models.card_life_cycle.CardLifeCycle>' + self.__str__()

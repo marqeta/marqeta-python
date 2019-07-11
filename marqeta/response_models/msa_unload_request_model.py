@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class MsaUnloadRequestModel(object):
 
@@ -19,9 +20,11 @@ class MsaUnloadRequestModel(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def original_order_token(self):
         return self.json_response.get('original_order_token', None)
+
 
     @property
     def amount(self):
@@ -31,9 +34,11 @@ class MsaUnloadRequestModel(object):
     def tags(self):
         return self.json_response.get('tags', None)
 
+
     @property
     def memo(self):
         return self.json_response.get('memo', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.msa_unload_request_model.MsaUnloadRequestModel>' + self.__str__()
+         return '<Marqeta.response_models.msa_unload_request_model.MsaUnloadRequestModel>' + self.__str__()

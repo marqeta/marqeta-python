@@ -4,8 +4,9 @@ from marqeta.response_models.digital_wallet_token import DigitalWalletToken
 from marqeta.response_models.digital_wallet_token_device import DigitalWalletTokenDevice
 from marqeta.response_models.digital_wallet_token_wallet_provider import DigitalWalletTokenWalletProvider
 from marqeta.response_models.digital_wallet_token_request_address import DigitalWalletTokenRequestAddress
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class DigitalWalletTokenCreateRequest(object):
 
@@ -24,9 +25,9 @@ class DigitalWalletTokenCreateRequest(object):
     def network(self):
         return self.json_response.get('network', None)
 
+
     @property
     def digital_wallet_token_card_info(self):
-
         if 'digital_wallet_token_card_info' in self.json_response:
             return DigitalWalletTokenCardInfo(self.json_response['digital_wallet_token_card_info'])
 
@@ -51,5 +52,4 @@ class DigitalWalletTokenCreateRequest(object):
             return DigitalWalletTokenRequestAddress(self.json_response['digital_wallet_token_request_address'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_token_create_request.' \
-               'DigitalWalletTokenCreateRequest>' + self.__str__()
+         return '<Marqeta.response_models.digital_wallet_token_create_request.DigitalWalletTokenCreateRequest>' + self.__str__()

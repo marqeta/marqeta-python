@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class PanResponse(object):
 
@@ -18,20 +19,24 @@ class PanResponse(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('created_time', self.json_response)
+
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('last_modified_time', self.json_response)
+
 
     @property
     def user_token(self):
         return self.json_response.get('user_token', None)
 
+
     @property
     def card_token(self):
         return self.json_response.get('card_token', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.pan_response.PanResponse>' + self.__str__()
+         return '<Marqeta.response_models.pan_response.PanResponse>' + self.__str__()

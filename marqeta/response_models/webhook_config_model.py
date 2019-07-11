@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class WebhookConfigModel(object):
 
@@ -19,17 +20,21 @@ class WebhookConfigModel(object):
     def url(self):
         return self.json_response.get('url', None)
 
+
     @property
     def secret(self):
         return self.json_response.get('secret', None)
+
 
     @property
     def basic_auth_username(self):
         return self.json_response.get('basic_auth_username', None)
 
+
     @property
     def basic_auth_password(self):
         return self.json_response.get('basic_auth_password', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.webhook_config_model.WebhookConfigModel>' + self.__str__()
+         return '<Marqeta.response_models.webhook_config_model.WebhookConfigModel>' + self.__str__()

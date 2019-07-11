@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class HoldIncrease(object):
 
@@ -19,9 +20,10 @@ class HoldIncrease(object):
     def type(self):
         return self.json_response.get('type', None)
 
+
     @property
     def value(self):
         return self.json_response.get('value', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.hold_increase.HoldIncrease>' + self.__str__()
+         return '<Marqeta.response_models.hold_increase.HoldIncrease>' + self.__str__()

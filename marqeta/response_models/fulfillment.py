@@ -1,8 +1,9 @@
 from datetime import datetime, date
 from marqeta.response_models.shipping import Shipping
 from marqeta.response_models.card_personalization import CardPersonalization
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class Fulfillment(object):
 
@@ -28,4 +29,4 @@ class Fulfillment(object):
             return CardPersonalization(self.json_response['card_personalization'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.fulfillment.Fulfillment>' + self.__str__()
+         return '<Marqeta.response_models.fulfillment.Fulfillment>' + self.__str__()

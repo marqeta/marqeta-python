@@ -8,8 +8,9 @@ from marqeta.response_models.clearing_and_settlement import ClearingAndSettlemen
 from marqeta.response_models.jit_funding import JitFunding
 from marqeta.response_models.digital_wallet_tokenization import DigitalWalletTokenization
 from marqeta.response_models.card_product_fulfillment import CardProductFulfillment
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class CardProductConfig(object):
 
@@ -26,7 +27,6 @@ class CardProductConfig(object):
 
     @property
     def poi(self):
-
         if 'poi' in self.json_response:
             return Poi(self.json_response['poi'])
 
@@ -71,4 +71,4 @@ class CardProductConfig(object):
             return CardProductFulfillment(self.json_response['fulfillment'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_product_config.CardProductConfig>' + self.__str__()
+         return '<Marqeta.response_models.card_product_config.CardProductConfig>' + self.__str__()

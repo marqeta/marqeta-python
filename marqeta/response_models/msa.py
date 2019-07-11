@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class Msa(object):
 
@@ -19,6 +20,7 @@ class Msa(object):
     def campaign_token(self):
         return self.json_response.get('campaign_token', None)
 
+
     @property
     def trigger_amount(self):
         return self.json_response.get('trigger_amount', None)
@@ -28,4 +30,4 @@ class Msa(object):
         return self.json_response.get('reload_amount', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.msa.Msa>' + self.__str__()
+         return '<Marqeta.response_models.msa.Msa>' + self.__str__()

@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.terminal_model import TerminalModel
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class TransactionCardAcceptorViewModelV1(object):
 
@@ -20,13 +21,16 @@ class TransactionCardAcceptorViewModelV1(object):
     def mid(self):
         return self.json_response.get('mid', None)
 
+
     @property
     def mcc(self):
         return self.json_response.get('mcc', None)
 
+
     @property
     def network_mid(self):
         return self.json_response.get('network_mid', None)
+
 
     @property
     def mcc_groups(self):
@@ -36,29 +40,36 @@ class TransactionCardAcceptorViewModelV1(object):
     def name(self):
         return self.json_response.get('name', None)
 
+
     @property
     def address(self):
         return self.json_response.get('address', None)
+
 
     @property
     def city(self):
         return self.json_response.get('city', None)
 
+
     @property
     def state(self):
         return self.json_response.get('state', None)
+
 
     @property
     def zip(self):
         return self.json_response.get('zip', None)
 
+
     @property
     def postal_code(self):
         return self.json_response.get('postal_code', None)
 
+
     @property
     def country(self):
         return self.json_response.get('country', None)
+
 
     @property
     def poi(self):
@@ -66,5 +77,4 @@ class TransactionCardAcceptorViewModelV1(object):
             return TerminalModel(self.json_response['poi'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.transaction_card_acceptor_view_model_v1.' \
-               'TransactionCardAcceptorViewModelV1>' + self.__str__()
+         return '<Marqeta.response_models.transaction_card_acceptor_view_model_v1.TransactionCardAcceptorViewModelV1>' + self.__str__()

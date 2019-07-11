@@ -2,8 +2,9 @@ from datetime import datetime, date
 from marqeta.response_models.funding_source_model import FundingSourceModel
 from marqeta.response_models.cardholder_address_response import CardholderAddressResponse
 from marqeta.response_models.gateway_log_model import GatewayLogModel
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class Funding(object):
 
@@ -38,4 +39,4 @@ class Funding(object):
             return GatewayLogModel(self.json_response['gateway_log'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.funding.Funding>' + self.__str__()
+         return '<Marqeta.response_models.funding.Funding>' + self.__str__()

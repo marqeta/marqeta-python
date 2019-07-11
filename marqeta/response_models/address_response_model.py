@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class AddressResponseModel(object):
 
@@ -19,29 +20,36 @@ class AddressResponseModel(object):
     def address1(self):
         return self.json_response.get('address1', None)
 
+
     @property
     def address2(self):
         return self.json_response.get('address2', None)
+
 
     @property
     def city(self):
         return self.json_response.get('city', None)
 
+
     @property
     def state(self):
         return self.json_response.get('state', None)
+
 
     @property
     def zip(self):
         return self.json_response.get('zip', None)
 
+
     @property
     def postal_code(self):
         return self.json_response.get('postal_code', None)
+
 
     @property
     def country(self):
         return self.json_response.get('country', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.address_response_model.AddressResponseModel>' + self.__str__()
+         return '<Marqeta.response_models.address_response_model.AddressResponseModel>' + self.__str__()

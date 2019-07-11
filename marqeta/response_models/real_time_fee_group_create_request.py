@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class RealTimeFeeGroupCreateRequest(object):
 
@@ -19,9 +20,11 @@ class RealTimeFeeGroupCreateRequest(object):
     def name(self):
         return self.json_response.get('name', None)
 
+
     @property
     def token(self):
         return self.json_response.get('token', None)
+
 
     @property
     def active(self):
@@ -32,5 +35,4 @@ class RealTimeFeeGroupCreateRequest(object):
         return self.json_response.get('fee_tokens', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.real_time_fee_group_create_request.RealTimeFeeGroupCreateRequest>' \
-               + self.__str__()
+         return '<Marqeta.response_models.real_time_fee_group_create_request.RealTimeFeeGroupCreateRequest>' + self.__str__()

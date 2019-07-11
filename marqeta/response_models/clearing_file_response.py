@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.clearing_file import ClearingFile
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class ClearingFileResponse(object):
 
@@ -22,4 +23,4 @@ class ClearingFileResponse(object):
             return [ClearingFile(val) for val in self.json_response['clearing_files']]
 
     def __repr__(self):
-        return '<Marqeta.response_models.clearing_file_response.ClearingFileResponse>' + self.__str__()
+         return '<Marqeta.response_models.clearing_file_response.ClearingFileResponse>' + self.__str__()

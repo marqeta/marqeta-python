@@ -10,8 +10,9 @@ from marqeta.response_models.digital_wallet_token_device import DigitalWalletTok
 from marqeta.response_models.digital_wallet_token_wallet_provider import DigitalWalletTokenWalletProvider
 from marqeta.response_models.card_options import CardOptions
 from marqeta.response_models.advanced_auth_poi import AdvancedAuthPoi
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class AdvAuthRequestModel(object):
 
@@ -30,13 +31,16 @@ class AdvAuthRequestModel(object):
     def mti(self):
         return self.json_response.get('mti', None)
 
+
     @property
     def network(self):
         return self.json_response.get('network', None)
 
+
     @property
     def sub_network(self):
         return self.json_response.get('sub_network', None)
+
 
     @property
     def is_router_simulator(self):
@@ -46,48 +50,59 @@ class AdvAuthRequestModel(object):
     def network_reference_id(self):
         return self.json_response.get('network_reference_id', None)
 
+
     @property
     def local_transaction_date(self):
         if 'local_transaction_date' in self.json_response:
-            return datetime.strptime(self.json_response['local_transaction_date'], '%Y-%m-%d').date()
+            return datetime_object('local_transaction_date', self.json_response)
+
 
     @property
     def transaction_date(self):
         if 'transaction_date' in self.json_response:
-            return datetime.strptime(self.json_response['transaction_date'], '%Y-%m-%d').date()
+            return datetime_object('transaction_date', self.json_response)
+
 
     @property
     def settlement_date(self):
         if 'settlement_date' in self.json_response:
-            return datetime.strptime(self.json_response['settlement_date'], '%Y-%m-%d').date()
+            return datetime_object('settlement_date', self.json_response)
+
 
     @property
     def stan(self):
         return self.json_response.get('stan', None)
 
+
     @property
     def rrn(self):
         return self.json_response.get('rrn', None)
+
 
     @property
     def processing_code(self):
         return self.json_response.get('processing_code', None)
 
+
     @property
     def function_code(self):
         return self.json_response.get('function_code', None)
+
 
     @property
     def reason_code(self):
         return self.json_response.get('reason_code', None)
 
+
     @property
     def acquirer_reference_id(self):
         return self.json_response.get('acquirer_reference_id', None)
 
+
     @property
     def forwarding_institution_id(self):
         return self.json_response.get('forwarding_institution_id', None)
+
 
     @property
     def local_transaction_amount(self):
@@ -96,6 +111,7 @@ class AdvAuthRequestModel(object):
     @property
     def local_currency_code(self):
         return self.json_response.get('local_currency_code', None)
+
 
     @property
     def settlement_amount(self):
@@ -113,17 +129,21 @@ class AdvAuthRequestModel(object):
     def cardholder_billing_currency(self):
         return self.json_response.get('cardholder_billing_currency', None)
 
+
     @property
     def settlement_currency_code(self):
         return self.json_response.get('settlement_currency_code', None)
+
 
     @property
     def approval_code(self):
         return self.json_response.get('approval_code', None)
 
+
     @property
     def network_response(self):
         return self.json_response.get('network_response', None)
+
 
     @property
     def stan_padding_length(self):
@@ -132,6 +152,7 @@ class AdvAuthRequestModel(object):
     @property
     def card_token(self):
         return self.json_response.get('card_token', None)
+
 
     @property
     def amount(self):
@@ -145,13 +166,16 @@ class AdvAuthRequestModel(object):
     def mid(self):
         return self.json_response.get('mid', None)
 
+
     @property
     def pin(self):
         return self.json_response.get('pin', None)
 
+
     @property
     def pos_pan_entry_mode(self):
         return self.json_response.get('pos_pan_entry_mode', None)
+
 
     @property
     def acquirer_fee_amount(self):
@@ -160,6 +184,7 @@ class AdvAuthRequestModel(object):
     @property
     def stip_reason_code(self):
         return self.json_response.get('stip_reason_code', None)
+
 
     @property
     def is_recurring(self):
@@ -218,6 +243,7 @@ class AdvAuthRequestModel(object):
     def cavv_result_code(self):
         return self.json_response.get('cavv_result_code', None)
 
+
     @property
     def card_options(self):
         if 'card_options' in self.json_response:
@@ -230,8 +256,7 @@ class AdvAuthRequestModel(object):
 
     @property
     def is_stip_approval(self):
-
         return self.json_response.get('is_stip_approval', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.adv_auth_request_model.AdvAuthRequestModel>' + self.__str__()
+         return '<Marqeta.response_models.adv_auth_request_model.AdvAuthRequestModel>' + self.__str__()

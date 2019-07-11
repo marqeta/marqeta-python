@@ -2,8 +2,9 @@ from datetime import datetime, date
 from marqeta.response_models.network_fee_model import NetworkFeeModel
 from marqeta.response_models.webhook import Webhook
 from marqeta.response_models.card_acceptor_model import CardAcceptorModel
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class BalanceInquiryRequestModel(object):
 
@@ -32,17 +33,21 @@ class BalanceInquiryRequestModel(object):
     def account_type(self):
         return self.json_response.get('account_type', None)
 
+
     @property
     def card_token(self):
         return self.json_response.get('card_token', None)
+
 
     @property
     def pin(self):
         return self.json_response.get('pin', None)
 
+
     @property
     def mid(self):
         return self.json_response.get('mid', None)
+
 
     @property
     def card_acceptor(self):
@@ -50,4 +55,4 @@ class BalanceInquiryRequestModel(object):
             return CardAcceptorModel(self.json_response['card_acceptor'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.balance_inquiry_request_model.BalanceInquiryRequestModel>' + self.__str__()
+         return '<Marqeta.response_models.balance_inquiry_request_model.BalanceInquiryRequestModel>' + self.__str__()

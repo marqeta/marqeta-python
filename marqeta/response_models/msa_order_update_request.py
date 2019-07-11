@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class MsaOrderUpdateRequest(object):
 
@@ -22,12 +23,14 @@ class MsaOrderUpdateRequest(object):
     @property
     def start_date(self):
         if 'start_date' in self.json_response:
-            return datetime.strptime(self.json_response['start_date'], '%Y-%m-%d').date()
+            return datetime_object('start_date', self.json_response)
+
 
     @property
     def end_date(self):
         if 'end_date' in self.json_response:
-            return datetime.strptime(self.json_response['end_date'], '%Y-%m-%d').date()
+            return datetime_object('end_date', self.json_response)
+
 
     def __repr__(self):
-        return '<Marqeta.response_models.msa_order_update_request.MsaOrderUpdateRequest>' + self.__str__()
+         return '<Marqeta.response_models.msa_order_update_request.MsaOrderUpdateRequest>' + self.__str__()

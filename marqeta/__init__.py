@@ -61,44 +61,41 @@ body = { # Consult API reference }
 client.put("cards", params=body)
 
 '''
-
 import sys
 import json
 import requests
+from requests.exceptions import RequestException
 from marqeta.version import __version__
 from marqeta.errors import MarqetaError
 from marqeta.resources.users import UsersCollection
-from marqeta.resources.cardproducts import CardProductCollection
+from marqeta.resources.card_products import CardProductsCollection
 from marqeta.resources.cards import CardsCollection
-from marqeta.resources.gpaorder import GpaOrderCollection
-from marqeta.resources.fundingsources import FundingSourcesCollection
+from marqeta.resources.gpa_orders import GpaOrdersCollection
+from marqeta.resources.funding_sources import FundingSourcesCollection
 from marqeta.resources.businesses import BusinessesCollection
-from marqeta.resources.acceptedcountries import AcceptedCountriesCollection
-from marqeta.resources.accountholdergroups import AccountHolderGroupsCollection
-from marqeta.resources.digitalwallettokens import DigitalWalletTokensCollection
-from marqeta.resources.authcontrols import AuthControlsCollection
-from marqeta.resources.autoreloads import AutoReloadsCollection
+from marqeta.resources.accepted_countries import AcceptedCountriesCollection
+from marqeta.resources.account_holder_groups import AccountHolderGroupsCollection
+from marqeta.resources.digital_wallet_tokens import DigitalWalletTokensCollection
+from marqeta.resources.auth_controls import AuthControlsCollection
+from marqeta.resources.auto_reloads import AutoReloadsCollection
 from marqeta.resources.kyc import KycCollection
-from marqeta.resources.balances import BalancesTokenCollection
-from marqeta.resources.msaorders import MsaOrdersCollection
-from marqeta.resources.offerorders import OfferOrdersCollection
-from marqeta.resources.bulkissuances import BulkIssuancesCollection
-from marqeta.resources.campaigns import CampaignsCollection
+from marqeta.resources.balances import BalancesCollection
+from marqeta.resources.msa_orders import MsaOrdersCollection
+from marqeta.resources.offer_orders import OfferOrdersCollection
+from marqeta.resources.bulk_issuances import BulkIssuancesCollection
 from marqeta.resources.chargebacks import ChargebacksCollection
-from marqeta.resources.commandomodes import CommandoModesCollection
-from marqeta.resources.directdeposits import DirectDepositsCollection
+from marqeta.resources.commando_modes import CommandoModesCollection
+from marqeta.resources.direct_deposits import DirectDepositsCollection
 from marqeta.resources.fees import FeesCollection
-from marqeta.resources.feetransfers import FeeTransfersCollection
-from marqeta.resources.mccgroups import MccGroupsCollection
+from marqeta.resources.fee_transfers import FeeTransfersCollection
+from marqeta.resources.mcc_groups import MccGroupsCollection
 from marqeta.resources.merchants import MerchantsCollection
-from marqeta.resources.offers import OffersCollection
-from marqeta.resources.programtransfers import ProgramTransfersCollection
-from marqeta.resources.realtimefeegroups import RealTimeFeeGroupsCollection
-from marqeta.resources.stores import StoresCollection
+from marqeta.resources.program_transfers import ProgramTransfersCollection
+from marqeta.resources.real_time_fee_groups import RealTimeFeeGroupsCollection
 from marqeta.resources.transactions import TransactionsCollection
-from marqeta.resources.velocitycontrols import VelocityControlsCollection
+from marqeta.resources.velocity_controls import VelocityControlsCollection
 from marqeta.resources.webhooks import WebhooksCollection
-from marqeta.resources.pushtocards import PushToCardsCollection
+from marqeta.resources.push_to_cards import PushToCardsCollection
 from marqeta.resources.pins import PinsCollection
 from marqeta.response_models.ping_response import PingResponse
 from marqeta.response_models.echo_ping_response import EchoPingResponse
@@ -141,12 +138,14 @@ class Client(object):
      Marqeta Client Object
 
     '''
+    DEFAULT_TIMEOUT = None
 
-    def __init__(self, base_url=None, application_token=None, access_token=None):
+    def __init__(self, base_url=None, application_token=None, access_token=None, timeout=DEFAULT_TIMEOUT):
 
         self.base_url = base_url
         self.application_token = application_token
         self.access_token = access_token
+        self.timeout = timeout
         objects = self._objects_container()
         self.users = objects['users']()
         self.businesses = objects['businesses']()
@@ -173,9 +172,6 @@ class Client(object):
         self.direct_deposits = objects['direct_deposits']()
         self.webhooks = objects['webhooks']()
         self.merchants = objects['merchants']()
-        self.stores = objects['stores']()
-        self.campaigns = objects['campaigns']()
-        self.offers = objects['offers']()
         self.commando_modes = objects['commando_modes']()
         self.bulk_issuances = objects['bulk_issuances']()
         self.real_time_fee_groups = objects['real_time_fee_groups']()
@@ -190,9 +186,9 @@ class Client(object):
         :return: json response and response status code
         '''
         response = requests.get(url=self.base_url + endpoint, auth=(
-            self.application_token, self.access_token),
-                                headers=headers,
-                                params=query_params)
+            self.application_token, self.access_token), headers=headers,
+            params=query_params, timeout=self.timeout)
+
         if response.status_code >= 400:
             response = response.json()
             if 'error_code' not in response:
@@ -209,10 +205,11 @@ class Client(object):
         :param data:
         :return:json response and response status code
         '''
+
         response = requests.put(url=self.base_url + endpoint, auth=(
             self.application_token, self.access_token),
-                                headers=headers,
-                                data=json.dumps(data))
+            headers=headers, timeout=self.timeout,
+            data=json.dumps(data))
         if response.status_code >= 400:
             response = response.json()
             if 'error_code' not in response:
@@ -232,9 +229,9 @@ class Client(object):
         '''
         response = requests.post(url=self.base_url + endpoint, auth=(
             self.application_token, self.access_token),
-                                 headers=headers,
-                                 params=query_params,
-                                 data=json.dumps(data))
+            headers=headers, timeout=self.timeout,
+            params=query_params,
+            data=json.dumps(data))
         if response.status_code >= 400:
             response = response.json()
             if 'error_code' not in response:
@@ -252,7 +249,7 @@ class Client(object):
         '''
         response = requests.delete(url=self.base_url + endpoint, auth=(
             self.application_token, self.access_token),
-                                   headers=headers)
+            headers=headers, timeout=self.timeout)
         if response.status_code >= 400:
             response = response.json()
             if 'error_code' not in response:
@@ -275,7 +272,6 @@ class Client(object):
         return PingResponse(self.get('ping')[0])
 
     def _objects_container(self):
-
         '''
         Call subclasses via function to allow passing parent namespace to subclasses.
         :return: dict with objects references
@@ -289,7 +285,7 @@ class Client(object):
                 self._parent_class = _parent_class
                 super(UsersWrapper, self).__init__(_parent_class)
 
-        class CardProductWrapper(CardProductCollection):
+        class CardProductWrapper(CardProductsCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
@@ -301,7 +297,7 @@ class Client(object):
                 self._parent_class = _parent_class
                 super(CardsWrapper, self).__init__(_parent_class)
 
-        class GpaOrderWrapper(GpaOrderCollection):
+        class GpaOrderWrapper(GpaOrdersCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
@@ -349,7 +345,7 @@ class Client(object):
                 self._parent_class = _parent_class
                 super(KycWrapper, self).__init__(_parent_class)
 
-        class BalancesTokenWrapper(BalancesTokenCollection):
+        class BalancesTokenWrapper(BalancesCollection):
 
             def __init__(self):
                 self._parent_class = _parent_class
@@ -433,18 +429,6 @@ class Client(object):
                 self._parent_class = _parent_class
                 super(MerchantsWrapper, self).__init__(_parent_class)
 
-        class StoresWrapper(StoresCollection):
-
-            def __init__(self):
-                self._parent_class = _parent_class
-                super(StoresWrapper, self).__init__(_parent_class)
-
-        class CampaignsWrapper(CampaignsCollection):
-
-            def __init__(self):
-                self._parent_class = _parent_class
-                super(CampaignsWrapper, self).__init__(_parent_class)
-
         class CommandoModesWrapper(CommandoModesCollection):
 
             def __init__(self):
@@ -456,12 +440,6 @@ class Client(object):
             def __init__(self):
                 self._parent_class = _parent_class
                 super(RealtimeFeeGroupWrapper, self).__init__(_parent_class)
-
-        class OffersWrapper(OffersCollection):
-
-            def __init__(self):
-                self._parent_class = _parent_class
-                super(OffersWrapper, self).__init__(_parent_class)
 
         class BulkIssuancesWrapper(BulkIssuancesCollection):
 
@@ -506,9 +484,6 @@ class Client(object):
                 'direct_deposits': DirectDepositWrapper,
                 'webhooks': WebhookWrapper,
                 'merchants': MerchantsWrapper,
-                'stores': StoresWrapper,
-                'campaigns': CampaignsWrapper,
-                'offers': OffersWrapper,
                 'real_time_fee_groups': RealtimeFeeGroupWrapper,
                 'commando_modes': CommandoModesWrapper,
                 'bulk_issuances': BulkIssuancesWrapper,

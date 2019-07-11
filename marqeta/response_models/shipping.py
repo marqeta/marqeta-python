@@ -1,8 +1,9 @@
 from datetime import datetime, date
 from marqeta.response_models.fulfillment_address_request import FulfillmentAddressRequest
 from marqeta.response_models.fulfillment_address_request import FulfillmentAddressRequest
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class Shipping(object):
 
@@ -21,6 +22,7 @@ class Shipping(object):
     def method(self):
         return self.json_response.get('method', None)
 
+
     @property
     def return_address(self):
         if 'return_address' in self.json_response:
@@ -35,5 +37,6 @@ class Shipping(object):
     def care_of_line(self):
         return self.json_response.get('care_of_line', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.shipping.Shipping>' + self.__str__()
+         return '<Marqeta.response_models.shipping.Shipping>' + self.__str__()

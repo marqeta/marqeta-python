@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.address_request_model import AddressRequestModel
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class BusinessIncorporationRequestModel(object):
 
@@ -24,13 +25,16 @@ class BusinessIncorporationRequestModel(object):
     def stock_symbol(self):
         return self.json_response.get('stock_symbol', None)
 
+
     @property
     def state_of_incorporation(self):
         return self.json_response.get('state_of_incorporation', None)
 
+
     @property
     def name_registered_under(self):
         return self.json_response.get('name_registered_under', None)
+
 
     @property
     def address_registered_under(self):
@@ -41,6 +45,6 @@ class BusinessIncorporationRequestModel(object):
     def incorporation_type(self):
         return self.json_response.get('incorporation_type', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.business_incorporation_request_model.BusinessIncorporationRequestModel>' \
-               + self.__str__()
+         return '<Marqeta.response_models.business_incorporation_request_model.BusinessIncorporationRequestModel>' + self.__str__()

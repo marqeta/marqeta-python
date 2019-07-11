@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.card_product_config import CardProductConfig
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class CardProductResponse(object):
 
@@ -18,12 +19,13 @@ class CardProductResponse(object):
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
+
 
     @property
     def name(self):
         return self.json_response.get('name', None)
+
 
     @property
     def active(self):
@@ -32,12 +34,14 @@ class CardProductResponse(object):
     @property
     def start_date(self):
         if 'start_date' in self.json_response:
-            return datetime.strptime(self.json_response['start_date'], '%Y-%m-%d').date()
+            return datetime_object('start_date', self.json_response)
+
 
     @property
     def end_date(self):
         if 'end_date' in self.json_response:
-            return datetime.strptime(self.json_response['end_date'], '%Y-%m-%d').date()
+            return datetime_object('end_date', self.json_response)
+
 
     @property
     def config(self):
@@ -47,13 +51,14 @@ class CardProductResponse(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('created_time', self.json_response)
+
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('last_modified_time', self.json_response)
+
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_product_response.CardProductResponse>' + self.__str__()
-
+         return '<Marqeta.response_models.card_product_response.CardProductResponse>' + self.__str__()

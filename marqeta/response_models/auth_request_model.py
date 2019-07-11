@@ -4,8 +4,9 @@ from marqeta.response_models.webhook import Webhook
 from marqeta.response_models.card_options import CardOptions
 from marqeta.response_models.card_acceptor_model import CardAcceptorModel
 from marqeta.response_models.transaction_options import TransactionOptions
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class AuthRequestModel(object):
 
@@ -34,6 +35,7 @@ class AuthRequestModel(object):
     def card_token(self):
         return self.json_response.get('card_token', None)
 
+
     @property
     def amount(self):
         return self.json_response.get('amount', None)
@@ -46,6 +48,7 @@ class AuthRequestModel(object):
     def mid(self):
         return self.json_response.get('mid', None)
 
+
     @property
     def is_pre_auth(self):
         return self.json_response.get('is_pre_auth', None)
@@ -53,6 +56,7 @@ class AuthRequestModel(object):
     @property
     def pin(self):
         return self.json_response.get('pin', None)
+
 
     @property
     def card_options(self):
@@ -70,4 +74,4 @@ class AuthRequestModel(object):
             return TransactionOptions(self.json_response['transaction_options'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.auth_request_model.AuthRequestModel>' + self.__str__()
+         return '<Marqeta.response_models.auth_request_model.AuthRequestModel>' + self.__str__()

@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class Link(object):
 
@@ -19,13 +20,16 @@ class Link(object):
     def rel(self):
         return self.json_response.get('rel', None)
 
+
     @property
     def method(self):
         return self.json_response.get('method', None)
+
 
     @property
     def href(self):
         return self.json_response.get('href', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.link.Link>' + self.__str__()
+         return '<Marqeta.response_models.link.Link>' + self.__str__()

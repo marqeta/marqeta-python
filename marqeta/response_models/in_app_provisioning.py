@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.digital_wallet_token_address_verification import DigitalWalletTokenAddressVerification
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class InAppProvisioning(object):
 
@@ -18,7 +19,6 @@ class InAppProvisioning(object):
 
     @property
     def enabled(self):
-
         return self.json_response.get('enabled', None)
 
     @property
@@ -27,4 +27,4 @@ class InAppProvisioning(object):
             return DigitalWalletTokenAddressVerification(self.json_response['address_verification'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.in_app_provisioning.InAppProvisioning>' + self.__str__()
+         return '<Marqeta.response_models.in_app_provisioning.InAppProvisioning>' + self.__str__()

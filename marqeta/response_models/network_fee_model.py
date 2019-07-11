@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class NetworkFeeModel(object):
 
@@ -19,6 +20,7 @@ class NetworkFeeModel(object):
     def type(self):
         return self.json_response.get('type', None)
 
+
     @property
     def amount(self):
         return self.json_response.get('amount', None)
@@ -27,5 +29,6 @@ class NetworkFeeModel(object):
     def credit_debit(self):
         return self.json_response.get('credit_debit', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.network_fee_model.NetworkFeeModel>' + self.__str__()
+         return '<Marqeta.response_models.network_fee_model.NetworkFeeModel>' + self.__str__()

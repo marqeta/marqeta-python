@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.gatewaylog import Gatewaylog
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class Gatewaylog(object):
 
@@ -28,17 +29,21 @@ class Gatewaylog(object):
     def paymentTypeCode(self):
         return self.json_response.get('paymentTypeCode', None)
 
+
     @property
     def achTransactionType(self):
         return self.json_response.get('achTransactionType', None)
+
 
     @property
     def memo(self):
         return self.json_response.get('memo', None)
 
+
     @property
     def gatewayVersion(self):
         return self.json_response.get('gatewayVersion', None)
+
 
     @property
     def gatewayResponse(self):
@@ -56,45 +61,56 @@ class Gatewaylog(object):
     def order_Id(self):
         return self.json_response.get('order_Id', None)
 
+
     @property
     def request_method(self):
         return self.json_response.get('request_method', None)
+
 
     @property
     def response_code(self):
         return self.json_response.get('response_code', None)
 
+
     @property
     def response_subcode(self):
         return self.json_response.get('response_subcode', None)
+
 
     @property
     def response_reasoncode(self):
         return self.json_response.get('response_reasoncode', None)
 
+
     @property
     def response_message(self):
         return self.json_response.get('response_message', None)
+
 
     @property
     def status(self):
         return self.json_response.get('status', None)
 
+
     @property
     def fraud_avs(self):
         return self.json_response.get('fraud_avs', None)
+
 
     @property
     def fraud_auth(self):
         return self.json_response.get('fraud_auth', None)
 
+
     @property
     def fraud_cvv(self):
         return self.json_response.get('fraud_cvv', None)
 
+
     @property
     def gateway_transactionId(self):
         return self.json_response.get('gateway_transactionId', None)
+
 
     @property
     def original_gateway(self):
@@ -109,15 +125,18 @@ class Gatewaylog(object):
     def duplicate(self):
         return self.json_response.get('duplicate', None)
 
+
     @property
     def post_date(self):
         if 'post_date' in self.json_response:
-            return datetime.strptime(self.json_response['post_date'], '%Y-%m-%d').date()
+            return datetime_object('post_date', self.json_response)
+
 
     @property
     def response_time(self):
         if 'response_time' in self.json_response:
-            return datetime.strptime(self.json_response['response_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('response_time', self.json_response)
+
 
     @property
     def api_duration(self):
@@ -131,15 +150,18 @@ class Gatewaylog(object):
     def ach_status(self):
         return self.json_response.get('ach_status', None)
 
+
     @property
     def created(self):
         if 'created' in self.json_response:
-            return datetime.strptime(self.json_response['created'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('created', self.json_response)
+
 
     @property
     def modified(self):
         if 'modified' in self.json_response:
-            return datetime.strptime(self.json_response['modified'], '%Y-%m-%d').date()
+            return datetime_object('modified', self.json_response)
+
 
     def __repr__(self):
-        return '<Marqeta.response_models.gatewaylog.Gatewaylog>' + self.__str__()
+         return '<Marqeta.response_models.gatewaylog.Gatewaylog>' + self.__str__()

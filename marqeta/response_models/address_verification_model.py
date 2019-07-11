@@ -2,8 +2,9 @@ from datetime import datetime, date
 from marqeta.response_models.avs_information import AvsInformation
 from marqeta.response_models.avs_information import AvsInformation
 from marqeta.response_models.response import Response
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class AddressVerificationModel(object):
 
@@ -34,4 +35,4 @@ class AddressVerificationModel(object):
             return Response(self.json_response['response'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.address_verification_model.AddressVerificationModel>' + self.__str__()
+         return '<Marqeta.response_models.address_verification_model.AddressVerificationModel>' + self.__str__()

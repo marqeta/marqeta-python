@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.transaction_model import TransactionModel
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class AdvancedSimulationResponseModel(object):
 
@@ -26,5 +27,4 @@ class AdvancedSimulationResponseModel(object):
         return self.json_response.get('raw_iso8583', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.advanced_simulation_response_model.AdvancedSimulationResponseModel>' \
-               + self.__str__()
+         return '<Marqeta.response_models.advanced_simulation_response_model.AdvancedSimulationResponseModel>' + self.__str__()

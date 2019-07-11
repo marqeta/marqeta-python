@@ -1,9 +1,10 @@
 from datetime import datetime, date
 from marqeta.response_models.fulfillment import Fulfillment
 from marqeta.response_models.user_association import UserAssociation
-from marqeta.response_models.expiration_offsét import ExpirationOffsét
+from marqeta.response_models.expiration_offset import ExpirationOffset
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class BulkIssuanceRequest(object):
 
@@ -22,6 +23,7 @@ class BulkIssuanceRequest(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def fulfillment(self):
         if 'fulfillment' in self.json_response:
@@ -34,6 +36,7 @@ class BulkIssuanceRequest(object):
     @property
     def card_product_token(self):
         return self.json_response.get('card_product_token', None)
+
 
     @property
     def card_allocation(self):
@@ -50,9 +53,8 @@ class BulkIssuanceRequest(object):
 
     @property
     def expiration_offset(self):
-
         if 'expiration_offset' in self.json_response:
-            return ExpirationOffsét(self.json_response['expiration_offset'])
+            return ExpirationOffset(self.json_response['expiration_offset'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.bulk_issuance_request.BulkIssuanceRequest>' + self.__str__()
+         return '<Marqeta.response_models.bulk_issuance_request.BulkIssuanceRequest>' + self.__str__()

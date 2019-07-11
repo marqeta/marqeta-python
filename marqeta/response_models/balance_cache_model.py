@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.account_model import AccountModel
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class BalanceCacheModel(object):
 
@@ -20,6 +21,7 @@ class BalanceCacheModel(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def account(self):
         if 'account' in self.json_response:
@@ -37,15 +39,18 @@ class BalanceCacheModel(object):
     def user_token(self):
         return self.json_response.get('user_token', None)
 
+
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('created_time', self.json_response)
+
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('last_modified_time', self.json_response)
+
 
     def __repr__(self):
-        return '<Marqeta.response_models.balance_cache_model.BalanceCacheModel>' + self.__str__()
+         return '<Marqeta.response_models.balance_cache_model.BalanceCacheModel>' + self.__str__()

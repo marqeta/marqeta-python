@@ -2,8 +2,9 @@ from datetime import datetime, date
 from marqeta.response_models.fee_detail import FeeDetail
 from marqeta.response_models.response import Response
 from marqeta.response_models.funding import Funding
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class GpaResponse(object):
 
@@ -22,6 +23,7 @@ class GpaResponse(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def amount(self):
         return self.json_response.get('amount', None)
@@ -30,9 +32,11 @@ class GpaResponse(object):
     def tags(self):
         return self.json_response.get('tags', None)
 
+
     @property
     def memo(self):
         return self.json_response.get('memo', None)
+
 
     @property
     def fees(self):
@@ -42,20 +46,24 @@ class GpaResponse(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('created_time', self.json_response)
+
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('last_modified_time', self.json_response)
+
 
     @property
     def transaction_token(self):
         return self.json_response.get('transaction_token', None)
 
+
     @property
     def state(self):
         return self.json_response.get('state', None)
+
 
     @property
     def response(self):
@@ -71,21 +79,26 @@ class GpaResponse(object):
     def funding_source_token(self):
         return self.json_response.get('funding_source_token', None)
 
+
     @property
     def funding_source_address_token(self):
         return self.json_response.get('funding_source_address_token', None)
+
 
     @property
     def user_token(self):
         return self.json_response.get('user_token', None)
 
+
     @property
     def business_token(self):
         return self.json_response.get('business_token', None)
 
+
     @property
     def currency_code(self):
         return self.json_response.get('currency_code', None)
+
 
     @property
     def gateway_token(self):
@@ -95,5 +108,6 @@ class GpaResponse(object):
     def gateway_message(self):
         return self.json_response.get('gateway_message', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.gpa_response.GpaResponse>' + self.__str__()
+         return '<Marqeta.response_models.gpa_response.GpaResponse>' + self.__str__()

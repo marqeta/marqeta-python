@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class MsaOrderRequest(object):
 
@@ -19,21 +20,26 @@ class MsaOrderRequest(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def campaign_token(self):
         return self.json_response.get('campaign_token', None)
+
 
     @property
     def user_token(self):
         return self.json_response.get('user_token', None)
 
+
     @property
     def business_token(self):
         return self.json_response.get('business_token', None)
 
+
     @property
     def currency_code(self):
         return self.json_response.get('currency_code', None)
+
 
     @property
     def purchase_amount(self):
@@ -50,20 +56,24 @@ class MsaOrderRequest(object):
     @property
     def start_date(self):
         if 'start_date' in self.json_response:
-            return datetime.strptime(self.json_response['start_date'], '%Y-%m-%d').date()
+            return datetime_object('start_date', self.json_response)
+
 
     @property
     def end_date(self):
         if 'end_date' in self.json_response:
-            return datetime.strptime(self.json_response['end_date'], '%Y-%m-%d').date()
+            return datetime_object('end_date', self.json_response)
+
 
     @property
     def funding_source_token(self):
         return self.json_response.get('funding_source_token', None)
 
+
     @property
     def funding_source_address_token(self):
         return self.json_response.get('funding_source_address_token', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.msa_order_request.MsaOrderRequest>' + self.__str__()
+         return '<Marqeta.response_models.msa_order_request.MsaOrderRequest>' + self.__str__()

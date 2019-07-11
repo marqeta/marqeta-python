@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 
 '''TRANSACTIONS RESOURCE WITH CRU PARAMETERS'''
 
@@ -10,6 +9,7 @@ class TransactionsCollection(object):
     '''
     Marqeta API 'transactions' endpoint list, create, find and update operations
     '''
+
     _endpoint = 'transactions'
 
     def __init__(self, client):
@@ -24,15 +24,17 @@ class TransactionsCollection(object):
         '''
         Special case call made with token
         :param token: transactions token
-        :return: TranscationContext object
+        :return: TransactionsContext object
         '''
-        return TranscationContext(token, self.client, self.collections)
 
-    def page(self, count=5, start_index=0, params=None):
+        return TransactionsContext(token, self.client, self.collections)
+
+    def page(self, params=None, count=5, start_index=0):
         '''
         Provides the requested page for transactions
         :param count: data to be displayed per page
         :param start_index: start_index
+        :param params: query parameters
         :return: requested page with TransactionModel object for the requested
         page 'data'field
         '''
@@ -49,12 +51,14 @@ class TransactionsCollection(object):
 
     def list(self, params=None, limit=None):
         '''
+
         List all the transactions
         :param params: query parameters
         :param limit: parameter to limit the list count
-        :return: List of TransactionModel object
+        :return: List of TransactionModel object:
         '''
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
+
 
     def page_for_funding_source(self, token, count=5, start_index=0, params=None):
         '''
@@ -88,28 +92,26 @@ class TransactionsCollection(object):
         '''
         return self.collections.list(endpoint=self._endpoint + '/fundingsource/{}'.format(token),
                                      query_params=params, limit=limit)
-
     def find(self, token, params=None):
         '''
-        Finds a specific transactions object for funding source
+        Finds a specific transactions object
         :param token: transactions token
         :param params: query parameters
         :return: TransactionModel object
         '''
         return self.collections.find(endpoint=self._endpoint + '/{}'.format(token),
                                      query_params=params)
-
     def __repr__(self):
         return '<Marqeta.resources.transactions.TransactionsCollection>'
 
 
-class TranscationContext(TransactionsCollection):
-    ''' class to specify sub endpoints for transactions '''
+class TransactionsContext(TransactionsCollection):
 
-    def __init__(self, token, client, collections):
-        super(TranscationContext, self).__init__(client)
+    ''' class to specify sub endpoints for transactions '''
+    def __init__(self, token, client, collection):
+        super(TransactionsContext, self).__init__(client)
         self.token = token
-        self.related = self.Related(self.token, collections)
+        self.related = self.Related(self.token, collection)
 
     class Related(object):
         '''
@@ -117,25 +119,27 @@ class TranscationContext(TransactionsCollection):
         Return TransactionModel object
         '''
         _endpoint = 'transactions/{}/related'
-
-        def __init__(self, token, collections):
+        def __init__(self, token, collection):
             self.token = token
-            self.collections = collections
+            self.collection = collection
 
         def page(self, count=5, start_index=0, params=None):
-            return self.collections.page(endpoint=self._endpoint.format(self.token),
-                                         count=count, start_index=start_index, query_params=params)
+            return self.collection.page(endpoint=self._endpoint.format(self.token),
+                                        count=count, start_index=start_index, query_params=params)
 
         def stream(self, params=None):
-            return self.collections.stream(endpoint=self._endpoint.format(self.token),
-                                           query_params=params)
+            return self.collection.stream(endpoint=self._endpoint.format(self.token),
+                                          query_params=params)
 
         def list(self, params=None, limit=None):
-            return self.collections.list(endpoint=self._endpoint.format(self.token),
-                                         query_params=params, limit=limit)
+            return self.collection.list(endpoint=self._endpoint.format(self.token),
+                                        query_params=params, limit=limit)
+
 
         def __repr__(self):
-            return '<Marqeta.resources.transactions.TranscationContext.Related>'
+            return '<Marqeta.resources.transactions.TransactionsContext.Transitions>'
 
     def __repr__(self):
-        return '<Marqeta.resources.transactions.TranscationContext>'
+        return '<Marqeta.resources.transactions.TransactionsContext>'
+
+

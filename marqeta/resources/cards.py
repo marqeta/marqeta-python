@@ -1,17 +1,17 @@
-#!/usr/bin/env python3
 
-"""CARDS RESOURCE WITH CRU PARAMETERS"""
+'''CARDS RESOURCE WITH CRU PARAMETERS'''
 
 from marqeta.resources.collection import Collection
 from marqeta.response_models.card_response import CardResponse
-from marqeta.response_models.pan_response import PanResponse
 from marqeta.response_models.card_transition_response import CardTransitionResponse
+from marqeta.response_models.pan_response import PanResponse
 
 
 class CardsCollection(object):
     '''
-     Marqeta API 'cards' endpoint list, create, find and update operations
+    Marqeta API 'cards' endpoint list, create, find and update operations
     '''
+
     _endpoint = 'cards'
 
     def __init__(self, client):
@@ -20,7 +20,7 @@ class CardsCollection(object):
         :param client: client object
         '''
         self.client = client
-        self.collections_card_response = Collection(self.client, CardResponse)
+        self.collections = Collection(self.client, CardResponse)
         self.collections_pan_response = Collection(self.client, PanResponse)
 
     def __call__(self, token):
@@ -34,49 +34,51 @@ class CardsCollection(object):
     def page(self, last_four, params={}, count=5, start_index=0):
         '''
         Provides the requested page for cards
+        :param count: data to be displayed per page
+        :param start_index: start_index
         :param params: query parameters
-        :param last_four: card last_four digits
         :return: requested page with CardResponse object for the requested
         page 'data'field
         '''
         params['last_four'] = last_four
-        return self.collections_card_response.page(endpoint=self._endpoint, query_params=params,
-                                                   count=count, start_index=start_index)
+        return self.collections.page(endpoint=self._endpoint, count=count,
+                                     start_index=start_index, query_params=params)
 
     def stream(self, last_four, params={}):
         '''
         Stream through the list of requested endpoint data field
-        :param last_four: card last_four digits
         :param params: query parameters
         :return: CardResponse object
         '''
         params['last_four'] = last_four
-        return self.collections_card_response.stream(endpoint=self._endpoint, query_params=params)
+        return self.collections.stream(endpoint=self._endpoint, query_params=params)
 
     def list(self, last_four, params={}, limit=None):
         '''
+
         List all the cards
-        :param last_four: card last_four digits
         :param params: query parameters
         :param limit: parameter to limit the list count
         :return: List of CardResponse object:
         '''
         params['last_four'] = last_four
-        return self.collections_card_response.list(endpoint=self._endpoint, query_params=params,
-                                                   limit=limit)
+        return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
+
+
 
     def page_for_user(self, user_token, count=5, start_index=0, params=None):
         '''
         Provides the requested page for cards
         :param user_token: user token
-         :param count: data to be displayed per page
+        :param count: data to be displayed per page
         :param start_index: start_index
+        :param params: query parameters
         :return: requested page with CardResponse object for the requested
         page 'data'field
         '''
-        return self.collections_card_response.page(endpoint=self._endpoint + "/user/{}".
-                                                   format(user_token), count=count, start_index=start_index,
-                                                   query_params=params)
+        return self.collections.page(endpoint=self._endpoint + "/user/{}".
+                                     format(user_token), count=count, start_index=start_index,
+                                     query_params=params)
 
     def stream_for_user(self, user_token, params=None):
         '''
@@ -85,8 +87,8 @@ class CardsCollection(object):
         :param params: query parameters
         :return: CardResponse object
         '''
-        return self.collections_card_response.stream(endpoint=self._endpoint + "/user/{}".
-                                                     format(user_token), query_params=params)
+        return self.collections.stream(endpoint=self._endpoint + "/user/{}".
+                                       format(user_token), query_params=params)
 
     def list_for_user(self, user_token, params=None, limit=None):
         '''
@@ -97,9 +99,9 @@ class CardsCollection(object):
         :param params:
         :return: List of CardResponse object:
         '''
-        return self.collections_card_response.list(endpoint=self._endpoint + "/user/{}".
-                                                   format(user_token), query_params=params,
-                                                   limit=limit)
+        return self.collections.list(endpoint=self._endpoint + "/user/{}".
+                                     format(user_token), query_params=params,
+                                     limit=limit)
 
     def create(self, data={}, params=None):
         '''
@@ -108,18 +110,16 @@ class CardsCollection(object):
         :param params: query parameters
         :return: CardResponse object
         '''
-        return self.collections_card_response.create(endpoint=self._endpoint, query_params=params,
-                                                     data=data)
-
-    def find(self, card_token, params=None):
+        return self.collections.create(endpoint=self._endpoint, query_params=params, data=data)
+    def find(self, token, params=None):
         '''
         Finds a specific cards object
-        :param card_token: cards token
+        :param token: cards token
         :param params: query parameters
         :return: CardResponse object
         '''
-        return self.collections_card_response.find(endpoint=self._endpoint + '/{}'.
-                                                   format(card_token), query_params=params)
+        return self.collections.find(endpoint=self._endpoint + '/{}'.format(token),
+                                     query_params=params)
 
     def find_show_pan(self, card_token, params=None):
         '''
@@ -128,8 +128,8 @@ class CardsCollection(object):
         :param params: query parameters
         :return: CardResponse object
         '''
-        return self.collections_card_response.find(endpoint=self._endpoint + '/{}/showpan'.
-                                                   format(card_token), query_params=params)
+        return self.collections.find(endpoint=self._endpoint + '/{}/showpan'.
+                                     format(card_token), query_params=params)
 
     def find_by_barcode(self, barcode, params=None):
         '''
@@ -138,12 +138,8 @@ class CardsCollection(object):
         :param params: query parameters
         :return: CardResponse object
         '''
-        return self.collections_card_response.find(endpoint=self._endpoint + '/barcode/{}'.
-                                                   format(barcode), query_params=params)
-
-    ''' Finds the card information for the requested card token
-                Returns the card object which has card information '''
-
+        return self.collections.find(endpoint=self._endpoint + '/barcode/{}'.
+                                     format(barcode), query_params=params)
     def find_for_merchant(self, token, params=None):
         '''
         Finds a specific cards object
@@ -151,8 +147,8 @@ class CardsCollection(object):
         :param params: query parameters
         :return: CardResponse object
         '''
-        return self.collections_card_response.find(endpoint=self._endpoint + '/merchant/{}'.
-                                                   format(token), query_params=params)
+        return self.collections.find(endpoint=self._endpoint + '/merchant/{}'.
+                                     format(token), query_params=params)
 
     def find_for_merchant_show_pan(self, token, params=None):
         '''
@@ -161,8 +157,8 @@ class CardsCollection(object):
         :param params: query parameters
         :return: CardResponse object
         '''
-        return self.collections_card_response.find(endpoint=self._endpoint + '/merchant/{}/showpan'.
-                                                   format(token), query_params=params)
+        return self.collections.find(endpoint=self._endpoint + '/merchant/{}/showpan'.
+                                     format(token), query_params=params)
 
     def create_for_merchant(self, token, data):
         '''
@@ -172,8 +168,8 @@ class CardsCollection(object):
         :param token: merchant token
         :return: CardResponse object
         '''
-        return self.collections_card_response.create(endpoint=self._endpoint + '/merchant/{}'.
-                                                     format(token), data=data)
+        return self.collections.create(endpoint=self._endpoint + '/merchant/{}'.
+                                       format(token), data=data)
 
     def tokens_for_pan(self, pan_token):
         '''
@@ -184,33 +180,34 @@ class CardsCollection(object):
         pan = {'pan': pan_token}
         return self.collections_pan_response.create(endpoint=self._endpoint + '/getbypan', data=pan)
 
+
     def save(self, token, data):
         '''
-        Updates an cards object
-        :param token: cards token
+        Updates an cards  object
+        :param token: cards  token
         :param data: data to be updated
         :return: CardResponse object
         '''
-        return self.collections_card_response.save(data,
-                                                   endpoint=self._endpoint + '/{}'.format(token))
-
+        return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
     def __repr__(self):
         return '<Marqeta.resources.cards.CardsCollection>'
 
 
 class CardsContext(CardsCollection):
-    ''' class to specify sub endpoints for cards '''
 
+    ''' class to specify sub endpoints for cards '''
     def __init__(self, token, client):
         super(CardsContext, self).__init__(client)
         self.token = token
-        self.transitions = self.Transitions(self.token, Collection(client, CardTransitionResponse))
+        self.transitions = self.Transitions(self.token, Collection(client,
+                                                                   CardTransitionResponse))
 
     class Transitions(object):
         '''
-        Lists the children for cardtransitions
-        Returns Transitions object
+        Lists, Creates and Finds the notes for cards
+        Returns CardTransitionResponse object
         '''
+
         _endpoint = 'cardtransitions'
 
         def __init__(self, token, collection):
@@ -236,5 +233,11 @@ class CardsContext(CardsCollection):
         def find(self, transition_token):
             return self.collection.find(endpoint=self._endpoint + '/{}'.format(transition_token))
 
+
         def __repr__(self):
             return '<Marqeta.resources.cards.CardsContext.Transitions>'
+
+    def __repr__(self):
+        return '<Marqeta.resources.cards.CardsContext>'
+
+

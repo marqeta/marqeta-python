@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class PinRequest(object):
 
@@ -19,9 +20,11 @@ class PinRequest(object):
     def control_token(self):
         return self.json_response.get('control_token', None)
 
+
     @property
     def pin(self):
         return self.json_response.get('pin', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.pin_request.PinRequest>' + self.__str__()
+         return '<Marqeta.response_models.pin_request.PinRequest>' + self.__str__()

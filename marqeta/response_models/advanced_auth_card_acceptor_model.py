@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class AdvancedAuthCardAcceptorModel(object):
 
@@ -19,34 +20,41 @@ class AdvancedAuthCardAcceptorModel(object):
     def mcc(self):
         return self.json_response.get('mcc', None)
 
+
     @property
     def name(self):
         return self.json_response.get('name', None)
+
 
     @property
     def address(self):
         return self.json_response.get('address', None)
 
+
     @property
     def city(self):
         return self.json_response.get('city', None)
+
 
     @property
     def state(self):
         return self.json_response.get('state', None)
 
+
     @property
     def zip(self):
         return self.json_response.get('zip', None)
+
 
     @property
     def country(self):
         return self.json_response.get('country', None)
 
+
     @property
     def tid(self):
         return self.json_response.get('tid', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.advanced_auth_card_acceptor_model.AdvancedAuthCardAcceptorModel>' \
-               + self.__str__()
+         return '<Marqeta.response_models.advanced_auth_card_acceptor_model.AdvancedAuthCardAcceptorModel>' + self.__str__()

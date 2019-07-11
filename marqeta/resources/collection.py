@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """ COLLECTION OF GENERIC CRU PARAMETERS """
 
 
@@ -23,7 +22,7 @@ class Collection(object):
         '''
         return self.client.get(kwargs['endpoint'], query_params=kwargs['query_params'])[0]
 
-    def page(self, endpoint, count=5, start_index=0, query_params= None):
+    def page(self, endpoint, count=5, start_index=0, query_params=None):
         '''
         Provides the requested page for Endpoint
         :param endpoint: Endpoint
@@ -70,6 +69,8 @@ class Collection(object):
         :return: list of resource object
         '''
         list_of_user_object = []
+        if limit == 0:
+            return list_of_user_object
         for count in self.stream(endpoint=endpoint, query_params=query_params):
             list_of_user_object.append(count)
             if len(list_of_user_object) == limit:

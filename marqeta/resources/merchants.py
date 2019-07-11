@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 
 '''MERCHANTS RESOURCE WITH CRU PARAMETERS'''
 
@@ -11,6 +10,7 @@ class MerchantsCollection(object):
     '''
     Marqeta API 'merchants' endpoint list, create, find and update operations
     '''
+
     _endpoint = 'merchants'
 
     def __init__(self, client):
@@ -25,20 +25,21 @@ class MerchantsCollection(object):
         '''
         Special case call made with token
         :param token: merchants token
-        :return: MerchantContext object
+        :return: MerchantsContext object
         '''
-        return MerchantContext(token, self.client)
+        return MerchantsContext(token, self.client)
 
-    def page(self, count=5, start_index=0, params=None):
+    def page(self, params=None, count=5, start_index=0):
         '''
         Provides the requested page for merchants
         :param count: data to be displayed per page
         :param start_index: start_index
+        :param params: query parameters
         :return: requested page with MerchantResponseModel object for the requested
         page 'data'field
         '''
-        return self.collections.page(endpoint=self._endpoint, count=count, start_index=start_index,
-                                     query_params=params)
+        return self.collections.page(endpoint=self._endpoint, count=count,
+                                     start_index=start_index, query_params=params)
 
     def stream(self, params=None):
         '''
@@ -50,12 +51,15 @@ class MerchantsCollection(object):
 
     def list(self, params=None, limit=None):
         '''
+
         List all the merchants
         :param params: query parameters
         :param limit: parameter to limit the list count
-        :return: List of MerchantResponseModel object
+        :return: List of MerchantResponseModel object:
         '''
         return self.collections.list(endpoint=self._endpoint, query_params=params, limit=limit)
+
+
 
     def create(self, data, params=None):
         '''
@@ -65,7 +69,6 @@ class MerchantsCollection(object):
         :return: MerchantResponseModel object
         '''
         return self.collections.create(endpoint=self._endpoint, query_params=params, data=data)
-
     def find(self, token, params=None):
         '''
         Finds a specific merchants object
@@ -78,32 +81,30 @@ class MerchantsCollection(object):
 
     def save(self, token, data):
         '''
-        Updates an merchants object
-        :param token: merchants token
+        Updates an merchants  object
+        :param token: merchants  token
         :param data: data to be updated
         :return: MerchantResponseModel object
         '''
         return self.collections.save(data, endpoint=self._endpoint + '/{}'.format(token))
-
     def __repr__(self):
         return '<Marqeta.resources.merchants.MerchantsCollection>'
 
 
-class MerchantContext(MerchantsCollection):
-    ''' class to specify sub endpoints for merchants '''
+class MerchantsContext(MerchantsCollection):
 
+    ''' class to specify sub endpoints for merchants '''
     def __init__(self, token, client):
-        super(MerchantContext, self).__init__(client)
+        super(MerchantsContext, self).__init__(client)
         self.token = token
         self.stores = self.Stores(self.token, Collection(client, StoreResponseModel))
 
     class Stores(object):
         '''
-        Lists the stores for merchant
-        Returns StoreResponseModel object
+         Lists the stores for merchant
+         Returns StoreResponseModel object
         '''
         _endpoint = 'merchants/{}/stores'
-
         def __init__(self, token, collection):
             self.token = token
             self.collection = collection
@@ -120,8 +121,11 @@ class MerchantContext(MerchantsCollection):
             return self.collection.list(endpoint=self._endpoint.format(self.token),
                                         query_params=params, limit=limit)
 
+
         def __repr__(self):
-            return '<<Marqeta.resources.merchants.MerchantContext.Stores>'
+            return '<Marqeta.resources.merchants.MerchantsContext.Transitions>'
 
     def __repr__(self):
-        return '<<Marqeta.resources.merchants.MerchantContext>'
+        return '<Marqeta.resources.merchants.MerchantsContext>'
+
+

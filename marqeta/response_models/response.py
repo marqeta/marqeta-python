@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class Response(object):
 
@@ -19,9 +20,11 @@ class Response(object):
     def code(self):
         return self.json_response.get('code', None)
 
+
     @property
     def memo(self):
         return self.json_response.get('memo', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.response.Response>' + self.__str__()
+         return '<Marqeta.response_models.response.Response>' + self.__str__()

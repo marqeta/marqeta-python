@@ -1,8 +1,9 @@
 from datetime import datetime, date
 from marqeta.response_models.network_fee_model import NetworkFeeModel
 from marqeta.response_models.webhook import Webhook
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class ReversalModel(object):
 
@@ -31,6 +32,7 @@ class ReversalModel(object):
     def original_transaction_token(self):
         return self.json_response.get('original_transaction_token', None)
 
+
     @property
     def amount(self):
         return self.json_response.get('amount', None)
@@ -44,4 +46,4 @@ class ReversalModel(object):
         return self.json_response.get('is_advice', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.reversal_model.ReversalModel>' + self.__str__()
+         return '<Marqeta.response_models.reversal_model.ReversalModel>' + self.__str__()

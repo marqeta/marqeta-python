@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.real_time_fee_assessment import RealTimeFeeAssessment
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class Fee(object):
 
@@ -20,6 +21,7 @@ class Fee(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def active(self):
         return self.json_response.get('active', None)
@@ -27,6 +29,7 @@ class Fee(object):
     @property
     def name(self):
         return self.json_response.get('name', None)
+
 
     @property
     def amount(self):
@@ -36,19 +39,23 @@ class Fee(object):
     def tags(self):
         return self.json_response.get('tags', None)
 
+
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('created_time', self.json_response)
+
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('last_modified_time', self.json_response)
+
 
     @property
     def currency_code(self):
         return self.json_response.get('currency_code', None)
+
 
     @property
     def real_time_assessment(self):
@@ -56,4 +63,4 @@ class Fee(object):
             return RealTimeFeeAssessment(self.json_response['real_time_assessment'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.fee.Fee>' + self.__str__()
+         return '<Marqeta.response_models.fee.Fee>' + self.__str__()

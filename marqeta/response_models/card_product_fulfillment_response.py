@@ -1,8 +1,9 @@
 from datetime import datetime, date
 from marqeta.response_models.shipping_information_response import ShippingInformationResponse
 from marqeta.response_models.card_personalization import CardPersonalization
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class CardProductFulfillmentResponse(object):
 
@@ -31,9 +32,11 @@ class CardProductFulfillmentResponse(object):
     def payment_instrument(self):
         return self.json_response.get('payment_instrument', None)
 
+
     @property
     def package_id(self):
         return self.json_response.get('package_id', None)
+
 
     @property
     def all_zero_card_security_code(self):
@@ -43,6 +46,7 @@ class CardProductFulfillmentResponse(object):
     def bin_prefix(self):
         return self.json_response.get('bin_prefix', None)
 
+
     @property
     def bulk_ship(self):
         return self.json_response.get('bulk_ship', None)
@@ -51,9 +55,11 @@ class CardProductFulfillmentResponse(object):
     def pan_length(self):
         return self.json_response.get('pan_length', None)
 
+
     @property
     def fulfillment_provider(self):
         return self.json_response.get('fulfillment_provider', None)
+
 
     @property
     def allow_card_creation(self):
@@ -68,5 +74,4 @@ class CardProductFulfillmentResponse(object):
         return self.json_response.get('enable_offline_pin', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_product_fulfillment_response.CardProductFulfillmentResponse>' \
-               + self.__str__()
+         return '<Marqeta.response_models.card_product_fulfillment_response.CardProductFulfillmentResponse>' + self.__str__()

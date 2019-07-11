@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.health_check_result import HealthCheckResult
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class PingResponse(object):
 
@@ -24,21 +25,26 @@ class PingResponse(object):
     def version(self):
         return self.json_response.get('version', None)
 
+
     @property
     def revision(self):
         return self.json_response.get('revision', None)
+
 
     @property
     def timestamp(self):
         return self.json_response.get('timestamp', None)
 
+
     @property
     def env(self):
         return self.json_response.get('env', None)
 
+
     @property
     def id(self):
         return self.json_response.get('id', None)
+
 
     @property
     def system_components(self):
@@ -46,4 +52,4 @@ class PingResponse(object):
             return [HealthCheckResult(val) for val in self.json_response['system_components']]
 
     def __repr__(self):
-        return '<Marqeta.response_models.ping_response.PingResponse>' + self.__str__()
+         return '<Marqeta.response_models.ping_response.PingResponse>' + self.__str__()

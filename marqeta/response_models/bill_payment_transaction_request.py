@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class BillPaymentTransactionRequest(object):
 
@@ -23,13 +24,16 @@ class BillPaymentTransactionRequest(object):
     def currency(self):
         return self.json_response.get('currency', None)
 
+
     @property
     def network_reference_id(self):
         return self.json_response.get('network_reference_id', None)
+
 
     @property
     def user_token(self):
         return self.json_response.get('user_token', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.bill_payment_transaction_request.BillPaymentTransactionRequest>' + self.__str__()
+         return '<Marqeta.response_models.bill_payment_transaction_request.BillPaymentTransactionRequest>' + self.__str__()

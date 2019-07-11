@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.fee_detail import FeeDetail
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class FeeTransferResponse(object):
 
@@ -18,8 +19,8 @@ class FeeTransferResponse(object):
 
     @property
     def tags(self):
-
         return self.json_response.get('tags', None)
+
 
     @property
     def fees(self):
@@ -30,18 +31,22 @@ class FeeTransferResponse(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def user_token(self):
         return self.json_response.get('user_token', None)
+
 
     @property
     def business_token(self):
         return self.json_response.get('business_token', None)
 
+
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('created_time', self.json_response)
+
 
     def __repr__(self):
-        return '<Marqeta.response_models.fee_transfer_response.FeeTransferResponse>' + self.__str__()
+         return '<Marqeta.response_models.fee_transfer_response.FeeTransferResponse>' + self.__str__()

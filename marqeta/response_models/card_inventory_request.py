@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class CardInventoryRequest(object):
 
@@ -19,13 +20,15 @@ class CardInventoryRequest(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def package_id(self):
         return self.json_response.get('package_id', None)
+
 
     @property
     def starting_inventory(self):
         return self.json_response.get('starting_inventory', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_inventory_request.CardInventoryRequest>' + self.__str__()
+         return '<Marqeta.response_models.card_inventory_request.CardInventoryRequest>' + self.__str__()

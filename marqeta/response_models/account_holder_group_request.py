@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.account_holder_group_config import AccountHolderGroupConfig
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class AccountHolderGroupRequest(object):
 
@@ -20,9 +21,11 @@ class AccountHolderGroupRequest(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def name(self):
         return self.json_response.get('name', None)
+
 
     @property
     def config(self):
@@ -30,4 +33,4 @@ class AccountHolderGroupRequest(object):
             return AccountHolderGroupConfig(self.json_response['config'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.account_holder_group_request.AccountHolderGroupRequest>' + self.__str__()
+         return '<Marqeta.response_models.account_holder_group_request.AccountHolderGroupRequest>' + self.__str__()

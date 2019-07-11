@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class Issuer(object):
 
@@ -27,6 +28,7 @@ class Issuer(object):
     def fraud_rating(self):
         return self.json_response.get('fraud_rating', None)
 
+
     @property
     def rule_violations(self):
         return self.json_response.get('rule_violations', None)
@@ -39,13 +41,16 @@ class Issuer(object):
     def recommended_action(self):
         return self.json_response.get('recommended_action', None)
 
+
     @property
     def model(self):
         return self.json_response.get('model', None)
+
 
     @property
     def message(self):
         return self.json_response.get('message', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.issuer.Issuer>' + self.__str__()
+         return '<Marqeta.response_models.issuer.Issuer>' + self.__str__()

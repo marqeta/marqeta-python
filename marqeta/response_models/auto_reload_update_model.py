@@ -1,8 +1,9 @@
 from datetime import datetime, date
 from marqeta.response_models.auto_reload_association import AutoReloadAssociation
 from marqeta.response_models.order_scope import OrderScope
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class AutoReloadUpdateModel(object):
 
@@ -21,6 +22,7 @@ class AutoReloadUpdateModel(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def active(self):
         return self.json_response.get('active', None)
@@ -29,9 +31,11 @@ class AutoReloadUpdateModel(object):
     def funding_source_token(self):
         return self.json_response.get('funding_source_token', None)
 
+
     @property
     def funding_source_address_token(self):
         return self.json_response.get('funding_source_address_token', None)
+
 
     @property
     def association(self):
@@ -47,5 +51,6 @@ class AutoReloadUpdateModel(object):
     def currency_code(self):
         return self.json_response.get('currency_code', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.auto_reload_update_model.AutoReloadUpdateModel>' + self.__str__()
+         return '<Marqeta.response_models.auto_reload_update_model.AutoReloadUpdateModel>' + self.__str__()

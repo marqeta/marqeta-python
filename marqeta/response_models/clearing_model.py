@@ -2,8 +2,9 @@ from datetime import datetime, date
 from marqeta.response_models.network_fee_model import NetworkFeeModel
 from marqeta.response_models.webhook import Webhook
 from marqeta.response_models.card_acceptor_model import CardAcceptorModel
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class ClearingModel(object):
 
@@ -44,9 +45,11 @@ class ClearingModel(object):
     def original_transaction_token(self):
         return self.json_response.get('original_transaction_token', None)
 
+
     @property
     def mid(self):
         return self.json_response.get('mid', None)
+
 
     @property
     def card_acceptor(self):
@@ -54,4 +57,4 @@ class ClearingModel(object):
             return CardAcceptorModel(self.json_response['card_acceptor'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.clearing_model.ClearingModel>' + self.__str__()
+         return '<Marqeta.response_models.clearing_model.ClearingModel>' + self.__str__()

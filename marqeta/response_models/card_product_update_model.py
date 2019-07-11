@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.card_product_config import CardProductConfig
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class CardProductUpdateModel(object):
 
@@ -18,8 +19,8 @@ class CardProductUpdateModel(object):
 
     @property
     def name(self):
-
         return self.json_response.get('name', None)
+
 
     @property
     def active(self):
@@ -29,9 +30,11 @@ class CardProductUpdateModel(object):
     def start_date(self):
         return self.json_response.get('start_date', None)
 
+
     @property
     def end_date(self):
         return self.json_response.get('end_date', None)
+
 
     @property
     def config(self):
@@ -39,4 +42,4 @@ class CardProductUpdateModel(object):
             return CardProductConfig(self.json_response['config'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.card_product_update_model.CardProductUpdateModel>' + self.__str__()
+         return '<Marqeta.response_models.card_product_update_model.CardProductUpdateModel>' + self.__str__()

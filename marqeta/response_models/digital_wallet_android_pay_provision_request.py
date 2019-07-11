@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class DigitalWalletAndroidPayProvisionRequest(object):
 
@@ -19,22 +20,26 @@ class DigitalWalletAndroidPayProvisionRequest(object):
     def card_token(self):
         return self.json_response.get('card_token', None)
 
+
     @property
     def device_type(self):
         return self.json_response.get('device_type', None)
+
 
     @property
     def provisioning_app_version(self):
         return self.json_response.get('provisioning_app_version', None)
 
+
     @property
     def wallet_account_id(self):
         return self.json_response.get('wallet_account_id', None)
+
 
     @property
     def device_id(self):
         return self.json_response.get('device_id', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_android_pay_provision_request.' \
-               'DigitalWalletAndroidPayProvisionRequest>' + self.__str__()
+         return '<Marqeta.response_models.digital_wallet_android_pay_provision_request.DigitalWalletAndroidPayProvisionRequest>' + self.__str__()

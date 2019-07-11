@@ -4,8 +4,9 @@ from marqeta.response_models.device import Device
 from marqeta.response_models.wallet_provider_profile import WalletProviderProfile
 from marqeta.response_models.address_verification import AddressVerification
 from marqeta.response_models.user_card_holder_response import UserCardHolderResponse
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class DigitalWalletToken(object):
 
@@ -24,35 +25,43 @@ class DigitalWalletToken(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def card_token(self):
         return self.json_response.get('card_token', None)
+
 
     @property
     def state(self):
         return self.json_response.get('state', None)
 
+
     @property
     def state_reason(self):
         return self.json_response.get('state_reason', None)
+
 
     @property
     def fulfillment_status(self):
         return self.json_response.get('fulfillment_status', None)
 
+
     @property
     def issuer_eligibility_decision(self):
         return self.json_response.get('issuer_eligibility_decision', None)
 
+
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('created_time', self.json_response)
+
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('last_modified_time', self.json_response)
+
 
     @property
     def token_service_provider(self):
@@ -80,4 +89,4 @@ class DigitalWalletToken(object):
             return UserCardHolderResponse(self.json_response['user'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_token.DigitalWalletToken>' + self.__str__()
+         return '<Marqeta.response_models.digital_wallet_token.DigitalWalletToken>' + self.__str__()

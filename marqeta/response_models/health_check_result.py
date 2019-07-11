@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class HealthCheckResult(object):
 
@@ -19,6 +20,7 @@ class HealthCheckResult(object):
     def component(self):
         return self.json_response.get('component', None)
 
+
     @property
     def healthy(self):
         return self.json_response.get('healthy', None)
@@ -31,5 +33,6 @@ class HealthCheckResult(object):
     def status(self):
         return self.json_response.get('status', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.health_check_result.HealthCheckResult>' + self.__str__()
+         return '<Marqeta.response_models.health_check_result.HealthCheckResult>' + self.__str__()

@@ -38,8 +38,9 @@ from marqeta import Client
 base_url = "https://shared-sandbox-api.marqeta.com/v3"
 application_token = "MY_APPLICATION_TOKEN"
 access_token = "MY_ACCESS_TOKEN"
+timeout = 60 # seconds
 
-client = Client(base_url, application_token, access_token)
+client = Client(base_url, application_token, access_token, timeout)
 ```
 
 When specifying your base url, include the `/v3` version prefix.
@@ -141,11 +142,14 @@ The SDK will raise a `MarqetaError` exception for unsuccessful requests.
 ```
 from marqeta import Client
 from marqeta.errors import MarqetaError
+from requests.exceptions import RequestException
 
 try:
     user = client.users.find(token)
 except MarqetaError as error:
     print(error.code)
+except RequestException as error:
+    print(error)
 ```
 
 The exception's `code` card_products contains the value returned by the API in the JSON response. See [Error codes and messages](https://www.marqeta.com/api/docs/Vh2cTBwAAB8AF3aI/errors#error_codes_and_messages).
@@ -166,8 +170,6 @@ The library supports the following endpoints:
 | [/businesses](#Businesses-/businesses) | `client.businesses` |
 | [/businesstransitions](#Business-Transitions-/businesstransitions) | `client.businesses(business_token).transitions` |
 | [/businesses/{token}/notes](#Business-Notes-/businesses/{token}/notes) | `client.businesses(token).notes` |
-| [/campaigns](#Campaigns-/campaigns) | `client.campaigns` |
-| [/campaigns/{token}/stores](#Campaign-Stores-/campaigns/{token}/stores) | `client.campaigns(token).stores` |
 | [/cardproducts](#Card-Products-/cardproducts) | `client.card_products` |
 | [/cards](#Cards-/cards) | `client.cards` |
 | [/cardtransitions](#Card-Transitions-/cardtransitions) | `client.cards(token).transitions` |
@@ -197,7 +199,6 @@ The library supports the following endpoints:
 | [/msaorders](#MSA-Orders-/msaorders) | `client.msa_orders` |
 | [/msaorders/unloads](#MSA-Order-Unloads-/msaorders/unloads) | `client.msa_orders.unloads` |
 | [/offerorders](#Offer-Orders-/offerorders) | `client.offer_orders` |
-| [/offers](#Offers-/offers) | `client.offers` |
 | [/pins](#Pin-Control-Tokens-/pins) | `client.pins` |
 | [/programtransfers](#Program-Transfers-/programtransfers) | `client.program_transfers` |
 | [/programtransfers/types](#Program-Transfer-Types-/programtransfers/types) | `client.program_transfers.types` |
@@ -205,7 +206,6 @@ The library supports the following endpoints:
 | [/pushtocards/disburse](#Push-to-Card-Disbursements-/pushtocards/disburse) | `client.push_to_cards.disburse` |
 | [/pushtocards/paymentcard](#Push-to-Card-Payment-Cards-/pushtocards/paymentcard) | `client.push_to_cards.payment_card` |
 | [/realtimefeegroups](#Realtime-Fee-Groups-/realtimefeegroups) | `client.real_time_fee_groups` |
-| [/stores](#Stores-/stores) | `client.stores` |
 | [/transactions](#Transactions-/transactions) | `client.transactions` |
 | [/transactions/{token}/related](#Related-Transations-/transactions/{token}/related) | `client.transactions(token).related` |
 | [/users](#Users-/users) | `client.users` |
@@ -316,7 +316,7 @@ autoreload = client.auto_reloads.save(token, {...})
 
 ```
 # List all MSA balances
-balances = client.campaigns.list_msas_for_user_or_business(token)
+balances = client.balances.list_msas_for_user_or_business(token)
 for balance in client.balances.stream_msas_for_user_or_business(token):
     pass
 
@@ -361,6 +361,9 @@ business = client.businesses.save(token, {...})
 # Retrieve a specific business SSN
 ssn = client.businesses(token).ssn()
 
+# Retrieve a specific business Full SSN
+ssn = client.businesses(token).ssn(full_ssn = True)
+
 # List all children of parent business
 child_cardholders = client.businesses(token).children.list()
 for child_cardholder in client.businesses(token).children.stream():
@@ -401,35 +404,6 @@ business_note = client.businesses(token).notes.create({...})
 
 # Update a business note
 business_note = client.businesses(token).notes.save(token, {...})
-```
-
-#### Campaigns (`/campaigns`)
-
-```
-# List all campaigns
-campaigns = client.campaigns.list()
-for campaign in client.campaigns.stream():
-    pass
-campaigns_page = client.campaigns.page(start_index=0)
-
-# Retrieve a specific campaign
-campaign = client.campaigns.find(token)
-
-# Create a campaign
-campaign = client.campaigns.create({...})
-
-# Update a campaign
-campaign = client.campaigns.save(token, {...})
-```
-
-#### Campaign Stores (`/campaigns/{token}/stores`)
-
-```
-# List all campaign stores
-campaign_stores = client.campaigns(token).stores.list()
-for campaign_store in client.campaigns(token).stores.stream():
-    pass
-campaign_stores_page = client.campaigns(token).stores.page(start_index=0)
 ```
 
 #### Card Products (`/cardproducts`)
@@ -876,7 +850,6 @@ merchant_stores_page = client.merchants(token).stores.page(start_index=0)
 #### MSA Orders (`/msaorders`)
 
 ```
-
 # Retrieve a specific msa order
 msa_order = client.msa_orders.find(token)
 
@@ -906,7 +879,6 @@ msa_order_unload = client.msa_orders.unloads.create({...})
 #### Offer Orders (`/offerorders`)
 
 ```
-
 # Retrieve a specific offer order
 offer_order = client.offer_orders.find(token)
 
@@ -914,29 +886,9 @@ offer_order = client.offer_orders.find(token)
 offer_order = client.offer_orders.create({...})
 ```
 
-#### Offers (`/offers`)
-
-```
-# List all offers
-offers = client.offers.list()
-for offer in client.offers.stream():
-    pass
-offers_page = client.offers.page(start_index=0)
-
-# Retrieve a specific offer
-offer = client.offers.find(token)
-
-# Create an offer
-offer = client.offers.create({...})
-
-# Update an offer
-offer = client.offers.save(token, {...})
-```
-
 #### Pin Control Tokens (`/pins`)
 
 ```
-
 # Create a pin control token
 pin_control_token = client.pins.create({...})
 
@@ -1049,28 +1001,6 @@ realtime_fee_group = client.real_time_fee_groups.create({...})
 realtime_fee_group = client.real_time_fee_groups.save(token, {...})
 ```
 
-#### Stores (`/stores`)
-
-```
-# List all stores
-stores = client.stores.list()
-for store in client.stores.stream():
-    pass
-stores_page = client.stores.page(start_index=0)
-
-# Retrieve a specific store
-store = client.stores.find(token)
-
-# Create a store
-store = client.stores.create({...})
-
-# Update a store
-store = client.stores.save(token, {...})
-
-# Retrieve a specific store by MID
-store = client.stores.find_by_mid(mid)
-```
-
 #### Transactions (`/transactions`)
 
 ```
@@ -1119,6 +1049,9 @@ user = client.users.save(token, {...})
 
 # Retrieve a specific user SSN
 ssn = client.users(token).ssn()
+
+# Retrieve a specific user Full SSN
+ssn = client.users(token).ssn(full_ssn = True)
 
 # List all children of parent user
 child_cardholders = client.users(token).children.list()

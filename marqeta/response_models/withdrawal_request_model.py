@@ -1,8 +1,9 @@
 from datetime import datetime, date
 from marqeta.response_models.card_acceptor_model import CardAcceptorModel
 from marqeta.response_models.webhook import Webhook
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class WithdrawalRequestModel(object):
 
@@ -21,17 +22,21 @@ class WithdrawalRequestModel(object):
     def account_type(self):
         return self.json_response.get('account_type', None)
 
+
     @property
     def card_token(self):
         return self.json_response.get('card_token', None)
+
 
     @property
     def pin(self):
         return self.json_response.get('pin', None)
 
+
     @property
     def mid(self):
         return self.json_response.get('mid', None)
+
 
     @property
     def amount(self):
@@ -48,4 +53,4 @@ class WithdrawalRequestModel(object):
             return Webhook(self.json_response['webhook'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.withdrawal_request_model.WithdrawalRequestModel>' + self.__str__()
+         return '<Marqeta.response_models.withdrawal_request_model.WithdrawalRequestModel>' + self.__str__()

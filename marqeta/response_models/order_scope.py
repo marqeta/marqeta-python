@@ -1,8 +1,9 @@
 from datetime import datetime, date
 from marqeta.response_models.gpa import Gpa
 from marqeta.response_models.msa import Msa
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class OrderScope(object):
 
@@ -28,4 +29,4 @@ class OrderScope(object):
             return Msa(self.json_response['msa'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.order_scope.OrderScope>' + self.__str__()
+         return '<Marqeta.response_models.order_scope.OrderScope>' + self.__str__()

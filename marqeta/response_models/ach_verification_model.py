@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class AchVerificationModel(object):
 
@@ -28,4 +29,4 @@ class AchVerificationModel(object):
         return self.json_response.get('active', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.ach_verification_model.AchVerificationModel>' + self.__str__()
+         return '<Marqeta.response_models.ach_verification_model.AchVerificationModel>' + self.__str__()

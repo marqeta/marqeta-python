@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class ProgramReserveAccountBalance(object):
 
@@ -18,6 +19,7 @@ class ProgramReserveAccountBalance(object):
     @property
     def currency_code(self):
         return self.json_response.get('currency_code', None)
+
 
     @property
     def ledger_balance(self):
@@ -40,4 +42,4 @@ class ProgramReserveAccountBalance(object):
         return self.json_response.get('balances', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.program_reserve_account_balance.ProgramReserveAccountBalance>' + self.__str__()
+         return '<Marqeta.response_models.program_reserve_account_balance.ProgramReserveAccountBalance>' + self.__str__()

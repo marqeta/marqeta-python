@@ -1,9 +1,10 @@
 from datetime import datetime, date
-from marqeta.response_models.expiration_offsét import ExpirationOffsét
+from marqeta.response_models.expiration_offset import ExpirationOffset
 from marqeta.response_models.fulfillment import Fulfillment
 from marqeta.response_models.activation_actions import ActivationActions
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class CardRequest(object):
 
@@ -22,6 +23,7 @@ class CardRequest(object):
     def card_product_token(self):
         return self.json_response.get('card_product_token', None)
 
+
     @property
     def expedite(self):
         return self.json_response.get('expedite', None)
@@ -33,15 +35,17 @@ class CardRequest(object):
     @property
     def expiration_offset(self):
         if 'expiration_offset' in self.json_response:
-            return ExpirationOffsét(self.json_response['expiration_offset'])
+            return ExpirationOffset(self.json_response['expiration_offset'])
 
     @property
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def user_token(self):
         return self.json_response.get('user_token', None)
+
 
     @property
     def fulfillment(self):
@@ -52,9 +56,11 @@ class CardRequest(object):
     def reissue_pan_from_card_token(self):
         return self.json_response.get('reissue_pan_from_card_token', None)
 
+
     @property
     def translate_pin_from_card_token(self):
         return self.json_response.get('translate_pin_from_card_token', None)
+
 
     @property
     def activation_actions(self):
@@ -65,5 +71,6 @@ class CardRequest(object):
     def bulk_issuance_token(self):
         return self.json_response.get('bulk_issuance_token', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.card_request.CardRequest>' + self.__str__()
+         return '<Marqeta.response_models.card_request.CardRequest>' + self.__str__()

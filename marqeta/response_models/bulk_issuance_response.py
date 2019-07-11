@@ -1,9 +1,10 @@
 from datetime import datetime, date
 from marqeta.response_models.card_fulfillment_response import CardFulfillmentResponse
 from marqeta.response_models.user_association import UserAssociation
-from marqeta.response_models.expiration_offsét import ExpirationOffsét
+from marqeta.response_models.expiration_offset import ExpirationOffset
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class BulkIssuanceResponse(object):
 
@@ -20,8 +21,8 @@ class BulkIssuanceResponse(object):
 
     @property
     def token(self):
-
         return self.json_response.get('token', None)
+
 
     @property
     def fulfillment(self):
@@ -35,6 +36,7 @@ class BulkIssuanceResponse(object):
     @property
     def card_product_token(self):
         return self.json_response.get('card_product_token', None)
+
 
     @property
     def card_allocation(self):
@@ -52,7 +54,7 @@ class BulkIssuanceResponse(object):
     @property
     def expiration_offset(self):
         if 'expiration_offset' in self.json_response:
-            return ExpirationOffsét(self.json_response['expiration_offset'])
+            return ExpirationOffset(self.json_response['expiration_offset'])
 
     @property
     def cards_processed(self):
@@ -61,7 +63,8 @@ class BulkIssuanceResponse(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('created_time', self.json_response)
+
 
     @property
     def name_line1_start_index(self):
@@ -69,25 +72,29 @@ class BulkIssuanceResponse(object):
 
     @property
     def name_line1_end_index(self):
-       return self.json_response.get('name_line1_end_index', None)
+        return self.json_response.get('name_line1_end_index', None)
 
     @property
     def card_fulfillment_time(self):
         if 'card_fulfillment_time' in self.json_response:
-            return datetime.strptime(self.json_response['card_fulfillment_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('card_fulfillment_time', self.json_response)
+
 
     @property
     def provider_ship_date(self):
         if 'provider_ship_date' in self.json_response:
-            return datetime.strptime(self.json_response['provider_ship_date'], '%Y-%m-%d').date()
+            return datetime_object('provider_ship_date', self.json_response)
+
 
     @property
     def provider_shipping_method(self):
         return self.json_response.get('provider_shipping_method', None)
 
+
     @property
     def provider_tracking_number(self):
         return self.json_response.get('provider_tracking_number', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.bulk_issuance_response.BulkIssuanceResponse>' + self.__str__()
+         return '<Marqeta.response_models.bulk_issuance_response.BulkIssuanceResponse>' + self.__str__()

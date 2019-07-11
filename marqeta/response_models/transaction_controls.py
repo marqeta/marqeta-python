@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.avs_controls import AvsControls
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class TransactionControls(object):
 
@@ -19,6 +20,7 @@ class TransactionControls(object):
     @property
     def accepted_countries_token(self):
         return self.json_response.get('accepted_countries_token', None)
+
 
     @property
     def always_require_pin(self):
@@ -53,6 +55,10 @@ class TransactionControls(object):
         return self.json_response.get('allow_network_load', None)
 
     @property
+    def allow_chip_fallback(self):
+        return self.json_response.get('allow_chip_fallback', None)
+
+    @property
     def allow_network_load_card_activation(self):
         return self.json_response.get('allow_network_load_card_activation', None)
 
@@ -70,4 +76,4 @@ class TransactionControls(object):
             return AvsControls(self.json_response['address_verification'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.transaction_controls.TransactionControls>' + self.__str__()
+         return '<Marqeta.response_models.transaction_controls.TransactionControls>' + self.__str__()

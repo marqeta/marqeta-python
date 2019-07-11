@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class StoreModel(object):
 
@@ -19,6 +20,7 @@ class StoreModel(object):
     def name(self):
         return self.json_response.get('name', None)
 
+
     @property
     def active(self):
         return self.json_response.get('active', None)
@@ -27,9 +29,11 @@ class StoreModel(object):
     def contact(self):
         return self.json_response.get('contact', None)
 
+
     @property
     def contact_email(self):
         return self.json_response.get('contact_email', None)
+
 
     @property
     def longitude(self):
@@ -43,37 +47,46 @@ class StoreModel(object):
     def address1(self):
         return self.json_response.get('address1', None)
 
+
     @property
     def address2(self):
         return self.json_response.get('address2', None)
+
 
     @property
     def city(self):
         return self.json_response.get('city', None)
 
+
     @property
     def state(self):
         return self.json_response.get('state', None)
+
 
     @property
     def province(self):
         return self.json_response.get('province', None)
 
+
     @property
     def zip(self):
         return self.json_response.get('zip', None)
+
 
     @property
     def phone(self):
         return self.json_response.get('phone', None)
 
+
     @property
     def country(self):
         return self.json_response.get('country', None)
 
+
     @property
     def token(self):
         return self.json_response.get('token', None)
+
 
     @property
     def partial_auth_flag(self):
@@ -83,13 +96,16 @@ class StoreModel(object):
     def mid(self):
         return self.json_response.get('mid', None)
 
+
     @property
     def network_mid(self):
         return self.json_response.get('network_mid', None)
 
+
     @property
     def merchant_token(self):
         return self.json_response.get('merchant_token', None)
+
 
     @property
     def partial_approval_capable(self):
@@ -100,4 +116,4 @@ class StoreModel(object):
         return self.json_response.get('keyed_auth_cvv_enforced', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.store_model.StoreModel>' + self.__str__()
+         return '<Marqeta.response_models.store_model.StoreModel>' + self.__str__()

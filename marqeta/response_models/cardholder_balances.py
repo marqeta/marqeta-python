@@ -1,8 +1,9 @@
 from datetime import datetime, date
 from marqeta.response_models.cardholder_balance import CardholderBalance
 from marqeta.response_models.link import Link
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class CardholderBalances(object):
 
@@ -28,4 +29,4 @@ class CardholderBalances(object):
             return [Link(val) for val in self.json_response['links']]
 
     def __repr__(self):
-        return '<Marqeta.response_models.cardholder_balances.CardholderBalances>' + self.__str__()
+         return '<Marqeta.response_models.cardholder_balances.CardholderBalances>' + self.__str__()

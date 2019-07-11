@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.jit_address_verification import JitAddressVerification
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class JitFundingApi(object):
 
@@ -20,21 +21,26 @@ class JitFundingApi(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def method(self):
         return self.json_response.get('method', None)
+
 
     @property
     def user_token(self):
         return self.json_response.get('user_token', None)
 
+
     @property
     def acting_user_token(self):
         return self.json_response.get('acting_user_token', None)
 
+
     @property
     def business_token(self):
         return self.json_response.get('business_token', None)
+
 
     @property
     def amount(self):
@@ -44,13 +50,16 @@ class JitFundingApi(object):
     def memo(self):
         return self.json_response.get('memo', None)
 
+
     @property
     def tags(self):
         return self.json_response.get('tags', None)
 
+
     @property
     def original_jit_funding_token(self):
         return self.json_response.get('original_jit_funding_token', None)
+
 
     @property
     def incremental_authorization_jit_funding_tokens(self):
@@ -62,4 +71,4 @@ class JitFundingApi(object):
             return JitAddressVerification(self.json_response['address_verification'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.jit_funding_api.JitFundingApi>' + self.__str__()
+         return '<Marqeta.response_models.jit_funding_api.JitFundingApi>' + self.__str__()

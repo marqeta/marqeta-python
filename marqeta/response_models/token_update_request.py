@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class TokenUpdateRequest(object):
 
@@ -19,6 +20,7 @@ class TokenUpdateRequest(object):
     def exp_date(self):
         return self.json_response.get('exp_date', None)
 
+
     @property
     def active(self):
         return self.json_response.get('active', None)
@@ -28,4 +30,4 @@ class TokenUpdateRequest(object):
         return self.json_response.get('is_default_account', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.token_update_request.TokenUpdateRequest>' + self.__str__()
+         return '<Marqeta.response_models.token_update_request.TokenUpdateRequest>' + self.__str__()

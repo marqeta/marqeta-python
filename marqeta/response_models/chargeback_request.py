@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class ChargebackRequest(object):
 
@@ -19,9 +20,11 @@ class ChargebackRequest(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def transaction_token(self):
         return self.json_response.get('transaction_token', None)
+
 
     @property
     def amount(self):
@@ -31,13 +34,16 @@ class ChargebackRequest(object):
     def reason_description(self):
         return self.json_response.get('reason_description', None)
 
+
     @property
     def reason_code(self):
         return self.json_response.get('reason_code', None)
 
+
     @property
     def memo(self):
         return self.json_response.get('memo', None)
+
 
     @property
     def credit_user(self):
@@ -47,5 +53,6 @@ class ChargebackRequest(object):
     def channel(self):
         return self.json_response.get('channel', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.chargeback_request.ChargebackRequest>' + self.__str__()
+         return '<Marqeta.response_models.chargeback_request.ChargebackRequest>' + self.__str__()

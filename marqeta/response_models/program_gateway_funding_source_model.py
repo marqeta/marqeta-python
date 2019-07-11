@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.funding_source_model import FundingSourceModel
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class ProgramGatewayFundingSourceModel(FundingSourceModel):
 
@@ -17,5 +18,4 @@ class ProgramGatewayFundingSourceModel(FundingSourceModel):
             return o.__str__()
 
     def __repr__(self):
-        return '<Marqeta.response_models.program_gateway_funding_source_model.ProgramGatewayFundingSourceModel>' \
-               + self.__str__()
+         return '<Marqeta.response_models.program_gateway_funding_source_model.ProgramGatewayFundingSourceModel>' + self.__str__()

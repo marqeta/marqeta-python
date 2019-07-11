@@ -5,8 +5,9 @@ from marqeta.response_models.money_model import MoneyModel
 from marqeta.response_models.money_model import MoneyModel
 from marqeta.response_models.card_acceptor_model import CardAcceptorModel
 from marqeta.response_models.original_data_elements import OriginalDataElements
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class ClearingRecordRequestModel(object):
 
@@ -35,6 +36,7 @@ class ClearingRecordRequestModel(object):
     def mid(self):
         return self.json_response.get('mid', None)
 
+
     @property
     def amount(self):
         return self.json_response.get('amount', None)
@@ -55,25 +57,31 @@ class ClearingRecordRequestModel(object):
     def cardholder_billing_currency(self):
         return self.json_response.get('cardholder_billing_currency', None)
 
+
     @property
     def card_token(self):
         return self.json_response.get('card_token', None)
+
 
     @property
     def acquirer_reference_id(self):
         return self.json_response.get('acquirer_reference_id', None)
 
+
     @property
     def rrn(self):
         return self.json_response.get('rrn', None)
+
 
     @property
     def stan(self):
         return self.json_response.get('stan', None)
 
+
     @property
     def processing_code(self):
         return self.json_response.get('processing_code', None)
+
 
     @property
     def acquirer_fee(self):
@@ -89,32 +97,39 @@ class ClearingRecordRequestModel(object):
     def function_code(self):
         return self.json_response.get('function_code', None)
 
+
     @property
     def reason_code(self):
         return self.json_response.get('reason_code', None)
+
 
     @property
     def approval_code(self):
         return self.json_response.get('approval_code', None)
 
+
     @property
     def transaction_date(self):
         if 'transaction_date' in self.json_response:
-            return datetime.strptime(self.json_response['transaction_date'], '%Y-%m-%d').date()
+            return datetime_object('transaction_date', self.json_response)
+
 
     @property
     def local_transaction_date(self):
         if 'local_transaction_date' in self.json_response:
-            return datetime.strptime(self.json_response['local_transaction_date'], '%Y-%m-%d').date()
+            return datetime_object('local_transaction_date', self.json_response)
+
 
     @property
     def settlement_date(self):
         if 'settlement_date' in self.json_response:
-            return datetime.strptime(self.json_response['settlement_date'], '%Y-%m-%d').date()
+            return datetime_object('settlement_date', self.json_response)
+
 
     @property
     def network_reference_id(self):
         return self.json_response.get('network_reference_id', None)
+
 
     @property
     def find_original_window_days(self):
@@ -124,21 +139,26 @@ class ClearingRecordRequestModel(object):
     def batch_number(self):
         return self.json_response.get('batch_number', None)
 
+
     @property
     def batch_file_name(self):
         return self.json_response.get('batch_file_name', None)
+
 
     @property
     def sequence_number(self):
         return self.json_response.get('sequence_number', None)
 
+
     @property
     def network(self):
         return self.json_response.get('network', None)
 
+
     @property
     def sub_network(self):
         return self.json_response.get('sub_network', None)
+
 
     @property
     def card_acceptor(self):
@@ -149,6 +169,7 @@ class ClearingRecordRequestModel(object):
     def currency_code(self):
         return self.json_response.get('currency_code', None)
 
+
     @property
     def original_data_elements(self):
         if 'original_data_elements' in self.json_response:
@@ -157,6 +178,7 @@ class ClearingRecordRequestModel(object):
     @property
     def preceding_related_transaction_token(self):
         return self.json_response.get('preceding_related_transaction_token', None)
+
 
     @property
     def send_expiration_date(self):
@@ -170,9 +192,11 @@ class ClearingRecordRequestModel(object):
     def cross_border_indicator(self):
         return self.json_response.get('cross_border_indicator', None)
 
+
     @property
     def mti(self):
         return self.json_response.get('mti', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.clearing_record_request_model.ClearingRecordRequestModel>' + self.__str__()
+         return '<Marqeta.response_models.clearing_record_request_model.ClearingRecordRequestModel>' + self.__str__()

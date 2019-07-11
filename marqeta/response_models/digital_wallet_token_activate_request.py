@@ -2,8 +2,9 @@ from datetime import datetime, date
 from marqeta.response_models.digital_wallet_token import DigitalWalletToken
 from marqeta.response_models.digital_wallet_token_device import DigitalWalletTokenDevice
 from marqeta.response_models.digital_wallet_token_wallet_provider import DigitalWalletTokenWalletProvider
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class DigitalWalletTokenActivateRequest(object):
 
@@ -34,5 +35,4 @@ class DigitalWalletTokenActivateRequest(object):
             return DigitalWalletTokenWalletProvider(self.json_response['digital_wallet_token_wallet_provider'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.digital_wallet_token_activate_request.' \
-               'DigitalWalletTokenActivateRequest>' + self.__str__()
+         return '<Marqeta.response_models.digital_wallet_token_activate_request.DigitalWalletTokenActivateRequest>' + self.__str__()

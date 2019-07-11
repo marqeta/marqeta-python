@@ -1,8 +1,9 @@
 from datetime import datetime, date
 from marqeta.response_models.result import Result
 from marqeta.response_models.kyc_question import KycQuestion
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class KycResponse(object):
 
@@ -20,24 +21,29 @@ class KycResponse(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('created_time', self.json_response)
+
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('last_modified_time', self.json_response)
+
 
     @property
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def user_token(self):
         return self.json_response.get('user_token', None)
 
+
     @property
     def business_token(self):
         return self.json_response.get('business_token', None)
+
 
     @property
     def result(self):
@@ -52,6 +58,7 @@ class KycResponse(object):
     def notes(self):
         return self.json_response.get('notes', None)
 
+
     @property
     def questions(self):
         if 'questions' in self.json_response:
@@ -61,5 +68,6 @@ class KycResponse(object):
     def reference_id(self):
         return self.json_response.get('reference_id', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.kyc_response.KycResponse>' + self.__str__()
+         return '<Marqeta.response_models.kyc_response.KycResponse>' + self.__str__()

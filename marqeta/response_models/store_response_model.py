@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class StoreResponseModel(object):
 
@@ -19,6 +20,7 @@ class StoreResponseModel(object):
     def name(self):
         return self.json_response.get('name', None)
 
+
     @property
     def active(self):
         return self.json_response.get('active', None)
@@ -27,9 +29,11 @@ class StoreResponseModel(object):
     def contact(self):
         return self.json_response.get('contact', None)
 
+
     @property
     def contact_email(self):
         return self.json_response.get('contact_email', None)
+
 
     @property
     def longitude(self):
@@ -43,41 +47,51 @@ class StoreResponseModel(object):
     def address1(self):
         return self.json_response.get('address1', None)
 
+
     @property
     def address2(self):
         return self.json_response.get('address2', None)
+
 
     @property
     def city(self):
         return self.json_response.get('city', None)
 
+
     @property
     def state(self):
         return self.json_response.get('state', None)
+
 
     @property
     def province(self):
         return self.json_response.get('province', None)
 
+
     @property
     def zip(self):
         return self.json_response.get('zip', None)
+
 
     @property
     def postal_code(self):
         return self.json_response.get('postal_code', None)
 
+
     @property
     def phone(self):
         return self.json_response.get('phone', None)
+
 
     @property
     def country(self):
         return self.json_response.get('country', None)
 
+
     @property
     def token(self):
         return self.json_response.get('token', None)
+
 
     @property
     def partial_auth_flag(self):
@@ -87,13 +101,16 @@ class StoreResponseModel(object):
     def mid(self):
         return self.json_response.get('mid', None)
 
+
     @property
     def network_mid(self):
         return self.json_response.get('network_mid', None)
 
+
     @property
     def merchant_token(self):
         return self.json_response.get('merchant_token', None)
+
 
     @property
     def partial_approval_capable(self):
@@ -106,12 +123,14 @@ class StoreResponseModel(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('created_time', self.json_response)
+
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('last_modified_time', self.json_response)
+
 
     def __repr__(self):
-        return '<Marqeta.response_models.store_response_model.StoreResponseModel>' + self.__str__()
+         return '<Marqeta.response_models.store_response_model.StoreResponseModel>' + self.__str__()

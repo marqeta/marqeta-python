@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class LoadVelocityModel(object):
 
@@ -19,17 +20,21 @@ class LoadVelocityModel(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def description(self):
         return self.json_response.get('description', None)
+
 
     @property
     def type(self):
         return self.json_response.get('type', None)
 
+
     @property
     def layers(self):
         return self.json_response.get('layers', None)
+
 
     @property
     def amount(self):
@@ -44,4 +49,4 @@ class LoadVelocityModel(object):
         return self.json_response.get('active', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.load_velocity_model.LoadVelocityModel>' + self.__str__()
+         return '<Marqeta.response_models.load_velocity_model.LoadVelocityModel>' + self.__str__()

@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.application import Application
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class ClientAccessTokenResponse(object):
 
@@ -24,20 +25,24 @@ class ClientAccessTokenResponse(object):
     @property
     def created(self):
         if 'created' in self.json_response:
-            return datetime.strptime(self.json_response['created'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('created', self.json_response)
+
 
     @property
     def expires(self):
         if 'expires' in self.json_response:
-            return datetime.strptime(self.json_response['expires'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('expires', self.json_response)
+
 
     @property
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def card_token(self):
         return self.json_response.get('card_token', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.client_access_token_response.ClientAccessTokenResponse>' + self.__str__()
+         return '<Marqeta.response_models.client_access_token_response.ClientAccessTokenResponse>' + self.__str__()

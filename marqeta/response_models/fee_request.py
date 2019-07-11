@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.real_time_fee_assessment_request import RealTimeFeeAssessmentRequest
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class FeeRequest(object):
 
@@ -20,6 +21,7 @@ class FeeRequest(object):
     def name(self):
         return self.json_response.get('name', None)
 
+
     @property
     def amount(self):
         return self.json_response.get('amount', None)
@@ -28,13 +30,16 @@ class FeeRequest(object):
     def tags(self):
         return self.json_response.get('tags', None)
 
+
     @property
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def currency_code(self):
         return self.json_response.get('currency_code', None)
+
 
     @property
     def active(self):
@@ -46,4 +51,4 @@ class FeeRequest(object):
             return RealTimeFeeAssessmentRequest(self.json_response['real_time_assessment'])
 
     def __repr__(self):
-        return '<Marqeta.response_models.fee_request.FeeRequest>' + self.__str__()
+         return '<Marqeta.response_models.fee_request.FeeRequest>' + self.__str__()

@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class CardholderMsaBalance(object):
 
@@ -18,6 +19,7 @@ class CardholderMsaBalance(object):
     @property
     def currency_code(self):
         return self.json_response.get('currency_code', None)
+
 
     @property
     def ledger_balance(self):
@@ -47,9 +49,11 @@ class CardholderMsaBalance(object):
     def name(self):
         return self.json_response.get('name', None)
 
+
     @property
     def campaign_token(self):
         return self.json_response.get('campaign_token', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.cardholder_msa_balance.CardholderMsaBalance>' + self.__str__()
+         return '<Marqeta.response_models.cardholder_msa_balance.CardholderMsaBalance>' + self.__str__()

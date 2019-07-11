@@ -3,8 +3,9 @@ from marqeta.response_models.offer_order_balances import OfferOrderBalances
 from marqeta.response_models.offer_order_aggregated_balances import OfferOrderAggregatedBalances
 from marqeta.response_models.funding import Funding
 from marqeta.response_models.offer_model import OfferModel
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class OfferOrderResponse(object):
 
@@ -22,24 +23,29 @@ class OfferOrderResponse(object):
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('created_time', self.json_response)
+
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('last_modified_time', self.json_response)
+
 
     @property
     def user_token(self):
         return self.json_response.get('user_token', None)
 
+
     @property
     def business_token(self):
         return self.json_response.get('business_token', None)
 
+
     @property
     def token(self):
         return self.json_response.get('token', None)
+
 
     @property
     def order_balances(self):
@@ -64,7 +70,8 @@ class OfferOrderResponse(object):
     @property
     def last_transaction_date(self):
         if 'last_transaction_date' in self.json_response:
-            return datetime.strptime(self.json_response['last_transaction_date'], '%Y-%m-%d').date()
+            return datetime_object('last_transaction_date', self.json_response)
+
 
     def __repr__(self):
-        return '<Marqeta.response_models.offer_order_response.OfferOrderResponse>' + self.__str__()
+         return '<Marqeta.response_models.offer_order_response.OfferOrderResponse>' + self.__str__()

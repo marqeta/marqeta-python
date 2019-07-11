@@ -1,7 +1,8 @@
 from datetime import datetime, date
 from marqeta.response_models.advanced_auth_other_poi import AdvancedAuthOtherPoi
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class AdvancedAuthPoi(object):
 
@@ -30,4 +31,4 @@ class AdvancedAuthPoi(object):
         return self.json_response.get('atm', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.advanced_auth_poi.AdvancedAuthPoi>' + self.__str__()
+         return '<Marqeta.response_models.advanced_auth_poi.AdvancedAuthPoi>' + self.__str__()

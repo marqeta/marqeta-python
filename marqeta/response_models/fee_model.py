@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class FeeModel(object):
 
@@ -19,13 +20,16 @@ class FeeModel(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def memo(self):
         return self.json_response.get('memo', None)
+
 
     @property
     def tags(self):
         return self.json_response.get('tags', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.fee_model.FeeModel>' + self.__str__()
+         return '<Marqeta.response_models.fee_model.FeeModel>' + self.__str__()

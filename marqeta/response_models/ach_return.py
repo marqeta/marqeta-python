@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class AchReturn(object):
 
@@ -22,20 +23,24 @@ class AchReturn(object):
     @property
     def date(self):
         if 'date' in self.json_response:
-            return datetime.strptime(self.json_response['date'], '%Y-%m-%d').date()
+            return datetime_object('date', self.json_response)
+
 
     @property
     def dateInitiated(self):
         if 'dateInitiated' in self.json_response:
-            return datetime.strptime(self.json_response['dateInitiated'], '%Y-%m-%d').date()
+            return datetime_object('dateInitiated', self.json_response)
+
 
     @property
     def orderId(self):
         return self.json_response.get('orderId', None)
 
+
     @property
     def reasonCode(self):
         return self.json_response.get('reasonCode', None)
+
 
     @property
     def directDeposit(self):
@@ -45,5 +50,6 @@ class AchReturn(object):
     def achType(self):
         return self.json_response.get('achType', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.ach_return.AchReturn>' + self.__str__()
+         return '<Marqeta.response_models.ach_return.AchReturn>' + self.__str__()

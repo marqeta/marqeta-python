@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class Available(object):
 
@@ -28,4 +29,4 @@ class Available(object):
         return self.json_response.get('days_remaining', None)
 
     def __repr__(self):
-        return '<Marqeta.response_models.available.Available>' + self.__str__()
+         return '<Marqeta.response_models.available.Available>' + self.__str__()

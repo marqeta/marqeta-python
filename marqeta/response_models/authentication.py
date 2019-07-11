@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class Authentication(object):
 
@@ -19,10 +20,12 @@ class Authentication(object):
     def last_password_update_channel(self):
         return self.json_response.get('last_password_update_channel', None)
 
+
     @property
     def last_password_update_time(self):
         if 'last_password_update_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_password_update_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('last_password_update_time', self.json_response)
+
 
     @property
     def email_verified(self):
@@ -31,7 +34,8 @@ class Authentication(object):
     @property
     def email_verified_time(self):
         if 'email_verified_time' in self.json_response:
-            return datetime.strptime(self.json_response['email_verified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('email_verified_time', self.json_response)
+
 
     def __repr__(self):
-        return '<Marqeta.response_models.authentication.Authentication>' + self.__str__()
+         return '<Marqeta.response_models.authentication.Authentication>' + self.__str__()

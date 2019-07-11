@@ -1,6 +1,7 @@
 from datetime import datetime, date
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class ClearingFile(object):
 
@@ -19,9 +20,11 @@ class ClearingFile(object):
     def network(self):
         return self.json_response.get('network', None)
 
+
     @property
     def file(self):
         return self.json_response.get('file', None)
 
+
     def __repr__(self):
-        return '<Marqeta.response_models.clearing_file.ClearingFile>' + self.__str__()
+         return '<Marqeta.response_models.clearing_file.ClearingFile>' + self.__str__()

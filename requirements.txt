@@ -1,2 +1,4 @@
 requests >= 2.0.0
+pytz >= 2019.1
+faker >=1.0.7
 

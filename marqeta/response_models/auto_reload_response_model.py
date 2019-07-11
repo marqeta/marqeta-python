@@ -1,8 +1,9 @@
 from datetime import datetime, date
 from marqeta.response_models.auto_reload_association import AutoReloadAssociation
 from marqeta.response_models.order_scope import OrderScope
+from marqeta.response_models import datetime_object
 import json
-
+import re
 
 class AutoReloadResponseModel(object):
 
@@ -21,6 +22,7 @@ class AutoReloadResponseModel(object):
     def token(self):
         return self.json_response.get('token', None)
 
+
     @property
     def active(self):
         return self.json_response.get('active', None)
@@ -29,9 +31,11 @@ class AutoReloadResponseModel(object):
     def funding_source_token(self):
         return self.json_response.get('funding_source_token', None)
 
+
     @property
     def funding_source_address_token(self):
         return self.json_response.get('funding_source_address_token', None)
+
 
     @property
     def association(self):
@@ -47,15 +51,18 @@ class AutoReloadResponseModel(object):
     def currency_code(self):
         return self.json_response.get('currency_code', None)
 
+
     @property
     def created_time(self):
         if 'created_time' in self.json_response:
-            return datetime.strptime(self.json_response['created_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('created_time', self.json_response)
+
 
     @property
     def last_modified_time(self):
         if 'last_modified_time' in self.json_response:
-            return datetime.strptime(self.json_response['last_modified_time'], '%Y-%m-%dT%H:%M:%SZ')
+            return datetime_object('last_modified_time', self.json_response)
+
 
     def __repr__(self):
-        return '<Marqeta.response_models.auto_reload_response_model.AutoReloadResponseModel>' + self.__str__()
+         return '<Marqeta.response_models.auto_reload_response_model.AutoReloadResponseModel>' + self.__str__()
