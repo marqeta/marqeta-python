@@ -1,11 +1,13 @@
 from datetime import datetime, date
-from marqeta.response_models.commando_mode_nested_transition import CommandoModeNestedTransition
+from marqeta.response_models.commando_mode_nested_transition import (
+    CommandoModeNestedTransition,
+)
 from marqeta.response_models import datetime_object
 import json
 import re
 
-class CommandoModeTransitionResponse(object):
 
+class CommandoModeTransitionResponse(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -19,34 +21,32 @@ class CommandoModeTransitionResponse(object):
 
     @property
     def type(self):
-        return self.json_response.get('type', None)
-
+        return self.json_response.get("type", None)
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def commando_mode_token(self):
-        return self.json_response.get('commando_mode_token', None)
-
+        return self.json_response.get("commando_mode_token", None)
 
     @property
     def transition(self):
-        if 'transition' in self.json_response:
-            return CommandoModeNestedTransition(self.json_response['transition'])
+        if "transition" in self.json_response:
+            return CommandoModeNestedTransition(self.json_response["transition"])
 
     @property
     def created_time(self):
-        if 'created_time' in self.json_response:
-            return datetime_object('created_time', self.json_response)
-
+        if "created_time" in self.json_response:
+            return datetime_object("created_time", self.json_response)
 
     @property
     def name(self):
-        return self.json_response.get('name', None)
-
+        return self.json_response.get("name", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.commando_mode_transition_response.CommandoModeTransitionResponse>' + self.__str__()
+        return (
+            "<Marqeta.response_models.commando_mode_transition_response.CommandoModeTransitionResponse>"
+            + self.__str__()
+        )

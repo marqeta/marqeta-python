@@ -25,7 +25,7 @@ class TestFundingSourcesAddressesSave(unittest.TestCase):
             "city": "Oakland",
             "state": "CA",
             "zip": "94610",
-            "country": "USA"
+            "country": "USA",
         }
 
     def test_addresses_save_user(self):
@@ -34,10 +34,10 @@ class TestFundingSourcesAddressesSave(unittest.TestCase):
         address = FundingSources.get_user_card_holder_address()
 
         updated = self.client.funding_sources.addresses.save(
-            address.token, self.get_address_update())
+            address.token, self.get_address_update()
+        )
 
-        verify_card_holder_address_response(
-            self, updated, self.get_address_update())
+        verify_card_holder_address_response(self, updated, self.get_address_update())
 
     def test_addresses_save_business(self):
         """Updates the funding source address for a business."""
@@ -45,14 +45,15 @@ class TestFundingSourcesAddressesSave(unittest.TestCase):
         address = FundingSources.get_business_card_holder_address()
 
         updated = self.client.funding_sources.addresses.save(
-            address.token, self.get_address_update())
+            address.token, self.get_address_update()
+        )
 
-        verify_card_holder_address_response(
-            self, updated, self.get_address_update())
+        verify_card_holder_address_response(self, updated, self.get_address_update())
 
     def test_addresses_save_bad_token(self):
         """Verifies the behavior is correct when a bad address token is used."""
 
         with self.assertRaises(MarqetaError):
             self.client.funding_sources.addresses.save(
-                'Not an address token', self.get_address_update())
+                "Not an address token", self.get_address_update()
+            )

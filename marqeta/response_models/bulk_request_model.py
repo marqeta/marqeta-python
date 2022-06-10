@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class BulkRequestModel(object):
 
+class BulkRequestModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,23 +18,26 @@ class BulkRequestModel(object):
 
     @property
     def user_tokens(self):
-        return self.json_response.get('user_tokens', None)
+        return self.json_response.get("user_tokens", None)
 
     @property
     def business_tokens(self):
-        return self.json_response.get('business_tokens', None)
+        return self.json_response.get("business_tokens", None)
 
     @property
     def card_tokens(self):
-        return self.json_response.get('card_tokens', None)
+        return self.json_response.get("card_tokens", None)
 
     @property
     def kyc_tokens(self):
-        return self.json_response.get('kyc_tokens', None)
+        return self.json_response.get("kyc_tokens", None)
 
     @property
     def dda_tokens(self):
-        return self.json_response.get('dda_tokens', None)
+        return self.json_response.get("dda_tokens", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.bulk_request_model.BulkRequestModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.bulk_request_model.BulkRequestModel>"
+            + self.__str__()
+        )

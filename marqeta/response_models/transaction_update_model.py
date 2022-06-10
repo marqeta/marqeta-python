@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class TransactionUpdateModel(object):
 
+class TransactionUpdateModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,8 +18,10 @@ class TransactionUpdateModel(object):
 
     @property
     def state(self):
-        return self.json_response.get('state', None)
-
+        return self.json_response.get("state", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.transaction_update_model.TransactionUpdateModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.transaction_update_model.TransactionUpdateModel>"
+            + self.__str__()
+        )

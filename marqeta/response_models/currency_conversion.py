@@ -4,8 +4,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class CurrencyConversion(object):
 
+class CurrencyConversion(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -19,8 +19,11 @@ class CurrencyConversion(object):
 
     @property
     def network(self):
-        if 'network' in self.json_response:
-            return Network(self.json_response['network'])
+        if "network" in self.json_response:
+            return Network(self.json_response["network"])
 
     def __repr__(self):
-         return '<Marqeta.response_models.currency_conversion.CurrencyConversion>' + self.__str__()
+        return (
+            "<Marqeta.response_models.currency_conversion.CurrencyConversion>"
+            + self.__str__()
+        )

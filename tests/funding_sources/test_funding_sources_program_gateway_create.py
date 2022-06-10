@@ -2,7 +2,9 @@ import unittest
 
 from tests.lib.client import get_client
 from tests.lib.funding_sources import FundingSources
-from tests.lib.funding_source_verifications import verify_gateway_program_funding_source_response
+from tests.lib.funding_source_verifications import (
+    verify_gateway_program_funding_source_response,
+)
 from marqeta.errors import MarqetaError
 
 
@@ -20,11 +22,9 @@ class TestFundingSourceProgramGatewayCreate(unittest.TestCase):
 
         funding_request = FundingSources.get_program_gateway_funding_request()
 
-        source = self.client.funding_sources.program_gateway.create(
-            funding_request)
+        source = self.client.funding_sources.program_gateway.create(funding_request)
 
-        verify_gateway_program_funding_source_response(
-            self, source, funding_request)
+        verify_gateway_program_funding_source_response(self, source, funding_request)
 
     def test_program_gateway_create_fail(self):
         """Tests behavior when funding request is bad."""

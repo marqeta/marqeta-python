@@ -25,10 +25,10 @@ class TestFundingSourcesAddressesFind(unittest.TestCase):
 
         """
 
-        address_expected = address.__dict__['json_response']
+        address_expected = address.__dict__["json_response"]
 
-        del address_expected['created_time']
-        del address_expected['last_modified_time']
+        del address_expected["created_time"]
+        del address_expected["last_modified_time"]
 
         return address_expected
 
@@ -40,7 +40,8 @@ class TestFundingSourcesAddressesFind(unittest.TestCase):
         found = self.client.funding_sources.addresses.find(address.token)
 
         verify_card_holder_address_response(
-            self, found, self.get_address_expected(address))
+            self, found, self.get_address_expected(address)
+        )
 
     def test_funding_sources_addresses_find_business(self):
         """Finds a business address."""
@@ -50,10 +51,11 @@ class TestFundingSourcesAddressesFind(unittest.TestCase):
         found = self.client.funding_sources.addresses.find(address.token)
 
         verify_card_holder_address_response(
-            self, found, self.get_address_expected(address))
+            self, found, self.get_address_expected(address)
+        )
 
     def test_funding_sources_addresses_find_invalid_token(self):
         """Tries a find with a token that does not map to an address."""
 
         with self.assertRaises(MarqetaError):
-            self.client.funding_sources.addresses.find('Not an address token')
+            self.client.funding_sources.addresses.find("Not an address token")

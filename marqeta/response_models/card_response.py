@@ -5,8 +5,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class CardResponse(object):
 
+class CardResponse(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -20,123 +20,104 @@ class CardResponse(object):
 
     @property
     def created_time(self):
-        if 'created_time' in self.json_response:
-            return datetime_object('created_time', self.json_response)
-
+        if "created_time" in self.json_response:
+            return datetime_object("created_time", self.json_response)
 
     @property
     def last_modified_time(self):
-        if 'last_modified_time' in self.json_response:
-            return datetime_object('last_modified_time', self.json_response)
-
+        if "last_modified_time" in self.json_response:
+            return datetime_object("last_modified_time", self.json_response)
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def user_token(self):
-        return self.json_response.get('user_token', None)
-
+        return self.json_response.get("user_token", None)
 
     @property
     def card_product_token(self):
-        return self.json_response.get('card_product_token', None)
-
+        return self.json_response.get("card_product_token", None)
 
     @property
     def last_four(self):
-        return self.json_response.get('last_four', None)
-
+        return self.json_response.get("last_four", None)
 
     @property
     def pan(self):
-        return self.json_response.get('pan', None)
-
+        return self.json_response.get("pan", None)
 
     @property
     def expiration(self):
-        return self.json_response.get('expiration', None)
-
+        return self.json_response.get("expiration", None)
 
     @property
     def expiration_time(self):
-        if 'expiration_time' in self.json_response:
-            return datetime_object('expiration_time', self.json_response)
-
+        if "expiration_time" in self.json_response:
+            return datetime_object("expiration_time", self.json_response)
 
     @property
     def cvv_number(self):
-        return self.json_response.get('cvv_number', None)
-
+        return self.json_response.get("cvv_number", None)
 
     @property
     def chip_cvv_number(self):
-        return self.json_response.get('chip_cvv_number', None)
-
+        return self.json_response.get("chip_cvv_number", None)
 
     @property
     def barcode(self):
-        return self.json_response.get('barcode', None)
-
+        return self.json_response.get("barcode", None)
 
     @property
     def pin_is_set(self):
-        return self.json_response.get('pin_is_set', None)
+        return self.json_response.get("pin_is_set", None)
 
     @property
     def state(self):
-        return self.json_response.get('state', None)
-
+        return self.json_response.get("state", None)
 
     @property
     def state_reason(self):
-        return self.json_response.get('state_reason', None)
-
+        return self.json_response.get("state_reason", None)
 
     @property
     def fulfillment_status(self):
-        return self.json_response.get('fulfillment_status', None)
-
+        return self.json_response.get("fulfillment_status", None)
 
     @property
     def reissue_pan_from_card_token(self):
-        return self.json_response.get('reissue_pan_from_card_token', None)
-
+        return self.json_response.get("reissue_pan_from_card_token", None)
 
     @property
     def fulfillment(self):
-        if 'fulfillment' in self.json_response:
-            return CardFulfillmentResponse(self.json_response['fulfillment'])
+        if "fulfillment" in self.json_response:
+            return CardFulfillmentResponse(self.json_response["fulfillment"])
 
     @property
     def bulk_issuance_token(self):
-        return self.json_response.get('bulk_issuance_token', None)
-
+        return self.json_response.get("bulk_issuance_token", None)
 
     @property
     def translate_pin_from_card_token(self):
-        return self.json_response.get('translate_pin_from_card_token', None)
-
+        return self.json_response.get("translate_pin_from_card_token", None)
 
     @property
     def activation_actions(self):
-        if 'activation_actions' in self.json_response:
-            return ActivationActions(self.json_response['activation_actions'])
+        if "activation_actions" in self.json_response:
+            return ActivationActions(self.json_response["activation_actions"])
 
     @property
     def instrument_type(self):
-        return self.json_response.get('instrument_type', None)
-
+        return self.json_response.get("instrument_type", None)
 
     @property
     def expedite(self):
-        return self.json_response.get('expedite', None)
+        return self.json_response.get("expedite", None)
 
     @property
     def metadata(self):
-        return self.json_response.get('metadata', None)
+        return self.json_response.get("metadata", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.card_response.CardResponse>' + self.__str__()
+        return "<Marqeta.response_models.card_response.CardResponse>" + self.__str__()

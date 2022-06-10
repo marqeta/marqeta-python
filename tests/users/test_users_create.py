@@ -27,12 +27,12 @@ class TestUsersCreate(unittest.TestCase):
         """
 
         defaults = {
-            'active': True,
-            'uses_parent_account': False,
-            'corporate_card_holder': False,
-            'metadata': {},
-            'account_holder_group_token': 'DEFAULT_AHG',
-            'status': 'ACTIVE'
+            "active": True,
+            "uses_parent_account": False,
+            "corporate_card_holder": False,
+            "metadata": {},
+            "account_holder_group_token": "DEFAULT_AHG",
+            "status": "ACTIVE",
         }
 
         return {**defaults, **user_values}
@@ -51,26 +51,26 @@ class TestUsersCreate(unittest.TestCase):
 
         # Verify the correct class is being tested
         actual = response.__class__.__name__
-        expected = 'UserCardHolderResponse'
+        expected = "UserCardHolderResponse"
 
-        self.assertEqual(actual, expected, 'Unexpected response found')
+        self.assertEqual(actual, expected, "Unexpected response found")
 
         # Verify the expected attributes are defined
         expected_attributes = [
-            'token',
-            'active',
-            'uses_parent_account',
-            'corporate_card_holder',
-            'created_time',
-            'last_modified_time',
-            'metadata',
-            'account_holder_group_token',
-            'status',
-            'deposit_account'
+            "token",
+            "active",
+            "uses_parent_account",
+            "corporate_card_holder",
+            "created_time",
+            "last_modified_time",
+            "metadata",
+            "account_holder_group_token",
+            "status",
+            "deposit_account",
         ]
 
         for attribute in expected_attributes:
-            with self.subTest(f'{attribute} is not defined'):
+            with self.subTest(f"{attribute} is not defined"):
                 self.assertIsNotNone(getattr(response, attribute))
 
         # Verify values match expected values
@@ -80,10 +80,10 @@ class TestUsersCreate(unittest.TestCase):
             expected = verify[attribute]
 
             # ssn is masked by default
-            if attribute == 'ssn':
-                expected = '___________'
+            if attribute == "ssn":
+                expected = "___________"
 
-            with self.subTest(f'{attribute} does not match the expected value'):
+            with self.subTest(f"{attribute} does not match the expected value"):
                 self.assertEqual(getattr(response, attribute), expected)
 
     def test_create_empty_arg(self):
@@ -108,8 +108,7 @@ class TestUsersCreate(unittest.TestCase):
     def test_create_with_args(self):
         """Invokes create with defined arguments."""
 
-        user_args = {'first_name': 'Bob',
-                     'last_name': 'Builder', 'ssn': '123456789'}
+        user_args = {"first_name": "Bob", "last_name": "Builder", "ssn": "123456789"}
 
         user = self.client.users.create(user_args)
 
@@ -121,10 +120,9 @@ class TestUsersCreate(unittest.TestCase):
         parent = self.client.users.create({})
         parent_token = parent.token
 
-        self.assertIsNotNone(
-            parent_token, 'Could not get token from parent user')
+        self.assertIsNotNone(parent_token, "Could not get token from parent user")
 
-        user_args = {'parent_token': parent_token, 'uses_parent_account': True}
+        user_args = {"parent_token": parent_token, "uses_parent_account": True}
 
         child = self.client.users.create(user_args)
 
@@ -139,9 +137,7 @@ class TestUsersCreate(unittest.TestCase):
         del times[-1]
 
         for time in times:
-            user_args = {
-                "passport_expiration_date": time
-            }
+            user_args = {"passport_expiration_date": time}
 
             user = self.client.users.create(user_args)
 
@@ -156,9 +152,7 @@ class TestUsersCreate(unittest.TestCase):
         del times[-1]
 
         for time in times:
-            user_args = {
-                "id_card_expiration_date": time
-            }
+            user_args = {"id_card_expiration_date": time}
 
             user = self.client.users.create(user_args)
 

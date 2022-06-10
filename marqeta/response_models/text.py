@@ -5,8 +5,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class Text(object):
 
+class Text(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -20,13 +20,13 @@ class Text(object):
 
     @property
     def name_line_1(self):
-        if 'name_line_1' in self.json_response:
-            return TextValue(self.json_response['name_line_1'])
+        if "name_line_1" in self.json_response:
+            return TextValue(self.json_response["name_line_1"])
 
     @property
     def name_line_2(self):
-        if 'name_line_2' in self.json_response:
-            return TextValue(self.json_response['name_line_2'])
+        if "name_line_2" in self.json_response:
+            return TextValue(self.json_response["name_line_2"])
 
     def __repr__(self):
-         return '<Marqeta.response_models.text.Text>' + self.__str__()
+        return "<Marqeta.response_models.text.Text>" + self.__str__()

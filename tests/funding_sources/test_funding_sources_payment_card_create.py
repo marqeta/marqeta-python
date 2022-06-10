@@ -24,10 +24,10 @@ class TestFundingSourcesPaymentCardCreate(unittest.TestCase):
         payment_card_request["user_token"] = user.token
 
         payment_card = self.client.funding_sources.payment_card.create(
-            payment_card_request)
+            payment_card_request
+        )
 
-        expected = FundingSources.get_payment_card_verify_values(
-            payment_card_request)
+        expected = FundingSources.get_payment_card_verify_values(payment_card_request)
 
         verify_payment_card_response_model(self, payment_card, expected)
 
@@ -40,10 +40,10 @@ class TestFundingSourcesPaymentCardCreate(unittest.TestCase):
         payment_card_request["business_token"] = business.token
 
         payment_card = self.client.funding_sources.payment_card.create(
-            payment_card_request)
+            payment_card_request
+        )
 
-        expected = FundingSources.get_payment_card_verify_values(
-            payment_card_request)
+        expected = FundingSources.get_payment_card_verify_values(payment_card_request)
 
         verify_payment_card_response_model(self, payment_card, expected)
 

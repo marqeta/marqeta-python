@@ -27,45 +27,44 @@ class TestUsersNotesCreate(unittest.TestCase):
 
         # Verify the correct class is being tested
         actual = response.__class__.__name__
-        expected = 'CardholderNoteResponseModel'
+        expected = "CardholderNoteResponseModel"
 
-        self.assertEqual(actual, expected, 'Unexpected response found')
+        self.assertEqual(actual, expected, "Unexpected response found")
 
         # Verify the expected attributes are defined
         expected_attributes = [
-            'token',
-            'description',
-            'created_by',
-            'private',
-            'created_time',
-            'last_modified_time'
+            "token",
+            "description",
+            "created_by",
+            "private",
+            "created_time",
+            "last_modified_time",
         ]
 
         for attribute in expected_attributes:
-            with self.subTest(f'{attribute} is not defined'):
+            with self.subTest(f"{attribute} is not defined"):
                 self.assertIsNotNone(getattr(response, attribute))
 
         # Verify values match expected values
         match_attributes = list(verify.keys())
 
         for attribute in match_attributes:
-            with self.subTest(f'{attribute} does not match the expected value'):
-                self.assertEqual(getattr(response, attribute),
-                                 verify[attribute])
+            with self.subTest(f"{attribute} does not match the expected value"):
+                self.assertEqual(getattr(response, attribute), verify[attribute])
 
     def get_user(self):
         """Creates a user and verifies it has a token."""
 
         user = self.client.users.create({})
 
-        self.assertIsNotNone(user.token, 'Could not find user token')
+        self.assertIsNotNone(user.token, "Could not find user token")
 
         return user
 
     def get_note_request(self):
         """Returns a default note request."""
 
-        return {'description': 'B Sharp', 'created_by': 'Piano Man'}
+        return {"description": "B Sharp", "created_by": "Piano Man"}
 
     def test_notes_create_user_exists(self):
         """Create a note for an existing user."""
@@ -82,8 +81,7 @@ class TestUsersNotesCreate(unittest.TestCase):
         """Create a note for a user who doesn't exist."""
 
         with self.assertRaises(MarqetaError):
-            self.client.users('Does not exist').notes.create(
-                self.get_note_request())
+            self.client.users("Does not exist").notes.create(self.get_note_request())
 
     def test_notes_create_missing_all(self):
         """Create a note missing all the required fields."""
@@ -100,7 +98,7 @@ class TestUsersNotesCreate(unittest.TestCase):
 
         user = self.get_user()
 
-        note_request = {'created_by': 'Piano Man'}
+        note_request = {"created_by": "Piano Man"}
 
         with self.assertRaises(MarqetaError):
             self.client.users(user.token).notes.create(note_request)
@@ -110,7 +108,7 @@ class TestUsersNotesCreate(unittest.TestCase):
 
         user = self.get_user()
 
-        note_request = {'description': 'B Sharp'}
+        note_request = {"description": "B Sharp"}
 
         with self.assertRaises(MarqetaError):
             self.client.users(user.token).notes.create(note_request)
@@ -121,9 +119,9 @@ class TestUsersNotesCreate(unittest.TestCase):
         user = self.get_user()
 
         note_request = {
-            'description': 'B Sharp',
-            'created_by': 'Piano Man',
-            'created_by_user_role': 'USER'
+            "description": "B Sharp",
+            "created_by": "Piano Man",
+            "created_by_user_role": "USER",
         }
 
         note = self.client.users(user.token).notes.create(note_request)

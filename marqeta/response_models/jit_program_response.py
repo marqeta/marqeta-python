@@ -4,8 +4,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class JitProgramResponse(object):
 
+class JitProgramResponse(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -19,8 +19,11 @@ class JitProgramResponse(object):
 
     @property
     def jit_funding(self):
-        if 'jit_funding' in self.json_response:
-            return JitFundingApi(self.json_response['jit_funding'])
+        if "jit_funding" in self.json_response:
+            return JitFundingApi(self.json_response["jit_funding"])
 
     def __repr__(self):
-         return '<Marqeta.response_models.jit_program_response.JitProgramResponse>' + self.__str__()
+        return (
+            "<Marqeta.response_models.jit_program_response.JitProgramResponse>"
+            + self.__str__()
+        )

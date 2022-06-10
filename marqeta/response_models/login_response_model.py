@@ -5,8 +5,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class LoginResponseModel(object):
 
+class LoginResponseModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -20,13 +20,16 @@ class LoginResponseModel(object):
 
     @property
     def access_token(self):
-        if 'access_token' in self.json_response:
-            return AccessTokenResponse(self.json_response['access_token'])
+        if "access_token" in self.json_response:
+            return AccessTokenResponse(self.json_response["access_token"])
 
     @property
     def user(self):
-        if 'user' in self.json_response:
-            return UserCardHolderResponse(self.json_response['user'])
+        if "user" in self.json_response:
+            return UserCardHolderResponse(self.json_response["user"])
 
     def __repr__(self):
-         return '<Marqeta.response_models.login_response_model.LoginResponseModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.login_response_model.LoginResponseModel>"
+            + self.__str__()
+        )

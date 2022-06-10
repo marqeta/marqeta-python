@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class UserValidationResponse(object):
 
+class UserValidationResponse(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,15 +18,18 @@ class UserValidationResponse(object):
 
     @property
     def birth_date(self):
-        return self.json_response.get('birth_date', None)
+        return self.json_response.get("birth_date", None)
 
     @property
     def phone(self):
-        return self.json_response.get('phone', None)
+        return self.json_response.get("phone", None)
 
     @property
     def ssn(self):
-        return self.json_response.get('ssn', None)
+        return self.json_response.get("ssn", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.user_validation_response.UserValidationResponse>' + self.__str__()
+        return (
+            "<Marqeta.response_models.user_validation_response.UserValidationResponse>"
+            + self.__str__()
+        )

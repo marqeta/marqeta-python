@@ -1,12 +1,14 @@
 from datetime import datetime, date
 from marqeta.response_models.address_request_model import AddressRequestModel
-from marqeta.response_models.identification_request_model import IdentificationRequestModel
+from marqeta.response_models.identification_request_model import (
+    IdentificationRequestModel,
+)
 from marqeta.response_models import datetime_object
 import json
 import re
 
-class BusinessProprietorRequestModel(object):
 
+class BusinessProprietorRequestModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -20,59 +22,56 @@ class BusinessProprietorRequestModel(object):
 
     @property
     def first_name(self):
-        return self.json_response.get('first_name', None)
-
+        return self.json_response.get("first_name", None)
 
     @property
     def middle_name(self):
-        return self.json_response.get('middle_name', None)
-
+        return self.json_response.get("middle_name", None)
 
     @property
     def last_name(self):
-        return self.json_response.get('last_name', None)
-
+        return self.json_response.get("last_name", None)
 
     @property
     def alternative_names(self):
-        return self.json_response.get('alternative_names', None)
-
+        return self.json_response.get("alternative_names", None)
 
     @property
     def title(self):
-        return self.json_response.get('title', None)
-
+        return self.json_response.get("title", None)
 
     @property
     def home(self):
-        if 'home' in self.json_response:
-            return AddressRequestModel(self.json_response['home'])
+        if "home" in self.json_response:
+            return AddressRequestModel(self.json_response["home"])
 
     @property
     def ssn(self):
-        return self.json_response.get('ssn', None)
-
+        return self.json_response.get("ssn", None)
 
     @property
     def dob(self):
-        if 'dob' in self.json_response:
-            return datetime_object('dob', self.json_response)
-
+        if "dob" in self.json_response:
+            return datetime_object("dob", self.json_response)
 
     @property
     def phone(self):
-        return self.json_response.get('phone', None)
-
+        return self.json_response.get("phone", None)
 
     @property
     def email(self):
-        return self.json_response.get('email', None)
-
+        return self.json_response.get("email", None)
 
     @property
     def identifications(self):
-        if 'identifications' in self.json_response:
-            return [IdentificationRequestModel(val) for val in self.json_response['identifications']]
+        if "identifications" in self.json_response:
+            return [
+                IdentificationRequestModel(val)
+                for val in self.json_response["identifications"]
+            ]
 
     def __repr__(self):
-         return '<Marqeta.response_models.business_proprietor_request_model.BusinessProprietorRequestModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.business_proprietor_request_model.BusinessProprietorRequestModel>"
+            + self.__str__()
+        )

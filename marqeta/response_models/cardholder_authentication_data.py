@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class CardholderAuthenticationData(object):
 
+class CardholderAuthenticationData(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,18 +18,18 @@ class CardholderAuthenticationData(object):
 
     @property
     def electronic_commerce_indicator(self):
-        return self.json_response.get('electronic_commerce_indicator', None)
-
+        return self.json_response.get("electronic_commerce_indicator", None)
 
     @property
     def verification_result(self):
-        return self.json_response.get('verification_result', None)
-
+        return self.json_response.get("verification_result", None)
 
     @property
     def verification_value_created_by(self):
-        return self.json_response.get('verification_value_created_by', None)
-
+        return self.json_response.get("verification_value_created_by", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.cardholder_authentication_data.CardholderAuthenticationData>' + self.__str__()
+        return (
+            "<Marqeta.response_models.cardholder_authentication_data.CardholderAuthenticationData>"
+            + self.__str__()
+        )

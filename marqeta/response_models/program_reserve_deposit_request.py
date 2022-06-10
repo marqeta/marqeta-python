@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class ProgramReserveDepositRequest(object):
 
+class ProgramReserveDepositRequest(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,32 +18,30 @@ class ProgramReserveDepositRequest(object):
 
     @property
     def idempotentHash(self):
-        return self.json_response.get('idempotentHash', None)
-
+        return self.json_response.get("idempotentHash", None)
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def amount(self):
-        return self.json_response.get('amount', None)
+        return self.json_response.get("amount", None)
 
     @property
     def currency_code(self):
-        return self.json_response.get('currency_code', None)
-
+        return self.json_response.get("currency_code", None)
 
     @property
     def memo(self):
-        return self.json_response.get('memo', None)
-
+        return self.json_response.get("memo", None)
 
     @property
     def tags(self):
-        return self.json_response.get('tags', None)
-
+        return self.json_response.get("tags", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.program_reserve_deposit_request.ProgramReserveDepositRequest>' + self.__str__()
+        return (
+            "<Marqeta.response_models.program_reserve_deposit_request.ProgramReserveDepositRequest>"
+            + self.__str__()
+        )

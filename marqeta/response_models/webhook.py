@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class Webhook(object):
 
+class Webhook(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,23 +18,19 @@ class Webhook(object):
 
     @property
     def endpoint(self):
-        return self.json_response.get('endpoint', None)
-
+        return self.json_response.get("endpoint", None)
 
     @property
     def username(self):
-        return self.json_response.get('username', None)
-
+        return self.json_response.get("username", None)
 
     @property
     def password(self):
-        return self.json_response.get('password', None)
-
+        return self.json_response.get("password", None)
 
     @property
     def secret(self):
-        return self.json_response.get('secret', None)
-
+        return self.json_response.get("secret", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.webhook.Webhook>' + self.__str__()
+        return "<Marqeta.response_models.webhook.Webhook>" + self.__str__()

@@ -29,7 +29,7 @@ class TestTransactionsPage(unittest.TestCase):
 
         card_request = {
             "card_product_token": card_product.token,
-            "user_token": user.token
+            "user_token": user.token,
         }
 
         card = cls.client.cards.create(card_request)
@@ -37,7 +37,7 @@ class TestTransactionsPage(unittest.TestCase):
         auth_request_model = {
             "card_token": card.token,
             "amount": 100.0,
-            "mid": merchant.token
+            "mid": merchant.token,
         }
 
         for _ in range(num):
@@ -47,9 +47,7 @@ class TestTransactionsPage(unittest.TestCase):
     def get_merchant(cls):
         """Returns a new merchant."""
 
-        merchant_model = {
-            "name": cls.fake.company()
-        }
+        merchant_model = {"name": cls.fake.company()}
 
         return cls.client.merchants.create(merchant_model)
 
@@ -75,32 +73,32 @@ class TestTransactionsPage(unittest.TestCase):
 
         """
 
-        with self.subTest('Count has unexpected value'):
+        with self.subTest("Count has unexpected value"):
             if more:
-                self.assertEqual(response['count'], count)
+                self.assertEqual(response["count"], count)
             else:
-                self.assertLessEqual(response['count'], count)
+                self.assertLessEqual(response["count"], count)
 
-        with self.subTest('Start index has unexpected value'):
-            self.assertEqual(response['start_index'], start)
+        with self.subTest("Start index has unexpected value"):
+            self.assertEqual(response["start_index"], start)
 
-        with self.subTest('End index has unexpected value'):
+        with self.subTest("End index has unexpected value"):
             end_index = start + count - 1
-            self.assertEqual(response['end_index'], end_index)
+            self.assertEqual(response["end_index"], end_index)
 
-        with self.subTest('Is more has unexpected value'):
-            self.assertEqual(response['is_more'], more)
+        with self.subTest("Is more has unexpected value"):
+            self.assertEqual(response["is_more"], more)
 
-        with self.subTest('Unexpected number of page records found'):
-            if response['is_more']:
-                self.assertEqual(len(response['data']), count)
+        with self.subTest("Unexpected number of page records found"):
+            if response["is_more"]:
+                self.assertEqual(len(response["data"]), count)
             else:
-                self.assertLessEqual(len(response['data']), count)
+                self.assertLessEqual(len(response["data"]), count)
 
-        for record in response['data']:
-            with self.subTest('Invalid model found in response'):
+        for record in response["data"]:
+            with self.subTest("Invalid model found in response"):
                 actual = record.__class__.__name__
-                expected = 'TransactionModel'
+                expected = "TransactionModel"
 
                 self.assertEqual(actual, expected)
 
@@ -110,12 +108,11 @@ class TestTransactionsPage(unittest.TestCase):
         start_index = 0
         count = 5
 
-        params = {
-            "state": "ALL"
-        }
+        params = {"state": "ALL"}
 
         page = self.client.transactions.page(
-            start_index=start_index, count=count, params=params)
+            start_index=start_index, count=count, params=params
+        )
 
         self.verify_transaction_page(page, start_index, count, True)
 
@@ -125,11 +122,10 @@ class TestTransactionsPage(unittest.TestCase):
         start_index = 5
         count = 5
 
-        params = {
-            "state": "ALL"
-        }
+        params = {"state": "ALL"}
 
         page = self.client.transactions.page(
-            start_index=start_index, count=count, params=params)
+            start_index=start_index, count=count, params=params
+        )
 
         self.verify_transaction_page(page, start_index, count, True)

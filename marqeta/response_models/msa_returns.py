@@ -6,8 +6,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class MsaReturns(object):
 
+class MsaReturns(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -21,103 +21,91 @@ class MsaReturns(object):
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def user_token(self):
-        return self.json_response.get('user_token', None)
-
+        return self.json_response.get("user_token", None)
 
     @property
     def business_token(self):
-        return self.json_response.get('business_token', None)
-
+        return self.json_response.get("business_token", None)
 
     @property
     def order_balances(self):
-        if 'order_balances' in self.json_response:
-            return MsaBalances(self.json_response['order_balances'])
+        if "order_balances" in self.json_response:
+            return MsaBalances(self.json_response["order_balances"])
 
     @property
     def amount(self):
-        return self.json_response.get('amount', None)
+        return self.json_response.get("amount", None)
 
     @property
     def last_transaction_date(self):
-        if 'last_transaction_date' in self.json_response:
-            return datetime_object('last_transaction_date', self.json_response)
-
+        if "last_transaction_date" in self.json_response:
+            return datetime_object("last_transaction_date", self.json_response)
 
     @property
     def start_date(self):
-        if 'start_date' in self.json_response:
-            return datetime_object('start_date', self.json_response)
-
+        if "start_date" in self.json_response:
+            return datetime_object("start_date", self.json_response)
 
     @property
     def end_date(self):
-        if 'end_date' in self.json_response:
-            return datetime_object('end_date', self.json_response)
-
+        if "end_date" in self.json_response:
+            return datetime_object("end_date", self.json_response)
 
     @property
     def currency_code(self):
-        return self.json_response.get('currency_code', None)
-
+        return self.json_response.get("currency_code", None)
 
     @property
     def active(self):
-        return self.json_response.get('active', None)
+        return self.json_response.get("active", None)
 
     @property
     def reward_amount(self):
-        return self.json_response.get('reward_amount', None)
+        return self.json_response.get("reward_amount", None)
 
     @property
     def reward_trigger_amount(self):
-        return self.json_response.get('reward_trigger_amount', None)
+        return self.json_response.get("reward_trigger_amount", None)
 
     @property
     def unloaded_amount(self):
-        return self.json_response.get('unloaded_amount', None)
+        return self.json_response.get("unloaded_amount", None)
 
     @property
     def campaign_token(self):
-        return self.json_response.get('campaign_token', None)
-
+        return self.json_response.get("campaign_token", None)
 
     @property
     def funding(self):
-        if 'funding' in self.json_response:
-            return Funding(self.json_response['funding'])
+        if "funding" in self.json_response:
+            return Funding(self.json_response["funding"])
 
     @property
     def created_time(self):
-        if 'created_time' in self.json_response:
-            return datetime_object('created_time', self.json_response)
-
+        if "created_time" in self.json_response:
+            return datetime_object("created_time", self.json_response)
 
     @property
     def last_modified_time(self):
-        if 'last_modified_time' in self.json_response:
-            return datetime_object('last_modified_time', self.json_response)
-
+        if "last_modified_time" in self.json_response:
+            return datetime_object("last_modified_time", self.json_response)
 
     @property
     def aggregated_balances(self):
-        if 'aggregated_balances' in self.json_response:
-            return MsaAggregatedBalances(self.json_response['aggregated_balances'])
+        if "aggregated_balances" in self.json_response:
+            return MsaAggregatedBalances(self.json_response["aggregated_balances"])
 
     @property
     def original_order_token(self):
-        return self.json_response.get('original_order_token', None)
-
+        return self.json_response.get("original_order_token", None)
 
     @property
     def transaction_token(self):
-        return self.json_response.get('transaction_token', None)
-
+        return self.json_response.get("transaction_token", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.msa_returns.MsaReturns>' + self.__str__()
+        return "<Marqeta.response_models.msa_returns.MsaReturns>" + self.__str__()

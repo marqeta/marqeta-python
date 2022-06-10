@@ -25,7 +25,8 @@ class TestFundingSourcesListForBusiness(unittest.TestCase):
         results = self.client.funding_sources.list_for_business(business.token)
 
         self.assertEqual(
-            len(results), 1, 'Unexpected number of funding sources returned')
+            len(results), 1, "Unexpected number of funding sources returned"
+        )
 
         verify = FundingSources.get_funding_source_verify(ach_source)
 
@@ -42,7 +43,8 @@ class TestFundingSourcesListForBusiness(unittest.TestCase):
         results = self.client.funding_sources.list_for_business(business.token)
 
         self.assertEqual(
-            len(results), 2, 'Unexpected number of funding sources returned')
+            len(results), 2, "Unexpected number of funding sources returned"
+        )
 
         verify_one = FundingSources.get_funding_source_verify(ach_one)
         verify_two = FundingSources.get_funding_source_verify(ach_two)
@@ -66,8 +68,7 @@ class TestFundingSourcesListForBusiness(unittest.TestCase):
         """Tests when the business is unknown."""
 
         with self.assertRaises(MarqetaError):
-            self.client.funding_sources.list_for_business(
-                'Not a business token')
+            self.client.funding_sources.list_for_business("Not a business token")
 
     def test_funding_sources_list_for_business_filter_type(self):
         """Filters list by type."""
@@ -78,13 +79,18 @@ class TestFundingSourcesListForBusiness(unittest.TestCase):
         card = FundingSources.get_business_payment_card(business)
 
         results = self.client.funding_sources.list_for_business(
-            business.token, params={"type": "paymentcard"})
+            business.token, params={"type": "paymentcard"}
+        )
 
         self.assertEqual(
-            len(results), 1, 'Unexpected number of funding sources returned')
+            len(results), 1, "Unexpected number of funding sources returned"
+        )
 
-        self.assertEqual(results[0].type, 'paymentcard',
-                         'Filter did not return funding source with the correct type')
+        self.assertEqual(
+            results[0].type,
+            "paymentcard",
+            "Filter did not return funding source with the correct type",
+        )
 
         verify = FundingSources.get_funding_source_verify(card)
 

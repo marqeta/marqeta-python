@@ -2,7 +2,9 @@ import unittest
 
 from tests.lib.client import get_client
 from tests.lib.funding_sources import FundingSources
-from tests.lib.funding_source_verifications import verify_gateway_program_funding_source_response
+from tests.lib.funding_source_verifications import (
+    verify_gateway_program_funding_source_response,
+)
 from marqeta.errors import MarqetaError
 
 
@@ -20,8 +22,7 @@ class TestFundingSourcesProgramGatewayFind(unittest.TestCase):
 
         funding_request = FundingSources.get_program_gateway_funding_request()
 
-        source = self.client.funding_sources.program_gateway.create(
-            funding_request)
+        source = self.client.funding_sources.program_gateway.create(funding_request)
 
         found = self.client.funding_sources.program_gateway.find(source.token)
 
@@ -34,4 +35,5 @@ class TestFundingSourcesProgramGatewayFind(unittest.TestCase):
 
         with self.assertRaises(MarqetaError):
             self.client.funding_sources.program_gateway.find(
-                'Not a program gateway token')
+                "Not a program gateway token"
+            )

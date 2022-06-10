@@ -2,7 +2,9 @@ import unittest
 
 from tests.lib.client import get_client
 from tests.lib.funding_sources import FundingSources
-from tests.lib.funding_source_verifications import verify_gateway_program_funding_source_response
+from tests.lib.funding_source_verifications import (
+    verify_gateway_program_funding_source_response,
+)
 from marqeta.errors import MarqetaError
 
 
@@ -22,10 +24,11 @@ class TestFundingSourcesProgramGatewaySave(unittest.TestCase):
 
         source = self.client.funding_sources.program_gateway.create(request)
 
-        request['url'] = 'https://qe_updated.marqeta.com'
+        request["url"] = "https://qe_updated.marqeta.com"
 
         updated = self.client.funding_sources.program_gateway.save(
-            source.token, request)
+            source.token, request
+        )
 
         verify_gateway_program_funding_source_response(self, updated, request)
 
@@ -36,8 +39,7 @@ class TestFundingSourcesProgramGatewaySave(unittest.TestCase):
 
         source = self.client.funding_sources.program_gateway.create(request)
 
-        updated = self.client.funding_sources.program_gateway.save(
-            source.token, {})
+        updated = self.client.funding_sources.program_gateway.save(source.token, {})
 
         verify_gateway_program_funding_source_response(self, updated, request)
 
@@ -46,4 +48,5 @@ class TestFundingSourcesProgramGatewaySave(unittest.TestCase):
 
         with self.assertRaises(MarqetaError):
             self.client.funding_sources.program_gateway.save(
-                'Not a program gateway token', {})
+                "Not a program gateway token", {}
+            )

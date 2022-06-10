@@ -26,11 +26,7 @@ class TestFundingSourcesAddressesListForUser(unittest.TestCase):
         product_details = {
             "name": "Simple Date Card Product",
             "start_date": "2019-02-01",
-            "config": {
-                "fulfillment": {
-                    "payment_instrument": "VIRTUAL_PAN"
-                }
-            }
+            "config": {"fulfillment": {"payment_instrument": "VIRTUAL_PAN"}},
         }
 
         return self.client.card_products.create(product_details)
@@ -40,7 +36,7 @@ class TestFundingSourcesAddressesListForUser(unittest.TestCase):
 
         card_request = {
             "card_product_token": card_product.token,
-            "user_token": user.token
+            "user_token": user.token,
         }
 
         return self.client.cards.create(card_request)
@@ -56,16 +52,15 @@ class TestFundingSourcesAddressesListForUser(unittest.TestCase):
 
         self.create_card(self.create_card_product(), self.user)
 
-        addresses = self.client.funding_sources.addresses.list_for_user(
-            self.user.token)
+        addresses = self.client.funding_sources.addresses.list_for_user(self.user.token)
 
-        self.assertEqual(len(addresses), 1,
-                         'Unexpected number of addresses retrieved')
+        self.assertEqual(len(addresses), 1, "Unexpected number of addresses retrieved")
 
         verify_card_holder_address_response(
-            self, addresses[0], card_holder_address_model)
+            self, addresses[0], card_holder_address_model
+        )
 
-        with self.subTest('Address defined is not the default'):
+        with self.subTest("Address defined is not the default"):
             self.assertTrue(addresses[0].is_default_address)
 
     def test_addresses_list_for_user_two(self):
@@ -83,28 +78,30 @@ class TestFundingSourcesAddressesListForUser(unittest.TestCase):
             "city": "Oakland",
             "state": "CA",
             "zip": "94612",
-            "country": "USA"
+            "country": "USA",
         }
 
         self.client.funding_sources.addresses.create(card_holder_address_one)
         self.client.funding_sources.addresses.create(card_holder_address_two)
 
-        addresses = self.client.funding_sources.addresses.list_for_user(
-            self.user.token)
+        addresses = self.client.funding_sources.addresses.list_for_user(self.user.token)
 
-        self.assertEqual(len(addresses), 2,
-                         'Unexpected number of addresses retrieved')
+        self.assertEqual(len(addresses), 2, "Unexpected number of addresses retrieved")
 
-        if addresses[0].first_name == card_holder_address_one['first_name']:
+        if addresses[0].first_name == card_holder_address_one["first_name"]:
             verify_card_holder_address_response(
-                self, addresses[0], card_holder_address_one)
+                self, addresses[0], card_holder_address_one
+            )
             verify_card_holder_address_response(
-                self, addresses[1], card_holder_address_two)
+                self, addresses[1], card_holder_address_two
+            )
         else:
             verify_card_holder_address_response(
-                self, addresses[1], card_holder_address_one)
+                self, addresses[1], card_holder_address_one
+            )
             verify_card_holder_address_response(
-                self, addresses[0], card_holder_address_two)
+                self, addresses[0], card_holder_address_two
+            )
 
     def test_addresses_list_for_user_zero(self):
         """Tests when no funding source addresses should be returned."""

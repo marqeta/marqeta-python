@@ -6,8 +6,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class AuthorizationAdviceModel(object):
 
+class AuthorizationAdviceModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -21,27 +21,29 @@ class AuthorizationAdviceModel(object):
 
     @property
     def amount(self):
-        return self.json_response.get('amount', None)
+        return self.json_response.get("amount", None)
 
     @property
     def network_fees(self):
-        if 'network_fees' in self.json_response:
-            return [NetworkFeeModel(val) for val in self.json_response['network_fees']]
+        if "network_fees" in self.json_response:
+            return [NetworkFeeModel(val) for val in self.json_response["network_fees"]]
 
     @property
     def webhook(self):
-        if 'webhook' in self.json_response:
-            return Webhook(self.json_response['webhook'])
+        if "webhook" in self.json_response:
+            return Webhook(self.json_response["webhook"])
 
     @property
     def original_transaction_token(self):
-        return self.json_response.get('original_transaction_token', None)
-
+        return self.json_response.get("original_transaction_token", None)
 
     @property
     def transaction_options(self):
-        if 'transaction_options' in self.json_response:
-            return TransactionOptions(self.json_response['transaction_options'])
+        if "transaction_options" in self.json_response:
+            return TransactionOptions(self.json_response["transaction_options"])
 
     def __repr__(self):
-         return '<Marqeta.response_models.authorization_advice_model.AuthorizationAdviceModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.authorization_advice_model.AuthorizationAdviceModel>"
+            + self.__str__()
+        )

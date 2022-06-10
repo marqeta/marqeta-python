@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class TranLogAttributeRequest(object):
 
+class TranLogAttributeRequest(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,18 +18,18 @@ class TranLogAttributeRequest(object):
 
     @property
     def transaction_token(self):
-        return self.json_response.get('transaction_token', None)
-
+        return self.json_response.get("transaction_token", None)
 
     @property
     def attribute_name(self):
-        return self.json_response.get('attribute_name', None)
-
+        return self.json_response.get("attribute_name", None)
 
     @property
     def attribute_value(self):
-        return self.json_response.get('attribute_value', None)
-
+        return self.json_response.get("attribute_value", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.tran_log_attribute_request.TranLogAttributeRequest>' + self.__str__()
+        return (
+            "<Marqeta.response_models.tran_log_attribute_request.TranLogAttributeRequest>"
+            + self.__str__()
+        )

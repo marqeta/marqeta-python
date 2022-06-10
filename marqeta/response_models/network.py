@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class Network(object):
 
+class Network(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,16 +18,15 @@ class Network(object):
 
     @property
     def original_amount(self):
-        return self.json_response.get('original_amount', None)
+        return self.json_response.get("original_amount", None)
 
     @property
     def conversion_rate(self):
-        return self.json_response.get('conversion_rate', None)
+        return self.json_response.get("conversion_rate", None)
 
     @property
     def original_currency_code(self):
-        return self.json_response.get('original_currency_code', None)
-
+        return self.json_response.get("original_currency_code", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.network.Network>' + self.__str__()
+        return "<Marqeta.response_models.network.Network>" + self.__str__()

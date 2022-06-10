@@ -4,8 +4,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class CardProductResponse(object):
 
+class CardProductResponse(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -19,46 +19,43 @@ class CardProductResponse(object):
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def name(self):
-        return self.json_response.get('name', None)
-
+        return self.json_response.get("name", None)
 
     @property
     def active(self):
-        return self.json_response.get('active', None)
+        return self.json_response.get("active", None)
 
     @property
     def start_date(self):
-        if 'start_date' in self.json_response:
-            return datetime_object('start_date', self.json_response)
-
+        if "start_date" in self.json_response:
+            return datetime_object("start_date", self.json_response)
 
     @property
     def end_date(self):
-        if 'end_date' in self.json_response:
-            return datetime_object('end_date', self.json_response)
-
+        if "end_date" in self.json_response:
+            return datetime_object("end_date", self.json_response)
 
     @property
     def config(self):
-        if 'config' in self.json_response:
-            return CardProductConfig(self.json_response['config'])
+        if "config" in self.json_response:
+            return CardProductConfig(self.json_response["config"])
 
     @property
     def created_time(self):
-        if 'created_time' in self.json_response:
-            return datetime_object('created_time', self.json_response)
-
+        if "created_time" in self.json_response:
+            return datetime_object("created_time", self.json_response)
 
     @property
     def last_modified_time(self):
-        if 'last_modified_time' in self.json_response:
-            return datetime_object('last_modified_time', self.json_response)
-
+        if "last_modified_time" in self.json_response:
+            return datetime_object("last_modified_time", self.json_response)
 
     def __repr__(self):
-         return '<Marqeta.response_models.card_product_response.CardProductResponse>' + self.__str__()
+        return (
+            "<Marqeta.response_models.card_product_response.CardProductResponse>"
+            + self.__str__()
+        )

@@ -25,18 +25,19 @@ class TestCardsFindByBarcode(unittest.TestCase):
 
         card_request = {
             "card_product_token": self.card_product.token,
-            "user_token": user.token
+            "user_token": user.token,
         }
 
         card = self.client.cards.create(card_request)
 
         card_found = self.client.cards.find_by_barcode(card.barcode)
 
-        self.assertEqual(card_found.barcode, card.barcode,
-                         'Incorrect card returned by find')
+        self.assertEqual(
+            card_found.barcode, card.barcode, "Incorrect card returned by find"
+        )
 
     def test_find_by_barcode_negative(self):
         """Test behavior when find_by_barcode should not return a result"""
 
         with self.assertRaises(MarqetaError):
-            self.client.cards.find_by_barcode('Not a barcode')
+            self.client.cards.find_by_barcode("Not a barcode")

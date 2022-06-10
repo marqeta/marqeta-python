@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class EchoPingRequest(object):
 
+class EchoPingRequest(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,13 +18,14 @@ class EchoPingRequest(object):
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def payload(self):
-        return self.json_response.get('payload', None)
-
+        return self.json_response.get("payload", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.echo_ping_request.EchoPingRequest>' + self.__str__()
+        return (
+            "<Marqeta.response_models.echo_ping_request.EchoPingRequest>"
+            + self.__str__()
+        )

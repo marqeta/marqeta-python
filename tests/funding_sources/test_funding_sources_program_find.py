@@ -2,7 +2,9 @@ import unittest
 
 from tests.lib.client import get_client
 from tests.lib.funding_sources import FundingSources
-from tests.lib.funding_source_verifications import verify_program_funding_source_response
+from tests.lib.funding_source_verifications import (
+    verify_program_funding_source_response,
+)
 from marqeta.errors import MarqetaError
 
 
@@ -18,10 +20,13 @@ class TestFundingSourcesProgramFind(unittest.TestCase):
     def test_program_find(self):
         """Tests searching for a program."""
 
-        program_funding_source_request = FundingSources.get_program_source_funding_request()
+        program_funding_source_request = (
+            FundingSources.get_program_source_funding_request()
+        )
 
         program = self.client.funding_sources.program.create(
-            program_funding_source_request)
+            program_funding_source_request
+        )
 
         found = self.client.funding_sources.program.find(program.token)
 
@@ -33,4 +38,4 @@ class TestFundingSourcesProgramFind(unittest.TestCase):
         """Tests looking for a program that doesn't exist."""
 
         with self.assertRaises(MarqetaError):
-            self.client.funding_sources.program.find('Not a program token')
+            self.client.funding_sources.program.find("Not a program token")

@@ -4,8 +4,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class MccGroupModel(object):
 
+class MccGroupModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -19,26 +19,26 @@ class MccGroupModel(object):
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def name(self):
-        return self.json_response.get('name', None)
-
+        return self.json_response.get("name", None)
 
     @property
     def mccs(self):
-        return self.json_response.get('mccs', None)
+        return self.json_response.get("mccs", None)
 
     @property
     def active(self):
-        return self.json_response.get('active', None)
+        return self.json_response.get("active", None)
 
     @property
     def config(self):
-        if 'config' in self.json_response:
-            return Config(self.json_response['config'])
+        if "config" in self.json_response:
+            return Config(self.json_response["config"])
 
     def __repr__(self):
-         return '<Marqeta.response_models.mcc_group_model.MccGroupModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.mcc_group_model.MccGroupModel>" + self.__str__()
+        )

@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class Special(object):
 
+class Special(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,7 +18,7 @@ class Special(object):
 
     @property
     def merchant_on_boarding(self):
-        return self.json_response.get('merchant_on_boarding', None)
+        return self.json_response.get("merchant_on_boarding", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.special.Special>' + self.__str__()
+        return "<Marqeta.response_models.special.Special>" + self.__str__()

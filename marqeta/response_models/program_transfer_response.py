@@ -5,8 +5,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class ProgramTransferResponse(object):
 
+class ProgramTransferResponse(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -20,63 +20,57 @@ class ProgramTransferResponse(object):
 
     @property
     def fees(self):
-        if 'fees' in self.json_response:
-            return [FeeDetail(val) for val in self.json_response['fees']]
+        if "fees" in self.json_response:
+            return [FeeDetail(val) for val in self.json_response["fees"]]
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def type_token(self):
-        return self.json_response.get('type_token', None)
-
+        return self.json_response.get("type_token", None)
 
     @property
     def user_token(self):
-        return self.json_response.get('user_token', None)
-
+        return self.json_response.get("user_token", None)
 
     @property
     def business_token(self):
-        return self.json_response.get('business_token', None)
-
+        return self.json_response.get("business_token", None)
 
     @property
     def transaction_token(self):
-        return self.json_response.get('transaction_token', None)
-
+        return self.json_response.get("transaction_token", None)
 
     @property
     def currency_code(self):
-        return self.json_response.get('currency_code', None)
-
+        return self.json_response.get("currency_code", None)
 
     @property
     def amount(self):
-        return self.json_response.get('amount', None)
+        return self.json_response.get("amount", None)
 
     @property
     def memo(self):
-        return self.json_response.get('memo', None)
-
+        return self.json_response.get("memo", None)
 
     @property
     def tags(self):
-        return self.json_response.get('tags', None)
-
+        return self.json_response.get("tags", None)
 
     @property
     def created_time(self):
-        if 'created_time' in self.json_response:
-            return datetime_object('created_time', self.json_response)
-
+        if "created_time" in self.json_response:
+            return datetime_object("created_time", self.json_response)
 
     @property
     def jit_funding(self):
-        if 'jit_funding' in self.json_response:
-            return JitFundingApi(self.json_response['jit_funding'])
+        if "jit_funding" in self.json_response:
+            return JitFundingApi(self.json_response["jit_funding"])
 
     def __repr__(self):
-         return '<Marqeta.response_models.program_transfer_response.ProgramTransferResponse>' + self.__str__()
+        return (
+            "<Marqeta.response_models.program_transfer_response.ProgramTransferResponse>"
+            + self.__str__()
+        )

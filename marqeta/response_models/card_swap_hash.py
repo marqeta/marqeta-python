@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class CardSwapHash(object):
 
+class CardSwapHash(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,13 +18,11 @@ class CardSwapHash(object):
 
     @property
     def previous_card_token(self):
-        return self.json_response.get('previous_card_token', None)
-
+        return self.json_response.get("previous_card_token", None)
 
     @property
     def new_card_token(self):
-        return self.json_response.get('new_card_token', None)
-
+        return self.json_response.get("new_card_token", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.card_swap_hash.CardSwapHash>' + self.__str__()
+        return "<Marqeta.response_models.card_swap_hash.CardSwapHash>" + self.__str__()

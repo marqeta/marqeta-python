@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class UserAssociation(object):
 
+class UserAssociation(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,12 +18,14 @@ class UserAssociation(object):
 
     @property
     def single_inventory_user(self):
-        return self.json_response.get('single_inventory_user', None)
+        return self.json_response.get("single_inventory_user", None)
 
     @property
     def single_inventory_user_token(self):
-        return self.json_response.get('single_inventory_user_token', None)
-
+        return self.json_response.get("single_inventory_user_token", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.user_association.UserAssociation>' + self.__str__()
+        return (
+            "<Marqeta.response_models.user_association.UserAssociation>"
+            + self.__str__()
+        )

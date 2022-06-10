@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class FileProcessingRequest(object):
 
+class FileProcessingRequest(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,23 +18,22 @@ class FileProcessingRequest(object):
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def file_process_type(self):
-        return self.json_response.get('file_process_type', None)
-
+        return self.json_response.get("file_process_type", None)
 
     @property
     def source_file(self):
-        return self.json_response.get('source_file', None)
-
+        return self.json_response.get("source_file", None)
 
     @property
     def archive_file(self):
-        return self.json_response.get('archive_file', None)
-
+        return self.json_response.get("archive_file", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.file_processing_request.FileProcessingRequest>' + self.__str__()
+        return (
+            "<Marqeta.response_models.file_processing_request.FileProcessingRequest>"
+            + self.__str__()
+        )

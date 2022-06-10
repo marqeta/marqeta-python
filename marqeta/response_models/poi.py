@@ -4,8 +4,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class Poi(object):
 
+class Poi(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -19,16 +19,16 @@ class Poi(object):
 
     @property
     def other(self):
-        if 'other' in self.json_response:
-            return OtherPoi(self.json_response['other'])
+        if "other" in self.json_response:
+            return OtherPoi(self.json_response["other"])
 
     @property
     def ecommerce(self):
-        return self.json_response.get('ecommerce', None)
+        return self.json_response.get("ecommerce", None)
 
     @property
     def atm(self):
-        return self.json_response.get('atm', None)
+        return self.json_response.get("atm", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.poi.Poi>' + self.__str__()
+        return "<Marqeta.response_models.poi.Poi>" + self.__str__()

@@ -4,8 +4,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class AccessTokenResponse(object):
 
+class AccessTokenResponse(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -19,41 +19,40 @@ class AccessTokenResponse(object):
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def expires(self):
-        if 'expires' in self.json_response:
-            return datetime_object('expires', self.json_response)
-
+        if "expires" in self.json_response:
+            return datetime_object("expires", self.json_response)
 
     @property
     def application(self):
-        if 'application' in self.json_response:
-            return Application(self.json_response['application'])
+        if "application" in self.json_response:
+            return Application(self.json_response["application"])
 
     @property
     def tokenTypeMarqetaMaster(self):
-        return self.json_response.get('tokenTypeMarqetaMaster', None)
+        return self.json_response.get("tokenTypeMarqetaMaster", None)
 
     @property
     def user_token(self):
-        return self.json_response.get('user_token', None)
-
+        return self.json_response.get("user_token", None)
 
     @property
     def master_roles(self):
-        return self.json_response.get('master_roles', None)
+        return self.json_response.get("master_roles", None)
 
     @property
     def token_type(self):
-        return self.json_response.get('token_type', None)
-
+        return self.json_response.get("token_type", None)
 
     @property
     def one_time(self):
-        return self.json_response.get('one_time', None)
+        return self.json_response.get("one_time", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.access_token_response.AccessTokenResponse>' + self.__str__()
+        return (
+            "<Marqeta.response_models.access_token_response.AccessTokenResponse>"
+            + self.__str__()
+        )
