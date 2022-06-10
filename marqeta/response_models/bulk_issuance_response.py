@@ -6,8 +6,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class BulkIssuanceResponse(object):
 
+class BulkIssuanceResponse(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -21,80 +21,76 @@ class BulkIssuanceResponse(object):
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def fulfillment(self):
-        if 'fulfillment' in self.json_response:
-            return CardFulfillmentResponse(self.json_response['fulfillment'])
+        if "fulfillment" in self.json_response:
+            return CardFulfillmentResponse(self.json_response["fulfillment"])
 
     @property
     def expedite(self):
-        return self.json_response.get('expedite', None)
+        return self.json_response.get("expedite", None)
 
     @property
     def card_product_token(self):
-        return self.json_response.get('card_product_token', None)
-
+        return self.json_response.get("card_product_token", None)
 
     @property
     def card_allocation(self):
-        return self.json_response.get('card_allocation', None)
+        return self.json_response.get("card_allocation", None)
 
     @property
     def user_association(self):
-        if 'user_association' in self.json_response:
-            return UserAssociation(self.json_response['user_association'])
+        if "user_association" in self.json_response:
+            return UserAssociation(self.json_response["user_association"])
 
     @property
     def name_line_1_numeric_postfix(self):
-        return self.json_response.get('name_line_1_numeric_postfix', None)
+        return self.json_response.get("name_line_1_numeric_postfix", None)
 
     @property
     def expiration_offset(self):
-        if 'expiration_offset' in self.json_response:
-            return ExpirationOffset(self.json_response['expiration_offset'])
+        if "expiration_offset" in self.json_response:
+            return ExpirationOffset(self.json_response["expiration_offset"])
 
     @property
     def cards_processed(self):
-        return self.json_response.get('cards_processed', None)
+        return self.json_response.get("cards_processed", None)
 
     @property
     def created_time(self):
-        if 'created_time' in self.json_response:
-            return datetime_object('created_time', self.json_response)
-
+        if "created_time" in self.json_response:
+            return datetime_object("created_time", self.json_response)
 
     @property
     def name_line1_start_index(self):
-        return self.json_response.get('name_line1_start_index', None)
+        return self.json_response.get("name_line1_start_index", None)
 
     @property
     def name_line1_end_index(self):
-        return self.json_response.get('name_line1_end_index', None)
+        return self.json_response.get("name_line1_end_index", None)
 
     @property
     def card_fulfillment_time(self):
-        if 'card_fulfillment_time' in self.json_response:
-            return datetime_object('card_fulfillment_time', self.json_response)
-
+        if "card_fulfillment_time" in self.json_response:
+            return datetime_object("card_fulfillment_time", self.json_response)
 
     @property
     def provider_ship_date(self):
-        if 'provider_ship_date' in self.json_response:
-            return datetime_object('provider_ship_date', self.json_response)
-
+        if "provider_ship_date" in self.json_response:
+            return datetime_object("provider_ship_date", self.json_response)
 
     @property
     def provider_shipping_method(self):
-        return self.json_response.get('provider_shipping_method', None)
-
+        return self.json_response.get("provider_shipping_method", None)
 
     @property
     def provider_tracking_number(self):
-        return self.json_response.get('provider_tracking_number', None)
-
+        return self.json_response.get("provider_tracking_number", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.bulk_issuance_response.BulkIssuanceResponse>' + self.__str__()
+        return (
+            "<Marqeta.response_models.bulk_issuance_response.BulkIssuanceResponse>"
+            + self.__str__()
+        )

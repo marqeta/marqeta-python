@@ -27,7 +27,7 @@ class TestUsersChildren(unittest.TestCase):
 
         user_dict = dict(user_record.__dict__)
 
-        del user_dict['json_response']['deposit_account']
+        del user_dict["json_response"]["deposit_account"]
 
         return user_dict
 
@@ -35,33 +35,30 @@ class TestUsersChildren(unittest.TestCase):
         """Retrieves one child."""
 
         parent_token = self.parent.token
-        self.assertIsNotNone(parent_token, 'Can not get parent token')
+        self.assertIsNotNone(parent_token, "Can not get parent token")
 
-        child = self.client.users.create({'parent_token': parent_token})
+        child = self.client.users.create({"parent_token": parent_token})
 
         children = self.client.users(parent_token).children.list()
 
-        self.assertEqual(len(children), 1,
-                         'Incorrect number of children returned')
+        self.assertEqual(len(children), 1, "Incorrect number of children returned")
 
         child_dict = self.strip_deposit_account(child)
 
-        self.assertEqual(
-            child_dict, children[0].__dict__, 'Incorrect child found')
+        self.assertEqual(child_dict, children[0].__dict__, "Incorrect child found")
 
     def test_children_list_two(self):
         """Retrieves two children."""
 
         parent_token = self.parent.token
-        self.assertIsNotNone(parent_token, 'Can not get parent token')
+        self.assertIsNotNone(parent_token, "Can not get parent token")
 
-        child1 = self.client.users.create({'parent_token': parent_token})
-        child2 = self.client.users.create({'parent_token': parent_token})
+        child1 = self.client.users.create({"parent_token": parent_token})
+        child2 = self.client.users.create({"parent_token": parent_token})
 
         children = self.client.users(parent_token).children.list()
 
-        self.assertEqual(len(children), 2,
-                         'Incorrect number of children returned')
+        self.assertEqual(len(children), 2, "Incorrect number of children returned")
 
         # Deposit account will not be in the children found
         child1_dict = self.strip_deposit_account(child1)
@@ -72,19 +69,18 @@ class TestUsersChildren(unittest.TestCase):
         dict2 = children[1].__dict__
 
         if child1_dict == dict1:
-            self.assertEqual(child2_dict, dict2, 'Incorrect child found')
+            self.assertEqual(child2_dict, dict2, "Incorrect child found")
         elif child1_dict == dict2:
-            self.assertEqual(child2_dict, dict1, 'Incorrect child found')
+            self.assertEqual(child2_dict, dict1, "Incorrect child found")
         else:
-            self.fail('At least one incorrect child was found')
+            self.fail("At least one incorrect child was found")
 
     def test_children_list_none(self):
         """Retrieves no children."""
 
         parent_token = self.parent.token
-        self.assertIsNotNone(parent_token, 'Can not get parent token')
+        self.assertIsNotNone(parent_token, "Can not get parent token")
 
         children = self.client.users(parent_token).children.list()
 
-        self.assertEqual(len(children), 0,
-                         'Incorrect number of children returned')
+        self.assertEqual(len(children), 0, "Incorrect number of children returned")

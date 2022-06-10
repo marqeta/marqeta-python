@@ -4,8 +4,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class Config(object):
 
+class Config(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -19,8 +19,8 @@ class Config(object):
 
     @property
     def authorization_controls(self):
-        if 'authorization_controls' in self.json_response:
-            return AuthorizationControls(self.json_response['authorization_controls'])
+        if "authorization_controls" in self.json_response:
+            return AuthorizationControls(self.json_response["authorization_controls"])
 
     def __repr__(self):
-         return '<Marqeta.response_models.config.Config>' + self.__str__()
+        return "<Marqeta.response_models.config.Config>" + self.__str__()

@@ -20,12 +20,13 @@ class TestFundingSourcesAchVerificationAmounts(unittest.TestCase):
         funding_source = FundingSources.get_user_ach_funding_source()
 
         amounts = self.client.funding_sources.ach(
-            funding_source.token).verification_amounts()
+            funding_source.token
+        ).verification_amounts()
 
-        with self.subTest('First verification amount not within expected range'):
+        with self.subTest("First verification amount not within expected range"):
             self.assertTrue(0 < amounts.verify_amount1 < 1)
 
-        with self.subTest('Second verification amount not within expected range'):
+        with self.subTest("Second verification amount not within expected range"):
             self.assertTrue(0 < amounts.verify_amount2 < 1)
 
     def test_ach_verification_amounts_fail(self):
@@ -33,4 +34,5 @@ class TestFundingSourcesAchVerificationAmounts(unittest.TestCase):
 
         with self.assertRaises(MarqetaError):
             self.client.funding_sources.ach(
-                'Not a funding source token').verification_amounts()
+                "Not a funding source token"
+            ).verification_amounts()

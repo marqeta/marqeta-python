@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class AchVerificationModel(object):
 
+class AchVerificationModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,15 +18,18 @@ class AchVerificationModel(object):
 
     @property
     def verify_amount1(self):
-        return self.json_response.get('verify_amount1', None)
+        return self.json_response.get("verify_amount1", None)
 
     @property
     def verify_amount2(self):
-        return self.json_response.get('verify_amount2', None)
+        return self.json_response.get("verify_amount2", None)
 
     @property
     def active(self):
-        return self.json_response.get('active', None)
+        return self.json_response.get("active", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.ach_verification_model.AchVerificationModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.ach_verification_model.AchVerificationModel>"
+            + self.__str__()
+        )

@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class ClientAccessTokenRequest(object):
 
+class ClientAccessTokenRequest(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,13 +18,14 @@ class ClientAccessTokenRequest(object):
 
     @property
     def application_token(self):
-        return self.json_response.get('application_token', None)
-
+        return self.json_response.get("application_token", None)
 
     @property
     def card_token(self):
-        return self.json_response.get('card_token', None)
-
+        return self.json_response.get("card_token", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.client_access_token_request.ClientAccessTokenRequest>' + self.__str__()
+        return (
+            "<Marqeta.response_models.client_access_token_request.ClientAccessTokenRequest>"
+            + self.__str__()
+        )

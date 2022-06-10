@@ -4,8 +4,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class CreateCachesResponse(object):
 
+class CreateCachesResponse(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -19,16 +19,19 @@ class CreateCachesResponse(object):
 
     @property
     def created(self):
-        return self.json_response.get('created', None)
+        return self.json_response.get("created", None)
 
     @property
     def already_exists(self):
-        return self.json_response.get('already_exists', None)
+        return self.json_response.get("already_exists", None)
 
     @property
     def errors(self):
-        if 'errors' in self.json_response:
-            return [CacheError(val) for val in self.json_response['errors']]
+        if "errors" in self.json_response:
+            return [CacheError(val) for val in self.json_response["errors"]]
 
     def __repr__(self):
-         return '<Marqeta.response_models.create_caches_response.CreateCachesResponse>' + self.__str__()
+        return (
+            "<Marqeta.response_models.create_caches_response.CreateCachesResponse>"
+            + self.__str__()
+        )

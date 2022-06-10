@@ -5,8 +5,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class CardholderBalances(object):
 
+class CardholderBalances(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -20,13 +20,16 @@ class CardholderBalances(object):
 
     @property
     def gpa(self):
-        if 'gpa' in self.json_response:
-            return CardholderBalance(self.json_response['gpa'])
+        if "gpa" in self.json_response:
+            return CardholderBalance(self.json_response["gpa"])
 
     @property
     def links(self):
-        if 'links' in self.json_response:
-            return [Link(val) for val in self.json_response['links']]
+        if "links" in self.json_response:
+            return [Link(val) for val in self.json_response["links"]]
 
     def __repr__(self):
-         return '<Marqeta.response_models.cardholder_balances.CardholderBalances>' + self.__str__()
+        return (
+            "<Marqeta.response_models.cardholder_balances.CardholderBalances>"
+            + self.__str__()
+        )

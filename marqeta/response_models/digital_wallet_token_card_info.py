@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class DigitalWalletTokenCardInfo(object):
 
+class DigitalWalletTokenCardInfo(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,23 +18,22 @@ class DigitalWalletTokenCardInfo(object):
 
     @property
     def pan(self):
-        return self.json_response.get('pan', None)
-
+        return self.json_response.get("pan", None)
 
     @property
     def exp_month(self):
-        return self.json_response.get('exp_month', None)
-
+        return self.json_response.get("exp_month", None)
 
     @property
     def exp_year(self):
-        return self.json_response.get('exp_year', None)
-
+        return self.json_response.get("exp_year", None)
 
     @property
     def cvv(self):
-        return self.json_response.get('cvv', None)
-
+        return self.json_response.get("cvv", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.digital_wallet_token_card_info.DigitalWalletTokenCardInfo>' + self.__str__()
+        return (
+            "<Marqeta.response_models.digital_wallet_token_card_info.DigitalWalletTokenCardInfo>"
+            + self.__str__()
+        )

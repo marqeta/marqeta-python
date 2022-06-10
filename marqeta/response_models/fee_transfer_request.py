@@ -4,8 +4,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class FeeTransferRequest(object):
 
+class FeeTransferRequest(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -19,28 +19,27 @@ class FeeTransferRequest(object):
 
     @property
     def tags(self):
-        return self.json_response.get('tags', None)
-
+        return self.json_response.get("tags", None)
 
     @property
     def fees(self):
-        if 'fees' in self.json_response:
-            return [FeeModel(val) for val in self.json_response['fees']]
+        if "fees" in self.json_response:
+            return [FeeModel(val) for val in self.json_response["fees"]]
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def user_token(self):
-        return self.json_response.get('user_token', None)
-
+        return self.json_response.get("user_token", None)
 
     @property
     def business_token(self):
-        return self.json_response.get('business_token', None)
-
+        return self.json_response.get("business_token", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.fee_transfer_request.FeeTransferRequest>' + self.__str__()
+        return (
+            "<Marqeta.response_models.fee_transfer_request.FeeTransferRequest>"
+            + self.__str__()
+        )

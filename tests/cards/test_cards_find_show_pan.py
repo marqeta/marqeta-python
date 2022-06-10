@@ -27,24 +27,23 @@ class TestCardsFindShowPan(unittest.TestCase):
 
         card_request = {
             "card_product_token": self.card_product.token,
-            "user_token": user.token
+            "user_token": user.token,
         }
 
         card_to_find = self.client.cards.create(card_request)
 
         card_found = self.client.cards.find_show_pan(card_to_find.token)
 
-        self.assertIsNotNone(card_found.pan, 'Card found does not have a PAN')
+        self.assertIsNotNone(card_found.pan, "Card found does not have a PAN")
 
-        pattern = r'\d{16}'
+        pattern = r"\d{16}"
 
         x = re.compile(pattern)
 
-        self.assertTrue(x.match(card_found.pan),
-                        'PAN does not match expected pattern')
+        self.assertTrue(x.match(card_found.pan), "PAN does not match expected pattern")
 
     def test_find_show_negative(self):
         """Tests find that does not return a result."""
 
         with self.assertRaises(MarqetaError):
-            self.client.cards.find_show_pan('Not a card token')
+            self.client.cards.find_show_pan("Not a card token")

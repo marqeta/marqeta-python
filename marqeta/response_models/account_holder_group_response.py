@@ -4,8 +4,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class AccountHolderGroupResponse(object):
 
+class AccountHolderGroupResponse(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -19,18 +19,19 @@ class AccountHolderGroupResponse(object):
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def name(self):
-        return self.json_response.get('name', None)
-
+        return self.json_response.get("name", None)
 
     @property
     def config(self):
-        if 'config' in self.json_response:
-            return AccountHolderGroupConfig(self.json_response['config'])
+        if "config" in self.json_response:
+            return AccountHolderGroupConfig(self.json_response["config"])
 
     def __repr__(self):
-         return '<Marqeta.response_models.account_holder_group_response.AccountHolderGroupResponse>' + self.__str__()
+        return (
+            "<Marqeta.response_models.account_holder_group_response.AccountHolderGroupResponse>"
+            + self.__str__()
+        )

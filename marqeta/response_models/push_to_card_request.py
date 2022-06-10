@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class PushToCardRequest(object):
 
+class PushToCardRequest(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,63 +18,54 @@ class PushToCardRequest(object):
 
     @property
     def address_1(self):
-        return self.json_response.get('address_1', None)
-
+        return self.json_response.get("address_1", None)
 
     @property
     def address_2(self):
-        return self.json_response.get('address_2', None)
-
+        return self.json_response.get("address_2", None)
 
     @property
     def city(self):
-        return self.json_response.get('city', None)
-
+        return self.json_response.get("city", None)
 
     @property
     def state(self):
-        return self.json_response.get('state', None)
-
+        return self.json_response.get("state", None)
 
     @property
     def zip(self):
-        return self.json_response.get('zip', None)
-
+        return self.json_response.get("zip", None)
 
     @property
     def country(self):
-        return self.json_response.get('country', None)
-
+        return self.json_response.get("country", None)
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def user_token(self):
-        return self.json_response.get('user_token', None)
-
+        return self.json_response.get("user_token", None)
 
     @property
     def name_on_card(self):
-        return self.json_response.get('name_on_card', None)
-
+        return self.json_response.get("name_on_card", None)
 
     @property
     def pan(self):
-        return self.json_response.get('pan', None)
-
+        return self.json_response.get("pan", None)
 
     @property
     def cvv(self):
-        return self.json_response.get('cvv', None)
-
+        return self.json_response.get("cvv", None)
 
     @property
     def exp_date(self):
-        return self.json_response.get('exp_date', None)
-
+        return self.json_response.get("exp_date", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.push_to_card_request.PushToCardRequest>' + self.__str__()
+        return (
+            "<Marqeta.response_models.push_to_card_request.PushToCardRequest>"
+            + self.__str__()
+        )

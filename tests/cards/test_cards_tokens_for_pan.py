@@ -34,14 +34,14 @@ class TestCardsTokensForPan(unittest.TestCase):
 
         # Verify the expected attributes are defined
         expected_attributes = [
-            'created_time',
-            'last_modified_time',
-            'user_token',
-            'card_token'
+            "created_time",
+            "last_modified_time",
+            "user_token",
+            "card_token",
         ]
 
         for attribute in expected_attributes:
-            with self.subTest(f'{attribute} is not defined'):
+            with self.subTest(f"{attribute} is not defined"):
                 self.assertIsNotNone(getattr(response, attribute))
 
         # Verify values match expected values
@@ -49,11 +49,10 @@ class TestCardsTokensForPan(unittest.TestCase):
 
         for attribute in match_attributes:
             # funding_source_token is masked for program funding sources
-            if attribute == 'funding_source_token':
+            if attribute == "funding_source_token":
                 continue
-            with self.subTest(f'{attribute} does not match the expected value'):
-                self.assertEqual(getattr(response, attribute),
-                                 verify[attribute])
+            with self.subTest(f"{attribute} does not match the expected value"):
+                self.assertEqual(getattr(response, attribute), verify[attribute])
 
     def test_get_tokens_valid_pan(self):
         """Test retrieving tokens with a valid PAN."""
@@ -62,21 +61,18 @@ class TestCardsTokensForPan(unittest.TestCase):
 
         card_request = {
             "card_product_token": self.card_product.token,
-            "user_token": user.token
+            "user_token": user.token,
         }
 
         card_to_find = self.client.cards.create(card_request)
 
         card_found = self.client.cards.find_show_pan(card_to_find.token)
 
-        self.assertIsNotNone(card_found.pan, 'Card found does not have a PAN')
+        self.assertIsNotNone(card_found.pan, "Card found does not have a PAN")
 
         tokens = self.client.cards.tokens_for_pan(card_found.pan)
 
-        expected = {
-            "user_token": user.token,
-            "card_token": card_to_find.token
-        }
+        expected = {"user_token": user.token, "card_token": card_to_find.token}
 
         self.verify_pan_response(tokens, expected)
 
@@ -84,4 +80,4 @@ class TestCardsTokensForPan(unittest.TestCase):
         """Test retrieving tokens with an invalid PAN."""
 
         with self.assertRaises(MarqetaError):
-            self.client.cards.tokens_for_pan('Not a valid PAN')
+            self.client.cards.tokens_for_pan("Not a valid PAN")

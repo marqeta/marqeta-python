@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class BillingAddress(object):
 
+class BillingAddress(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,23 +18,21 @@ class BillingAddress(object):
 
     @property
     def first_name(self):
-        return self.json_response.get('first_name', None)
-
+        return self.json_response.get("first_name", None)
 
     @property
     def last_name(self):
-        return self.json_response.get('last_name', None)
-
+        return self.json_response.get("last_name", None)
 
     @property
     def address(self):
-        return self.json_response.get('address', None)
-
+        return self.json_response.get("address", None)
 
     @property
     def zip(self):
-        return self.json_response.get('zip', None)
-
+        return self.json_response.get("zip", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.billing_address.BillingAddress>' + self.__str__()
+        return (
+            "<Marqeta.response_models.billing_address.BillingAddress>" + self.__str__()
+        )

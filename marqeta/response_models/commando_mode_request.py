@@ -5,8 +5,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class CommandoModeRequest(object):
 
+class CommandoModeRequest(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -20,23 +20,26 @@ class CommandoModeRequest(object):
 
     @property
     def program_gateway_funding_source_token(self):
-        return self.json_response.get('program_gateway_funding_source_token', None)
-
+        return self.json_response.get("program_gateway_funding_source_token", None)
 
     @property
     def real_time_standin_criteria(self):
-        if 'real_time_standin_criteria' in self.json_response:
-            return RealTimeStandinCriteria(self.json_response['real_time_standin_criteria'])
+        if "real_time_standin_criteria" in self.json_response:
+            return RealTimeStandinCriteria(
+                self.json_response["real_time_standin_criteria"]
+            )
 
     @property
     def commando_mode_enables(self):
-        if 'commando_mode_enables' in self.json_response:
-            return CommandoModeEnables(self.json_response['commando_mode_enables'])
+        if "commando_mode_enables" in self.json_response:
+            return CommandoModeEnables(self.json_response["commando_mode_enables"])
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.commando_mode_request.CommandoModeRequest>' + self.__str__()
+        return (
+            "<Marqeta.response_models.commando_mode_request.CommandoModeRequest>"
+            + self.__str__()
+        )

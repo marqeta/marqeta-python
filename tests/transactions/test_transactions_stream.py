@@ -29,7 +29,7 @@ class TestTransactionsStream(unittest.TestCase):
 
         card_request = {
             "card_product_token": card_product.token,
-            "user_token": user.token
+            "user_token": user.token,
         }
 
         card = cls.client.cards.create(card_request)
@@ -37,7 +37,7 @@ class TestTransactionsStream(unittest.TestCase):
         auth_request_model = {
             "card_token": card.token,
             "amount": 100.0,
-            "mid": merchant.token
+            "mid": merchant.token,
         }
 
         for _ in range(num):
@@ -47,9 +47,7 @@ class TestTransactionsStream(unittest.TestCase):
     def get_merchant(cls):
         """Returns a new merchant."""
 
-        merchant_model = {
-            "name": cls.fake.company()
-        }
+        merchant_model = {"name": cls.fake.company()}
 
         return cls.client.merchants.create(merchant_model)
 
@@ -73,13 +71,14 @@ class TestTransactionsStream(unittest.TestCase):
         for transaction in self.client.transactions.stream(params=params):
             transaction_num += 1
 
-            with self.subTest(f'Transaction {transaction_num} is the same as the previous transaction'):
+            with self.subTest(
+                f"Transaction {transaction_num} is the same as the previous transaction"
+            ):
                 self.assertNotEqual(last_token, transaction.token)
 
             last_token = transaction.token
 
-            if (transaction_num >= record_limit):
+            if transaction_num >= record_limit:
                 break
 
-        self.assertGreater(transaction_num, 0,
-                           'Stream did not return any transactions')
+        self.assertGreater(transaction_num, 0, "Stream did not return any transactions")

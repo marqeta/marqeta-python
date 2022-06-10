@@ -1,12 +1,16 @@
 from datetime import datetime, date
-from marqeta.response_models.fulfillment_address_request import FulfillmentAddressRequest
-from marqeta.response_models.fulfillment_address_request import FulfillmentAddressRequest
+from marqeta.response_models.fulfillment_address_request import (
+    FulfillmentAddressRequest,
+)
+from marqeta.response_models.fulfillment_address_request import (
+    FulfillmentAddressRequest,
+)
 from marqeta.response_models import datetime_object
 import json
 import re
 
-class Shipping(object):
 
+class Shipping(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -20,23 +24,21 @@ class Shipping(object):
 
     @property
     def method(self):
-        return self.json_response.get('method', None)
-
+        return self.json_response.get("method", None)
 
     @property
     def return_address(self):
-        if 'return_address' in self.json_response:
-            return FulfillmentAddressRequest(self.json_response['return_address'])
+        if "return_address" in self.json_response:
+            return FulfillmentAddressRequest(self.json_response["return_address"])
 
     @property
     def recipient_address(self):
-        if 'recipient_address' in self.json_response:
-            return FulfillmentAddressRequest(self.json_response['recipient_address'])
+        if "recipient_address" in self.json_response:
+            return FulfillmentAddressRequest(self.json_response["recipient_address"])
 
     @property
     def care_of_line(self):
-        return self.json_response.get('care_of_line', None)
-
+        return self.json_response.get("care_of_line", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.shipping.Shipping>' + self.__str__()
+        return "<Marqeta.response_models.shipping.Shipping>" + self.__str__()

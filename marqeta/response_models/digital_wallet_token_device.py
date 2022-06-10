@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class DigitalWalletTokenDevice(object):
 
+class DigitalWalletTokenDevice(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,38 +18,34 @@ class DigitalWalletTokenDevice(object):
 
     @property
     def device_type(self):
-        return self.json_response.get('device_type', None)
-
+        return self.json_response.get("device_type", None)
 
     @property
     def device_lang_code(self):
-        return self.json_response.get('device_lang_code', None)
-
+        return self.json_response.get("device_lang_code", None)
 
     @property
     def device_id(self):
-        return self.json_response.get('device_id', None)
-
+        return self.json_response.get("device_id", None)
 
     @property
     def device_number(self):
-        return self.json_response.get('device_number', None)
-
+        return self.json_response.get("device_number", None)
 
     @property
     def device_name(self):
-        return self.json_response.get('device_name', None)
-
+        return self.json_response.get("device_name", None)
 
     @property
     def device_location(self):
-        return self.json_response.get('device_location', None)
-
+        return self.json_response.get("device_location", None)
 
     @property
     def device_ip_address(self):
-        return self.json_response.get('device_ip_address', None)
-
+        return self.json_response.get("device_ip_address", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.digital_wallet_token_device.DigitalWalletTokenDevice>' + self.__str__()
+        return (
+            "<Marqeta.response_models.digital_wallet_token_device.DigitalWalletTokenDevice>"
+            + self.__str__()
+        )

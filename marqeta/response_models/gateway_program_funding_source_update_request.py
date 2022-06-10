@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class GatewayProgramFundingSourceUpdateRequest(object):
 
+class GatewayProgramFundingSourceUpdateRequest(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,31 +18,30 @@ class GatewayProgramFundingSourceUpdateRequest(object):
 
     @property
     def name(self):
-        return self.json_response.get('name', None)
-
+        return self.json_response.get("name", None)
 
     @property
     def active(self):
-        return self.json_response.get('active', None)
+        return self.json_response.get("active", None)
 
     @property
     def url(self):
-        return self.json_response.get('url', None)
-
+        return self.json_response.get("url", None)
 
     @property
     def basic_auth_username(self):
-        return self.json_response.get('basic_auth_username', None)
-
+        return self.json_response.get("basic_auth_username", None)
 
     @property
     def basic_auth_password(self):
-        return self.json_response.get('basic_auth_password', None)
-
+        return self.json_response.get("basic_auth_password", None)
 
     @property
     def timeout_millis(self):
-        return self.json_response.get('timeout_millis', None)
+        return self.json_response.get("timeout_millis", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.gateway_program_funding_source_update_request.GatewayProgramFundingSourceUpdateRequest>' + self.__str__()
+        return (
+            "<Marqeta.response_models.gateway_program_funding_source_update_request.GatewayProgramFundingSourceUpdateRequest>"
+            + self.__str__()
+        )

@@ -7,15 +7,12 @@ from marqeta.errors import MarqetaError
 
 
 class TestFundingSourcesPaymentCardSave(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         """Setup for all tests in the class."""
 
         cls.client = get_client()
-        cls.token_update_request = {
-            "exp_date": "0424"
-        }
+        cls.token_update_request = {"exp_date": "0424"}
 
     def test_payment_card_save_user(self):
         """Updates a payment card for a user."""
@@ -23,7 +20,8 @@ class TestFundingSourcesPaymentCardSave(unittest.TestCase):
         payment_card = FundingSources.get_user_payment_card()
 
         updated = self.client.funding_sources.payment_card.save(
-            payment_card.token, self.token_update_request)
+            payment_card.token, self.token_update_request
+        )
 
         verify = FundingSources.get_funding_source_verify(payment_card)
         verify["exp_date"] = self.token_update_request["exp_date"]
@@ -36,7 +34,8 @@ class TestFundingSourcesPaymentCardSave(unittest.TestCase):
         payment_card = FundingSources.get_business_payment_card()
 
         updated = self.client.funding_sources.payment_card.save(
-            payment_card.token, self.token_update_request)
+            payment_card.token, self.token_update_request
+        )
 
         verify = FundingSources.get_funding_source_verify(payment_card)
         verify["exp_date"] = self.token_update_request["exp_date"]
@@ -48,7 +47,8 @@ class TestFundingSourcesPaymentCardSave(unittest.TestCase):
 
         with self.assertRaises(MarqetaError):
             self.client.funding_sources.payment_card.save(
-                'Not a payment card token', self.token_update_request)
+                "Not a payment card token", self.token_update_request
+            )
 
     def test_payment_card_save_error_request(self):
         """Tests error handling when a bad update request is passed."""
@@ -56,5 +56,4 @@ class TestFundingSourcesPaymentCardSave(unittest.TestCase):
         payment_card = FundingSources.get_user_payment_card()
 
         with self.assertRaises(MarqetaError):
-            self.client.funding_sources.payment_card.save(
-                payment_card.token, {})
+            self.client.funding_sources.payment_card.save(payment_card.token, {})

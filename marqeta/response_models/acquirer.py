@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class Acquirer(object):
 
+class Acquirer(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,28 +18,23 @@ class Acquirer(object):
 
     @property
     def institution_country(self):
-        return self.json_response.get('institution_country', None)
-
+        return self.json_response.get("institution_country", None)
 
     @property
     def network_international_id(self):
-        return self.json_response.get('network_international_id', None)
-
+        return self.json_response.get("network_international_id", None)
 
     @property
     def institution_id_code(self):
-        return self.json_response.get('institution_id_code', None)
-
+        return self.json_response.get("institution_id_code", None)
 
     @property
     def retrieval_reference_number(self):
-        return self.json_response.get('retrieval_reference_number', None)
-
+        return self.json_response.get("retrieval_reference_number", None)
 
     @property
     def system_trace_audit_number(self):
-        return self.json_response.get('system_trace_audit_number', None)
-
+        return self.json_response.get("system_trace_audit_number", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.acquirer.Acquirer>' + self.__str__()
+        return "<Marqeta.response_models.acquirer.Acquirer>" + self.__str__()

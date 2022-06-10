@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class ResetUserPasswordModel(object):
 
+class ResetUserPasswordModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,13 +18,14 @@ class ResetUserPasswordModel(object):
 
     @property
     def user_token(self):
-        return self.json_response.get('user_token', None)
-
+        return self.json_response.get("user_token", None)
 
     @property
     def new_password(self):
-        return self.json_response.get('new_password', None)
-
+        return self.json_response.get("new_password", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.reset_user_password_model.ResetUserPasswordModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.reset_user_password_model.ResetUserPasswordModel>"
+            + self.__str__()
+        )

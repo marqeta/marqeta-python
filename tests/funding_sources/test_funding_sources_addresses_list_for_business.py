@@ -25,13 +25,12 @@ class TestFundingSourcesAddressesListForBusiness(unittest.TestCase):
         FundingSources.get_business_payment_card(business)
 
         addresses = self.client.funding_sources.addresses.list_for_business(
-            business.token)
+            business.token
+        )
 
-        self.assertEqual(len(addresses), 1,
-                         'Incorrect number of addresses returned')
+        self.assertEqual(len(addresses), 1, "Incorrect number of addresses returned")
 
-        verify_card_holder_address_response(
-            self, addresses[0], address.__dict__)
+        verify_card_holder_address_response(self, addresses[0], address.__dict__)
 
     def test_addresses_list_for_business_two(self):
         """Tests when two funding source addresses should be returned."""
@@ -50,28 +49,24 @@ class TestFundingSourcesAddressesListForBusiness(unittest.TestCase):
             "city": "Oakland",
             "state": "CA",
             "zip": "94612",
-            "country": "USA"
+            "country": "USA",
         }
 
         self.client.funding_sources.addresses.create(address_one)
         self.client.funding_sources.addresses.create(address_two)
 
         addresses = self.client.funding_sources.addresses.list_for_business(
-            business.token)
+            business.token
+        )
 
-        self.assertEqual(len(addresses), 2,
-                         'Incorrect number of addresses returned')
+        self.assertEqual(len(addresses), 2, "Incorrect number of addresses returned")
 
-        if addresses[0].first_name == address_one['first_name']:
-            verify_card_holder_address_response(
-                self, addresses[0], address_one)
-            verify_card_holder_address_response(
-                self, addresses[1], address_two)
+        if addresses[0].first_name == address_one["first_name"]:
+            verify_card_holder_address_response(self, addresses[0], address_one)
+            verify_card_holder_address_response(self, addresses[1], address_two)
         else:
-            verify_card_holder_address_response(
-                self, addresses[1], address_one)
-            verify_card_holder_address_response(
-                self, addresses[0], address_two)
+            verify_card_holder_address_response(self, addresses[1], address_one)
+            verify_card_holder_address_response(self, addresses[0], address_two)
 
     def test_addresses_list_for_business_zero(self):
         """Tests when no funding source addresses should be returned."""

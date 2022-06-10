@@ -19,18 +19,20 @@ class TestUsersTransitionsFind(unittest.TestCase):
         """Find a user transition that exists."""
 
         transition_data = {
-            'status': 'UNVERIFIED',
-            'reason_code': '00',
-            'reason': 'Testing',
-            'channel': 'SYSTEM',
-            'user_token': self.user.token
+            "status": "UNVERIFIED",
+            "reason_code": "00",
+            "reason": "Testing",
+            "channel": "SYSTEM",
+            "user_token": self.user.token,
         }
 
-        transition = self.client.users(
-            self.user.token).transitions.create(transition_data)
+        transition = self.client.users(self.user.token).transitions.create(
+            transition_data
+        )
 
-        found_transition = self.client.users(
-            self.user.token).transitions.find(transition.token)
+        found_transition = self.client.users(self.user.token).transitions.find(
+            transition.token
+        )
 
         verify_user_transition(self, found_transition, transition_data)
 
@@ -38,5 +40,4 @@ class TestUsersTransitionsFind(unittest.TestCase):
         """Look for a user transition that does not exist."""
 
         with self.assertRaises(MarqetaError):
-            self.client.users(self.user.token).transitions.find(
-                'Does not exist')
+            self.client.users(self.user.token).transitions.find("Does not exist")
