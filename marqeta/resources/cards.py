@@ -117,6 +117,13 @@ class CardsCollection(object):
         Creates an cards object
         :param data: data required for creation
         :param params: query parameters
+        :param proxy_data: information on where to proxy the request
+        Must have the following format:
+        {
+        "https": https_proxy,
+        "pem_key": pem_key,
+        "ca_path": ca_path,
+        }
         :return: CardResponse object
         """
         return self.collections.create(
