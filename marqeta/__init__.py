@@ -290,7 +290,6 @@ class Client(object):
                 )
         return (response.json(), response.status_code)
 
-
     def ping(self, **kwargs):
         """
         ping validates the marqeta server

@@ -1,5 +1,4 @@
 from setuptools import setup, find_packages
-from marqeta.version import __version__
 
 with open("requirements.txt", "r") as requirements:
     install_requires = requirements.read()
@@ -9,7 +8,9 @@ with open("README.md") as f:
 
 setup(
     name="marqeta",
-    version=__version__,
+    # Manually adding version number due to issues with poetry when calling __version__
+    # This has to be updated alongside version.py when the version changes
+    version="0.2.1",
     description="Marqeta Python SDK",
     author="Marqeta, Inc.",
     url="https://github.com/marqeta/marqeta-python",
