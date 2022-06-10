@@ -29,7 +29,7 @@ class TestFundingSourcesAchCreate(unittest.TestCase):
         return {
             "verification_status": "VERIFICATION_PENDING",
             "account_type": ach_model["account_type"],
-            "name_on_account": ach_model["name_on_account"]
+            "name_on_account": ach_model["name_on_account"],
         }
 
     def test_ach_create_for_user(self):

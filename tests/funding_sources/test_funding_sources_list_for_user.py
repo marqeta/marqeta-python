@@ -28,7 +28,8 @@ class TestFundingSourcesListForUser(unittest.TestCase):
         results = self.client.funding_sources.list_for_user(self.user.token)
 
         self.assertEqual(
-            len(results), 1, 'Unexpected number of funding sources returned')
+            len(results), 1, "Unexpected number of funding sources returned"
+        )
 
         verify = FundingSources.get_funding_source_verify(ach)
 
@@ -43,7 +44,8 @@ class TestFundingSourcesListForUser(unittest.TestCase):
         results = self.client.funding_sources.list_for_user(self.user.token)
 
         self.assertEqual(
-            len(results), 2, 'Unexpected number of funding sources returned')
+            len(results), 2, "Unexpected number of funding sources returned"
+        )
 
         verify_one = FundingSources.get_funding_source_verify(ach_one)
         verify_two = FundingSources.get_funding_source_verify(ach_two)
@@ -65,4 +67,4 @@ class TestFundingSourcesListForUser(unittest.TestCase):
         """Tests when the user is unknown."""
 
         with self.assertRaises(MarqetaError):
-            self.client.funding_sources.list_for_user('Not a user token')
+            self.client.funding_sources.list_for_user("Not a user token")

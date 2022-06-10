@@ -20,8 +20,7 @@ class TestFundingSourcesPaymentCardFind(unittest.TestCase):
 
         payment_card = FundingSources.get_user_payment_card()
 
-        found = self.client.funding_sources.payment_card.find(
-            payment_card.token)
+        found = self.client.funding_sources.payment_card.find(payment_card.token)
 
         expected = FundingSources.get_funding_source_verify(payment_card)
 
@@ -31,5 +30,4 @@ class TestFundingSourcesPaymentCardFind(unittest.TestCase):
         """Tests error handling when payment card is not found."""
 
         with self.assertRaises(MarqetaError):
-            self.client.funding_sources.payment_card.find(
-                'Not a payment card token')
+            self.client.funding_sources.payment_card.find("Not a payment card token")

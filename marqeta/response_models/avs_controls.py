@@ -5,8 +5,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class AvsControls(object):
 
+class AvsControls(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -20,13 +20,13 @@ class AvsControls(object):
 
     @property
     def av_messages(self):
-        if 'av_messages' in self.json_response:
-            return AvsControlOptions(self.json_response['av_messages'])
+        if "av_messages" in self.json_response:
+            return AvsControlOptions(self.json_response["av_messages"])
 
     @property
     def auth_messages(self):
-        if 'auth_messages' in self.json_response:
-            return AvsControlOptions(self.json_response['auth_messages'])
+        if "auth_messages" in self.json_response:
+            return AvsControlOptions(self.json_response["auth_messages"])
 
     def __repr__(self):
-         return '<Marqeta.response_models.avs_controls.AvsControls>' + self.__str__()
+        return "<Marqeta.response_models.avs_controls.AvsControls>" + self.__str__()

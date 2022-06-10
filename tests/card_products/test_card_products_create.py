@@ -1,6 +1,9 @@
 import unittest
 from tests.lib.client import get_client
-from tests.lib.card_product_verifications import verify_card_product_response, verify_transaction_controls
+from tests.lib.card_product_verifications import (
+    verify_card_product_response,
+    verify_transaction_controls,
+)
 from tests.lib.utilities import Utilities
 
 
@@ -17,10 +20,7 @@ class TestCardProductsCreate(unittest.TestCase):
         """Creates a card product with all the start date formats."""
 
         for time in self.times:
-            product_details = {
-                "name": "Start Date Card Product",
-                "start_date": time
-            }
+            product_details = {"name": "Start Date Card Product", "start_date": time}
 
             card_product = self.client.card_products.create(product_details)
             verify_card_product_response(self, card_product, product_details)
@@ -32,7 +32,7 @@ class TestCardProductsCreate(unittest.TestCase):
             product_details = {
                 "name": "End Date Card Product",
                 "start_date": self.times[0],
-                "end_date": time
+                "end_date": time,
             }
 
             card_product = self.client.card_products.create(product_details)
@@ -44,7 +44,7 @@ class TestCardProductsCreate(unittest.TestCase):
 
         product_details = {
             "name": "Default transaction card product",
-            "start_date": self.times[0]
+            "start_date": self.times[0],
         }
 
         card_product = self.client.card_products.create(product_details)
@@ -66,25 +66,22 @@ class TestCardProductsCreate(unittest.TestCase):
             "allow_network_load": False,
             "allow_network_load_card_activation": False,
             "allow_quasi_cash": False,
-            "enable_partial_auth_approval": True
+            "enable_partial_auth_approval": True,
         }
 
         verify_transaction_controls(
-            self, transaction_controls, transaction_controls_defaults)
+            self, transaction_controls, transaction_controls_defaults
+        )
 
     def test_create_allow_chip_fallback_false(self):
         """Verifies can set allow chip fallback to false."""
 
-        transaction_controls_settings = {
-            "allow_chip_fallback": False
-        }
+        transaction_controls_settings = {"allow_chip_fallback": False}
 
         product_details = {
             "name": "Chip fallback false",
             "start_date": self.times[0],
-            "config": {
-                "transaction_controls": transaction_controls_settings
-            }
+            "config": {"transaction_controls": transaction_controls_settings},
         }
 
         card_product = self.client.card_products.create(product_details)

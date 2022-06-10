@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class AuthControlExemptMidsUpdateRequest(object):
 
+class AuthControlExemptMidsUpdateRequest(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,7 +18,10 @@ class AuthControlExemptMidsUpdateRequest(object):
 
     @property
     def active(self):
-        return self.json_response.get('active', None)
+        return self.json_response.get("active", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.auth_control_exempt_mids_update_request.AuthControlExemptMidsUpdateRequest>' + self.__str__()
+        return (
+            "<Marqeta.response_models.auth_control_exempt_mids_update_request.AuthControlExemptMidsUpdateRequest>"
+            + self.__str__()
+        )

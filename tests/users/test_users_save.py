@@ -27,27 +27,27 @@ class TestUsersSave(unittest.TestCase):
 
         # Verify the correct class is being tested
         actual = response.__class__.__name__
-        expected = 'CardHolderModel'
+        expected = "CardHolderModel"
 
-        self.assertEqual(actual, expected, 'Unexpected response found')
+        self.assertEqual(actual, expected, "Unexpected response found")
 
         # Verify the expected attributes are defined
         expected_attributes = [
-            'token',
-            'active',
-            'first_name',
-            'last_name',
-            'uses_parent_account',
-            'corporate_card_holder',
-            'created_time',
-            'last_modified_time',
-            'metadata',
-            'account_holder_group_token',
-            'status'
+            "token",
+            "active",
+            "first_name",
+            "last_name",
+            "uses_parent_account",
+            "corporate_card_holder",
+            "created_time",
+            "last_modified_time",
+            "metadata",
+            "account_holder_group_token",
+            "status",
         ]
 
         for attribute in expected_attributes:
-            with self.subTest(f'{attribute} is not defined'):
+            with self.subTest(f"{attribute} is not defined"):
                 self.assertIsNotNone(getattr(response, attribute))
 
         # Verify values match expected values
@@ -57,10 +57,10 @@ class TestUsersSave(unittest.TestCase):
             expected = verify[attribute]
 
             # ssn is masked by default
-            if attribute == 'ssn':
-                expected = '___________'
+            if attribute == "ssn":
+                expected = "___________"
 
-            with self.subTest(f'{attribute} does not match the expected value'):
+            with self.subTest(f"{attribute} does not match the expected value"):
                 self.assertEqual(getattr(response, attribute), expected)
 
     def test_save(self):
@@ -68,7 +68,7 @@ class TestUsersSave(unittest.TestCase):
 
         user = self.client.users.create({})
 
-        update_params = {'first_name': 'Mary', 'last_name': 'Shepard'}
+        update_params = {"first_name": "Mary", "last_name": "Shepard"}
 
         updated = self.client.users.save(user.token, update_params)
 
@@ -76,7 +76,7 @@ class TestUsersSave(unittest.TestCase):
 
     # Tries to update a user who doesn't exist
     def test_save_nonexist(self):
-        update_params = {'first_name': 'Mary', 'last_name': 'Shepard'}
+        update_params = {"first_name": "Mary", "last_name": "Shepard"}
 
         with self.assertRaises(MarqetaError):
-            self.client.users.save('Does not exist', update_params)
+            self.client.users.save("Does not exist", update_params)

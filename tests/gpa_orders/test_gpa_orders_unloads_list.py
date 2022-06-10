@@ -19,7 +19,7 @@ class TestGpaOrdersUnloadsList(unittest.TestCase):
             "account_number": "4112344112344113",
             "cvv_number": "123",
             "exp_date": "0323",
-            "zip": "94612"
+            "zip": "94612",
         }
 
     def get_user_card_holder_address_request(self, user_token):
@@ -33,7 +33,7 @@ class TestGpaOrdersUnloadsList(unittest.TestCase):
             "city": "Oakland",
             "state": "CA",
             "zip": "94612",
-            "country": "USA"
+            "country": "USA",
         }
 
     def test_unloads_list(self):
@@ -43,8 +43,7 @@ class TestGpaOrdersUnloadsList(unittest.TestCase):
 
         card_request = self.get_user_payment_card_request(user.token)
 
-        payment_card = self.client.funding_sources.payment_card.create(
-            card_request)
+        payment_card = self.client.funding_sources.payment_card.create(card_request)
 
         address_request = self.get_user_card_holder_address_request(user.token)
 
@@ -55,18 +54,15 @@ class TestGpaOrdersUnloadsList(unittest.TestCase):
             "amount": 100.00,
             "currency_code": "USD",
             "funding_source_token": payment_card.token,
-            "funding_source_address_token": address.token
+            "funding_source_address_token": address.token,
         }
 
         order = self.client.gpa_orders.create(gpa_request)
 
-        unload_request_model = {
-            "original_order_token": order.token,
-            "amount": 50.00
-        }
+        unload_request_model = {"original_order_token": order.token, "amount": 50.00}
 
         self.client.gpa_orders.unloads.create(unload_request_model)
 
         found = self.client.gpa_orders.unloads.list()
 
-        self.assertGreaterEqual(len(found), 1, 'No unloads were found')
+        self.assertGreaterEqual(len(found), 1, "No unloads were found")

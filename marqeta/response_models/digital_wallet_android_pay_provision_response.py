@@ -4,8 +4,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class DigitalWalletAndroidPayProvisionResponse(object):
 
+class DigitalWalletAndroidPayProvisionResponse(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -19,25 +19,27 @@ class DigitalWalletAndroidPayProvisionResponse(object):
 
     @property
     def created_time(self):
-        if 'created_time' in self.json_response:
-            return datetime_object('created_time', self.json_response)
-
+        if "created_time" in self.json_response:
+            return datetime_object("created_time", self.json_response)
 
     @property
     def last_modified_time(self):
-        if 'last_modified_time' in self.json_response:
-            return datetime_object('last_modified_time', self.json_response)
-
+        if "last_modified_time" in self.json_response:
+            return datetime_object("last_modified_time", self.json_response)
 
     @property
     def card_token(self):
-        return self.json_response.get('card_token', None)
-
+        return self.json_response.get("card_token", None)
 
     @property
     def push_tokenize_request_data(self):
-        if 'push_tokenize_request_data' in self.json_response:
-            return PushTokenizeRequestData(self.json_response['push_tokenize_request_data'])
+        if "push_tokenize_request_data" in self.json_response:
+            return PushTokenizeRequestData(
+                self.json_response["push_tokenize_request_data"]
+            )
 
     def __repr__(self):
-         return '<Marqeta.response_models.digital_wallet_android_pay_provision_response.DigitalWalletAndroidPayProvisionResponse>' + self.__str__()
+        return (
+            "<Marqeta.response_models.digital_wallet_android_pay_provision_response.DigitalWalletAndroidPayProvisionResponse>"
+            + self.__str__()
+        )

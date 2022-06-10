@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class RealTimeFeeAssessment(object):
 
+class RealTimeFeeAssessment(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,16 +18,18 @@ class RealTimeFeeAssessment(object):
 
     @property
     def transaction_type(self):
-        return self.json_response.get('transaction_type', None)
-
+        return self.json_response.get("transaction_type", None)
 
     @property
     def international_enabled(self):
-        return self.json_response.get('international_enabled', None)
+        return self.json_response.get("international_enabled", None)
 
     @property
     def domestic_enabled(self):
-        return self.json_response.get('domestic_enabled', None)
+        return self.json_response.get("domestic_enabled", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.real_time_fee_assessment.RealTimeFeeAssessment>' + self.__str__()
+        return (
+            "<Marqeta.response_models.real_time_fee_assessment.RealTimeFeeAssessment>"
+            + self.__str__()
+        )

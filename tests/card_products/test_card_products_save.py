@@ -23,14 +23,11 @@ class TestCardProductsSave(unittest.TestCase):
 
         card_product = self.card_products.create()
 
-        update_options = {
-            "name": "Updated card product name"
-        }
+        update_options = {"name": "Updated card product name"}
 
-        updated = self.client.card_products.save(
-            card_product.token, update_options)
+        updated = self.client.card_products.save(card_product.token, update_options)
 
-        self.assertEqual(updated.name, update_options['name'])
+        self.assertEqual(updated.name, update_options["name"])
 
     def test_card_products_save_nothing(self):
         """Verifies behavior is correct when no update options are specified."""
@@ -45,4 +42,4 @@ class TestCardProductsSave(unittest.TestCase):
         """Verifies behavior is correct when the card product is not found."""
 
         with self.assertRaises(MarqetaError):
-            self.client.card_products.save('Not a card product token', {})
+            self.client.card_products.save("Not a card product token", {})

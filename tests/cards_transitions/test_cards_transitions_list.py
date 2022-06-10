@@ -25,7 +25,7 @@ class TestCardsTransitionsList(unittest.TestCase):
 
         card_request = {
             "card_product_token": self.card_product.token,
-            "user_token": user.token
+            "user_token": user.token,
         }
 
         return self.client.cards.create(card_request)
@@ -34,8 +34,8 @@ class TestCardsTransitionsList(unittest.TestCase):
         """Activates a card."""
         transition_body = {
             "card_token": card_token,
-            "channel": 'API',
-            "state": "ACTIVE"
+            "channel": "API",
+            "state": "ACTIVE",
         }
 
         return self.client.cards(card_token).transitions.create(transition_body)
@@ -47,13 +47,15 @@ class TestCardsTransitionsList(unittest.TestCase):
 
         transitions = self.client.cards(card.token).transitions.list()
 
-        self.assertIsNotNone(transitions, 'Transitions list is None')
-
-        self.assertEqual(len(transitions), 1,
-                         'Transitions list has incorrect number of entries')
+        self.assertIsNotNone(transitions, "Transitions list is None")
 
         self.assertEqual(
-            transitions[0].state, 'UNACTIVATED', 'State does not match expected value')
+            len(transitions), 1, "Transitions list has incorrect number of entries"
+        )
+
+        self.assertEqual(
+            transitions[0].state, "UNACTIVATED", "State does not match expected value"
+        )
 
     def test_transitions_list_two(self):
         """Lists the transitions for a card with two transitions."""
@@ -64,16 +66,19 @@ class TestCardsTransitionsList(unittest.TestCase):
 
         transitions = self.client.cards(card.token).transitions.list()
 
-        self.assertIsNotNone(transitions, 'Transitions list is None')
+        self.assertIsNotNone(transitions, "Transitions list is None")
 
-        self.assertEqual(len(transitions), 2,
-                         'Transitions list has incorrect number of entries')
+        self.assertEqual(
+            len(transitions), 2, "Transitions list has incorrect number of entries"
+        )
 
-        if (transitions[0].state == 'UNACTIVATED'):
+        if transitions[0].state == "UNACTIVATED":
             self.assertEqual(
-                transitions[1].state, 'ACTIVE', 'Transition has an unexpected state')
-        elif (transitions[1].state == 'UNACTIVATED'):
+                transitions[1].state, "ACTIVE", "Transition has an unexpected state"
+            )
+        elif transitions[1].state == "UNACTIVATED":
             self.assertEqual(
-                transitions[0].state, 'ACTIVE', 'Transition has an unexpected state')
+                transitions[0].state, "ACTIVE", "Transition has an unexpected state"
+            )
         else:
-            self.assertFail('None of the transitions has an expected state')
+            self.assertFail("None of the transitions has an expected state")

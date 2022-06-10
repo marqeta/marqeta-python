@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class ClearingFile(object):
 
+class ClearingFile(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,13 +18,11 @@ class ClearingFile(object):
 
     @property
     def network(self):
-        return self.json_response.get('network', None)
-
+        return self.json_response.get("network", None)
 
     @property
     def file(self):
-        return self.json_response.get('file', None)
-
+        return self.json_response.get("file", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.clearing_file.ClearingFile>' + self.__str__()
+        return "<Marqeta.response_models.clearing_file.ClearingFile>" + self.__str__()

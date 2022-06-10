@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class Carrier(object):
 
+class Carrier(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,23 +18,19 @@ class Carrier(object):
 
     @property
     def template_id(self):
-        return self.json_response.get('template_id', None)
-
+        return self.json_response.get("template_id", None)
 
     @property
     def logo_file(self):
-        return self.json_response.get('logo_file', None)
-
+        return self.json_response.get("logo_file", None)
 
     @property
     def logo_thumbnail_file(self):
-        return self.json_response.get('logo_thumbnail_file', None)
-
+        return self.json_response.get("logo_thumbnail_file", None)
 
     @property
     def message_file(self):
-        return self.json_response.get('message_file', None)
-
+        return self.json_response.get("message_file", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.carrier.Carrier>' + self.__str__()
+        return "<Marqeta.response_models.carrier.Carrier>" + self.__str__()

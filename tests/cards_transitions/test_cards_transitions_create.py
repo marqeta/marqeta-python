@@ -21,15 +21,12 @@ class TestCardsTransitionsCreate(unittest.TestCase):
 
         card_request = {
             "card_product_token": card_product.token,
-            "user_token": user.token
+            "user_token": user.token,
         }
 
         cls.card = cls.client.cards.create(card_request)
 
-        cls.transition_body = {
-            "card_token": cls.card.token,
-            "channel": "API"
-        }
+        cls.transition_body = {"card_token": cls.card.token, "channel": "API"}
 
     def get_default_transition_values(self):
         """Returns default transition values."""
@@ -37,20 +34,12 @@ class TestCardsTransitionsCreate(unittest.TestCase):
         return {
             "fulfillment_status": "ISSUED",
             "validations": {
-                "user": {
-                    "birth_date": False,
-                    "phone": False,
-                    "ssn": False
-                }
+                "user": {"birth_date": False, "phone": False, "ssn": False}
             },
             "expiration": Utilities().get_card_expiration(),
             "pin_is_set": False,
-            "user": {
-                "metadata": {}
-            },
-            "card": {
-                "metadata": {}
-            }
+            "user": {"metadata": {}},
+            "card": {"metadata": {}},
         }
 
     def get_expected_values(self):
@@ -61,39 +50,38 @@ class TestCardsTransitionsCreate(unittest.TestCase):
     def test_transition_create_api_active(self):
         """Tests transition to ACTIVE state."""
 
-        self.transition_body['state'] = 'ACTIVE'
+        self.transition_body["state"] = "ACTIVE"
 
-        transition = self.client.cards(
-            self.card.token).transitions.create(self.transition_body)
+        transition = self.client.cards(self.card.token).transitions.create(
+            self.transition_body
+        )
 
-        verify_card_transition_response(
-            self, transition, self.get_expected_values())
+        verify_card_transition_response(self, transition, self.get_expected_values())
 
     def test_transition_create_api_suspended(self):
         """Tests transition to SUSPENDED state."""
 
         # Activate the card
-        self.transition_body['state'] = 'ACTIVE'
+        self.transition_body["state"] = "ACTIVE"
 
-        self.client.cards(self.card.token).transitions.create(
-            self.transition_body)
+        self.client.cards(self.card.token).transitions.create(self.transition_body)
 
         # Suspend the card
-        self.transition_body['state'] = 'SUSPENDED'
+        self.transition_body["state"] = "SUSPENDED"
 
-        transition = self.client.cards(
-            self.card.token).transitions.create(self.transition_body)
+        transition = self.client.cards(self.card.token).transitions.create(
+            self.transition_body
+        )
 
-        verify_card_transition_response(
-            self, transition, self.get_expected_values())
+        verify_card_transition_response(self, transition, self.get_expected_values())
 
     def test_transition_create_api_terminated(self):
         """Tests transition to TERMINATED state."""
 
-        self.transition_body['state'] = 'TERMINATED'
+        self.transition_body["state"] = "TERMINATED"
 
-        transition = self.client.cards(
-            self.card.token).transitions.create(self.transition_body)
+        transition = self.client.cards(self.card.token).transitions.create(
+            self.transition_body
+        )
 
-        verify_card_transition_response(
-            self, transition, self.get_expected_values())
+        verify_card_transition_response(self, transition, self.get_expected_values())

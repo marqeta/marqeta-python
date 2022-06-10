@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class SsnResponseModel(object):
 
+class SsnResponseModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,8 +18,10 @@ class SsnResponseModel(object):
 
     @property
     def ssn(self):
-        return self.json_response.get('ssn', None)
-
+        return self.json_response.get("ssn", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.ssn_response_model.SsnResponseModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.ssn_response_model.SsnResponseModel>"
+            + self.__str__()
+        )

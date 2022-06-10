@@ -5,8 +5,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class OrderScope(object):
 
+class OrderScope(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -20,13 +20,13 @@ class OrderScope(object):
 
     @property
     def gpa(self):
-        if 'gpa' in self.json_response:
-            return Gpa(self.json_response['gpa'])
+        if "gpa" in self.json_response:
+            return Gpa(self.json_response["gpa"])
 
     @property
     def msa(self):
-        if 'msa' in self.json_response:
-            return Msa(self.json_response['msa'])
+        if "msa" in self.json_response:
+            return Msa(self.json_response["msa"])
 
     def __repr__(self):
-         return '<Marqeta.response_models.order_scope.OrderScope>' + self.__str__()
+        return "<Marqeta.response_models.order_scope.OrderScope>" + self.__str__()

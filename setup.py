@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 from marqeta.version import __version__
 
-with open('requirements.txt', 'r') as requirements:
+with open("requirements.txt", "r") as requirements:
     install_requires = requirements.read()
 
-with open('README.md') as f:
+with open("README.md") as f:
     long_description = f.read()
 
 setup(
@@ -27,7 +27,7 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    packages=find_packages(exclude=['tests', 'tests.*']),
+    packages=find_packages(exclude=["tests", "tests.*"]),
     include_package_data=True,
     install_requires=install_requires,
     long_description=long_description,

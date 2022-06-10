@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class AuthUserUpdateRequest(object):
 
+class AuthUserUpdateRequest(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,16 +18,18 @@ class AuthUserUpdateRequest(object):
 
     @property
     def password(self):
-        return self.json_response.get('password', None)
-
+        return self.json_response.get("password", None)
 
     @property
     def active(self):
-        return self.json_response.get('active', None)
+        return self.json_response.get("active", None)
 
     @property
     def roles(self):
-        return self.json_response.get('roles', None)
+        return self.json_response.get("roles", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.auth_user_update_request.AuthUserUpdateRequest>' + self.__str__()
+        return (
+            "<Marqeta.response_models.auth_user_update_request.AuthUserUpdateRequest>"
+            + self.__str__()
+        )

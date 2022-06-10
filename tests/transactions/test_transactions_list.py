@@ -27,9 +27,7 @@ class TestTransactionsList(unittest.TestCase):
     def get_merchant(self):
         """Returns a new merchant."""
 
-        merchant_model = {
-            "name": self.fake.company()
-        }
+        merchant_model = {"name": self.fake.company()}
 
         return self.client.merchants.create(merchant_model)
 
@@ -49,7 +47,7 @@ class TestTransactionsList(unittest.TestCase):
 
         card_request = {
             "card_product_token": card_product.token,
-            "user_token": user.token
+            "user_token": user.token,
         }
 
         card = self.client.cards.create(card_request)
@@ -57,7 +55,7 @@ class TestTransactionsList(unittest.TestCase):
         auth_request_model = {
             "card_token": card.token,
             "amount": 100.0,
-            "mid": merchant.token
+            "mid": merchant.token,
         }
 
         for _ in range(num):
@@ -68,19 +66,17 @@ class TestTransactionsList(unittest.TestCase):
 
         transactions = self.client.transactions.list()
 
-        self.assertGreaterEqual(len(transactions), 1, 'No transactions found')
+        self.assertGreaterEqual(len(transactions), 1, "No transactions found")
 
     def test_transactions_list_filter_state(self):
         """Tests the transitions list filtered by state."""
 
-        params = {
-            "state": "DECLINED"
-        }
+        params = {"state": "DECLINED"}
 
         transactions = self.client.transactions.list(params=params)
 
-        self.assertGreaterEqual(len(transactions), 1, 'No transactions found')
+        self.assertGreaterEqual(len(transactions), 1, "No transactions found")
 
         for transaction in transactions:
-            with self.subTest('Transaction does not have the correct state'):
+            with self.subTest("Transaction does not have the correct state"):
                 self.assertEqual(params["state"], transaction.state)

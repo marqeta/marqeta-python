@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class CalculationSchedule(object):
 
+class CalculationSchedule(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,26 +18,26 @@ class CalculationSchedule(object):
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def value_type(self):
-        return self.json_response.get('value_type', None)
-
+        return self.json_response.get("value_type", None)
 
     @property
     def name(self):
-        return self.json_response.get('name', None)
-
+        return self.json_response.get("name", None)
 
     @property
     def steps(self):
-        return self.json_response.get('steps', None)
+        return self.json_response.get("steps", None)
 
     @property
     def step_values(self):
-        return self.json_response.get('step_values', None)
+        return self.json_response.get("step_values", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.calculation_schedule.CalculationSchedule>' + self.__str__()
+        return (
+            "<Marqeta.response_models.calculation_schedule.CalculationSchedule>"
+            + self.__str__()
+        )

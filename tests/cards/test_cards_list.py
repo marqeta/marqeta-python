@@ -30,32 +30,30 @@ class TestCardsList(unittest.TestCase):
 
         card_request = {
             "card_product_token": self.card_product.token,
-            "user_token": user.token
+            "user_token": user.token,
         }
 
         card = self.client.cards.create(card_request)
 
         list_cards = self.client.cards.list(card.last_four)
 
-        self.assertTrue(len(list_cards) >= 1, 'No cards were returned')
+        self.assertTrue(len(list_cards) >= 1, "No cards were returned")
 
         for list_card in list_cards:
-            with self.subTest('List contains card with incorrect last four'):
+            with self.subTest("List contains card with incorrect last four"):
                 self.assertEqual(card.last_four, list_card.last_four)
 
     def test_card_list_negative(self):
         """Tests when there are no entries in the cards.list"""
 
-        list_cards = self.client.cards.list('AAAA')
+        list_cards = self.client.cards.list("AAAA")
 
-        self.assertEqual(len(list_cards), 0,
-                         'List returned the wrong number of cards')
+        self.assertEqual(len(list_cards), 0, "List returned the wrong number of cards")
 
     def test_card_list_limit(self):
         """Tests the limit parameter for the card list."""
 
         limit = 5
-        list_cards = self.client.cards.list('1234', limit=limit)
+        list_cards = self.client.cards.list("1234", limit=limit)
 
-        self.assertLessEqual(len(list_cards), limit,
-                             'Page size limit was exceeded')
+        self.assertLessEqual(len(list_cards), limit, "Page size limit was exceeded")

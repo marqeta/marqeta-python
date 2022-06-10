@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class IdentificationResponseModel(object):
 
+class IdentificationResponseModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,19 +18,19 @@ class IdentificationResponseModel(object):
 
     @property
     def type(self):
-        return self.json_response.get('type', None)
-
+        return self.json_response.get("type", None)
 
     @property
     def value(self):
-        return self.json_response.get('value', None)
-
+        return self.json_response.get("value", None)
 
     @property
     def expiration_date(self):
-        if 'expiration_date' in self.json_response:
-            return datetime_object('expiration_date', self.json_response)
-
+        if "expiration_date" in self.json_response:
+            return datetime_object("expiration_date", self.json_response)
 
     def __repr__(self):
-         return '<Marqeta.response_models.identification_response_model.IdentificationResponseModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.identification_response_model.IdentificationResponseModel>"
+            + self.__str__()
+        )

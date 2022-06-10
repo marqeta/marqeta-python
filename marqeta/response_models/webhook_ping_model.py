@@ -4,8 +4,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class WebhookPingModel(object):
 
+class WebhookPingModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -19,8 +19,11 @@ class WebhookPingModel(object):
 
     @property
     def pings(self):
-        if 'pings' in self.json_response:
-            return [EchoPingRequest(val) for val in self.json_response['pings']]
+        if "pings" in self.json_response:
+            return [EchoPingRequest(val) for val in self.json_response["pings"]]
 
     def __repr__(self):
-         return '<Marqeta.response_models.webhook_ping_model.WebhookPingModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.webhook_ping_model.WebhookPingModel>"
+            + self.__str__()
+        )

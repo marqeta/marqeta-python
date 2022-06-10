@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class AvsControlOptions(object):
 
+class AvsControlOptions(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,15 +18,18 @@ class AvsControlOptions(object):
 
     @property
     def validate(self):
-        return self.json_response.get('validate', None)
+        return self.json_response.get("validate", None)
 
     @property
     def decline_on_address_number_mismatch(self):
-        return self.json_response.get('decline_on_address_number_mismatch', None)
+        return self.json_response.get("decline_on_address_number_mismatch", None)
 
     @property
     def decline_on_postal_code_mismatch(self):
-        return self.json_response.get('decline_on_postal_code_mismatch', None)
+        return self.json_response.get("decline_on_postal_code_mismatch", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.avs_control_options.AvsControlOptions>' + self.__str__()
+        return (
+            "<Marqeta.response_models.avs_control_options.AvsControlOptions>"
+            + self.__str__()
+        )

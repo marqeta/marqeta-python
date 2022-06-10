@@ -23,7 +23,7 @@ class TestCardsSave(unittest.TestCase):
 
         card_request = {
             "card_product_token": self.card_product.token,
-            "user_token": user.token
+            "user_token": user.token,
         }
 
         self.card = self.client.cards.create(card_request)
@@ -33,41 +33,38 @@ class TestCardsSave(unittest.TestCase):
 
         card_update_request = {
             "token": self.card.token,
-            "metadata": {
-                "prop1": "Red nose"
-            }
+            "metadata": {"prop1": "Red nose"},
         }
 
-        updated_card = self.client.cards.save(
-            self.card.token, card_update_request)
-
-        self.assertIsNotNone(updated_card.metadata,
-                             'Metadata section not found in updated card')
+        updated_card = self.client.cards.save(self.card.token, card_update_request)
 
         self.assertIsNotNone(
-            updated_card.metadata['prop1'], 'prop1 not found in the metadata')
+            updated_card.metadata, "Metadata section not found in updated card"
+        )
 
-        self.assertEqual(updated_card.metadata['prop1'], card_update_request['metadata']['prop1'],
-                         'Updated card metadata does not match expected value')
+        self.assertIsNotNone(
+            updated_card.metadata["prop1"], "prop1 not found in the metadata"
+        )
+
+        self.assertEqual(
+            updated_card.metadata["prop1"],
+            card_update_request["metadata"]["prop1"],
+            "Updated card metadata does not match expected value",
+        )
 
     def test_cards_save_minimum_request(self):
         """Updates a card without specifying any update values."""
 
         card_update_request = {}
 
-        updated_card = self.client.cards.save(
-            self.card.token, card_update_request)
+        updated_card = self.client.cards.save(self.card.token, card_update_request)
 
         self.assertEqual(updated_card.__dict__, self.card.__dict__)
 
     def test_cards_save_bad_update_request(self):
         """Update a card with a bad card token."""
 
-        card_update_request = {
-            "metadata": {
-                "prop1": "Red nose"
-            }
-        }
+        card_update_request = {"metadata": {"prop1": "Red nose"}}
 
         with self.assertRaises(MarqetaError):
-            self.client.cards.save('Not a card token', card_update_request)
+            self.client.cards.save("Not a card token", card_update_request)

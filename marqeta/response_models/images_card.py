@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class ImagesCard(object):
 
+class ImagesCard(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,13 +18,11 @@ class ImagesCard(object):
 
     @property
     def name(self):
-        return self.json_response.get('name', None)
-
+        return self.json_response.get("name", None)
 
     @property
     def thermal_color(self):
-        return self.json_response.get('thermal_color', None)
-
+        return self.json_response.get("thermal_color", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.images_card.ImagesCard>' + self.__str__()
+        return "<Marqeta.response_models.images_card.ImagesCard>" + self.__str__()

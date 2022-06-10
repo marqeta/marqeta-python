@@ -29,7 +29,9 @@ class TestUsersList(unittest.TestCase):
             # Wait a second between creations so we can sort by time
             time.sleep(1)
 
-    @unittest.skipIf(Utilities.on_shared_sandbox(), 'Test should not be run on the shared sandbox')
+    @unittest.skipIf(
+        Utilities.on_shared_sandbox(), "Test should not be run on the shared sandbox"
+    )
     def test_users_list_noargs(self):
         """
 
@@ -41,8 +43,11 @@ class TestUsersList(unittest.TestCase):
 
         users = self.client.users.list()
 
-        self.assertGreaterEqual(len(users), self.num_clients_created,
-                                'List returned fewer users than are known to exist')
+        self.assertGreaterEqual(
+            len(users),
+            self.num_clients_created,
+            "List returned fewer users than are known to exist",
+        )
 
         for user in users:
             verify_card_holder_model(self, user, {})
@@ -54,8 +59,9 @@ class TestUsersList(unittest.TestCase):
 
         users = self.client.users.list(limit=limit)
 
-        self.assertEqual(len(users), limit,
-                         'List did not return the expected number of users')
+        self.assertEqual(
+            len(users), limit, "List did not return the expected number of users"
+        )
 
         for user in users:
             verify_card_holder_model(self, user, {})
@@ -64,7 +70,8 @@ class TestUsersList(unittest.TestCase):
         """Gets users sorted by last modified time from newest to oldest."""
 
         users = self.client.users.list(
-            limit=10, params={"sort_by": "-lastModifiedTime"})
+            limit=10, params={"sort_by": "-lastModifiedTime"}
+        )
 
         last_modified_times = []
 
@@ -75,14 +82,14 @@ class TestUsersList(unittest.TestCase):
         sorted_times = last_modified_times
         sorted_times.sort(reverse=True)
 
-        self.assertEqual(last_modified_times, sorted_times,
-                         'List was not sorted correctly')
+        self.assertEqual(
+            last_modified_times, sorted_times, "List was not sorted correctly"
+        )
 
     def test_users_list_sort_last_modified(self):
         """Gets users sorted by last modified time from oldest to newest."""
 
-        users = self.client.users.list(
-            limit=10, params={"sort_by": "lastModifiedTime"})
+        users = self.client.users.list(limit=10, params={"sort_by": "lastModifiedTime"})
 
         last_modified_times = []
 
@@ -93,5 +100,6 @@ class TestUsersList(unittest.TestCase):
         sorted_times = last_modified_times
         sorted_times.sort()
 
-        self.assertEqual(last_modified_times, sorted_times,
-                         'List was not sorted correctly')
+        self.assertEqual(
+            last_modified_times, sorted_times, "List was not sorted correctly"
+        )
