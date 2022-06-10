@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class ActivationActions(object):
 
+class ActivationActions(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,12 +18,16 @@ class ActivationActions(object):
 
     @property
     def terminate_reissued_source_card(self):
-        return self.json_response.get('terminate_reissued_source_card', None)
+        return self.json_response.get("terminate_reissued_source_card", None)
 
     @property
     def swap_digital_wallet_tokens_from_card_token(self):
-        return self.json_response.get('swap_digital_wallet_tokens_from_card_token', None)
-
+        return self.json_response.get(
+            "swap_digital_wallet_tokens_from_card_token", None
+        )
 
     def __repr__(self):
-         return '<Marqeta.response_models.activation_actions.ActivationActions>' + self.__str__()
+        return (
+            "<Marqeta.response_models.activation_actions.ActivationActions>"
+            + self.__str__()
+        )

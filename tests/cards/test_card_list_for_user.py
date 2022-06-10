@@ -26,17 +26,16 @@ class TestCardListForUser(unittest.TestCase):
 
         card_request = {
             "card_product_token": card_product.token,
-            "user_token": self.user.token
+            "user_token": self.user.token,
         }
 
         card = self.client.cards.create(card_request)
 
         cards = self.client.cards.list_for_user(self.user.token)
 
-        self.assertEqual(len(cards), 1, 'Incorrect number of cards returned')
+        self.assertEqual(len(cards), 1, "Incorrect number of cards returned")
 
-        self.assertEqual(cards[0].token, card.token,
-                         'Incorrect card seen in list')
+        self.assertEqual(cards[0].token, card.token, "Incorrect card seen in list")
 
     def test_user_two_cards(self):
         """Tests list when user has multiple cards."""
@@ -45,7 +44,7 @@ class TestCardListForUser(unittest.TestCase):
 
         card_request = {
             "card_product_token": card_product.token,
-            "user_token": self.user.token
+            "user_token": self.user.token,
         }
 
         card_one = self.client.cards.create(card_request)
@@ -53,20 +52,22 @@ class TestCardListForUser(unittest.TestCase):
 
         cards = self.client.cards.list_for_user(self.user.token)
 
-        self.assertEqual(len(cards), 2, 'Incorrect number of cards returned')
+        self.assertEqual(len(cards), 2, "Incorrect number of cards returned")
 
         if card_one.token == cards[0].token:
             self.assertEqual(
-                card_two.token, cards[1].token, 'Incorrect card seen in list')
+                card_two.token, cards[1].token, "Incorrect card seen in list"
+            )
         elif card_two.token == cards[0].token:
             self.assertEqual(
-                card_one.token, cards[1].token, 'Incorrect card seen in list')
+                card_one.token, cards[1].token, "Incorrect card seen in list"
+            )
         else:
-            self.fail('Both cards in the list were unexpected')
+            self.fail("Both cards in the list were unexpected")
 
     def test_user_zero_cards(self):
         """Tests list when user has zero cards"""
 
         cards = self.client.cards.list_for_user(self.user.token)
 
-        self.assertEqual(len(cards), 0, 'Incorrect number of cards returned')
+        self.assertEqual(len(cards), 0, "Incorrect number of cards returned")

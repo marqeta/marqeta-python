@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class CardholderNoteUpdateRequestModel(object):
 
+class CardholderNoteUpdateRequestModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,8 +18,10 @@ class CardholderNoteUpdateRequestModel(object):
 
     @property
     def description(self):
-        return self.json_response.get('description', None)
-
+        return self.json_response.get("description", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.cardholder_note_update_request_model.CardholderNoteUpdateRequestModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.cardholder_note_update_request_model.CardholderNoteUpdateRequestModel>"
+            + self.__str__()
+        )

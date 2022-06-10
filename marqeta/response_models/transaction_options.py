@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class TransactionOptions(object):
 
+class TransactionOptions(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,30 +18,30 @@ class TransactionOptions(object):
 
     @property
     def additional_data(self):
-        return self.json_response.get('additional_data', None)
-
+        return self.json_response.get("additional_data", None)
 
     @property
     def database_transaction_timeout(self):
-        return self.json_response.get('database_transaction_timeout', None)
+        return self.json_response.get("database_transaction_timeout", None)
 
     @property
     def pre_auth_time_limit(self):
-        return self.json_response.get('pre_auth_time_limit', None)
-
+        return self.json_response.get("pre_auth_time_limit", None)
 
     @property
     def send_expiration_date(self):
-        return self.json_response.get('send_expiration_date', None)
+        return self.json_response.get("send_expiration_date", None)
 
     @property
     def send_track_data(self):
-        return self.json_response.get('send_track_data', None)
+        return self.json_response.get("send_track_data", None)
 
     @property
     def card_expiration_date_yymm(self):
-        return self.json_response.get('card_expiration_date_yymm', None)
-
+        return self.json_response.get("card_expiration_date_yymm", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.transaction_options.TransactionOptions>' + self.__str__()
+        return (
+            "<Marqeta.response_models.transaction_options.TransactionOptions>"
+            + self.__str__()
+        )

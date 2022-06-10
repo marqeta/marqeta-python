@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class SpendControlAssociation(object):
 
+class SpendControlAssociation(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,13 +18,14 @@ class SpendControlAssociation(object):
 
     @property
     def card_product_token(self):
-        return self.json_response.get('card_product_token', None)
-
+        return self.json_response.get("card_product_token", None)
 
     @property
     def user_token(self):
-        return self.json_response.get('user_token', None)
-
+        return self.json_response.get("user_token", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.spend_control_association.SpendControlAssociation>' + self.__str__()
+        return (
+            "<Marqeta.response_models.spend_control_association.SpendControlAssociation>"
+            + self.__str__()
+        )

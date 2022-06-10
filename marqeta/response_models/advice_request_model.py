@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class AdviceRequestModel(object):
 
+class AdviceRequestModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,13 +18,14 @@ class AdviceRequestModel(object):
 
     @property
     def message(self):
-        return self.json_response.get('message', None)
-
+        return self.json_response.get("message", None)
 
     @property
     def network(self):
-        return self.json_response.get('network', None)
-
+        return self.json_response.get("network", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.advice_request_model.AdviceRequestModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.advice_request_model.AdviceRequestModel>"
+            + self.__str__()
+        )

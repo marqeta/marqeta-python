@@ -24,10 +24,10 @@ class TestBusinessesLookUp(unittest.TestCase):
         found = self.client.businesses.look_up({"dda": account_number})
 
         verify = {
-            'token': business.token,
-            'account_holder_group_token': business.account_holder_group_token,
-            'active': business.active,
-            'metadata': business.metadata
+            "token": business.token,
+            "account_holder_group_token": business.account_holder_group_token,
+            "active": business.active,
+            "metadata": business.metadata,
         }
 
         verify_business_card_holder_model(self, found, verify)

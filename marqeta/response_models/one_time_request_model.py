@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class OneTimeRequestModel(object):
 
+class OneTimeRequestModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,18 +18,18 @@ class OneTimeRequestModel(object):
 
     @property
     def email(self):
-        return self.json_response.get('email', None)
-
+        return self.json_response.get("email", None)
 
     @property
     def password(self):
-        return self.json_response.get('password', None)
-
+        return self.json_response.get("password", None)
 
     @property
     def user_token(self):
-        return self.json_response.get('user_token', None)
-
+        return self.json_response.get("user_token", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.one_time_request_model.OneTimeRequestModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.one_time_request_model.OneTimeRequestModel>"
+            + self.__str__()
+        )

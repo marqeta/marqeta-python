@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class ControlTokenResponse(object):
 
+class ControlTokenResponse(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,8 +18,10 @@ class ControlTokenResponse(object):
 
     @property
     def control_token(self):
-        return self.json_response.get('control_token', None)
-
+        return self.json_response.get("control_token", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.control_token_response.ControlTokenResponse>' + self.__str__()
+        return (
+            "<Marqeta.response_models.control_token_response.ControlTokenResponse>"
+            + self.__str__()
+        )

@@ -4,8 +4,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class AdvancedSimulationResponseModel(object):
 
+class AdvancedSimulationResponseModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -19,12 +19,15 @@ class AdvancedSimulationResponseModel(object):
 
     @property
     def transaction(self):
-        if 'transaction' in self.json_response:
-            return TransactionModel(self.json_response['transaction'])
+        if "transaction" in self.json_response:
+            return TransactionModel(self.json_response["transaction"])
 
     @property
     def raw_iso8583(self):
-        return self.json_response.get('raw_iso8583', None)
+        return self.json_response.get("raw_iso8583", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.advanced_simulation_response_model.AdvancedSimulationResponseModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.advanced_simulation_response_model.AdvancedSimulationResponseModel>"
+            + self.__str__()
+        )

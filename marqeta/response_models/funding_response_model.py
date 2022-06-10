@@ -4,8 +4,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class FundingResponseModel(object):
 
+class FundingResponseModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -19,20 +19,23 @@ class FundingResponseModel(object):
 
     @property
     def id(self):
-        return self.json_response.get('id', None)
+        return self.json_response.get("id", None)
 
     @property
     def accounting_balance(self):
-        return self.json_response.get('accounting_balance', None)
+        return self.json_response.get("accounting_balance", None)
 
     @property
     def available_balance(self):
-        return self.json_response.get('available_balance', None)
+        return self.json_response.get("available_balance", None)
 
     @property
     def transaction(self):
-        if 'transaction' in self.json_response:
-            return Gatewaylog(self.json_response['transaction'])
+        if "transaction" in self.json_response:
+            return Gatewaylog(self.json_response["transaction"])
 
     def __repr__(self):
-         return '<Marqeta.response_models.funding_response_model.FundingResponseModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.funding_response_model.FundingResponseModel>"
+            + self.__str__()
+        )

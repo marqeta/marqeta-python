@@ -37,4 +37,4 @@ class TestFundingSourcesAchFind(unittest.TestCase):
         """Tests unsuccessful find of an ach funding source."""
 
         with self.assertRaises(MarqetaError):
-            self.client.funding_sources.ach.find('Not a funding source token')
+            self.client.funding_sources.ach.find("Not a funding source token")

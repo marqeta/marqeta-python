@@ -25,16 +25,16 @@ class TestCardProductsFind(unittest.TestCase):
 
         found = self.client.card_products.find(card_product.token)
 
-        self.assertIsNotNone(found, 'No card products were found')
+        self.assertIsNotNone(found, "No card products were found")
 
-        with self.subTest('Card returned has wrong token'):
+        with self.subTest("Card returned has wrong token"):
             self.assertEqual(found.token, card_product.token)
 
-        with self.subTest('Card returned has wrong name'):
+        with self.subTest("Card returned has wrong name"):
             self.assertEqual(found.name, card_product.name)
 
     def test_card_products_find_failure(self):
         """Testing expected behavior when a card product is not found."""
 
         with self.assertRaises(MarqetaError):
-            self.client.card_products.find('Not a card product token')
+            self.client.card_products.find("Not a card product token")

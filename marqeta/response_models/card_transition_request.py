@@ -4,8 +4,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class CardTransitionRequest(object):
 
+class CardTransitionRequest(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -19,38 +19,35 @@ class CardTransitionRequest(object):
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def card_token(self):
-        return self.json_response.get('card_token', None)
-
+        return self.json_response.get("card_token", None)
 
     @property
     def reason(self):
-        return self.json_response.get('reason', None)
-
+        return self.json_response.get("reason", None)
 
     @property
     def reason_code(self):
-        return self.json_response.get('reason_code', None)
-
+        return self.json_response.get("reason_code", None)
 
     @property
     def validations(self):
-        if 'validations' in self.json_response:
-            return ValidationsRequest(self.json_response['validations'])
+        if "validations" in self.json_response:
+            return ValidationsRequest(self.json_response["validations"])
 
     @property
     def channel(self):
-        return self.json_response.get('channel', None)
-
+        return self.json_response.get("channel", None)
 
     @property
     def state(self):
-        return self.json_response.get('state', None)
-
+        return self.json_response.get("state", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.card_transition_request.CardTransitionRequest>' + self.__str__()
+        return (
+            "<Marqeta.response_models.card_transition_request.CardTransitionRequest>"
+            + self.__str__()
+        )

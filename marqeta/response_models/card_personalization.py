@@ -6,8 +6,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class CardPersonalization(object):
 
+class CardPersonalization(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -21,18 +21,21 @@ class CardPersonalization(object):
 
     @property
     def text(self):
-        if 'text' in self.json_response:
-            return Text(self.json_response['text'])
+        if "text" in self.json_response:
+            return Text(self.json_response["text"])
 
     @property
     def images(self):
-        if 'images' in self.json_response:
-            return Images(self.json_response['images'])
+        if "images" in self.json_response:
+            return Images(self.json_response["images"])
 
     @property
     def carrier(self):
-        if 'carrier' in self.json_response:
-            return Carrier(self.json_response['carrier'])
+        if "carrier" in self.json_response:
+            return Carrier(self.json_response["carrier"])
 
     def __repr__(self):
-         return '<Marqeta.response_models.card_personalization.CardPersonalization>' + self.__str__()
+        return (
+            "<Marqeta.response_models.card_personalization.CardPersonalization>"
+            + self.__str__()
+        )

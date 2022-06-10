@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class MonitorResponse(object):
 
+class MonitorResponse(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,15 +18,18 @@ class MonitorResponse(object):
 
     @property
     def success(self):
-        return self.json_response.get('success', None)
+        return self.json_response.get("success", None)
 
     @property
     def metadata(self):
-        return self.json_response.get('metadata', None)
+        return self.json_response.get("metadata", None)
 
     @property
     def errors(self):
-        return self.json_response.get('errors', None)
+        return self.json_response.get("errors", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.monitor_response.MonitorResponse>' + self.__str__()
+        return (
+            "<Marqeta.response_models.monitor_response.MonitorResponse>"
+            + self.__str__()
+        )

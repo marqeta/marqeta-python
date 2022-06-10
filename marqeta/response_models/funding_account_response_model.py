@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class FundingAccountResponseModel(object):
 
+class FundingAccountResponseModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,89 +18,78 @@ class FundingAccountResponseModel(object):
 
     @property
     def created_time(self):
-        if 'created_time' in self.json_response:
-            return datetime_object('created_time', self.json_response)
-
+        if "created_time" in self.json_response:
+            return datetime_object("created_time", self.json_response)
 
     @property
     def last_modified_time(self):
-        if 'last_modified_time' in self.json_response:
-            return datetime_object('last_modified_time', self.json_response)
-
+        if "last_modified_time" in self.json_response:
+            return datetime_object("last_modified_time", self.json_response)
 
     @property
     def type(self):
-        return self.json_response.get('type', None)
-
+        return self.json_response.get("type", None)
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def account_suffix(self):
-        return self.json_response.get('account_suffix', None)
-
+        return self.json_response.get("account_suffix", None)
 
     @property
     def account_type(self):
-        return self.json_response.get('account_type', None)
-
+        return self.json_response.get("account_type", None)
 
     @property
     def active(self):
-        return self.json_response.get('active', None)
+        return self.json_response.get("active", None)
 
     @property
     def is_default_account(self):
-        return self.json_response.get('is_default_account', None)
+        return self.json_response.get("is_default_account", None)
 
     @property
     def exp_date(self):
-        return self.json_response.get('exp_date', None)
-
+        return self.json_response.get("exp_date", None)
 
     @property
     def verification_status(self):
-        return self.json_response.get('verification_status', None)
-
+        return self.json_response.get("verification_status", None)
 
     @property
     def date_verified(self):
-        if 'date_verified' in self.json_response:
-            return datetime_object('date_verified', self.json_response)
-
+        if "date_verified" in self.json_response:
+            return datetime_object("date_verified", self.json_response)
 
     @property
     def user_token(self):
-        return self.json_response.get('user_token', None)
-
+        return self.json_response.get("user_token", None)
 
     @property
     def business_token(self):
-        return self.json_response.get('business_token', None)
-
+        return self.json_response.get("business_token", None)
 
     @property
     def name_on_account(self):
-        return self.json_response.get('name_on_account', None)
-
+        return self.json_response.get("name_on_account", None)
 
     @property
     def date_sent_for_verification(self):
-        if 'date_sent_for_verification' in self.json_response:
-            return datetime_object('date_sent_for_verification', self.json_response)
-
+        if "date_sent_for_verification" in self.json_response:
+            return datetime_object("date_sent_for_verification", self.json_response)
 
     @property
     def verification_override(self):
-        return self.json_response.get('verification_override', None)
+        return self.json_response.get("verification_override", None)
 
     @property
     def verification_notes(self):
-        return self.json_response.get('verification_notes', None)
-
+        return self.json_response.get("verification_notes", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.funding_account_response_model.FundingAccountResponseModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.funding_account_response_model.FundingAccountResponseModel>"
+            + self.__str__()
+        )

@@ -5,8 +5,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class AuthControlUpdateRequest(object):
 
+class AuthControlUpdateRequest(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -20,39 +20,38 @@ class AuthControlUpdateRequest(object):
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def name(self):
-        return self.json_response.get('name', None)
-
+        return self.json_response.get("name", None)
 
     @property
     def association(self):
-        if 'association' in self.json_response:
-            return SpendControlAssociation(self.json_response['association'])
+        if "association" in self.json_response:
+            return SpendControlAssociation(self.json_response["association"])
 
     @property
     def merchant_scope(self):
-        if 'merchant_scope' in self.json_response:
-            return MerchantScope(self.json_response['merchant_scope'])
+        if "merchant_scope" in self.json_response:
+            return MerchantScope(self.json_response["merchant_scope"])
 
     @property
     def start_time(self):
-        if 'start_time' in self.json_response:
-            return datetime_object('start_time', self.json_response)
-
+        if "start_time" in self.json_response:
+            return datetime_object("start_time", self.json_response)
 
     @property
     def end_time(self):
-        if 'end_time' in self.json_response:
-            return datetime_object('end_time', self.json_response)
-
+        if "end_time" in self.json_response:
+            return datetime_object("end_time", self.json_response)
 
     @property
     def active(self):
-        return self.json_response.get('active', None)
+        return self.json_response.get("active", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.auth_control_update_request.AuthControlUpdateRequest>' + self.__str__()
+        return (
+            "<Marqeta.response_models.auth_control_update_request.AuthControlUpdateRequest>"
+            + self.__str__()
+        )

@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class MerchantModel(object):
 
+class MerchantModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,79 +18,67 @@ class MerchantModel(object):
 
     @property
     def name(self):
-        return self.json_response.get('name', None)
-
+        return self.json_response.get("name", None)
 
     @property
     def active(self):
-        return self.json_response.get('active', None)
+        return self.json_response.get("active", None)
 
     @property
     def contact(self):
-        return self.json_response.get('contact', None)
-
+        return self.json_response.get("contact", None)
 
     @property
     def contact_email(self):
-        return self.json_response.get('contact_email', None)
-
+        return self.json_response.get("contact_email", None)
 
     @property
     def longitude(self):
-        return self.json_response.get('longitude', None)
+        return self.json_response.get("longitude", None)
 
     @property
     def latitude(self):
-        return self.json_response.get('latitude', None)
+        return self.json_response.get("latitude", None)
 
     @property
     def address1(self):
-        return self.json_response.get('address1', None)
-
+        return self.json_response.get("address1", None)
 
     @property
     def address2(self):
-        return self.json_response.get('address2', None)
-
+        return self.json_response.get("address2", None)
 
     @property
     def city(self):
-        return self.json_response.get('city', None)
-
+        return self.json_response.get("city", None)
 
     @property
     def state(self):
-        return self.json_response.get('state', None)
-
+        return self.json_response.get("state", None)
 
     @property
     def province(self):
-        return self.json_response.get('province', None)
-
+        return self.json_response.get("province", None)
 
     @property
     def zip(self):
-        return self.json_response.get('zip', None)
-
+        return self.json_response.get("zip", None)
 
     @property
     def phone(self):
-        return self.json_response.get('phone', None)
-
+        return self.json_response.get("phone", None)
 
     @property
     def country(self):
-        return self.json_response.get('country', None)
-
+        return self.json_response.get("country", None)
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def partial_auth_flag(self):
-        return self.json_response.get('partial_auth_flag', None)
+        return self.json_response.get("partial_auth_flag", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.merchant_model.MerchantModel>' + self.__str__()
+        return "<Marqeta.response_models.merchant_model.MerchantModel>" + self.__str__()

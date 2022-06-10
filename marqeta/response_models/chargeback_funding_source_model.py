@@ -4,8 +4,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class ChargebackFundingSourceModel(FundingSourceModel):
 
+class ChargebackFundingSourceModel(FundingSourceModel):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -19,12 +19,14 @@ class ChargebackFundingSourceModel(FundingSourceModel):
 
     @property
     def name(self):
-        return self.json_response.get('name', None)
-
+        return self.json_response.get("name", None)
 
     @property
     def credit(self):
-        return self.json_response.get('credit', None)
+        return self.json_response.get("credit", None)
 
     def __repr__(self):
-         return '<Marqeta.response_models.chargeback_funding_source_model.ChargebackFundingSourceModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.chargeback_funding_source_model.ChargebackFundingSourceModel>"
+            + self.__str__()
+        )

@@ -32,9 +32,7 @@ class TestTransactionsListForFundingSource(unittest.TestCase):
     def get_merchant(cls):
         """Returns a new merchant."""
 
-        merchant_model = {
-            "name": cls.fake.company()
-        }
+        merchant_model = {"name": cls.fake.company()}
 
         return cls.client.merchants.create(merchant_model)
 
@@ -49,7 +47,7 @@ class TestTransactionsListForFundingSource(unittest.TestCase):
             "account_number": "4112344112344113",
             "cvv_number": "123",
             "exp_date": "0323",
-            "zip": "94612"
+            "zip": "94612",
         }
 
         return cls.client.funding_sources.payment_card.create(payment_card_request)
@@ -73,7 +71,7 @@ class TestTransactionsListForFundingSource(unittest.TestCase):
 
         card_request = {
             "card_product_token": card_product.token,
-            "user_token": cls._user.token
+            "user_token": cls._user.token,
         }
 
         return cls.client.cards.create(card_request)
@@ -90,7 +88,7 @@ class TestTransactionsListForFundingSource(unittest.TestCase):
             "city": "Oakland",
             "state": "CA",
             "zip": "94612",
-            "country": "USA"
+            "country": "USA",
         }
 
         return cls.client.funding_sources.addresses.create(request)
@@ -104,7 +102,7 @@ class TestTransactionsListForFundingSource(unittest.TestCase):
             "amount": 10000.00,
             "currency_code": "USD",
             "funding_source_token": cls._fund_source.token,
-            "funding_source_address_token": cls._address.token
+            "funding_source_address_token": cls._address.token,
         }
 
         cls.client.gpa_orders.create(gpa_request)
@@ -116,7 +114,7 @@ class TestTransactionsListForFundingSource(unittest.TestCase):
         transition_body = {
             "card_token": cls._card.token,
             "channel": "API",
-            "state": "ACTIVE"
+            "state": "ACTIVE",
         }
 
         cls.client.cards(cls._card.token).transitions.create(transition_body)
@@ -128,12 +126,12 @@ class TestTransactionsListForFundingSource(unittest.TestCase):
         auth_request_model = {
             "card_token": cls._card.token,
             "amount": 100.0,
-            "mid": cls._merchant.token
+            "mid": cls._merchant.token,
         }
 
         for _ in range(num):
             authorization = cls.sim.authorization(auth_request_model)
-            cls._auth_tokens.append(authorization['transaction']['token'])
+            cls._auth_tokens.append(authorization["transaction"]["token"])
 
     def test_list_for_funding_source(self):
         """Tests the list for funding source endpoint."""
@@ -141,8 +139,9 @@ class TestTransactionsListForFundingSource(unittest.TestCase):
         auth_tokens = self._auth_tokens
 
         entries = self.client.transactions.list_for_funding_source(
-            self._fund_source.token, limit=10)
+            self._fund_source.token, limit=10
+        )
 
         for entry in entries:
-            with self.subTest('Unexpected authorization found'):
+            with self.subTest("Unexpected authorization found"):
                 self.assertIn(entry.token, auth_tokens)

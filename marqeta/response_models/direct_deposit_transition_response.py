@@ -3,8 +3,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class DirectDepositTransitionResponse(object):
 
+class DirectDepositTransitionResponse(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -18,49 +18,43 @@ class DirectDepositTransitionResponse(object):
 
     @property
     def channel(self):
-        return self.json_response.get('channel', None)
-
+        return self.json_response.get("channel", None)
 
     @property
     def token(self):
-        return self.json_response.get('token', None)
-
+        return self.json_response.get("token", None)
 
     @property
     def reason(self):
-        return self.json_response.get('reason', None)
-
+        return self.json_response.get("reason", None)
 
     @property
     def type(self):
-        return self.json_response.get('type', None)
-
+        return self.json_response.get("type", None)
 
     @property
     def direct_deposit_token(self):
-        return self.json_response.get('direct_deposit_token', None)
-
+        return self.json_response.get("direct_deposit_token", None)
 
     @property
     def transaction_token(self):
-        return self.json_response.get('transaction_token', None)
-
+        return self.json_response.get("transaction_token", None)
 
     @property
     def state(self):
-        return self.json_response.get('state', None)
-
+        return self.json_response.get("state", None)
 
     @property
     def reason_code(self):
-        return self.json_response.get('reason_code', None)
-
+        return self.json_response.get("reason_code", None)
 
     @property
     def created_time(self):
-        if 'created_time' in self.json_response:
-            return datetime_object('created_time', self.json_response)
-
+        if "created_time" in self.json_response:
+            return datetime_object("created_time", self.json_response)
 
     def __repr__(self):
-         return '<Marqeta.response_models.direct_deposit_transition_response.DirectDepositTransitionResponse>' + self.__str__()
+        return (
+            "<Marqeta.response_models.direct_deposit_transition_response.DirectDepositTransitionResponse>"
+            + self.__str__()
+        )

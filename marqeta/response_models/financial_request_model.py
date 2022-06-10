@@ -6,8 +6,8 @@ from marqeta.response_models import datetime_object
 import json
 import re
 
-class FinancialRequestModel(object):
 
+class FinancialRequestModel(object):
     def __init__(self, json_response):
         self.json_response = json_response
 
@@ -21,45 +21,45 @@ class FinancialRequestModel(object):
 
     @property
     def amount(self):
-        return self.json_response.get('amount', None)
+        return self.json_response.get("amount", None)
 
     @property
     def card_token(self):
-        return self.json_response.get('card_token', None)
-
+        return self.json_response.get("card_token", None)
 
     @property
     def pin(self):
-        return self.json_response.get('pin', None)
-
+        return self.json_response.get("pin", None)
 
     @property
     def mid(self):
-        return self.json_response.get('mid', None)
-
+        return self.json_response.get("mid", None)
 
     @property
     def cash_back_amount(self):
-        return self.json_response.get('cash_back_amount', None)
+        return self.json_response.get("cash_back_amount", None)
 
     @property
     def is_pre_auth(self):
-        return self.json_response.get('is_pre_auth', None)
+        return self.json_response.get("is_pre_auth", None)
 
     @property
     def card_acceptor(self):
-        if 'card_acceptor' in self.json_response:
-            return CardAcceptorModel(self.json_response['card_acceptor'])
+        if "card_acceptor" in self.json_response:
+            return CardAcceptorModel(self.json_response["card_acceptor"])
 
     @property
     def transaction_options(self):
-        if 'transaction_options' in self.json_response:
-            return TransactionOptions(self.json_response['transaction_options'])
+        if "transaction_options" in self.json_response:
+            return TransactionOptions(self.json_response["transaction_options"])
 
     @property
     def webhook(self):
-        if 'webhook' in self.json_response:
-            return Webhook(self.json_response['webhook'])
+        if "webhook" in self.json_response:
+            return Webhook(self.json_response["webhook"])
 
     def __repr__(self):
-         return '<Marqeta.response_models.financial_request_model.FinancialRequestModel>' + self.__str__()
+        return (
+            "<Marqeta.response_models.financial_request_model.FinancialRequestModel>"
+            + self.__str__()
+        )
