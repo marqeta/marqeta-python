@@ -79,7 +79,7 @@ class Collection(object):
                 break
         return list_of_user_object
 
-    def create(self, data, endpoint=None, query_params=None):
+    def create(self, data, endpoint=None, query_params=None, proxy_data=None):
         """
         Creates an endpoint object
         :param data: data required for creation
@@ -87,7 +87,7 @@ class Collection(object):
         :param limit: limit count for the list
         :return: list of resource object
         """
-        response = self.client.post(endpoint, data, query_params)[0]
+        response = self.client.post(endpoint, data, query_params, proxy_data)[0]
         return self.resource(response)
 
     def find(self, endpoint=None, query_params=None):

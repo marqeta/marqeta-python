@@ -112,7 +112,7 @@ class CardsCollection(object):
             limit=limit,
         )
 
-    def create(self, data={}, params=None):
+    def create(self, data={}, params=None, proxy_data=None):
         """
         Creates an cards object
         :param data: data required for creation

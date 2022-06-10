@@ -99,6 +99,9 @@ from marqeta.resources.push_to_cards import PushToCardsCollection
 from marqeta.resources.pins import PinsCollection
 from marqeta.response_models.ping_response import PingResponse
 from marqeta.response_models.echo_ping_response import EchoPingResponse
+import requests
+import tempfile
+import os
 
 headers = {
     "content-type": "application/json",
@@ -188,20 +191,37 @@ class Client(object):
         self.push_to_cards = objects["push_to_cards"]()
         self.pins = objects["pins"]()
 
-    def get(self, endpoint, query_params=None):
+    def get(self, endpoint, query_params=None, proxy_data=None):
         """
         Gets the response for the requested endpoint
         :param endpoint:
         :param query_params:
         :return: json response and response status code
         """
-        response = requests.get(
-            url=self.base_url + endpoint,
-            auth=(self.application_token, self.access_token),
-            headers=headers,
-            params=query_params,
-            timeout=self.timeout,
-        )
+        if proxy_data:
+            with tempfile.NamedTemporaryFile() as ca_file:
+                ca_file.write(proxy_data["pem_key"].encode())
+                ca_file.write(str.encode(os.linesep))
+                ca_file.write(self.read_file(proxy_data["ca_path"]))
+                self.read_file(ca_file.name)
+                response = requests.post(
+                    url=self.base_url + endpoint,
+                    auth=(self.application_token, self.access_token),
+                    headers=headers,
+                    params=query_params,
+                    timeout=self.timeout,
+                    verify=ca_file.name,
+                    proxies=proxy_data["https"],
+                )
+                return response
+        else:
+            response = requests.get(
+                url=self.base_url + endpoint,
+                auth=(self.application_token, self.access_token),
+                headers=headers,
+                params=query_params,
+                timeout=self.timeout,
+            )
 
         if response.status_code >= 400:
             response = response.json()
@@ -214,7 +234,7 @@ class Client(object):
                 )
         return response.json(), response.status_code
 
-    def put(self, endpoint, data):
+    def put(self, endpoint, data, proxy_data=None):
         """
         Updates the data for the endpoint
         :param endpoint:
@@ -222,13 +242,30 @@ class Client(object):
         :return:json response and response status code
         """
 
-        response = requests.put(
-            url=self.base_url + endpoint,
-            auth=(self.application_token, self.access_token),
-            headers=headers,
-            timeout=self.timeout,
-            data=json.dumps(data),
-        )
+        if proxy_data:
+            with tempfile.NamedTemporaryFile() as ca_file:
+                ca_file.write(proxy_data["pem_key"].encode())
+                ca_file.write(str.encode(os.linesep))
+                ca_file.write(self.read_file(proxy_data["ca_path"]))
+                self.read_file(ca_file.name)
+                response = requests.post(
+                    url=self.base_url + endpoint,
+                    auth=(self.application_token, self.access_token),
+                    headers=headers,
+                    timeout=self.timeout,
+                    verify=ca_file.name,
+                    proxies=proxy_data["https"],
+                    data=json.dumps(data),
+                )
+                return response
+        else:
+            response = requests.put(
+                url=self.base_url + endpoint,
+                auth=(self.application_token, self.access_token),
+                headers=headers,
+                timeout=self.timeout,
+                data=json.dumps(data),
+            )
         if response.status_code >= 400:
             response = response.json()
             if "error_code" not in response:
@@ -240,7 +277,7 @@ class Client(object):
                 )
         return response.json(), response.status_code
 
-    def post(self, endpoint, data=None, query_params=None):
+    def post(self, endpoint, data=None, query_params=None, proxy_data=None):
         """
         Creates the property for the requested endpoint
         :param endpoint:
@@ -248,14 +285,32 @@ class Client(object):
         :param query_params: json response and response status code
         :return:
         """
-        response = requests.post(
-            url=self.base_url + endpoint,
-            auth=(self.application_token, self.access_token),
-            headers=headers,
-            timeout=self.timeout,
-            params=query_params,
-            data=json.dumps(data),
-        )
+        if proxy_data:
+            with tempfile.NamedTemporaryFile() as ca_file:
+                ca_file.write(proxy_data["pem_key"].encode())
+                ca_file.write(str.encode(os.linesep))
+                ca_file.write(self.read_file(proxy_data["ca_path"]))
+                self.read_file(ca_file.name)
+                response = requests.post(
+                    url=self.base_url + endpoint,
+                    auth=(self.application_token, self.access_token),
+                    headers=headers,
+                    timeout=self.timeout,
+                    verify=ca_file.name,
+                    params=query_params,
+                    proxies=proxy_data["https"],
+                    data=json.dumps(data),
+                )
+                return response
+        else:
+            response = requests.post(
+                url=self.base_url + endpoint,
+                auth=(self.application_token, self.access_token),
+                headers=headers,
+                timeout=self.timeout,
+                params=query_params,
+                data=json.dumps(data),
+            )
         if response.status_code >= 400:
             response = response.json()
             if "error_code" not in response:
@@ -267,18 +322,34 @@ class Client(object):
                 )
         return response.json(), response.status_code
 
-    def delete(self, endpoint):
+    def delete(self, endpoint, proxy_data=None):
         """
         Deletes the requested endpoint(For future use)
         :param endpoint:
         :return: json response and response status code
         """
-        response = requests.delete(
-            url=self.base_url + endpoint,
-            auth=(self.application_token, self.access_token),
-            headers=headers,
-            timeout=self.timeout,
-        )
+        if proxy_data:
+            with tempfile.NamedTemporaryFile() as ca_file:
+                ca_file.write(proxy_data["pem_key"].encode())
+                ca_file.write(str.encode(os.linesep))
+                ca_file.write(self.read_file(proxy_data["ca_path"]))
+                self.read_file(ca_file.name)
+                response = requests.post(
+                    url=self.base_url + endpoint,
+                    auth=(self.application_token, self.access_token),
+                    headers=headers,
+                    timeout=self.timeout,
+                    verify=ca_file.name,
+                    proxies=proxy_data["https"],
+                )
+                return response
+        else:
+            response = requests.delete(
+                url=self.base_url + endpoint,
+                auth=(self.application_token, self.access_token),
+                headers=headers,
+                timeout=self.timeout,
+            )
         if response.status_code >= 400:
             response = response.json()
             if "error_code" not in response:
@@ -494,3 +565,7 @@ class Client(object):
 
     def __repr__(self):
         return "<Marqeta.__init__.Client>"
+
+    def read_file(self, path):
+        with open(path, mode="rb") as file:
+            return file.read()
