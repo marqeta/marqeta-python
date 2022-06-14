@@ -127,7 +127,10 @@ class CardsCollection(object):
         :return: CardResponse object
         """
         return self.collections.create(
-            endpoint=self._endpoint, query_params=params, data=data
+            endpoint=self._endpoint,
+            query_params=params,
+            data=data,
+            proxy_data=proxy_data,
         )
 
     def find(self, token, params=None):
