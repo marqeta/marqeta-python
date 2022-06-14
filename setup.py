@@ -10,7 +10,7 @@ setup(
     name="marqeta",
     # Manually adding version number due to issues with poetry when calling __version__
     # This has to be updated alongside version.py when the version changes
-    version="0.2.3",
+    version="0.2.4",
     description="Marqeta Python SDK",
     author="Marqeta, Inc.",
     url="https://github.com/marqeta/marqeta-python",
