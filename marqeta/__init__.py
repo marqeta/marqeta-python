@@ -298,7 +298,7 @@ class Client(object):
                     timeout=self.timeout,
                     verify=ca_file.name,
                     params=query_params,
-                    proxies=proxy_data["https"],
+                    proxies={"https": proxy_data["https"]},
                     data=json.dumps(data),
                 )
                 return response
