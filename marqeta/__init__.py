@@ -301,7 +301,6 @@ class Client(object):
                     proxies={"https": proxy_data["https"]},
                     data=json.dumps(data),
                 )
-                return response
         else:
             response = requests.post(
                 url=self.base_url + endpoint,
