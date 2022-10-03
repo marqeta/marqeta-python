@@ -63,6 +63,8 @@ client.put("cards", params=body)
 """
 import sys
 import json
+import os
+import tempfile
 import requests
 from requests.exceptions import RequestException
 from marqeta.version import __version__
@@ -99,9 +101,6 @@ from marqeta.resources.push_to_cards import PushToCardsCollection
 from marqeta.resources.pins import PinsCollection
 from marqeta.response_models.ping_response import PingResponse
 from marqeta.response_models.echo_ping_response import EchoPingResponse
-import requests
-import tempfile
-import os
 
 headers = {
     "content-type": "application/json",
@@ -153,6 +152,7 @@ class Client(object):
         application_token=None,
         access_token=None,
         timeout=DEFAULT_TIMEOUT,
+        http_adapter=None,
     ):
 
         self.base_url = base_url
@@ -190,6 +190,10 @@ class Client(object):
         self.real_time_fee_groups = objects["real_time_fee_groups"]()
         self.push_to_cards = objects["push_to_cards"]()
         self.pins = objects["pins"]()
+        self._session = requests.Session()
+        if http_adapter:
+            self._session.mount("https://", http_adapter)
+
 
     def get(self, endpoint, query_params=None, proxy_data=None):
         """
@@ -198,13 +202,14 @@ class Client(object):
         :param query_params:
         :return: json response and response status code
         """
+
         if proxy_data:
             with tempfile.NamedTemporaryFile() as ca_file:
                 ca_file.write(proxy_data["pem_key"].encode())
                 ca_file.write(str.encode(os.linesep))
                 ca_file.write(self.read_file(proxy_data["ca_path"]))
                 self.read_file(ca_file.name)
-                response = requests.post(
+                response = self._session.get(
                     url=self.base_url + endpoint,
                     auth=(self.application_token, self.access_token),
                     headers=headers,
@@ -215,7 +220,7 @@ class Client(object):
                 )
                 return response
         else:
-            response = requests.get(
+            response = self._session.get(
                 url=self.base_url + endpoint,
                 auth=(self.application_token, self.access_token),
                 headers=headers,
@@ -248,7 +253,7 @@ class Client(object):
                 ca_file.write(str.encode(os.linesep))
                 ca_file.write(self.read_file(proxy_data["ca_path"]))
                 self.read_file(ca_file.name)
-                response = requests.post(
+                response = self._session.put(
                     url=self.base_url + endpoint,
                     auth=(self.application_token, self.access_token),
                     headers=headers,
@@ -259,7 +264,7 @@ class Client(object):
                 )
                 return response
         else:
-            response = requests.put(
+            response = self._session.put(
                 url=self.base_url + endpoint,
                 auth=(self.application_token, self.access_token),
                 headers=headers,
@@ -291,7 +296,7 @@ class Client(object):
                 ca_file.write(str.encode(os.linesep))
                 ca_file.write(self.read_file(proxy_data["ca_path"]))
                 self.read_file(ca_file.name)
-                response = requests.post(
+                response = self._session.post(
                     url=self.base_url + endpoint,
                     auth=(self.application_token, self.access_token),
                     headers=headers,
@@ -302,7 +307,7 @@ class Client(object):
                     data=json.dumps(data),
                 )
         else:
-            response = requests.post(
+            response = self._session.post(
                 url=self.base_url + endpoint,
                 auth=(self.application_token, self.access_token),
                 headers=headers,
@@ -333,7 +338,7 @@ class Client(object):
                 ca_file.write(str.encode(os.linesep))
                 ca_file.write(self.read_file(proxy_data["ca_path"]))
                 self.read_file(ca_file.name)
-                response = requests.post(
+                response = self._session.delete(
                     url=self.base_url + endpoint,
                     auth=(self.application_token, self.access_token),
                     headers=headers,
@@ -343,7 +348,7 @@ class Client(object):
                 )
                 return response
         else:
-            response = requests.delete(
+            response = self._session.delete(
                 url=self.base_url + endpoint,
                 auth=(self.application_token, self.access_token),
                 headers=headers,
