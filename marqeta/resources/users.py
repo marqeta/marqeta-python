@@ -69,13 +69,13 @@ class UsersCollection(object):
             endpoint=self._endpoint, query_params=params, limit=limit
         )
 
-    def create(self, data={}):
+    def create(self, data={},  proxy_data=None):
         """
         Creates an users object
         :param data: data required for creation
         :return:UserCardHolderResponse object
         """
-        return self.collections_usermodel.create(endpoint=self._endpoint, data=data)
+        return self.collections_usermodel.create(endpoint=self._endpoint, data=data,  proxy_data=proxy_data)
 
     def find(self, token, params=None):
         """
@@ -88,7 +88,7 @@ class UsersCollection(object):
             endpoint=self._endpoint + "/{}".format(token), query_params=params
         )
 
-    def save(self, token, data):
+    def save(self, token, data, proxy_data=None):
         """
         Updates an users object
         :param token: users token
@@ -96,7 +96,7 @@ class UsersCollection(object):
         :return: CardHolderModel object
         """
         return self.collections.save(
-            data, endpoint=self._endpoint + "/{}".format(token)
+            data, endpoint=self._endpoint + "/{}".format(token),  proxy_data=proxy_data
         )
 
     def look_up(self, data, params=None, limit=1000):

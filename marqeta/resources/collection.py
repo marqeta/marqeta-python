@@ -100,14 +100,14 @@ class Collection(object):
         response = self.client.get(endpoint, query_params=query_params)[0]
         return self.resource(response)
 
-    def save(self, data, endpoint=None):
+    def save(self, data, endpoint=None, proxy_data=None):
         """
         Updates an endpoint object
         :param data: data to be updated
         :param endpoint: Endpoint
         :return: resource object
         """
-        response = self.client.put(endpoint, data)[0]
+        response = self.client.put(endpoint, data, proxy_data)[0]
         return self.resource(response)
 
     def __repr__(self):
