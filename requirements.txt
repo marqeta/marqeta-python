@@ -2,3 +2,4 @@ requests >= 2.0.0
 pytz >= 2019.1
 faker >=1.0.7
 
+urllib3>=2.6.3 # not directly required, pinned by Snyk to avoid a vulnerability
